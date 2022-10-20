@@ -1,0 +1,11 @@
+/*Where the SASS code compiles*/
+
+/*Some sample CSS for now*/
+
+html{
+    height: 100%;
+    width: 100%;
+}
+body {
+    background-color: blue;
+}
