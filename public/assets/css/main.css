@@ -1,11 +1,11 @@
-/*Where the SASS code compiles*/
-
-/*Some sample CSS for now*/
-
-html{
-    height: 100%;
-    width: 100%;
+:root {
+  --background-colour: #fff
+  --accent-colour-1: #c60078 ;
 }
+
 body {
-    background-color: blue;
+  background-color: var(--background-colour);
+}
+body p {
+  color: var(--primary-accent-colour);
 }
