@@ -1,0 +1,9 @@
+@import 'util/colours';
+
+body {
+  background-color: var(--background-colour);
+
+  p {
+    color: var(--primary-accent-colour)
+  }
+}
