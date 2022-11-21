@@ -1,0 +1,10 @@
+mixin homePageCard(caption, imgSource, imgText)
+    div(class="flip-card")
+        div(class="flip-card-inner")
+            div(class="flip-card-front")
+                img(src=imgSource class="flip-card-image")
+            div(class="flip-card-back")
+                p=imgText
+        p=caption
+
+        

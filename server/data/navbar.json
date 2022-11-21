@@ -1,0 +1,155 @@
+[
+    {
+        "title": "Home",
+        "ref": "/",
+        "children": []
+    },
+    {
+        "title": "Get involved",
+        "ref": "/",
+        "children":[
+            {
+                "title": "Volunteer at MathSoc",
+                "ref": "/volunteer"
+            },
+            {
+                "title": "Math Community",
+                "ref": "/"       
+            },
+            {
+                "title": "MathSoc Clubs",
+                "ref": "/"
+            },
+            {
+                "title": "MathSoc Council",
+                "ref": "/"
+            }
+        ]
+    },
+    {
+        "title": "Services",
+        "ref": "/",
+        "children": [
+            {
+                "title": "MathSoc Office",
+                "ref": "/"
+            },
+            {
+                "title": "Term Social Events",
+                "ref": "/"
+            },
+            {
+                "title": "Locker Sign Out",
+                "ref": "/"
+            },
+            {
+                "title": "Board Game Nights",
+                "ref": "/"
+            },
+            {
+                "title": "Math CnD",
+                "ref": "/"
+            },
+            {
+                "title": "MC Comfy",
+                "ref": "/"
+            }
+        ]
+    },
+    {
+        "title": "Cartoons",
+        "ref": "/",
+        "children": [
+            {
+                "title": "About Us",
+                "ref": "/"
+            },
+            {
+                "title": "Meet the Team",
+                "ref": "/"
+            },
+            {
+                "title": "Cartoons Archive",
+                "ref": "/"
+            }
+        ]
+    },
+    {
+        "title": "Documents",
+        "ref": "/",
+        "children": [
+            {
+                "title": "Meetings",
+                "ref": "/"
+            },
+            {
+                "title": "Reports",
+                "ref": "/"
+            },
+            {
+                "title": "Policies and Bylaws",
+                "ref": "/"
+            },
+            {
+                "title": "Budgets",
+                "ref": "/"
+            },
+            {
+                "title": "On Proctoring Software",
+                "ref": "/"
+            }
+        ]
+    },
+    {
+        "title": "Elections",
+        "ref": "/",
+        "children": []
+    },
+    {
+        "title": "Resources",
+        "ref": "/",
+        "children": [
+            {
+                "title": "Exam Bank",
+                "ref": "/"
+            },
+            {
+                "title": "Work Term Report",
+                "ref": "/"
+            },
+            {
+                "title": "Academic Advising",
+                "ref": "/"
+            },
+            {
+                "title": "Accessability Services",
+                "ref": "/"
+            },
+            {
+                "title": "Mental Wellness",
+                "ref": "/"
+            },
+            {
+                "title": "Coop Adivce",
+                "ref": "/"
+            },
+            {
+                "title": "Guidlines for Picking Courses",
+                "ref": "/"
+            },
+            {
+                "title": "Cheque Request Information and Other Forms",
+                "ref": "/"
+            },
+            {
+                "title": "Course Evaluations",
+                "ref": "/"
+            }
+        ]
+    },
+    {
+        "title": "Contact Us",
+        "ref" : "/",
+        "children": []
+    }  
+] 
