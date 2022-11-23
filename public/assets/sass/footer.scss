@@ -1,0 +1,44 @@
+@import 'util/colours';
+
+.footer {
+    display: block;
+    min-width: 100%;
+    overflow: hidden;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    bottom: 0;
+    background-image: url("/assets/img/footer/m3-edited.jpeg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    min-height: 333px;
+    flex-direction: row;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+
+    .section {
+        width: 25%;
+        margin-left: 7%;
+        color: white;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+
+        .socials {
+            filter: invert(100%);
+            margin-top: 20px; 
+            a {
+                margin-left: 8px;
+            }
+        }
+    }
+
+    .social-section {
+        text-align:center;
+    }
+}

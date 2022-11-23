@@ -1,0 +1,14 @@
+append styles
+link(href='/assets/css/navbar.css' rel="stylesheet")
+
+block body 
+    div(class="navbar")
+        img(src="/assets/img/MathSoc_RGB-HorizontalStandard.svg")
+        div(class="items")
+            each nav in navItems
+                div(class="dropdown") #{nav.title}
+                    - var length = nav.children ? nav.children.length : 0;
+                    if length
+                        div(class="dropdown-content")
+                            each item in nav.children
+                                a(href=""+ item.ref +"") #{item.title}
