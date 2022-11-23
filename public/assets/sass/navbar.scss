@@ -10,58 +10,55 @@
         width: 200px;
         margin-left:5%;
     }
-
     .items {
         float: right;
-    }
-   
-}
 
-.items {
-    .dropdown {
-        float: left;
-        color:black;
-        position: relative;
-        text-align: center;
-        padding: 14px 16px;
-        margin: 14px 16px;
-        text-decoration: none;
-        display: inline-block;
-    }
-
-    .dropdown:hover {
-        color: var(--accent-colour-1);
-        text-align: center;
-        text-decoration: none;
-
-
-        .dropdown-content {
-            transition: display 0.3s ease;
-            display: block;
-        } 
-
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        color: black;
-        min-width: 160px;
-        z-index: 10;
-        background-color: white;
-        border-style: solid none none none;
-        border-color: var(--accent-colour-1);
-
-        a {
-            color: black;
-            padding: 12px 16px;
+        .dropdown {
+            float: left;
+            color:black;
+            position: relative;
+            text-align: center;
+            padding: 14px 16px;
+            margin: 14px 16px;
             text-decoration: none;
-            display: block;
-          }
-
-        a:hover {
-            background-color: #f1f1f1
+            display: inline-block;
         }
-        
+    
+        .dropdown:hover {
+            color: var(--accent-colour-1);
+            text-align: center;
+            text-decoration: none;
+    
+    
+            .dropdown-content {
+                transition: display 0.3s ease;
+                display: block;
+            } 
+    
+        }
+    
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            color: black;
+            min-width: 160px;
+            z-index: 10;
+            background-color: white;
+            border-style: solid none none none;
+            border-color: var(--accent-colour-1);
+    
+            a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+              }
+    
+            a:hover {
+                background-color: #f1f1f1
+            }
+            
+        }
     }
 }
+
