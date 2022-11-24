@@ -1,4 +1,9 @@
 :root {
   --background-colour: #fff;
-  --accent-colour-1: #c60078;
+  --mathsoc-pink: #c60078;
+  --mathsoc-grey: #212934;
+  --accent-colour-1: var(--mathsoc-pink);
+  --accent-colour-2: var(--mathsoc-grey);
+  --text-color: var(--mathsoc-grey);
+  --inverted-text-color: #ffffff;
 }

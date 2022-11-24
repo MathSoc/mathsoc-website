@@ -1,14 +1,33 @@
-append styles
-link(href='/assets/css/navbar.css' rel="stylesheet")
-
 block body 
     div(class="navbar")
-        img(src="/assets/img/MathSoc_RGB-HorizontalStandard.svg")
+        a(href="/")
+            img(src="/assets/img/full-logo.svg" id="nav-logo")
         div(class="items")
-            each nav in navItems
-                div(class="dropdown") #{nav.title}
-                    - var length = nav.children ? nav.children.length : 0;
+            each category in navItems
+                div(class="dropdown")
+                    a(href=category.ref)
+                        div(class="dropdown-button") #{category.title}
+                    - var length = category.children ? category.children.length : 0;
                     if length
                         div(class="dropdown-content")
-                            each item in nav.children
+                            each item in category.children
                                 a(href=""+ item.ref +"") #{item.title}
+        button(id="mobile-menu-button")
+            img(src="/assets/img/single-downvote.svg")
+
+    div(id="mobile-nav")
+        div(class="items")
+            each category in navItems
+                div(class="dropdown")
+                    - var length = category.children ? category.children.length : 0;
+                    if category.ref
+                        a(href=category.ref)
+                            div(class="dropdown-button") #{category.title}
+                    else 
+                        div(class="dropdown-button") #{category.title}
+                    if length
+                        ul(class="dropdown-content")
+                            each item in category.children
+                                li(class="sub-button")
+                                    a(href=item.ref) #{item.title}
+

@@ -1,12 +1,6 @@
 [
     {
-        "title": "Home",
-        "ref": "/",
-        "children": []
-    },
-    {
         "title": "Get involved",
-        "ref": "/",
         "children":[
             {
                 "title": "Volunteer at MathSoc",
@@ -28,7 +22,6 @@
     },
     {
         "title": "Services",
-        "ref": "/",
         "children": [
             {
                 "title": "MathSoc Office",
@@ -58,7 +51,6 @@
     },
     {
         "title": "Cartoons",
-        "ref": "/",
         "children": [
             {
                 "title": "About Us",
@@ -76,7 +68,6 @@
     },
     {
         "title": "Documents",
-        "ref": "/",
         "children": [
             {
                 "title": "Meetings",
@@ -107,7 +98,6 @@
     },
     {
         "title": "Resources",
-        "ref": "/",
         "children": [
             {
                 "title": "Exam Bank",
