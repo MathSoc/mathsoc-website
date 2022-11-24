@@ -1,0 +1,32 @@
+mixin electionsCandidate(name, platform, isElected)
+    if isElected
+      div(class="candidate elected")
+        h3=name
+        p=platform
+    else 
+      div(class="candidate")
+        h3=name
+        p=platform
+
+mixin electionsDecision(name, date, summary, counter, decision, penalties, penaltyDesc, appeal, appealDecision)
+  div(class="elections-decision")
+    h2 Against #{name}
+    span #[strong Submitted:] #{date}
+    h3 Summary of allegation:
+    p=summary 
+    h4 Counterevidence and defence:
+    p=counter 
+    h4 Decision: 
+    p=decision 
+    if(penalties)
+      h3 Penalty: 
+      ul(class="penalties")
+        for p of penalties
+          li=p
+      if(penaltyDesc) 
+        p=penaltyDesc
+      if(appeal)
+        h4 Appeal 
+        p=appeal 
+        h4 Decision:
+        p=appealDecision 

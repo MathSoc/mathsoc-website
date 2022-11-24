@@ -6,4 +6,8 @@ router.get('/', async (req, res) => {
     res.render('pages/home', {navItems: navItems, footer: footer});
 });
 
+router.get('/elections', async (req, res) => {
+  res.render('pages/elections/elections', {navItems: navItems, footer: footer});
+})
+
 module.exports = router;

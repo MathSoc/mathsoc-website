@@ -1,0 +1,47 @@
+@import '../mixins/banner-image';
+@import '../util/fonts';
+
+h1 {
+  font-size: 2em;
+  color: var(--accent-colour-1);
+  margin-top: 0;
+}
+
+.title {
+  color: var(--accent-colour-1);
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-size: 2em;
+  }
+}
+
+section {
+  max-width: 980px;
+  margin: auto;
+}
+
+.candidate.elected h3 {
+  color: var(--accent-colour-1);
+}
+
+h2 {
+  font-family: var(--title-font);
+  font-size: 1.6em;
+}
+
+h3 {
+  font-family: var(--title-font);
+  font-size: 1.4em;
+}
+
+h4 {
+  font-family: var(--title-font);
+  font-size: 1.2em;
+  margin-bottom: 4px;
+}
+
+p {
+  margin: 0;
+}
