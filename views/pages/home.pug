@@ -1,28 +1,54 @@
 doctype html
 html(lang="en")
-    link(href='/assets/css/navbar.css' rel="stylesheet")
-    link(href='/assets/css/home.css' rel="stylesheet")
-    link(href="/assets/css/footer.css" rel="stylesheet")
-    link(href="/assets/css/carousel.css" rel="stylesheet")
-    script(src="/assets/js/carousel.js" defer)
-    title MathSoc Home
     include ../partials/header.pug
-    body 
-        include ../partials/navbar.pug
-        br
-        div(class="container")
-            include ../mixins/carousel.pug
-            +carousel(["/assets/img/carousel/car1.jpeg", "/assets/img/carousel/car2.jpeg", "/assets/img/carousel/car3.jpeg", "/assets/img/carousel/car4.jpeg"])
-            div(style="text-align:center")
-                p Notice: Locker Sign Ups for the Fall 2022 term are now open! To reserve a locker, go to 
-                    a(href="https://mathsoc.uwaterloo.ca/locker-sign-out/") this page
-                div(class="cards") 
-                    include ../mixins/components.pug
-                    +homePageCard("Rentals", "/assets/img/flipcards/msoc-22-scaled.jpeg", "We provide Textbook Rentals, Board Game Rentals, Calculator Rentals, and equipment for our clubs and members!")
-                    +homePageCard("Services", "/assets/img/flipcards/msoc-27-scaled.jpeg", "We provide a printing service at a low price and we have a microwave and free snacks available for all members!")
-                    +homePageCard("Store", "/assets/img/flipcards/msoc-32-scaled.jpeg", "We sell novelties like MathSoc swag, stationary items, faulty approved calculators, and more at affordable prices.")
-            div(class="calendar-wrapper")
-                h1 UPCOMING EVENTS
-                p Note: Links to virtual events can be fonud by clicking on the event in the Google Calendar.
-                iframe(class="calendar" src="https://calendar.google.com/calendar/embed?src=c_fvt18kkc2ta47sj8kp1bumkbg8%40group.calendar.google.com&ctz=America%2FToronto" frameborder="0" scrolling="no")
-        include ../partials/footer.pug
+    body
+        
+        div.top 
+            img.Cnd(src="https://mathsoc.uwaterloo.ca/wp-content/uploads/CnD_Logo_transparent_Final-1.jpg", alt="")
+            p Math CnD is owned and operated by the Math Society and located on the 3rd floor in MC Building. CnD has a great selection of food choices at student friendly prices such as coffee & donuts, hot soup and entrees, cold sandwiches, Wasabi Sushi, fresh patties and samosas, and so much more. It’s worth the trip to MC!!
+            p Dont forget our daily specials, which are always in a limited supply:
+            span#dots ...
+            button#Btn Read more
+            span#more 
+                ul 
+                    li Monday – Mac ‘n Cheese
+                    li Tuesday – Soup (Creamy Potato With Bacon always available)
+                    li Wednesday – Chicken Stew
+                    li Thursday – Soup (Boston Clam Chowder always available)
+                    li Friday – Chili and Garlic Bread Stix (sold separately)
+
+                p The Store Manager Rose Penner can be reached at: 519-888-4567 ext. 36373 or at r2penner@uwaterloo.ca. The CnD can be reached directly at 519-888-4567 ext. 36521.
+                br
+                p Math Society – CnD
+                p 3rd Floor, MC Building
+                p 200 University Ave. W.
+                p Waterloo, ON N2L 3G1
+        h2 locker sign Out
+        div.lok
+            img.locker(src="https://mathsoc.uwaterloo.ca/wp-content/uploads/lockers-800x300.jpg", alt="Locker")
+            div.new
+                p.para If a student in the math faculty is on a study term and has paid their MathSoc fee, they are eligible to book a locker for the period of the term. No perishable foods are allowed to be stored to avoid attracting pests.
+                p.para MathSoc offers lockers on a term-by-term basis. If you wish to sign out  a locker for the Fall 2022 school term, please fill out
+        a.form(href="https://docs.google.com/forms/d/e/1FAIpQLSd8bdQ7KmypjJnuZQPxZc-yHiSY3_XwMxfX7LavgL8e9rHRGQ/viewform") this form.
+        img.Math-soc(src="https://mathsoc.uwaterloo.ca/wp-content/uploads/2020/05/mathsoc_logo.png", alt="") 
+        h2 MathSoc broad games
+        div.Games  
+            img.shelf(src="https://mathsoc.uwaterloo.ca/wp-content/uploads/D5FE0017-7056-4481-A7E0-50A27D82AE1D-1024x768.jpg"  alt="")
+            div.try
+                p MathSoc holds weekly Board Game Nights for students to unwind and play board games with their friends. Stop by the office to pick your game of choice from MathSocs extensive collection!
+                p Some titles we have in store:
+                ul
+                    li Settlers of Catan
+                    li Jenga
+                    li Dominion
+                    li Shadows Over Camelot
+                    li Deception
+                    li …and many more!
+                p Join the MathSoc Games Night Discord to receive updates on events:
+                a(href="https://discord.gg/DAT6S2TWdB") Discord
+                script(src="/assets/js/index.js") 
+        h2 MC Comfy 
+        div.MCimg
+            img.COMFY(src="https://mathsoc.uwaterloo.ca/wp-content/uploads/sleeping_at_desk_man_qylhq3-600x337.jpg", alt="")
+            div.MCpara
+                p MathSoc’s lounge for students! Stop by to relax and study. Socialize and make new friends. If you are looking for a place for solo study then this is a place for you. There will also be various events held in here by different clubs and councils, so look out for those!            
