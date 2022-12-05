@@ -1,0 +1,28 @@
+{
+    "lockerText1":"If a student in the math faculty is on a study term and has paid their MathSoc fee, they are eligible to book a locker for the period of the term. No perishable foods are allowed to be stored to avoid attracting pests.",
+    "lockerText2":"MathSoc offers lockers on a term-by-term basis. If you wish to sign out a locker for the Fall 2022 school term, please fill out this form.",
+
+    "boardGamesText1":"MathSoc holds weekly Board Game Nights for students to unwind and play board games with their friends. Stop by the office to pick your game of choice from MathSoc’s extensive collection!",
+    "boardGamesText2":["Some titles we have in store:",
+     "Settlers of Catan",
+     "Jenga", "Dominion",
+     "Shadows Over Camelot",
+     "Deception"],
+    "boardGamesText3":"Join the MathSoc Games Night Discord to receive updates on events: https://discord.gg/DAT6S2TWdB.",
+
+    "cndText1":"Math CnD is owned and operated by the Math Society and located on the 3rd floor in MC Building. CnD has a great selection of food choices at student friendly prices such as coffee & donuts, hot soup and entrees, cold sandwiches, Wasabi Sushi, fresh patties and samosas, and so much more. It’s worth the trip to MC!!",
+
+    "cndList":["Don’t forget our daily specials, which are always in a limited supply:",
+    "Monday – Mac ‘n Cheese",
+    "Tuesday – Soup (Creamy Potato With Bacon always available)",
+    "Wednesday – Chicken Stew",
+    "Thursday – Soup (Boston Clam Chowder always available)",
+    "Friday – Chili and Garlic Bread Stix (sold separately)"],
+    
+    "cndTel":"The Store Manager Rose Penner can be reached at: 519-888-4567 ext. 36373 or at r2penner@uwaterloo.ca. The CnD can be reached directly at 519-888-4567 ext. 36521.",
+    "cndAddress":["Math Society – CnD", "3rd Floor, MC Building","200 University Ave. W.","Waterloo, ON N2L 3G1"]
+    
+
+
+    
+}
