@@ -1,0 +1,63 @@
+$font-family_1: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$background-color_1: var(--background-colour);
+$background-color_2: rgba(255, 255, 255, 0.466);
+$background-color_3: white;
+
+&:root {
+	--background-colour: rgba(255, 255, 255, 0.877);
+	--accent-colour-1: #000000;
+}
+body {
+	background-color: $background-color_1;
+	font-family: $font-family_1;
+}
+.lok {
+	background-color: $background-color_2;
+	width: 100%;
+	display: flex;
+}
+.locker {
+	margin: 10px;
+	height: 200px;
+	border-radius: 20px;
+}
+.Math-soc {
+	position: relative;
+	top: -40px;
+	right: 40px;
+}
+.shelf {
+	margin: 10px;
+	height: 400px;
+	border-radius: 20px;
+}
+.Games {
+	display: grid;
+	grid-template-columns: auto auto auto 200px;
+}
+.try {
+	margin: 10px;
+	width: 50%;
+}
+.Cnd {
+	height: 400px;
+}
+#more {
+	display: none;
+}
+#Btn {
+	border: none;
+	background-color: $background-color_3;
+}
+.MCimg {
+	display: flex;
+	margin: 10px;
+}
+.MCpara {
+	width: 27%;
+	margin: 10px;
+}
+.COMFY {
+	width: 32%;
+	border-radius: 20px;
+}
