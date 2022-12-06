@@ -1,7 +1,7 @@
 block body 
     div(class="navbar")
         a(href="/")
-            img(src="/assets/img/full-logo.svg" id="nav-logo")
+            img(src="/assets/img/icons/full-logo.svg" id="nav-logo")
         div(class="items")
             each category in navItems
                 div(class="dropdown")
@@ -13,7 +13,7 @@ block body
                             each item in category.children
                                 a(href=""+ item.ref +"") #{item.title}
         button(id="mobile-menu-button")
-            img(src="/assets/img/single-downvote.svg")
+            img(src="/assets/img/icons/single-downvote.svg")
 
     div(id="mobile-nav")
         div(class="items")
