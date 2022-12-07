@@ -2,7 +2,11 @@
 
 .footer {
     display: block;
-    min-width: 100%;
+
+    $container-side-padding: 25px;
+    min-width: calc(100% - 2 * $container-side-padding);
+    padding: 0 $container-side-padding;
+
     overflow: hidden;
     position: relative;
     bottom: 0;
@@ -16,33 +20,55 @@
     flex-direction: row;
 
     @media (max-width: 768px) {
+        padding-bottom: 30px;
         flex-direction: column;
     }
 
     .section {
         width: 25%;
-        margin-left: 7%;
+        padding: 0 20px;
         color: white;
         margin-top: 50px;
         margin-bottom: 20px;
+
         @media (max-width: 768px) {
-            width: 100%;
+            width: calc(100% - 2 * $container-side-padding);
+            text-align: center;
+
+            &.blank {
+                display: none;
+            }
         }
 
-        p { 
-          color: white;          
+        p {
+            color: white;
         }
 
         .socials {
+            width: min-content;
+            margin: 20px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+
             filter: invert(100%);
-            margin-top: 20px; 
+
             a {
                 margin-left: 8px;
+            }
+
+            @media (max-width: 768px) {
+                grid-auto-flow: row;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+
+                a {
+                    margin: 0;
+                }
             }
         }
     }
 
     .social-section {
-        text-align:center;
+        text-align: center;
     }
 }
