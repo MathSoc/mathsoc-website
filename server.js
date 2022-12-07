@@ -11,6 +11,8 @@ const routes = require('./server/routes');
 const authRoutes = require("./server/routes/auth");
 const api = require('./server/api');
 
+app.locals.basedir = path.join(__dirname, '');
+
 app
     .use(express.json())
     .use(express.urlencoded({ extended: false }))

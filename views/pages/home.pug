@@ -1,19 +1,16 @@
 doctype html
 html(lang="en")
-    link(href='/assets/css/navbar.css' rel="stylesheet")
-    link(href='/assets/css/home.css' rel="stylesheet")
-    link(href="/assets/css/footer.css" rel="stylesheet")
-    link(href="/assets/css/carousel.css" rel="stylesheet")
-    script(src="/assets/js/carousel.js" defer)
     title MathSoc Home
     include ../partials/header.pug
+    link(href="/assets/css/carousel.css" rel="stylesheet")
+    script(src="/assets/js/carousel.js" defer)
+    link(href='/assets/css/homepage.css' rel="stylesheet")
     body 
         include ../partials/navbar.pug
-        br
         div(class="container")
             include ../mixins/carousel.pug
             +carousel(["/assets/img/carousel/car1.jpeg", "/assets/img/carousel/car2.jpeg", "/assets/img/carousel/car3.jpeg", "/assets/img/carousel/car4.jpeg"])
-            div(style="text-align:center")
+            section(style="text-align:center")
                 p Notice: Locker Sign Ups for the Fall 2022 term are now open! To reserve a locker, go to 
                     a(href="https://mathsoc.uwaterloo.ca/locker-sign-out/") this page
                 div(class="cards") 
@@ -21,8 +18,8 @@ html(lang="en")
                     +homePageCard("Rentals", "/assets/img/flipcards/msoc-22-scaled.jpeg", "We provide Textbook Rentals, Board Game Rentals, Calculator Rentals, and equipment for our clubs and members!")
                     +homePageCard("Services", "/assets/img/flipcards/msoc-27-scaled.jpeg", "We provide a printing service at a low price and we have a microwave and free snacks available for all members!")
                     +homePageCard("Store", "/assets/img/flipcards/msoc-32-scaled.jpeg", "We sell novelties like MathSoc swag, stationary items, faulty approved calculators, and more at affordable prices.")
-            div(class="calendar-wrapper")
+            section(class="calendar-wrapper pink")
                 h1 UPCOMING EVENTS
-                p Note: Links to virtual events can be fonud by clicking on the event in the Google Calendar.
+                p Note: Links to virtual events can be found by clicking on the event in the Google Calendar.
                 iframe(class="calendar" src="https://calendar.google.com/calendar/embed?src=c_fvt18kkc2ta47sj8kp1bumkbg8%40group.calendar.google.com&ctz=America%2FToronto" frameborder="0" scrolling="no")
         include ../partials/footer.pug

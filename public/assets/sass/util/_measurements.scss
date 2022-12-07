@@ -1,0 +1,9 @@
+:root {
+  --content-width: 980px;
+}
+
+@mixin tablet-down() {
+  @media only screen and (max-width: 980px) {
+    @content;
+  }
+}
