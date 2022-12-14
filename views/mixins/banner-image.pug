@@ -1,3 +1,6 @@
-mixin banner-image(src) 
-  div(class="banner-container")
-    img(src=src alt="")
+//- Types: pink, small
+mixin banner-image(src, types=[], title="") 
+  div(class="banner-container " + types.join(" ") style="background-image: url(" + src + ")")
+    div(class="overlay-filter")
+    if title != ""
+      h1(class="banner-title") #{title}

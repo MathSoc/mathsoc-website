@@ -1,8 +1,40 @@
+@import '../util/_sass-mixins';
+
 .banner-container {
-  max-height: 400px;
+  height: 400px;
+  position: relative;
   overflow: hidden;
-  
-  img {
+
+  background-size: cover;
+  background-position: center;
+
+  @include tablet-down {
+    height: 300px;
+  }
+
+  .overlay-filter {
+    position: absolute;
     width: 100%;
+    height: 100%;
+  }
+
+  .banner-title {
+    position: absolute;
+    font-size: 2.5em;
+    color: white;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    margin: 0;
+    transform: translateY(-50%);
+  }
+
+  &.pink .overlay-filter {
+    background-color: var(--mathsoc-pink);
+    opacity: 0.5;
+  }
+
+  &.small {
+    height: 200px;
   }
 }

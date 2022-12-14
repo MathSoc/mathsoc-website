@@ -1,51 +1,77 @@
 include /views/mixins/banner-image.pug
-include /views/mixins/pages/elections.pug
+
+- const currentElection = elections[0];
+- const openPositions = currentElection.candidates.map((c) => c.position).filter((position, index, array) => index === array.indexOf(position));
 
 doctype html
 html(lang="en")
   head 
-    title Winter 2023 Election &#8211; MathSoc
+    title #{currentElection.term} Election &#8211; MathSoc
     include /views/partials/header.pug
     link(href="/assets/css/pages/elections.css" rel="stylesheet")
 
   body 
     include /views/partials/navbar.pug
-    +banner-image("/assets/img/carousel/car1.jpeg")
+    +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
     div(class="content")
       section(class="white")
         div(class="title")
           h1 Election Complete
-          span Winter 2023
-        div(class="results")
-          p The election has concluded, and results are in!
-          ul 
-            li #[strong President]: Nick Priebe
-            li #[strong VPA]: Ciaran Neely
+          span #{currentElection.term}
+        if currentElection.electionState = "completed"
+          - const victors = openPositions.map((position) => currentElection.candidates.filter((candidate) => candidate.elected && candidate.position === position)[0]);
+          div(class="results")
+            p The election has concluded.
+            ul  
+              each victor in victors
+                li #[strong #{victor.position}-elect]: #{victor.name}
+            p We thank all candidates for their efforts.
+
+      +banner-image("/assets/img/banners/exec-office.jpeg", ['pink', 'small'], 'Candidate Platforms')
       section(class="white")
-        h1 Candidate Platforms 
-        div(class="position" id="president")
-          h2 President
-          +electionsCandidate("Chang Liu", `As someone going into her final term at UWaterloo, Chang wants to spend her last term giving back to the community. Having served as a Director for more than 2 terms at MathSoc, she understands what students need. Her primary focus will be 1) working with the VPA and communicating with professors to add more recent exams to the exam bank, 2) supporting the MathSoc team and helping them to achieve the changes they want to make, and 3) opening up more part-time research opportunities for Math students because students are often confused about how to find relevant opportunities.`)
-          +electionsCandidate("Nick Priebe", `M4 is currently being planned, and there are ongoing efforts to advocate for student and club space, which I will work hard to continue; as a MathSoc councillor, president of the PMAMCO club and a mathNEWS editor, I know what clubs and students need. Stat 231 is undergoing a rewrite, there will be student representation selected by MathSoc, and I will ensure we advocate for impactful changes. The exam bank needs to be expanded, and I will work with professors and the VPA to ensure this happens. Finally, thigh high math socks. Details available at https://bit.ly/3UQU78c.`, true)
-        div(class="position" id="vpa")
-          h2 Vice-President, Academic
-          +electionsCandidate("Ciaran Neely", `Cici Neely is a very active member of MathSoc, serving both on Council and as the Chair of the Board of Directors. She is well-acquainted with how the organization runs and what its policies are. As VPA, she will work to expand the exam bank, rebuild community in the fragmented stats and AMath programs, and help students learn what they need to do to get involved in research. She will also provide support for those like Young who feel passionately about one particular issue and offer her expertise to help address those issues as a team.`, true)
-          +electionsCandidate("Young Wang", `Their campaign is to reduce the use and eventually eliminate iClickers from math classes, along with other academic matters. Read more at: https://student.cs.uwaterloo.ca/~y3285wan/iclicker.html`)
+        each position in openPositions 
+          div(class="position" id=position.toLowerCase().replaceAll(/\s/g, '-').replaceAll(/,/g, ''))
+            h2 Candidates for #{position}
+            - const candidates = currentElection.candidates.filter((c) => c.position == position); 
+            each candidate in candidates 
+              div(class="candidate " + [candidate.elected ? "elected" : ""])
+                h3=candidate.name
+                p=candidate.platform
+                
+      +banner-image("/assets/img/banners/pinktie-mc.jpeg", ['pink'], 'Allegations and Appeals')
       section(class="white")
-        h1 Allegations and Appeals
-        +electionsDecision("Faraan Hadi", 
-          "2022-11-05",
-          "Hadi posted in the MathSoc public Discord asking for people to vote for them for president on vote.wusa.ca. This was performed again as a separate instance. Moreover, Hadi posted a message in the CSC Discord suggesting they would “see what they can do” about removing the Pure Math Club’s office space and giving it to CSC. This contravenes the spirit of Article 2 of the Society’s bylaws, Object, which state that the object of the Society is to “serve and represent undergraduate students”, to “encourage cooperation and communication between students”, and to “provide students with the means to help them accomplish their goals both within and without the University”. In brief, Hadi suggests in his platform that he may be willing to pit students against each other and selectively not represent students of certain programs, disregarding the Society’s founding principle and running against WUSA’s intentions for the Society to represent and serve all Math students.",
-          "The defendant claims that that “campaigning” is not well-defined in the Elections policy. Moreover, they assert that “seeing what they can do” is not a promise and merely an indication of consideration, which does not explicitly contravene the bylaw.",
-          "Asking others to vote for a candidate is a canonical example of campaigning for the candidate; the evidence is clear and unambiguous. As well, it would be a very dangerous precedent to set to allow candidates to equivocate about actions that undermine the object of the Society.",
-          [
-          `Campaigning outside of campaigning period: 2 points`,
-          `Campaigning outside of campaigning period: 3 points (repeat offence)`,
-          `Minor contravention of the spirit of the bylaws: 6 points`
-          ],
-          `As the defendant exceeded 11 points, they are disqualified from candidacy in the election.`,
-          "The appellant provides roughly the same information as in their defence. They also claim that the MathSoc Executive Officers hold bias against them since they intend to claim the MathSoc Executive office for the Computer Science Club. They also claim that the evidence could have been fabricated and that there is no way to verify that he was indeed the one who posted the messages in question.",
-          "Only two members of the Elections Committee are Executive Officers, and they do not perceptibly hold conflicts of interest in this case since they hold office only for this term, not the next. The evidence was procured from a member of the Elections Committee and was witnessed by others, including members and non-members. The account is known to be owned by the appellant. The Elections Committee upholds its original decision."
-        ) 
+        h2 Decisions 
+        - 
+          const decisions = currentElection.decisions.map((decision, index) => {
+            decision.index = index;
+            return decision;
+          })
+        ul 
+          each decision of decisions 
+            a(href="#decision-" + decision.index)
+              li #{decision.candidate}
+        each decision of decisions 
+          div(class="elections-decision" id="decision-" + decision.index)
+            h2 Against #{decision.candidate}
+            span #[strong Submitted:] #{decision.date}
+            div(class="decision-body")
+              h3 Summary of allegation:
+              p=decision.allegation 
+              h4 Counterevidence and defence:
+              p=decision.defense
+              h4 Decision: 
+              p=decision.decision
+              if(decision.penalties)
+                h3 Penalty: 
+                ul(class="penalties")
+                  for penalty of decision.penalties
+                    li=penalty
+                if(decision.penaltyDescription) 
+                  p=decision.penaltyDescription
+                if(decision.appeal)
+                  h4 Appeal 
+                  p=decision.appeal 
+                  h4 Decision:
+                  p=decision.appealDecision 
 
     include /views/partials/footer.pug

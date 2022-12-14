@@ -1,5 +1,4 @@
-@import 'util/colours';
-@import 'util/fonts';
+@import 'util/_variables';
 
 body {
   background-color: var(--background-colour);
@@ -13,6 +12,7 @@ h1 {
 
 p {
   color: var(--text-color);
+  overflow-wrap: break-word;
 }
 
 a,
@@ -22,7 +22,8 @@ a:visited {
 }
 
 section {
-  padding-top: 30px;
+  margin: 30px auto;
+  padding: 24px;
 }
 
 section:last-child {
