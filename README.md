@@ -1,5 +1,9 @@
 # MathSoc Website Transition
 
+The MathSoc web development team is rebuilding the MathSoc website to transition away from the current WordPress implementation.  We seek to rebuild it primarily using `pug` and `Express`, to allow for greater quality, maintainability, and customizability going forward.
+
+We always accept contributions from **current University of Waterloo students**.  Those interested in a more active role should consider applying to join MathSoc's web development team; applications open near the beginning of term.  
+
 ## Steps to run locally
 
 1. Clone the repository in the directory of your choice
