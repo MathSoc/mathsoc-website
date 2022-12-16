@@ -1,0 +1,77 @@
+include /views/mixins/banner-image.pug
+
+- const currentElection = elections[0];
+- const openPositions = currentElection.candidates.map((c) => c.position).filter((position, index, array) => index === array.indexOf(position));
+
+doctype html
+html(lang="en")
+  head 
+    title #{currentElection.term} Election &#8211; MathSoc
+    include /views/partials/header.pug
+    link(href="/assets/css/pages/elections.css" rel="stylesheet")
+
+  body 
+    include /views/partials/navbar.pug
+    +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
+    div(class="content")
+      section(class="white")
+        div(class="title")
+          h1 Election Complete
+          span #{currentElection.term}
+        if currentElection.electionState = "completed"
+          - const victors = openPositions.map((position) => currentElection.candidates.filter((candidate) => candidate.elected && candidate.position === position)[0]);
+          div(class="results")
+            p The election has concluded.
+            ul  
+              each victor in victors
+                li #[strong #{victor.position}-elect]: #{victor.name}
+            p We thank all candidates for their efforts.
+
+      +banner-image("/assets/img/banners/exec-office.jpeg", ['pink', 'small'], 'Candidate Platforms')
+      section(class="white")
+        each position in openPositions 
+          div(class="position" id=position.toLowerCase().replaceAll(/\s/g, '-').replaceAll(/,/g, ''))
+            h2 Candidates for #{position}
+            - const candidates = currentElection.candidates.filter((c) => c.position == position); 
+            each candidate in candidates 
+              div(class="candidate " + [candidate.elected ? "elected" : ""])
+                h3=candidate.name
+                p=candidate.platform
+                
+      +banner-image("/assets/img/banners/pinktie-mc.jpeg", ['pink'], 'Allegations and Appeals')
+      section(class="white")
+        h2 Decisions 
+        - 
+          const decisions = currentElection.decisions.map((decision, index) => {
+            decision.index = index;
+            return decision;
+          })
+        ul 
+          each decision of decisions 
+            a(href="#decision-" + decision.index)
+              li #{decision.candidate}
+        each decision of decisions 
+          div(class="elections-decision" id="decision-" + decision.index)
+            h2 Against #{decision.candidate}
+            span #[strong Submitted:] #{decision.date}
+            div(class="decision-body")
+              h3 Summary of allegation:
+              p=decision.allegation 
+              h4 Counterevidence and defence:
+              p=decision.defense
+              h4 Decision: 
+              p=decision.decision
+              if(decision.penalties)
+                h3 Penalty: 
+                ul(class="penalties")
+                  for penalty of decision.penalties
+                    li=penalty
+                if(decision.penaltyDescription) 
+                  p=decision.penaltyDescription
+                if(decision.appeal)
+                  h4 Appeal 
+                  p=decision.appeal 
+                  h4 Decision:
+                  p=decision.appealDecision 
+
+    include /views/partials/footer.pug
