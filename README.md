@@ -1,5 +1,15 @@
 # MathSoc Website Transition
 
+The MathSoc web development team is rebuilding the MathSoc website to transition away from the current WordPress implementation.  We seek to rebuild the frontend while also building our own custom content management system (CMS), to allow for greater site quality, developer and admin maintainability, and site customizability going forward.
+
+Our stack is 
+* `pug` as a templating engine to generate pages
+* `Express` as our web server
+* `JSON` files to hold data.  We prefer this to an SQL server in the interest of long-term maintainability.
+* `SCSS` stylesheets to style web content.
+
+We always accept contributions from **current University of Waterloo students**.  Those interested in a more active role should consider applying to join MathSoc's web development team; applications open near the beginning of term.  
+
 ## Steps to run locally
 
 1. Clone the repository in the directory of your choice
