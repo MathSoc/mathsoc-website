@@ -1,12 +1,15 @@
 block body 
-    div(class="navbar")
+    nav(class="navbar")
         a(href="/")
             img(src="/assets/img/icons/full-logo.svg" id="nav-logo")
-        div(class="items")
+        ul(class="items")
             each category in navItems
-                div(class="dropdown")
-                    a(href=category.ref)
-                        div(class="dropdown-button") #{category.title}
+                li(class="dropdown")
+                    if !category.ref
+                        button(class="dropdown-button") #{category.title}
+                    else 
+                        a(href=category.ref)
+                            div(class="dropdown-button") #{category.title}
                     - var length = category.children ? category.children.length : 0;
                     if length
                         div(class="dropdown-content")
@@ -15,16 +18,16 @@ block body
         button(id="mobile-menu-button")
             img(src="/assets/img/icons/single-downvote.svg")
 
-    div(id="mobile-nav")
-        div(class="items")
+    nav(id="mobile-nav")
+        ul(class="items")
             each category in navItems
-                div(class="dropdown")
+                li(class="dropdown")
                     - var length = category.children ? category.children.length : 0;
                     if category.ref
                         a(href=category.ref)
                             div(class="dropdown-button") #{category.title}
                     else 
-                        div(class="dropdown-button") #{category.title}
+                        button(class="dropdown-button") #{category.title}
                     if length
                         ul(class="dropdown-content")
                             each item in category.children

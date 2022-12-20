@@ -4,7 +4,7 @@
         "children":[
             {
                 "title": "Volunteer at MathSoc",
-                "ref": "/volunteer"
+                "ref": "/"
             },
             {
                 "title": "Math Community",
@@ -109,18 +109,18 @@
             },
             {
                 "title": "Academic Advising",
-                "ref": "/"
+                "ref": "https://uwaterloo.ca/math/academic-advising/"
             },
             {
                 "title": "Accessability Services",
-                "ref": "/"
+                "ref": "https://uwaterloo.ca/accessability-services/"
             },
             {
                 "title": "Mental Wellness",
                 "ref": "/"
             },
             {
-                "title": "Coop Adivce",
+                "title": "Coop Advice",
                 "ref": "/"
             },
             {

@@ -16,6 +16,8 @@
     position: absolute;
     top: 0;
     right: 0;
+    margin: 0;
+    padding-left: 0;
 
     @include tablet-down {
       display: none;
@@ -48,13 +50,27 @@
         color: var(--text-color);
       }
 
-      &:hover {
+      .dropdown-content {
+        &:hover,
+        &:focus, // :focus triggered by keyboard navigation of navbar
+        &:focus-within,
+        &:active {
+          display: block;
+          visibility: visible; // visibility settings used by accessible screen navigation with keyboard
+        }
+      }
+
+      &:hover,
+      &:focus,
+      &:focus-within,
+      &:active {
         .dropdown-button {
           color: var(--accent-colour-1);
         }
 
         .dropdown-content {
           display: block;
+          visibility: visible;
         }
       }
 
@@ -64,6 +80,7 @@
 
       .dropdown-content {
         display: none;
+        visibility: hidden;
         position: absolute;
         color: black;
         text-align: center;
@@ -83,7 +100,8 @@
           display: block;
         }
 
-        a:hover {
+        a:hover,
+        a:focus {
           background-color: #f1f1f1;
         }
       }
@@ -127,19 +145,45 @@
 
     .items {
       background-color: var(--background-colour);
+      visibility: hidden;
+
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+
       .dropdown {
         background-color: var(--background-colour);
         color: var(--text-colour);
-        
-        a, a:link, a:hover, a:visited {
+
+        &:focus {
+          background-color: var(--background-hover);
+        }
+
+        a,
+        a:link,
+        a:visited {
           color: var(--text-colour);
           text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+          .dropdown-button {
+            background-color: var(--background-hover);
+          }
         }
 
         .dropdown-button {
           padding: 1em;
           transition: 0.15s;
           cursor: pointer;
+
+          width: 100%;
+          text-align: left;
+
+          &:focus {
+            background-color: var(--background-hover);
+          }
         }
 
         .dropdown-content {
@@ -147,6 +191,7 @@
           max-height: 0;
           transition: 0.25s;
           overflow: hidden;
+          visibility: hidden;
           list-style-type: none;
           padding-left: 0;
 
@@ -158,19 +203,30 @@
               padding: 1em;
               padding-left: 3em;
               width: calc(100% - 2em);
+
+              &:focus {
+                background-color: var(--background-hover);
+              }
             }
           }
         }
+      }
+    }
 
-        &.active {
+    &.active {
+      .items {
+        visibility: visible;
+        .dropdown.active {
           .dropdown-button {
             color: var(--background-colour);
             background-color: var(--accent-colour-1);
           }
+
           padding-bottom: 0;
 
           .dropdown-content {
             height: unset;
+            visibility: visible;
           }
         }
       }
