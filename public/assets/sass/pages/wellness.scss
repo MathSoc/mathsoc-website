@@ -1,4 +1,24 @@
+@import '../util/_sass-mixins';
+@import '../util/variables';
 
-.subheader {
-    font-family: var(--title-font);
+section {
+    max-width: var(--content-width);
+    margin: 30px auto;
+
+    .subheader {
+        font-family: var(--primary-font);
+        font-size: 1.4em;
+    }  
+
+    h1 {
+        font-family: var(--title-font);
+        font-size: 3rem;
+        font-weight: 200;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
 }
+
+

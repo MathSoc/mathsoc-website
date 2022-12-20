@@ -3,12 +3,25 @@ html(lang="en")
     head 
         title Mental Wellness &#8211; MathSoc
         include /views/partials/header.pug
+        link(href="/assets/css/pages/wellness.css" rel="stylesheet")
 
     body
         include /views/partials/navbar.pug
-
-        h3(class="subheader") #{wellness.subheader}
-
-        include /views/partials/footer.pug
+        div(class="content")
+            section(class="white")
+                p(class="subheader") #{wellness.subheader}
+                h1 #{wellness.onCampus}
+                ul
+                    each children in wellness.onCampusChildren
+                        if children.link != ""
+                            li #{children.text} 
+                                a(href="" + children.link +"" target="_blank") Click here for the link
+                        else 
+                            li #{children.text}
+                h1 #{wellness.offCampus}
+                ul
+                    each children in wellness.offCampusChildren
+                        li #{children}      
+    include /views/partials/footer.pug
 
   

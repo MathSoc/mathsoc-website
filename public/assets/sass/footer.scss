@@ -1,13 +1,10 @@
 .footer {
     display: block;
-
     $container-side-padding: 25px;
     min-width: calc(100% - 2 * $container-side-padding);
     padding: 0 $container-side-padding;
-
     overflow: hidden;
     position: relative;
-    bottom: 0;
     left: 0;
     bottom: 0;
     background-image: url("/assets/img/footer/m3-edited.jpeg");

@@ -3,15 +3,23 @@
     "onCampus": "On-Campus Resources",
     "offCampus": "Off-Campus Resources",
     "bottomText": "Do not hesitate to reach out for help using these resources or someone you trust if you feel academic-related stress, have experienced an accident, or are feeling anxious or depressed.",
-    "links": {
-        "counsellingServies": "https://uwaterloo.ca/campus-wellness/counselling-services",
-        "mates": "https://wusa.ca/services/student-run-services/mates/"
-    },
     "onCampusChildren": [
-        "If you or someone you know needs a counselor to talk to, please visit this link:",
-        "Counselling Services can also be reached at: 519-888-4096.",
-        "MATES: one-to-one peer support program offered by the Waterloo Undergraduate Student Association (WUSA)",
-        "Health Services: located across the creek from the Student Life Centre, 519-888-4096."
+        {
+            "text": "If you or someone you know needs a counselor to talk to, please visit this link:",
+            "link": "https://uwaterloo.ca/campus-wellness/counselling-services"
+        },
+        {
+            "text": "Counselling Services can also be reached at: 519-888-4096.",
+            "link": ""
+        },
+        {
+            "text": "MATES: one-to-one peer support program offered by the Waterloo Undergraduate Student Association (WUSA)",
+            "link": "https://wusa.ca/services/student-run-services/mates/"
+        },
+        {
+            "text": "Health Services: located across the creek from the Student Life Centre, 519-888-4096.",
+            "link": ""
+        }
     ],
     "offCampusChildren": [
         "Good2Talk (24/7): Free confidential help line for post-secondary students. Phone: 1-866-925-5454",
