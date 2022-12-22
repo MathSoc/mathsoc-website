@@ -1,1 +1,48 @@
-{"execs":[{"name":"Evan Girardin","role":"President","email":"president@mathsoc.uwaterloo.ca"}]}
+{
+  "execs": [
+    {
+      "name": "Evan Girardin",
+      "role": "President",
+      "email": "president@mathsoc.uwaterloo.ca",
+      "image": "/assets/img/banners/pinktie-mc.jpeg"
+    },
+    {
+      "name": "Naman Sood",
+      "role": "Vice President, Academic",
+      "email": "vpa@mathsoc.uwaterloo.ca",
+      "image": "/assets/img/banners/pinktie-mc.jpeg"
+    },
+    {
+      "name": "Alessia Bellaire",
+      "role": "Vice President, Internal",
+      "email": "vpi@mathsoc.uwaterloo.ca",
+      "image": "/assets/img/banners/pinktie-mc.jpeg"
+    },
+    {
+      "name": "Silma Manwar",
+      "role": "Vice President, Finance",
+      "email": "vpf@mathsoc.uwaterloo.ca",
+      "image": "/assets/img/banners/pinktie-mc.jpeg"
+    },
+    {
+      "name": "Nathaniel Ho",
+      "role": "Vice President, Operations",
+      "email": "vpo@mathsoc.uwaterloo.ca",
+      "image": "/assets/img/banners/pinktie-mc.jpeg"
+    },
+    {
+      "name": "Grace Feng",
+      "role": "Vice President, Communications",
+      "email": "vpc@mathsoc.uwaterloo.ca",
+      "image": "/assets/img/banners/pinktie-mc.jpeg"
+    }
+  ],
+  "staff": {
+    "businessManager": {
+      "name": "Rose Penner",
+      "role": "Business Manager",
+      "email": "rpenner@mathsoc.uwaterloo.ca",
+      "image": "/assets/img/icons/tie-icon.svg"
+    }
+  }
+}

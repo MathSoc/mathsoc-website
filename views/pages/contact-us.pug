@@ -1,0 +1,73 @@
+include /views/mixins/banner-image.pug
+
+- const execs = staff.execs
+- const businessManager = staff.staff.businessManager;
+- 
+  const locations = [
+    {
+      "name": "Mathematics Society Office",
+      "room": "MC 3038",
+      "img": "/assets/img/banners/mathsoc-wall.jpeg"
+    },
+    {
+      "name": "Mathematics Society Executive Office",
+      "room": "MC 3035",
+      "img": "/assets/img/banners/exec-office.jpeg"
+    },
+    {
+      "name": "Math Coffee and Donut",
+      "room": "MC 3002",
+      "img": "/assets/img/banners/pinktie-mc.jpeg"
+    },
+    {
+      "name": "MC Comfy",
+      "room": "MC 3001",
+      "img": "/assets/img/banners/pinktie-mc.jpeg"
+    }
+  ]
+
+doctype html
+html(lang="en")
+  head 
+    title Contact Us &#8211; MathSoc
+    include /views/partials/header.pug
+    link(href="/assets/css/pages/contact-us.css" rel="stylesheet")
+
+  body 
+    include /views/partials/navbar.pug
+    +banner-image("/assets/img/banners/pinktie-mc.jpeg")
+    div(class="content")
+      section(class="white")
+        h1 Contact Us
+
+        div(id="execs-grid")
+          each exec in execs.concat(businessManager) 
+            div(class="exec")
+              img(class="headshot" src=exec.image alt="") 
+              span(class="name")=exec.name.toUpperCase()
+              span(class="role")=exec.role 
+              a(href="mailto:" + exec.email)
+                span(class="email")=exec.email
+        
+        h2 Visit us in person
+        div(id="locations-grid")
+          each location in locations
+            div(class="location")
+              img(src=location.img alt="")
+              span(class="location-name")=location.name
+              span(class="location-room")=location.room
+
+        h2 General Inquiries and Feedback
+
+        form 
+          label(for="name") Your name
+          input(id="name" class="text-input" name="name" placeholder="John Goose")
+          label(for="email") Your email
+          input(id="email" class="text-input" name="email" placeholder="j2goose@uwaterloo.ca")
+          label(for="subject") Subject of your message
+          input(id="subject" class="text-input" name="subject" placeholder="Can MathSoc redefine pi?")
+          label(for="message") Your message
+          textarea(id="message" class="text-input" name="message")
+          div(id="submit-container")
+            input(type="submit" id="submit-button" value="Submit message") 
+    include /views/partials/footer.pug

@@ -139,7 +139,7 @@
     },
     {
         "title": "Contact Us",
-        "ref" : "/",
+        "ref" : "/contact-us",
         "children": []
     }  
 ] 
