@@ -1,1 +1,0 @@
-/* JS code to be rendered to the web browser */
