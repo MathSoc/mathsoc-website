@@ -1,1 +1,48 @@
-{"execs":[{"name":"Evan Girardin","role":"President","email":"president@mathsoc.uwaterloo.ca"}]}
+{
+  "execs": [
+    {
+      "name": "Evan Girardin",
+      "role": "President",
+      "email": "president@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/200/305"
+    },
+    {
+      "name": "Naman Sood",
+      "role": "Vice President, Academic",
+      "email": "vpa@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/200/304"
+    },
+    {
+      "name": "Alessia Bellaire",
+      "role": "Vice President, Internal",
+      "email": "vpi@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/200/303"
+    },
+    {
+      "name": "Silma Manwar",
+      "role": "Vice President, Finance",
+      "email": "vpf@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/200/309"
+    },
+    {
+      "name": "Nathaniel Ho",
+      "role": "Vice President, Operations",
+      "email": "vpo@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/200/300"
+    },
+    {
+      "name": "Grace Feng",
+      "role": "Vice President, Communications",
+      "email": "vpc@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/210/301"
+    }
+  ],
+  "staff": {
+    "businessManager": {
+      "name": "Rose Penner",
+      "role": "Business Manager",
+      "email": "rpenner@mathsoc.uwaterloo.ca",
+      "image": "/assets/img/icons/tie-icon.svg"
+    }
+  }
+}
