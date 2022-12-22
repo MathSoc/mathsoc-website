@@ -17,12 +17,12 @@ include /views/mixins/banner-image.pug
     {
       "name": "Math Coffee and Donut",
       "room": "MC 3002",
-      "img": "/assets/img/banners/pinktie-mc.jpeg"
+      "img": "/assets/img/portrait-images/cnd.JPG"
     },
     {
       "name": "MC Comfy",
       "room": "MC 3001",
-      "img": "/assets/img/banners/pinktie-mc.jpeg"
+      "img": "/assets/img/icons/tie-icon.svg"
     }
   ]
 
@@ -59,15 +59,15 @@ html(lang="en")
 
         h2 General Inquiries and Feedback
 
-        form 
+        form(method="post" action="/api/")
           label(for="name") Your name
-          input(id="name" class="text-input" name="name" placeholder="John Goose")
+          input(id="name" class="text-input" name="name" placeholder="John Goose" required maxlength="35")
           label(for="email") Your email
-          input(id="email" class="text-input" name="email" placeholder="j2goose@uwaterloo.ca")
+          input(id="email" type="email" pattern=".+@.+\..+" class="text-input" name="email" placeholder="j2goose@uwaterloo.ca" required maxlength="100")
           label(for="subject") Subject of your message
-          input(id="subject" class="text-input" name="subject" placeholder="Can MathSoc redefine pi?")
+          input(id="subject" class="text-input" name="subject" placeholder="Can MathSoc redefine pi?" required maxlength="150")
           label(for="message") Your message
-          textarea(id="message" class="text-input" name="message")
+          textarea(id="message" class="text-input" name="message" required)
           div(id="submit-container")
             input(type="submit" id="submit-button" value="Submit message") 
     include /views/partials/footer.pug

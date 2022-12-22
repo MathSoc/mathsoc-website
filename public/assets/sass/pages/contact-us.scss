@@ -17,8 +17,9 @@ $exec-padding: 8px;
 .exec {
   margin: auto;
   padding: $exec-padding;
-
+  
   width: calc(30% - 2 * $exec-padding);
+  min-width: 200px;
   text-align: center;
 
   span {
@@ -58,6 +59,7 @@ $exec-padding: 8px;
   padding: $location-padding;
 
   width: calc(45% - 2 * $location-padding);
+  min-width: 300px;
   text-align: center;
 
   span {
@@ -71,6 +73,7 @@ $exec-padding: 8px;
 
   img {
     max-width: 100%;
+    max-height: 300px;
     margin-bottom: 16px;
   }
 }
@@ -94,8 +97,7 @@ form {
 
   textarea {
     min-height: 100px;
-    min-width: calc(100% - 2 * $input-padding);
-    max-width: calc(100% - 2 * $input-padding);
+    resize: vertical;
   }
 
   #submit-container{
