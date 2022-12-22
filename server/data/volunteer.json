@@ -1,0 +1,117 @@
+{
+    "title": "Volunteer with MathSoc!",
+    "subtext": "Volunteering with MathSoc is a great way to meet other people in your faculty. While some positions are time sensitive we welcome applications at anytime. If you have questions about a role we recommend sending the corresponding VP or club an email. If a position that you are interested in is not currently open and you wish to receive a notification when it opens please email the VPC at vpc@mathsoc.uwaterloo.ca about what positions you are interested in and ensure to check this page regularly. We look forward to meeting you!",
+    "teams": [
+        {
+            "name": "VP Operations Directors",
+            "roles": [
+                {
+                    "title": "Office Worker",
+                    "description": "As an office worker, you would be working in the MathSoc Office (MC 3038) to help students sign-out rental items, sell novelties and supplies, and aid students looking for help within the office. Office shifts are flexible and are low in required time commitment, and there will be an office manager to guide you. You are free to work on personal tasks when there is no one looking for assistance, and will get access to our stash of free office worker snacks. Please note this is an in-person position.",
+                    "link": "/"
+                },
+                {
+                    "title": "Office Manager",
+                    "description": "As an office manager, you would be working in the MathSoc Office (MC 3038) to help students sign-out rental items, sell novelties and supplies, and aid students looking for help within the office, similar to an office worker. Additional responsibilities might include opening and closing the office, helping with locker issues and assisting office workers. Manager shifts are flexible and managers get access to exclusive office manager snacks and drinks. Please note this is an in-person position.",
+                    "link": "/"
+                },
+                {
+                    "title": "Novelties Director",
+                    "description": "The Novelties Director will have the opportunity to design Math novelties. In the past, directors have designed shirts, socks, hats, hoodies, and pins among other things. If you would like to flex your creativity and create new Math related things, please apply!",
+                    "link": "/"
+                },
+                {
+                    "title":"Games Director",
+                    "description": "Games Director duties include maintaining the board game collection. They also help out with buying new games for our collection, based on suggestions from the community, and help with maintaining a full games inventory that is usually done once a year.",
+                    "link": "/"
+                }
+            ]
+        },
+        {
+            "name": "VP Finance Directors",
+            "roles": [
+                {
+                    "title": "Finance Directors",
+                    "description": "Finance directors will work alongside the VP Finance to assist with processing cheque requests, and any other ad hoc duties given to them. Please note that this is an in-person position.",
+                    "link": "/"
+                }
+            ]
+        },
+        {
+            "name": "VP Internal Directors",
+            "roles": [
+                {
+                    "title": "Game Night Directors",
+                    "description": "As a games night director, you will be in charge of planning the weekly games night as well as the Party with Profs event alongside the VP Internal. Please note that this is an in-person position.",
+                    "link": "/"
+                },
+                {
+                    "title": "Clubs Director",
+                    "description": "As the clubs director, you will be responsible for all communication between MathSoc clubs on a regular basis. You will also be in charge of raising any of their concerns or questions with the VP Internal. Applications are currently closed.",
+                    "link": "/"
+                },
+                {
+                    "title": "Event Coordinators",
+                    "description": "Event Coordinators work alongside the VP Internal to plan faculty-wide events such as Pi Day, Halloween, and more to come! Please note that this is an in-person position.",
+                    "link": "/"
+                },
+                {
+                    "title": "Volunteers",
+                    "description": "General Volunteers work with the VP Internal help out and set-up events during the day. Volunteers will be needed on an on-call basis, and will be notified one week before the event to indicate your time shift. Please note that this is an in-person position.",
+                    "link": "/"
+                }
+            ]
+        },
+        {
+            "name": "VP Communications Directors",
+            "roles": [
+                {
+                    "title": "Marketing Directors",
+                    "description": "As a marketing director, you will be expected to create graphics using Canva, for both our social media pages and our poster boards! Prior experience with this tool is an asset!",
+                    "link": "/"
+                },
+                {
+                    "title": "Postings Director",
+                    "description": "As the postings director, you will be responsible for managing MathSoc’s poster boards on (MC & DC). Please note this is an in-person position.",
+                    "link": "/"
+                },
+                {
+                    "title": "Photographer",
+                    "description": "Photographers help out with taking pictures of our events, the student body, and our society as a whole! While prior experience is an asset, it is not required and we do own a camera so equipment is not mandatory!",
+                    "link": "/"
+                },
+                {
+                    "title": "Web Developers",
+                    "description": "Web Developers help with maintaining, improving, and monitoring the MathSoc website! Prior experience with HTML and web design is an asset, but not mandatory!",
+                    "link": "/"
+                }
+            ]
+        },
+        {
+            "name": "VP Academic Directors",
+            "roles": [
+                {
+                    "title": "Deputy Vice President, Academic",
+                    "description": "",
+                    "link": "/"
+                },
+                {
+                    "title": "Academic Events Director",
+                    "description": "",
+                    "link": "/"
+                },
+                {
+                    "title": "Exam Bank Director",
+                    "description": "",
+                    "link": "/"
+                },
+                {
+                    "title": "Textbook Library Directory",
+                    "description": "",
+                    "link": "/"
+                }
+            ]
+        } 
+    ]
+
+}

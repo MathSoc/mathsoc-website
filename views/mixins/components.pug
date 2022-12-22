@@ -7,4 +7,13 @@ mixin homePageCard(caption, imgSource, imgText)
                 p=imgText
         p=caption
 
+mixin collapsible(title, content, link)
+    button(type="button" class="collapsible-button" value="" + title + "")= title
+    div(class="collapsible-content")
+        p=content
+        if link.length != ""
+            a(href=link) Apply Here!
+        else
+            p Applications are currently closed for this role. 
+
         

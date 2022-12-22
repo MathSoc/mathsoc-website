@@ -3,6 +3,7 @@ const navItems = require('../config/navbar.json');
 const footer = require('../config/footer.json');
 const electionsData = require('../data/elections.json');
 const wellnessData = require('../data/wellness.json');
+const volunteerData = require('../data/volunteer.json');
 
 router.get('/', async (req, res) => {
     res.render('pages/home', {navItems: navItems, footer: footer});
@@ -14,6 +15,10 @@ router.get('/elections', async (req, res) => {
 
 router.get('/mental-wellness', async (req, res) => {
   res.render('pages/resources/mental-wellness', {navItems: navItems, footer: footer, wellness: wellnessData});
+})
+
+router.get('/volunteer-at-mathsoc', async (req, res) => {
+  res.render('pages/get-involved/volunteer.pug', {navItems: navItems, footer: footer, volunteer: volunteerData});
 })
 
 module.exports = router;

@@ -1,0 +1,28 @@
+include /views/mixins/banner-image.pug
+include /views/mixins/components.pug
+
+doctype html 
+html(lang="en")
+    head 
+        title Volunteer at MathSoc &#8211; MathSoc
+        include /views/partials/header.pug
+        link(href="/assets/css/pages/volunteer.css" rel="stylesheet")
+        script(src="/assets/js/collapsible.js" defer)
+
+    body
+        include /views/partials/navbar.pug
+        +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
+        div(class="content")
+            section(class="white")
+                h1 #{volunteer.title}
+                p #{volunteer.subtext}
+                each team in volunteer.teams
+                    h3 #{team.name}
+                    each role in team.roles
+                        if role.link != ""
+                            +collapsible(role.title, role.description, role.link)
+                        else 
+                            +collapsible
+
+        include /views/partials/footer.pug
+        
