@@ -28,5 +28,17 @@
         "view": "/resources/mental-wellness"
       }
     ]
+  },
+  {
+    "title": "Contact Us",
+    "ref": "/contact-us",
+    "view": "/contact-us/contact-us",
+    "children": [
+      {
+        "title": "Success!",
+        "ref": "/contact-us/success",
+        "view": "/contact-us/contact-us-success"
+      }
+    ]
   }
 ]

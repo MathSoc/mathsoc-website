@@ -1,8 +1,9 @@
 const fs = require('fs');
 const Logger = require('./logger.js');
 
-class RequestHandler {
+class RequestController {
   static queues = {};
+  static logger = new Logger();
 
   static getJSONData(req, res) {
     if (!this.queues[req.params.fileName]) {
@@ -36,12 +37,12 @@ class RequestHandler {
 
           requestData.res.status(200).end();
         } catch (e) {
-          Logger.warn(e);
+          this.logger.warn(e);
           requestData.res.status(500).end();
         }
       });
     } catch (e) {
-      Logger.warn(e);
+      this.logger.warn(e);
       requestData.res.status(500).end();
     }
   }
@@ -77,7 +78,7 @@ class RequestHandler {
         }
       );
     } catch (e) {
-      Logger.warn(e);
+      this.logger.warn(e);
       requestData.res.status(500).end();
     }
   }
@@ -106,11 +107,11 @@ class RequestQueue {
 
   process() {
     if (this._queue[0].type === 'r')
-      RequestHandler._processJSONReadQueue(this._queue[0]);
+      RequestController._processJSONReadQueue(this._queue[0]);
     else if (this._queue[0].type === 'w')
-      RequestHandler._processJSONOverwriteQueue(this._queue[0]);
+      RequestController._processJSONOverwriteQueue(this._queue[0]);
     else {
-      Logger.warn(new Error('Queued request has bad type'))
+      this.logger.warn(new Error('Queued request has bad type'))
       this._queue[0].res.status(500).end();
     }
 
@@ -121,4 +122,4 @@ class RequestQueue {
   }
 }
 
-module.exports = RequestHandler;
+module.exports = RequestController;

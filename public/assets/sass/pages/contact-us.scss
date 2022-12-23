@@ -1,4 +1,5 @@
 @import "../mixins/_banner-image";
+@import "../mixins/_pink-button";
 @import "../util/sass-mixins";
 
 section {
@@ -14,10 +15,11 @@ section {
 }
 
 $exec-padding: 8px;
+
 .exec {
   margin: auto;
   padding: $exec-padding;
-  
+
   width: calc(30% - 2 * $exec-padding);
   min-width: 200px;
   text-align: center;
@@ -85,7 +87,9 @@ form {
   }
 
   $input-padding: 8px;
-  input.text-input, textarea {
+
+  input.text-input,
+  textarea {
     display: block;
     padding: $input-padding;
     width: calc(100% - 2 * $input-padding);
@@ -100,19 +104,7 @@ form {
     resize: vertical;
   }
 
-  #submit-container{
+  #submit-container {
     text-align: center;
-  }
-
-  #submit-button {
-    margin: 1em auto;
-    text-align: center;
-    width: 100%;
-    max-width: 250px;
-    padding: 1em;
-    background-color: var(--mathsoc-pink);
-    border: none;
-    color: white;
-    font-family: var(--primary-font);
   }
 }

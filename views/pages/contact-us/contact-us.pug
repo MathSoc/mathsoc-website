@@ -1,7 +1,8 @@
 include /views/mixins/banner-image.pug
+include /views/mixins/pink-button.pug
 
-- const execs = staff.execs
-- const businessManager = staff.staff.businessManager;
+- const execs = data.execs
+- const businessManager = data.staff.businessManager;
 - 
   const locations = [
     {
@@ -59,15 +60,15 @@ html(lang="en")
 
         h2 General Inquiries and Feedback
 
-        form(method="post" action="/api/")
+        form(action="/api/general-inquiries" method="post" target="_blank")
           label(for="name") Your name
-          input(id="name" class="text-input" name="name" placeholder="John Goose" required maxlength="35")
+          input(id="name" class="text-input" name="name" placeholder="John Goose" required maxlength="100")
           label(for="email") Your email
           input(id="email" type="email" pattern=".+@.+\..+" class="text-input" name="email" placeholder="j2goose@uwaterloo.ca" required maxlength="100")
           label(for="subject") Subject of your message
           input(id="subject" class="text-input" name="subject" placeholder="Can MathSoc redefine pi?" required maxlength="150")
           label(for="message") Your message
-          textarea(id="message" class="text-input" name="message" required)
+          textarea(id="message" class="text-input" name="message" required maxlength="6000")
           div(id="submit-container")
-            input(type="submit" id="submit-button" value="Submit message") 
+            input(type="submit" id="submit-button" class="pink-button" value="Submit message" method="post") 
     include /views/partials/footer.pug
