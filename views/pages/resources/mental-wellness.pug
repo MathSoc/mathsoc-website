@@ -1,0 +1,47 @@
+include /views/mixins/banner-image.pug
+
+doctype html
+html(lang="en")
+    head 
+        title Mental Wellness &#8211; MathSoc
+        include /views/partials/header.pug
+        link(href="/assets/css/pages/wellness.css" rel="stylesheet")
+
+    body
+        include /views/partials/navbar.pug
+        +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
+        div(class="content")
+            section(class="white")
+                h1 #{wellness.title}
+                p(class="subheader") #{wellness.subheader}
+                h2 #{wellness.onCampus}
+                ul
+                    each children in wellness.onCampusChildren
+                        if children.link != ""
+                            li  
+                                a(href="" + children.link +"" target="_blank") #{children.title}
+                            ul
+                                each textItem in children.text
+                                    li #{textItem}
+                        else 
+                            li #{children.title}
+                            ul
+                                each textItem in children.text
+                                    li #{textItem}
+                h2 #{wellness.offCampus}
+                ul
+                    each children in wellness.offCampusChildren
+                        if children.link != ""
+                            li  
+                                a(href="" + children.link +"" target="_blank") #{children.title}
+                            ul
+                                each textItem in children.text
+                                    li #{textItem}
+                        else 
+                            li #{children.title}
+                            ul
+                                each textItem in children.text
+                                    li #{textItem}   
+    include /views/partials/footer.pug
+
+  
