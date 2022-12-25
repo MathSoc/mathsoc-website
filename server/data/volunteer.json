@@ -92,26 +92,122 @@
             "roles": [
                 {
                     "title": "Deputy Vice President, Academic",
-                    "description": "",
-                    "link": "/"
+                    "description": "The <em>Deputy Vice President, Academic</em> will assist the <em>Vice President, Academic</em> and advocate on special topics as the need arises. This role will involve some secretarial work but will generally be an advocacy role.<br></br><strong>Responsibilities</strong><ul><li>Assist the Vice President, Academic as needed.</li><li>Help the Vice President, Academic respond to any issues impacting undergraduate Math students.</li></ul><strong>Requirements</strong><ul><li>Be an undergraduate math student.</li><li>Be in Waterloo.</li><li>Good at writing and communication</li></ul><strong>Expected commitment</strong><ul><li>About 1 - 5 hours per week, with opportunities to take on additional work if desired.</li></ul>" ,
+                    "link": ""
                 },
                 {
                     "title": "Academic Events Director",
-                    "description": "",
+                    "description": "<p>The&nbsp;<em>Academic Events Director</em>&nbsp;will work with the&nbsp;<em>Vice President, Academic</em>, and is responsible for running two academic events in the spring term.</p> <p><strong>Responsibilities</strong></p> <ul> <li>Encourage students to volunteer for academic events.</li> <li>Organizing and facilitating the events.</li> <li>Working with the Vice President, Communications to market the events.</li> </ul> <p><strong>Requirements</strong></p> <ul> <li>Be an undergraduate math student.</li> <li>Be in Waterloo.</li> <li>Have experience in organizing events.</li> </ul> <p><strong>Expected commitment</strong></p> <ul> <li>About 10 hours per week during the preparation of academic events.</li> <li>Little to no work after events are run.</li> </ul> ",
                     "link": "/"
                 },
                 {
                     "title": "Exam Bank Director",
-                    "description": "",
+                    "description": "<p>The&nbsp;<em>Exam Bank Director</em>&nbsp;will work with the&nbsp;<em>Vice President, Academic,</em>&nbsp;and is responsible for maintaining the Exam Bank and facilitating the submission and approval of new exams.</p> <p><strong>Responsibilities</strong></p> <ul> <li>Managing the Exam Bank system.</li> <li>Finding courses that MathSoc does not have any exams in its Exam Bank for.</li> <li>Reaching out to current and past instructors of courses to add their exams to the Exam Bank.</li> </ul> <p><strong>Requirements</strong></p> <ul> <li>Be an undergraduate math student.</li> <li>Be in Waterloo.</li> <li>Good at communication.</li> </ul> <p><strong>Expected commitment</strong></p> <ul> <li>0&ndash;2 hours per week.</li> </ul>",
                     "link": "/"
                 },
                 {
                     "title": "Textbook Library Directory",
-                    "description": "",
+                    "description": "<p>The&nbsp;<em>Textbook Library Director</em>&nbsp;will work with the&nbsp;<em>Vice President, Academic,</em>&nbsp;and is responsible for maintaining MathSoc&rsquo;s Textbook Library.</p> <p><strong>Responsibilities</strong></p> <ul> <li>Ensure that MathSoc has sufficient and up-to-date textbooks for core Math Faculty courses.</li> </ul> <p><strong>Requirements</strong></p> <ul> <li>Be an undergraduate math student.</li> <li>Be in Waterloo.</li> </ul> <p><strong>Expected commitment</strong></p> <ul> <li>0&ndash;2 hours per week.</li> </ul> ",
                     "link": "/"
                 }
             ]
-        } 
+        },
+        {
+            "name": "President Directors",
+            "roles": [
+                {
+                    "title": "Presidential Assistant",
+                    "description": "<p>The Presidential Assistant will work closely with the president and understand what the day-to-day of the President looks like. They will also assist and suggest solutions to Society&rsquo;s ongoing or previous problems and issues. We are looking for an undergraduate student with excellent writing and communication skills. We believe this position can offer the volunteer training, support, and immense experience. Preference will be given to those who can work&nbsp;<strong>in-person</strong>.</p>",
+                    "link": ""
+                },
+                {
+                    "title": "Director of First Year Affairs",
+                    "description": "<p>The Director of First Year Affairs is responsible for chairing the Committee of First Year Affairs (CFYA). The CFYA is to encourage greater participation by first year students in the Society, to ensure that the concerns of first year students are adequately represented within the Society and the Faculty, and to provide a structure promoting greater communication between first-year and upper-year students. The Director reports to and is responsible to the President; have the power to appoint committee members to administer the various aspects of the Committee. More information about this role can be found in&nbsp;<a href='https://services.mathsoc.uwaterloo.ca/media/documents/Policies/MathSoc_Policies_-_2019-05-14.pdf#section.17'>Policy 17</a>.</p> ",
+                    "link": ""
+                },
+                {
+                    "title": "Mental Health Director",
+                    "description": "The Mental Health Director(s) will primarily work on the mental health blog, creating posts and gathering posts from students who submit blogs. They will ensure MathSoc Office is stocked with proper campus wellness and mental health resources. The Mental Health Director(s) will also organize and implement the delivery of care packages for the fall term as well as ensuring campus resources regarding mental health and wellness are communicated to all Math students.",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "name": "MathSoc Executive Team",
+            "subheader": "Please ensure that you have read the MathSoc bylaws and policies before applying for any of the below roles, especially Bylaw 8.",
+            "roles": [
+                {
+                    "title": "President",
+                    "description": "<p>The President is the chief executive of the Society. They organize and run the general meeting, coordinate meetings between the Executive team and various other parties. The President is expected to present at most MathSoc events and to meet with each Club and Service at least once a term. More information about this role can be found in&nbsp;<a href=\"https://mathsoc.uwaterloo.ca/wp-content/uploads/bylaws-public.pdf\">Bylaw 8.3</a>&nbsp;and&nbsp;<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Policies/MathSoc_Policies_-_2019-05-14.pdf#section.25\">Policy 25&nbsp;</a>.</p> <p>The current President can be reached at&nbsp;<a href=\"mailto:president@mathsoc.uwaterloo.ca\">president@mathsoc.uwaterloo.ca</a></p> ",
+                    "link": ""
+                },
+                {
+                    "title": "Vice President, Finance",
+                    "description": "",
+                    "link": ""
+                },
+                {
+                    "title": "Vice President, Operations",
+                    "description": "",
+                    "link": ""
+                },
+                {
+                    "title": "Vice President, Internal",
+                    "description": "",
+                    "link": ""
+                },
+                {
+                    "title": "Vice President, Academic",
+                    "description": "",
+                    "link": ""
+                },
+                {
+                    "title": "Vice President, Communications",
+                    "description": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "name": "MathSoc Council",
+            "roles": [
+                {
+                    "title": "Program Representative",
+                    "description": "",
+                    "link": ""
+                },
+                {
+                    "title": "First Year Representative",
+                    "description": "",
+                    "link": ""
+                },
+                {
+                    "title": "Secretary",
+                    "description": "",
+                    "link": ""
+                },
+                {
+                    "title": "Speaker",
+                    "description": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "name": "MathSoc Board of Directors",
+            "roles": [
+                {
+                    "title": "At-large Director",
+                    "description": "",
+                    "link": ""
+                },
+                {
+                    "title": "Pro-tempore Board Directory",
+                    "description": "",
+                    "link": ""
+                }
+            ]
+        }
     ]
 
 }
