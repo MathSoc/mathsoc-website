@@ -22,6 +22,7 @@ html(lang="en")
                         p #{team.subheader}
                     each role in team.roles
                         +collapsible(role.title, role.description, role.link)
-
+                h1 #{volunteer.clubsTitle}
+                p !{volunteer.clubsSubheader}
         include /views/partials/footer.pug
         
