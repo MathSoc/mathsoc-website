@@ -18,11 +18,10 @@ html(lang="en")
                 p #{volunteer.subtext}
                 each team in volunteer.teams
                     h3 #{team.name}
+                    if team.subheader != ""
+                        p #{team.subheader}
                     each role in team.roles
-                        if role.link != ""
-                            +collapsible(role.title, role.description, role.link)
-                        else 
-                            +collapsible
+                        +collapsible(role.title, role.description, role.link)
 
         include /views/partials/footer.pug
         
