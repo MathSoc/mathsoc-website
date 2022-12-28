@@ -1,7 +1,7 @@
 var collapsible = document.getElementsByClassName("collapsible-button");
-var i;
 
-for (i = 0; i < collapsible.length; i++) {
+
+for (let i = 0; i < collapsible.length; i++) {
     collapsible[i].addEventListener("click", function() {
       this.classList.toggle("active");
       var content = this.nextElementSibling;
