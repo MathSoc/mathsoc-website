@@ -1,0 +1,10 @@
+include /views/mixins/components.pug
+
+doctype html
+html(lang="en")
+    include ../partials/header.pug
+    body 
+        include ../partials/navbar.pug
+        div(class="body")
+          block body
+        include ../partials/footer.pug

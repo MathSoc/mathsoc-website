@@ -1,24 +1,31 @@
+const fs = require('fs');
+
 const router = require('express').Router();
+
+const pages = require('../config/pages.json');
 const navItems = require('../config/navbar.json');
 const footer = require('../config/footer.json');
-const electionsData = require('../data/elections.json');
-const wellnessData = require('../data/wellness.json');
-const volunteerData = require('../data/volunteer.json');
 
-router.get('/', async (req, res) => {
-    res.render('pages/home', {navItems: navItems, footer: footer});
-});
+function buildRoutes(pageArray) {
+  for (const page of pageArray) {
+    if (page.ref) {
+      let data = null;
 
-router.get('/elections', async (req, res) => {
-  res.render('pages/elections/elections', {navItems: navItems, footer: footer, elections: electionsData});
-})
+      const dataURL = `../data${page.ref}.json`;
+      if (fs.existsSync(`server/data${page.ref}.json`)) {
+        data = require(dataURL);
+      }
+      router.get(page.ref, async (req, res) => {
+        res.render(`pages/${page.view}.pug`, { navItems: navItems, footer: footer, data: data, title: page.title });
+      });
+    }
 
-router.get('/mental-wellness', async (req, res) => {
-  res.render('pages/resources/mental-wellness', {navItems: navItems, footer: footer, wellness: wellnessData});
-})
+    if (page.children) {
+      buildRoutes(page.children);
+    }
+  }
+}
 
-router.get('/volunteer-at-mathsoc', async (req, res) => {
-  res.render('pages/get-involved/volunteer.pug', {navItems: navItems, footer: footer, volunteer: volunteerData});
-})
+buildRoutes(pages);
 
 module.exports = router;

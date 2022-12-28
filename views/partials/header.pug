@@ -6,6 +6,8 @@ head
     link(href='/assets/css/navbar.css' rel="stylesheet")
     link(href="/assets/css/footer.css" rel="stylesheet")
     link(href="/assets/img/icons/favicon.svg" rel="icon")
-    script(src="/assets/js/navbar.js" defer)
     block styles
-    title Document
+    script(src="/assets/js/navbar.js" defer)
+    block scripts
+    block title
+        title=title + " \u2013 Mathsoc" 
