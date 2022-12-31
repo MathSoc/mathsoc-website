@@ -1,19 +1,4 @@
-mixin homePageCard(caption, imgSource, imgText)
-    div(class="flip-card")
-        div(class="flip-card-inner")
-            div(class="flip-card-front")
-                img(src=imgSource class="flip-card-image")
-            div(class="flip-card-back")
-                p=imgText
-        p=caption
-
-mixin collapsible(title, content, link)
-    button(type="button" class="collapsible-button" value="" + title + "")= title
-    div(class="collapsible-content")
-        p!=content
-        if link != ""
-            a(href=link) Apply Here!
-        else
-            p Applications are currently closed for this role. 
-
-        
+include ./banner-image.pug
+include ./carousel.pug
+include ./collapsible.pug
+include ./flip-card.pug

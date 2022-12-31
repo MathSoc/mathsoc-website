@@ -1,25 +1,28 @@
-doctype html
-html(lang="en")
+extends /views/templates/frontend-base.pug
+
+block title 
     title MathSoc Home
-    include ../partials/header.pug
+    
+append styles
     link(href="/assets/css/carousel.css" rel="stylesheet")
-    script(src="/assets/js/carousel.js" defer)
     link(href='/assets/css/homepage.css' rel="stylesheet")
-    body 
-        include ../partials/navbar.pug
-        div(class="container")
-            include ../mixins/carousel.pug
-            +carousel(["/assets/img/banners/mathsoc-wall.jpeg", "/assets/img/banners/exec-office.jpeg", "/assets/img/banners/pinktie-mc.jpeg", "/assets/img/banners/board-games.jpeg"])
-            section(style="text-align:center")
-                p Notice: Locker Sign Ups for the Fall 2022 term are now open! To reserve a locker, go to 
-                    a(href="https://mathsoc.uwaterloo.ca/locker-sign-out/") this page
-                div(class="cards") 
-                    include ../mixins/components.pug
-                    +homePageCard("Rentals", "/assets/img/flipcards/msoc-22-scaled.jpeg", "We provide Textbook Rentals, Board Game Rentals, Calculator Rentals, and equipment for our clubs and members!")
-                    +homePageCard("Services", "/assets/img/flipcards/msoc-27-scaled.jpeg", "We provide a printing service at a low price and we have a microwave and free snacks available for all members!")
-                    +homePageCard("Store", "/assets/img/flipcards/msoc-32-scaled.jpeg", "We sell novelties like MathSoc swag, stationary items, faulty approved calculators, and more at affordable prices.")
-            section(class="calendar-wrapper pink")
-                h1 UPCOMING EVENTS
-                p Note: Links to virtual events can be found by clicking on the event in the Google Calendar.
-                iframe(class="calendar" src="https://calendar.google.com/calendar/embed?src=c_fvt18kkc2ta47sj8kp1bumkbg8%40group.calendar.google.com&ctz=America%2FToronto" frameborder="0" scrolling="no")
-        include ../partials/footer.pug
+
+append scripts
+    script(src="/assets/js/carousel.js" defer)
+    
+block body
+    div(class="container")
+        include ../mixins/carousel.pug
+        +carousel(["/assets/img/banners/mathsoc-wall.jpeg", "/assets/img/banners/exec-office.jpeg", "/assets/img/banners/pinktie-mc.jpeg", "/assets/img/banners/board-games.jpeg"])
+        section(style="text-align:center")
+            p Notice: Locker Sign Ups for the Fall 2022 term are now open! To reserve a locker, go to 
+                a(href="https://mathsoc.uwaterloo.ca/locker-sign-out/") this page
+            div(class="cards") 
+                include ../mixins/components.pug
+                +flipCard("Rentals", "/assets/img/flipcards/msoc-22-scaled.jpeg", "We provide Textbook Rentals, Board Game Rentals, Calculator Rentals, and equipment for our clubs and members!")
+                +flipCard("Services", "/assets/img/flipcards/msoc-27-scaled.jpeg", "We provide a printing service at a low price and we have a microwave and free snacks available for all members!")
+                +flipCard("Store", "/assets/img/flipcards/msoc-32-scaled.jpeg", "We sell novelties like MathSoc swag, stationary items, faulty approved calculators, and more at affordable prices.")
+        section(class="calendar-wrapper pink")
+            h1 UPCOMING EVENTS
+            p Note: Links to virtual events can be found by clicking on the event in the Google Calendar.
+            iframe(class="calendar" src="https://calendar.google.com/calendar/embed?src=c_fvt18kkc2ta47sj8kp1bumkbg8%40group.calendar.google.com&ctz=America%2FToronto" frameborder="0" scrolling="no")

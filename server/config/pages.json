@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Home",
+    "ref": "/",
+    "view": "/home"
+  },
+  {
+    "title": "Get Involved",
+    "children": [
+      {
+        "title": "Volunteer at MathSoc",
+        "ref": "/get-involved/volunteer",
+        "view": "/get-involved/volunteer"
+      }
+    ]
+  },
+  {
+    "title": "Elections",
+    "ref": "/elections",
+    "view": "/elections/elections"
+  },
+  {
+    "title": "Resources",
+    "children": [
+      {
+        "title": "Mental Wellness",
+        "ref": "/resources/mental-wellness",
+        "view": "/resources/mental-wellness"
+      }
+    ]
+  }
+]

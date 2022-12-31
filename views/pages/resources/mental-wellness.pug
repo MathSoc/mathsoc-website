@@ -1,47 +1,39 @@
-include /views/mixins/banner-image.pug
+extends /views/templates/frontend-base.pug
 
-doctype html
-html(lang="en")
-    head 
-        title Mental Wellness &#8211; MathSoc
-        include /views/partials/header.pug
-        link(href="/assets/css/pages/wellness.css" rel="stylesheet")
+append styles
+    link(href="/assets/css/pages/wellness.css" rel="stylesheet")
 
-    body
-        include /views/partials/navbar.pug
-        +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
-        div(class="content")
-            section(class="white")
-                h1 #{wellness.title}
-                p(class="subheader") #{wellness.subheader}
-                h2 #{wellness.onCampus}
-                ul
-                    each children in wellness.onCampusChildren
-                        if children.link != ""
-                            li  
-                                a(href="" + children.link +"" target="_blank") #{children.title}
-                            ul
-                                each textItem in children.text
-                                    li #{textItem}
-                        else 
-                            li #{children.title}
-                            ul
-                                each textItem in children.text
-                                    li #{textItem}
-                h2 #{wellness.offCampus}
-                ul
-                    each children in wellness.offCampusChildren
-                        if children.link != ""
-                            li  
-                                a(href="" + children.link +"" target="_blank") #{children.title}
-                            ul
-                                each textItem in children.text
-                                    li #{textItem}
-                        else 
-                            li #{children.title}
-                            ul
-                                each textItem in children.text
-                                    li #{textItem}   
-    include /views/partials/footer.pug
-
-  
+block body
+    +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
+    div(class="content")
+    section(class="white")
+        h1 #{data.title}
+        p(class="subheader") #{data.subheader}
+        h2 #{data.onCampus}
+        ul
+            each children in data.onCampusChildren
+                if children.link != ""
+                    li  
+                        a(href="" + children.link +"" target="_blank") #{children.title}
+                    ul
+                        each textItem in children.text
+                            li #{textItem}
+                else 
+                    li #{children.title}
+                    ul
+                        each textItem in children.text
+                            li #{textItem}
+        h2 #{data.offCampus}
+        ul
+            each children in data.offCampusChildren
+                if children.link != ""
+                    li  
+                        a(href="" + children.link +"" target="_blank") #{children.title}
+                    ul
+                        each textItem in children.text
+                            li #{textItem}
+                else 
+                    li #{children.title}
+                    ul
+                        each textItem in children.text
+                            li #{textItem}   

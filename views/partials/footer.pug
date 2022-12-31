@@ -1,28 +1,24 @@
-append styles 
-
-
-block body
-    div(class="footer")
-        div(class="section")
-            b PHONE NUMBER 
-            br
-            p #{footer.phoneNumber}
-        div(class="section")
-            strong MATHSOC OFFICE 
-            br
-            p #{footer.addressLine1}
-            p #{footer.addressLine2}
-            p #{footer.addressLine3}
-        div(class="section blank")
-        div(class="section social-section")
-            b(class="social-header") GET SOCIAL
-            br
-            div(class="socials")
-                a(href="" + footer.socialLinks.facebook + "" target="_blank")
-                    img(src="/assets/img/social/facebook.png")
-                a(href="" + footer.socialLinks.twitter + "" target="_blank")
-                    img(src="/assets/img/social/twitter.png")
-                a(href="" + footer.socialLinks.instagram + "" target="_blank")
-                    img(src="/assets/img/social/instagram.png")
-                a(href="" + footer.socialLinks.mail + "" target="_blank")
-                    img(src="/assets/img/social/mail.png")
+div(class="footer")
+    div(class="section")
+        b PHONE NUMBER 
+        br
+        p #{footer.phoneNumber}
+    div(class="section")
+        strong MATHSOC OFFICE 
+        br
+        p #{footer.addressLine1}
+        p #{footer.addressLine2}
+        p #{footer.addressLine3}
+    div(class="section blank")
+    div(class="section social-section")
+        b(class="social-header") GET SOCIAL
+        br
+        div(class="socials")
+            a(href="" + footer.socialLinks.facebook + "" target="_blank")
+                img(src="/assets/img/social/facebook.png")
+            a(href="" + footer.socialLinks.twitter + "" target="_blank")
+                img(src="/assets/img/social/twitter.png")
+            a(href="" + footer.socialLinks.instagram + "" target="_blank")
+                img(src="/assets/img/social/instagram.png")
+            a(href="" + footer.socialLinks.mail + "" target="_blank")
+                img(src="/assets/img/social/mail.png")
