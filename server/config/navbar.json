@@ -70,7 +70,11 @@
         "title": "Documents",
         "children": [
             {
-                "title": "Meetings",
+                "title": "Council Meetings",
+                "ref": "/"
+            },
+            {
+                "title": "Board Meetings",
                 "ref": "/"
             },
             {
