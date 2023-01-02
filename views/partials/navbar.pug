@@ -3,6 +3,8 @@ nav(id="navbar")
         img(src="/assets/img/icons/horizontal-logo.svg" class="nav-logo" id="pink-logo"  alt="MathSoc Logo.  Click to return to homepage")
         img(src="/assets/img/icons/horizontal-logo-white.svg" class="nav-logo" id="white-logo" alt="MathSoc Logo.  Click to return to homepage")
     ul(class="items")
+        - console.log('test');
+        - console.log(navItems);
         each category in navItems
             li(class="dropdown")
                 if !category.ref
