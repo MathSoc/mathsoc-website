@@ -3,12 +3,14 @@
 body {
   background-color: var(--background-colour);
   font-family: var(--primary-font);
+  color: var(--text-color);
   margin: 0;
   color: var(--text-color);
 }
 
 h1 {
   font-family: var(--title-font);
+  color: var(--text-color);
 }
 
 p {

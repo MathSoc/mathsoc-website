@@ -6,10 +6,14 @@
   font-size: 14px;
   position: relative;
 
-  #nav-logo {
+  .nav-logo {
     height: 75px;
     width: 200px;
     margin-left: 5%;
+
+    &#white-logo {
+      display: none;
+    }
   }
 
   .items {
@@ -18,18 +22,19 @@
     right: 0;
     margin: 0;
     padding-left: 0;
+    height: 100%;
 
     @include tablet-down {
       display: none;
     }
 
     .dropdown {
-      color: black;
       position: relative;
       text-align: center;
       text-decoration: none;
       display: inline-block;
       margin: 0 16px;
+      height: 100%;
 
       $vertical-padding: 28px;
       .dropdown-button {
