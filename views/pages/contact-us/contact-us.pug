@@ -3,29 +3,7 @@ include /views/mixins/pink-button.pug
 
 - const execs = data.execs
 - const businessManager = data.staff.businessManager;
-- 
-  const locations = [
-    {
-      "name": "Mathematics Society Office",
-      "room": "MC 3038",
-      "img": "/assets/img/banners/mathsoc-wall.jpeg"
-    },
-    {
-      "name": "Mathematics Society Executive Office",
-      "room": "MC 3035",
-      "img": "/assets/img/banners/exec-office.jpeg"
-    },
-    {
-      "name": "Math Coffee and Donut",
-      "room": "MC 3002",
-      "img": "/assets/img/portrait-images/cnd.JPG"
-    },
-    {
-      "name": "MC Comfy",
-      "room": "MC 3001",
-      "img": "/assets/img/icons/tie-icon.svg"
-    }
-  ]
+- const locations = data.locations;
 
 doctype html
 html(lang="en")
@@ -66,7 +44,7 @@ html(lang="en")
           label(for="email") Your email
           input(id="email" type="email" pattern=".+@.+\..+" class="text-input" name="email" placeholder="j2goose@uwaterloo.ca" required maxlength="100")
           label(for="subject") Subject of your message
-          input(id="subject" class="text-input" name="subject" placeholder="Can MathSoc redefine pi?" required maxlength="150")
+          input(id="subject" class="text-input" name="subject" placeholder="How do I sign out a locker?" required maxlength="150")
           label(for="message") Your message
           textarea(id="message" class="text-input" name="message" required maxlength="6000")
           div(id="submit-container")

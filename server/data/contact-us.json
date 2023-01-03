@@ -45,5 +45,27 @@
       "image": "/assets/img/icons/tie-icon.svg"
     }
   },
+  "locations": [
+    {
+      "name": "Mathematics Society Office",
+      "room": "MC 3038",
+      "img": "/assets/img/banners/mathsoc-wall.jpeg"
+    },
+    {
+      "name": "Mathematics Society Executive Office",
+      "room": "MC 3035",
+      "img": "/assets/img/banners/exec-office.jpeg"
+    },
+    {
+      "name": "Math Coffee and Donut",
+      "room": "MC 3002",
+      "img": "/assets/img/portrait-images/cnd.JPG"
+    },
+    {
+      "name": "MC Comfy",
+      "room": "MC 3001",
+      "img": "/assets/img/icons/tie-icon.svg"
+    }
+  ],
   "inquiriesReceiver": "vpo@mathsoc.uwaterloo.ca"
 }
