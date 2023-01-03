@@ -15,8 +15,9 @@ class ContactUsController {
       || !validator.isEmail(req.body.email)
       || !this.validateText(req.body.subject, 200)
       || !this.validateText(req.body.message, 4000)) {
-      res.send(400).end();
-      return;
+      res.status(400).end();
+      this.logger.info('Contact Us email attempted with invalid parameters; not sent')
+      return false;
     }
 
     const name = validator.escape(req.body.name),
@@ -24,21 +25,21 @@ class ContactUsController {
       subject = validator.escape(req.body.subject),
       message = validator.escape(req.body.message);
 
-    this.sendMessage(name, address, subject, message);
+    return this.sendMessage(name, address, subject, message);
   }
 
   static async sendMessage(name, address, subject, message) {
     if (!process.env.forms_gmail_sender_username) {
       this.logger.error(`No email username set in .env; message '${subject}' by ${name} <${address}> could not be sent`);
-      return;
+      return false;
     }
     if (!process.env.forms_gmail_sender_password) {
       this.logger.error(`No email password set in .env; message '${subject}' by ${name} <${address}> could not be sent`);
-      return;
+      return false;
     }
     if (process.env.NODE_ENV !== 'production' && contactUsData.inquiriesReceiver.includes('@mathsoc.uwaterloo.ca')) {
-      this.logger.error(`Message '${subject}' by ${name} <${address}> was not sent to mathsoc email address to avoid cluttering real inboxes with test inquiries.`);
-      return;
+      this.logger.error(`Message '${subject}' by ${name} <${address}> was not sent to MathSoc email address to avoid cluttering real inboxes with test inquiries.`);
+      return false;
     }
 
     const transporter = nodemailer.createTransport({
@@ -59,13 +60,17 @@ class ContactUsController {
       text: `From: ${name} <${address}>\nSubject: ${subject}\n\n${message}`,
     };
 
+    let success = true;
     transporter.sendMail(email, function (error, info) {
       if (error) {
         ContactUsController.logger.error(error);
+        success = false;
       } else {
         ContactUsController.logger.info(`Email sent at ${new Date().toString()}: ${info.response}`);
       }
     });
+
+    return success;
   }
 
   static validateText(value, maxLength) {

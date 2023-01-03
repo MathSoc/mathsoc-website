@@ -13,9 +13,11 @@ router.post('/data/:fileName', (req, res) => {
 });
 
 router.post('/general-inquiries', (req, res) => {
-  ContactUsController.handleRequest(req, res);
+  const success = ContactUsController.handleRequest(req, res);
   // If the res hasn't been closed by bad input, then redirect to success page
-  res.render('pages/contact-us/contact-us-success', { navItems: navItems, footer: footer });
+  if (success) {
+    res.render('pages/contact-us/contact-us-success', { navItems: navItems, footer: footer });
+  }
 });
 
 module.exports = router;
