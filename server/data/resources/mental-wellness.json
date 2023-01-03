@@ -18,24 +18,24 @@
         {
             "title": "Health Services",
             "text": ["Health Services is a facility located across the creek from the Student Life Centre, 519-888-4096."],
-            "link": ""
+            "link": "https://uwaterloo.ca/campus-wellness/health-services"
         }
     ],
     "offCampusChildren": [
         {
             "title": "Good2Talk (24/7)",
             "text": ["Free confidential help line for post-secondary students. Phone: 1-866-925-5454"],
-            "link": ""
+            "link": "https://good2talk.ca/ontario/"
         },
         {
             "title": "Here 24/7",
             "text": ["Mental Health and Crisis Service Team. Phone: 1-844-437-3247"],
-            "link": ""
+            "link": "https://here247.ca/"
         },
         {
             "title": "OK2BME",
             "text": ["A set of support services for lesbian, gay, bisexual, transgender or questioning teens in Waterloo. Phone: 519-884-0000 extension 213"],
-            "link": ""
+            "link": "https://ok2bme.ca/"
         }
     ]
 }
