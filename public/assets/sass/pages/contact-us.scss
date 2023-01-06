@@ -1,0 +1,110 @@
+@import "../mixins/_banner-image";
+@import "../mixins/_pink-button";
+@import "../util/sass-mixins";
+
+section {
+  max-width: var(--content-width);
+}
+
+#execs-grid {
+  display: flex;
+  flex-flow: wrap;
+  column-gap: 5%;
+  row-gap: 1em;
+  align-items: flex-end;
+}
+
+$exec-padding: 8px;
+
+.exec {
+  margin: auto;
+  padding: $exec-padding;
+
+  width: calc(30% - 2 * $exec-padding);
+  min-width: 200px;
+  text-align: center;
+
+  span {
+    display: block;
+    line-height: 1.5em;
+  }
+
+  .role,
+  .email {
+    font-style: italic;
+    font-size: 0.8em;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 200px;
+    margin-bottom: 16px;
+  }
+}
+
+@include tablet-down {
+  .exec {
+    width: calc(45% - 2 * $exec-padding);
+  }
+}
+
+#locations-grid {
+  display: flex;
+  flex-flow: wrap;
+  margin: auto;
+  column-gap: 10%;
+}
+
+.location {
+  margin: auto;
+  $location-padding: 8px;
+  padding: $location-padding;
+
+  width: calc(45% - 2 * $location-padding);
+  min-width: 300px;
+  text-align: center;
+
+  span {
+    display: block;
+    line-height: 1.5em;
+
+    &.location-name {
+      font-weight: bold;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 300px;
+    margin-bottom: 16px;
+  }
+}
+
+form {
+  label {
+    display: block;
+    margin: 1em 0;
+  }
+
+  $input-padding: 8px;
+
+  input.text-input,
+  textarea {
+    display: block;
+    padding: $input-padding;
+    width: calc(100% - 2 * $input-padding);
+
+    margin: 0;
+    border: 0;
+    background-color: #eee;
+  }
+
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  #submit-container {
+    text-align: center;
+  }
+}

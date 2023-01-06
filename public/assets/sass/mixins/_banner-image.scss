@@ -14,7 +14,9 @@
 
   .overlay-filter {
     position: absolute;
-    width: 100%;
+    width: calc(100% + 200px);
+    margin-left: -100px;
+    box-shadow: 0 0 8px 0 #8888 inset;
     height: 100%;
   }
 

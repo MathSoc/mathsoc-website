@@ -1,2 +1,4 @@
+/logs
 /node_modules
 /public/assets/css
+.env

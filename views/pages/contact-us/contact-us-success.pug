@@ -1,0 +1,20 @@
+include /views/mixins/banner-image.pug
+include /views/mixins/pink-button.pug
+
+doctype html
+html(lang="en")
+  head 
+    title Contact Us &#8211; MathSoc
+    include /views/partials/header.pug
+    link(href="/assets/css/pages/contact-us-success.css" rel="stylesheet")
+
+  body 
+    include /views/partials/navbar.pug
+    +banner-image("/assets/img/banners/pinktie-mc.jpeg", ['pink'], 'Success')
+    div(class="content")
+      section(class="white")
+        p Your message has successfully been sent.
+        
+        div(class="button-container")
+          +pink-button("Return to homepage", "", "/")
+    include /views/partials/footer.pug

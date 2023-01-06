@@ -1,0 +1,21 @@
+.pink-button-link {
+  margin: auto;
+}
+
+.pink-button {
+  margin: 1em auto;
+  text-align: center;
+  width: 100%;
+  max-width: 250px;
+  padding: 1em;
+  background-color: var(--mathsoc-pink);
+  border: none;
+  color: white;
+  font-family: var(--primary-font);
+  cursor: pointer;
+  transition: 0.15s;
+
+  &:hover {
+    background-color: var(--mathsoc-pink-2);
+  }
+}
