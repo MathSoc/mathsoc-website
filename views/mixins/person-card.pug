@@ -1,0 +1,10 @@
+mixin person-card(name, role, email, image) 
+  - const classes = image ? '' : ' default';
+  - const src = image ? image : 'assets/img/icons/vertical-logo.svg';
+  
+  div(class="person-card" + classes)
+    img(class="person-image" src=src alt="")
+    span(class="name")=name.toUpperCase()
+    span(class="role")=role 
+    a(href="mailto:" + email)
+      span(class="email")=email
