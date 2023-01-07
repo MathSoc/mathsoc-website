@@ -1,3 +1,5 @@
+@import "mixins/_pink-button";
+
 .container {
     width: 100%;
 
@@ -40,6 +42,72 @@
                 height: 600px;
           }
         }
+    }
+
+    .instagram {
+        $padding: 40px;
+        $margin-top: 100px;
+        margin: auto;
+        height: inherit;
+        text-align: center;
+        margin-top: 100px;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-items: center;
+        justify-content: space-around;
+        width: 50%;
+        
+        @media (max-width: 1312px) {
+            width: 100%;
+        }
+
+        .col {
+            margin-left: 50px;
+            margin-right: 50px;
+            width: 30%;
+
+            @media (max-width: 1312px) {
+                width: 40%;
+                margin:auto;
+            }
+
+            .row {
+                display: flex;
+                flex-direction: column;
+
+                button {
+                    padding: 20px;
+                    background-color: var(--accent-colour-1);
+                    color: white;    
+                    margin: 15px;
+                    transition: 0.3s;
+                    border-radius: 10px;
+                    font-weight: 400;
+                }
+
+                button:hover {
+                    background-color: var(--mathsoc-pink-4);
+                    transition: 0.3s;
+                    color: black;
+                }
+
+                .socials {
+                    display: flex;
+                    flex-direction: row;
+                }
+
+                #instagram1 {
+                    
+                }
+            }
+        }
+
+
+        @media (max-width: 1312px) {
+            flex-direction: column;
+        }
+
     }
 
 }

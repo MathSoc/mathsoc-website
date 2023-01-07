@@ -11,10 +11,15 @@ function buildRoutes(pageArray) {
     if (page.ref) {
       let data = null;
 
-      const dataURL = `../data${page.ref}.json`;
-      if (fs.existsSync(`server/data${page.ref}.json`)) {
-        data = require(dataURL);
+      if(page.data) {
+        data = require(`../data${page.data}.json`);
+      } else {
+        const dataURL = `../data${page.ref}.json`;
+        if (fs.existsSync(`server/data${page.ref}.json`)) {
+          data = require(dataURL);
+        }
       }
+      
       router.get(page.ref, async (req, res) => {
         res.render(`pages/${page.view}.pug`, { navItems: navItems, footer: footer, data: data, title: page.title });
       });
