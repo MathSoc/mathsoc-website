@@ -1,4 +1,5 @@
 include /views/mixins/banner-image.pug
+include /views/mixins/person-card.pug
 include /views/mixins/pink-button.pug
 
 - const execs = data.execs
@@ -21,13 +22,8 @@ html(lang="en")
 
         div(id="execs-grid")
           each exec in execs.concat(businessManager) 
-            div(class="exec")
-              img(class="headshot" src=exec.image alt="") 
-              span(class="name")=exec.name.toUpperCase()
-              span(class="role")=exec.role 
-              a(href="mailto:" + exec.email)
-                span(class="email")=exec.email
-        
+            +person-card(exec.name, exec.role, exec.email, exec.image)
+
         h2 Visit us in person
         div(id="locations-grid")
           each location in locations
