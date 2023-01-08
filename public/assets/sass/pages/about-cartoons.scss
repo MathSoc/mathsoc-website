@@ -97,4 +97,26 @@ section {
         margin-top: 3em;
     }
 }
+
+.banner-container {
+    min-height: initial;
+}
+
+.large-screen {
+    display: block;
+}
+
+.mobile-screen {
+    display: none;
+}
   
+@media (max-width: 1312px) {
+    .large-screen {
+        display: none;
+    }
+    
+    .mobile-screen {
+        display: block;
+    }
+      
+}

@@ -12,15 +12,16 @@ append scripts
     script(src="https://kit.fontawesome.com/c02fb43ad1.js" crossorigin="anonymous")
 
 block body
-    +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
+    div(class="large-screen")
+        +banner-image(data.coverPicSrc, ["full"])
+    div(class="mobile-screen")
+        +banner-image(data.coverPicSrcMobile, ["full"])
     div(class="content")
         section(class="white")
             div(class="title")
                 h1 #{data.heading}
-            img(class="cover-pic" src=data.coverPicSrc)
             div(class="row")
                 div(class="col about-us-section")
-                    h1 #{data.subheading}
                     p!=data.subheadingCaption
                     h3 #{data.joinUs}
                     p(class="app-caption") #{data.applicationsCaption}

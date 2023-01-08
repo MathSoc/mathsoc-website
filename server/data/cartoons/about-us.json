@@ -2,6 +2,7 @@
     "pageTitle": "About Cartoons",
     "heading": "MathSoc Cartoons",
     "coverPicSrc": "/assets/img/cartoons/mathsoc-cartoons-cover-full-scaled.jpg",
+    "coverPicSrcMobile": "/assets/img/cartoons/cartoons-cover-mobile.jpg",
     "comicExample": "/assets/img/cartoons/characters2.jpg",
     "subheading": "About Us",
     "subheadingCaption": "MathSoc Cartoons is a student-run comic series explaining undergraduate math and computer science concepts. All of our comics can be found here, as well as on our <a href='https://www.instagram.com/uwmathsoc/'>Instagram</a> and <a href='https://www.facebook.com/mathsoc'>Facebook</a> pages.",
