@@ -16,6 +16,12 @@
         }
     }
 
+    .slideshow-container {
+        img {
+            margin-top: -20%;
+        }
+    }
+
     .calendar-wrapper {
         $padding: 40px;
         width: calc(100% - 2 * $padding);

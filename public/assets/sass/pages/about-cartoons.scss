@@ -81,6 +81,10 @@ section {
         justify-content: space-between;;
         .col {
             width: 20%;
+
+            @media (max-width: 1312px) {
+                width: 100%;
+            }
         }
 
         .pink-button {
