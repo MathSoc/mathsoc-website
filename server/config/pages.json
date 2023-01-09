@@ -40,15 +40,5 @@
         "view": "/contact-us/contact-us-success"
       }
     ]
-  },
-  {
-    "title": "CMS",
-    "children": [
-      {
-        "title": "CMS Home",
-        "ref": "/cms/home",
-        "view": "/cms/home"
-      }
-    ]
   }
 ]

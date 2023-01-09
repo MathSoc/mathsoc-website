@@ -1,0 +1,104 @@
+@import 'mixins/pink-button';
+
+#navbar {
+  background-color: var(--mathsoc-pink);
+  color: white;
+  border-bottom: 1px solid var(--mathsoc-pink); // added to border mobile button
+
+  .items {
+    .dropdown-button {
+      color: white;
+
+      &:focus,
+      &:hover,
+      &:active,
+      &:focus-within {
+        color: white;
+      }
+    }
+
+    .dropdown {
+      transition: 0.15s;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &:focus-within {
+        background-color: white;
+      }
+    }
+  }
+
+  .nav-logo {
+    &#white-logo {
+      display: block;
+    }
+
+    &#pink-logo {
+      display: none;
+    }
+  }
+
+  #mobile-menu-button {
+    background-color: white;
+  }
+}
+
+#admin-title {
+  color: var(--mathsoc-pink);
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#sections-menu {
+  margin-bottom: 3em;
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      display: block;
+    }
+
+    .section-button {
+      display: block;
+      padding: 1em;
+      transition: background-color 0.15s;
+      margin: 0 0.5em;
+      font-size: 0.9em;
+      border-bottom: 1px solid var(--mathsoc-grey-2);
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-color);
+      &.active {
+        border-color: var(--mathsoc-pink);
+        color: var(--mathsoc-pink);
+      }
+      &:hover {
+        background-color: var(--background-hover);
+      }
+    }
+  }
+}
+
+#body {
+  max-width: var(--content-width);
+  padding: 0 1em;
+  margin: auto;
+
+  min-height: 500px;
+}
+
+#footer {
+  #frontend-return {
+    margin: 0 auto;
+    align-self: center;
+  }
+}

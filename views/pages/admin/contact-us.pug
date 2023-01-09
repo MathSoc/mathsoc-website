@@ -1,0 +1,25 @@
+extends /views/templates/admin-base.pug
+
+append styles
+  link(href="/assets/css/pages/wellness.css" rel="stylesheet")
+  link(href="/assets/css/pages/admin/contact-us.css" rel="stylesheet")
+
+
+block body
+  h1 Contact Us
+
+  h2 Update execs 
+  - const execs = sources.contact.execs
+  iframe(name="redirect-stopper" id="redirect-stopper" style="display: none")
+  form(action="/api/admin/contact-us/execs" method="post" target="redirect-stopper")
+    table(id="execs-list")
+      tbody
+        each exec of execs 
+          tr(class="exec")
+            - const lrole = exec.role.toLowerCase().replaceAll(/\s/g, '-').replaceAll(/,/g, '');
+            th(class="role")
+              label(for=lrole + '-name')=exec.role + ":" 
+            td 
+              input(name=lrole + '-name' value=exec.name placeholder=exec.name id=lrole + '-name')
+    div(id="update-container")
+      input(type="submit" id="update-execs-button" class="pink-button" value="Update") 

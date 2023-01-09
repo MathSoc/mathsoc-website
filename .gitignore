@@ -3,4 +3,7 @@
 /public/assets/css
 .env
 /server.js
-/server/api/*.js
+/server/api/**/*.js
+/server/routes/**/*.js
+*.tsbuildinfo
+*.d.ts

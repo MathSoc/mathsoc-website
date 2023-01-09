@@ -1,6 +1,6 @@
 @import 'util/_sass-mixins';
 
-.navbar {
+#navbar {
   min-width: 100%;
   overflow: visible;
   font-size: 14px;
@@ -41,14 +41,20 @@
         padding: $vertical-padding 16px;
       } 
 
-      @media only screen and (max-width: 1150px) {
-        padding: $vertical-padding 12px;
+      @media only screen and (max-width: 1200px) {
         margin: 0 12px;
+
+        .dropdown-button {
+          padding: $vertical-padding 12px;
+        }
       }
 
-      @media only screen and (max-width: 1050px) {
-        padding: $vertical-padding 9px;
-        margin: 0 9px;
+      @media only screen and (max-width: 1100px) {
+        margin: 0 4px;
+
+        .dropdown-button {
+          padding: $vertical-padding 12px;
+        }
       }
 
       > a {
