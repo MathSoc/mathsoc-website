@@ -117,6 +117,9 @@ section {
     
     .mobile-screen {
         display: block;
+        .banner-container {
+            max-height: 300px;
+        }
     }
       
 }
