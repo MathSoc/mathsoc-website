@@ -1,3 +1,5 @@
+import { Request, Response } from 'express';
+
 const dotenv = require('dotenv');
 const express = require('express');
 const path = require('path');
@@ -16,17 +18,17 @@ const api = require('./server/api');
 app.locals.basedir = path.join(__dirname, '');
 
 app
-    .use(express.json())
-    .use(express.urlencoded({ extended: false }))
-    .use(express.static(path.join(__dirname, "public")))
-    .set("views", path.join(__dirname, "views"))
-    .use(routes)
-    .use('/api', api)
-    //Auth Middleware ...
-    .use(authRoutes)
-    .use((req, res) => {
-        res.status(404).render("pages/error");
-    })
+  .use(express.json())
+  .use(express.urlencoded({ extended: false }))
+  .use(express.static(path.join(__dirname, "public")))
+  .set("views", path.join(__dirname, "views"))
+  .use(routes)
+  .use('/api', api)
+  //Auth Middleware ...
+  .use(authRoutes)
+  .use((req: Request, res: Response) => {
+    res.status(404).render("pages/error");
+  })
 
 app.listen(port, () => console.log('Application live on localhost:3000'));
 

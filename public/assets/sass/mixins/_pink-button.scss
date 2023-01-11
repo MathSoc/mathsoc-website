@@ -7,13 +7,14 @@
   text-align: center;
   width: 100%;
   max-width: 250px;
-  padding: 1em;
+  max-height: 60px;
+  padding: 1em 2em;
   background-color: var(--mathsoc-pink);
   border: none;
   color: white;
   font-family: var(--primary-font);
   cursor: pointer;
-  transition: 0.15s;
+  transition: background-color 0.15s;
 
   &:hover {
     background-color: var(--mathsoc-pink-2);

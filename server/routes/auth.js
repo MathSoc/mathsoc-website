@@ -1,7 +1,7 @@
 const router = require('express').Router();
+const pages = require('../config/auth-pages.json');
+const PageLoader = require('./page-loader.js');
 
-router.get('/cms', async (req, res) => {
-    res.render('pages/home');
-})
+PageLoader.buildRoutes(pages, router);
 
 module.exports = router;
