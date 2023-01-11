@@ -39,4 +39,10 @@
   &.small {
     height: 200px;
   }
+
+  &.full {
+    height: 700px;
+    background-size: cover;
+    width: 100%;
+  }
 }

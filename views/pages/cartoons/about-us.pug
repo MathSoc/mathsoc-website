@@ -1,0 +1,47 @@
+extends /views/templates/frontend-base.pug
+
+block title
+    title #{data.pageTitle} &#8211; MathSoc
+
+append styles
+    link(href="/assets/css/carousel.css" rel="stylesheet")
+    link(href="/assets/css/pages/about-cartoons.css" rel="stylesheet")
+
+append scripts
+    script(src="/assets/js/carousel.js" defer)
+    script(src="https://kit.fontawesome.com/c02fb43ad1.js" crossorigin="anonymous")
+
+block body
+    div(class="large-screen")
+        +banner-image(data.coverPicSrc, ["full"])
+    div(class="mobile-screen")
+        +banner-image(data.coverPicSrcMobile, ["full"])
+    div(class="content")
+        section(class="white")
+            div(class="title")
+                h1 #{data.heading}
+            div(class="row")
+                div(class="col about-us-section")
+                    p!=data.subheadingCaption
+                    h3 #{data.joinUs}
+                    p(class="app-caption") #{data.applicationsCaption}
+                    div!=data.signupMarkup
+                    div(style="width: 100%; text-align:center;")
+                        +pink-button(data.buttons.team.text, '', data.buttons.team.link)
+                        br
+                        +pink-button(data.buttons.archive.text, '', data.buttons.archive.link)
+                div(class="col")
+                    - var images = data.carouselImages;
+                    +carousel(data.carouselImages)
+            div(class="title get-in-touch")
+                h1 #{data.getInTouch}
+            div(class="row button-row")
+                div(class="col")
+                    +pink-button(data.socialButtons.email, "email", data.socialLinks.email)
+                div(class="col")
+                    +pink-button(data.socialButtons.feedback, "feedback", data.socialLinks.feedback)
+                div(class="col")
+                    +pink-button(data.socialButtons.instagram, "instagram", data.socialLinks.instagram)
+                div(class="col")
+                    +pink-button(data.socialButtons.facebook, "facebook", data.socialLinks.facebook)
+

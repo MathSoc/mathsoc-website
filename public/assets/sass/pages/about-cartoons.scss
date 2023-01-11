@@ -1,0 +1,125 @@
+@import '../mixins/banner-image';
+@import '../mixins/pink-button';
+
+.title {
+    color: var(--accent-colour-1);
+    text-align: center;
+    margin-bottom: 1em;
+  
+    h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+}
+
+.slideshow-container {
+    max-height: initial;
+}
+
+section {
+    max-width: 50%;
+    margin: 30px auto;
+
+    
+
+    .cover-pic {
+        width: 100%;
+    }
+
+    .about-us-section {
+        padding-right: 20px;
+        @media (max-width: 1312px) {
+            padding-right: 0px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--accent-colour-1);
+            text-align: center;
+            margin-bottom: 1em;
+            font-size: 3em;
+        } 
+
+        h3 {
+            color: var(--accent-colour-1);
+            text-align: center;
+            margin-bottom: 0.5em;
+            font-size: 2em;
+            font-family: var(--title-font);
+        }
+
+        .app-caption {
+            text-align: center;
+            font-weight: 700;
+        }
+
+
+    }
+
+    button {
+        border-radius: 20px;
+    }
+
+    .row {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin-top: 2em;
+
+        @media (max-width: 1312px) {
+            flex-direction: column;
+        }
+
+        .col {
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+
+    .button-row {
+        justify-content: space-between;;
+        .col {
+            width: 20%;
+
+            @media (max-width: 1312px) {
+                width: 100%;
+            }
+        }
+
+        .pink-button {
+            max-width: initial;
+            min-width: 100%;
+        }
+    }
+
+    .get-in-touch {
+        margin-top: 3em;
+    }
+}
+
+.banner-container {
+    min-height: initial;
+}
+
+.large-screen {
+    display: block;
+}
+
+.mobile-screen {
+    display: none;
+}
+  
+@media (max-width: 1312px) {
+    .large-screen {
+        display: none;
+    }
+    
+    .mobile-screen {
+        display: block;
+        .banner-container {
+            max-height: 300px;
+        }
+    }
+      
+}
