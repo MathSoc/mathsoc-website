@@ -3,7 +3,9 @@
     "title": "Home",
     "ref": "/",
     "view": "/home",
-    "data": "/home"
+    "dataSources": {
+      "home": "/home"
+    }
   },
   {
     "title": "Get Involved",
