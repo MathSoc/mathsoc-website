@@ -1,0 +1,23 @@
+include /views/mixins/components.pug
+
+doctype html
+html(lang="en")
+    include /views/partials/header.pug
+    body 
+        include /views/partials/navbar.pug
+        h1(id="admin-title") MathSoc Admin
+        div(id="sections-menu")
+          ul
+            - const itemsMap = navItems.map((item) => { return {title: item.title, ref: "/admin/" + item.title.toLowerCase().replaceAll(/\s/g, '-')}; })
+            - const sections = [{title: "Home", ref: "/admin"}].concat(itemsMap);
+            each section in sections
+              li
+                - const currentPageClass = ref === section.ref ? " active" : "";
+                a(class="section-button" + currentPageClass href=section.ref)=section.title
+        div(id="body")
+          block body
+        div(id="footer")
+          +pink-button("Return to Frontend", "frontend-return", "/")
+
+append styles 
+    link(href="/assets/css/admin.css" rel="stylesheet")

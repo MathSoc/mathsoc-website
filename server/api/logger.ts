@@ -1,9 +1,11 @@
+import { Logger as WinstonLogger } from 'winston';
+
 const Winston = require('winston');
 
 class Logger {
-  _logger;
+  private _logger: WinstonLogger;
 
-  constructor(name) {
+  constructor(name: string) {
     this._logger = Winston.createLogger({
       level: 'info',
       format: Winston.format.combine(
@@ -30,15 +32,15 @@ class Logger {
     }
   }
 
-  info(message, ...meta) {
+  info(message: string, ...meta: any[]) {
     this._logger.info(message, ...meta);
   }
 
-  warn(message, ...meta) {
+  warn(message: string, ...meta: any[]) {
     this._logger.warn(message, ...meta);
   }
 
-  error(message, ...meta) {
+  error(message: string, ...meta: any[]) {
     this._logger.error(message, ...meta);
   }
 }

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "declaration": false,
+    "incremental": true,
+    "module": "CommonJS",
+    "removeComments": true,
+    "sourceMap": false
+  },
+  "references": [
+    {"path": "./server/tsconfig.json"}
+  ]
+}

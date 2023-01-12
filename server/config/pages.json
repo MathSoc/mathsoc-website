@@ -41,5 +41,14 @@
         "view": "/contact-us/contact-us-success"
       }
     ]
+  }, {
+    "title": "Cartoons",
+    "children": [
+      {
+        "title": "About us",
+        "ref": "/cartoons/about-us",
+        "view": "/cartoons/about-us"
+      }
+    ]
   }
 ]

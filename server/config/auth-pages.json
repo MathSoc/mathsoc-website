@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Home",
+    "ref": "/admin",
+    "view": "/admin/home"
+  },
+  {
+    "title": "Contact Us",
+    "ref": "/admin/contact-us",
+    "view": "/admin/contact-us",
+    "dataSources": {
+      "contact": "contact-us"
+    }
+  }
+]
