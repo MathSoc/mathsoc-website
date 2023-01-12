@@ -2,7 +2,8 @@
   {
     "title": "Home",
     "ref": "/",
-    "view": "/home"
+    "view": "/home",
+    "data": "/home"
   },
   {
     "title": "Get Involved",
