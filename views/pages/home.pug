@@ -1,6 +1,7 @@
 extends /views/templates/frontend-base.pug
 include /views/mixins/pink-button.pug
 
+
 block title 
     title MathSoc Home
     
@@ -31,11 +32,12 @@ block body
                 div(class="col")
                     +instagramEmbed()
                 div(class="col")
-                    h2 #{data.socialText}
+                    - const homepageData = sources.home;
+                    h2 #{homepageData.socialText}
                     div(class="row")
-                        +pink-button(data.socialButtons.instagram, "instagram", footer.socialLinks.instagram)
-                        +pink-button(data.socialButtons.discord, "discord", footer.socialLinks.discord)
-                        +pink-button(data.socialButtons.youtube, "youtube", footer.socialLinks.youtube)
+                        +pink-button(homepageData.socialButtons.instagram, "instagram", footer.socialLinks.instagram)
+                        +pink-button(homepageData.socialButtons.discord, "discord", footer.socialLinks.discord)
+                        +pink-button(homepageData.socialButtons.youtube, "youtube", footer.socialLinks.youtube)
 
 
                         

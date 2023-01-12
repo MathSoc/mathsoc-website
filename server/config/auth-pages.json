@@ -9,7 +9,7 @@
     "ref": "/admin/contact-us",
     "view": "/admin/contact-us",
     "dataSources": {
-      "contact": "contact-us"
+      "contact": "/contact-us"
     }
   }
 ]

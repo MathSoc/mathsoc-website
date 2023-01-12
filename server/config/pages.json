@@ -3,7 +3,9 @@
     "title": "Home",
     "ref": "/",
     "view": "/home",
-    "data": "/home"
+    "dataSources": {
+      "home": "/home"
+    }
   },
   {
     "title": "Get Involved",
@@ -41,7 +43,8 @@
         "view": "/contact-us/contact-us-success"
       }
     ]
-  }, {
+  },
+  {
     "title": "Cartoons",
     "children": [
       {
