@@ -1,7 +1,7 @@
 import { Response } from 'express';
+import fs from 'fs';
 
-const fs = require('fs');
-const Logger = require('./logger.js');
+import { Logger } from './logger';
 
 type RequestData = {
   fileName: string,
@@ -104,7 +104,7 @@ export class ReadWriteController {
     if (err) {
       if (err.code === 'ENOENT') res.status(404).end();
       else res.status(500).end();
-      this.logger.error(err);
+      this.logger.error(err.message);
       return true;
     }
 
@@ -128,7 +128,7 @@ class RequestQueue {
     else if (this.queue[0].type === 'w')
       ReadWriteController._processJSONOverwriteQueue(this.queue[0]);
     else {
-      ReadWriteController.logger.warn(new Error('Queued request has bad type'))
+      ReadWriteController.logger.warn('Queued request has bad type');
       this.queue[0].res.status(500).end();
     }
 

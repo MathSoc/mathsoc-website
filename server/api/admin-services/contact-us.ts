@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 
-import { ReadWriteController } from '../read-write-controller.js';
+import { ReadWriteController } from '../read-write-controller';
 
-class ContactUsAdmin {
+export class ContactUsAdminService {
   // Updates the name of each MathSoc exec
-  static updateExecs(req: Request, res: Response) {
+  static updateExecs(req: Request, res: Response): void {
     const formData = req.body;
 
     const currentContactUs = require('../../data/contact-us.json');
@@ -27,5 +27,3 @@ class ContactUsAdmin {
     res.status(200).end();
   }
 }
-
-module.exports = ContactUsAdmin;

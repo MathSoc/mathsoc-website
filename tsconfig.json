@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
     "declaration": false,
+    "esModuleInterop": true,
     "incremental": true,
     "module": "CommonJS",
     "removeComments": true,
+    "resolveJsonModule": true,
     "sourceMap": false
   },
-  "references": [
-    {"path": "./server/tsconfig.json"}
-  ]
 }

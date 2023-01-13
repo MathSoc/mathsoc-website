@@ -1,9 +1,0 @@
-{
-  "include": [
-    "./api/**/*",
-    "./routes/**/*",
-  ],
-  "compilerOptions": {
-    "composite": true,
-  },
-}

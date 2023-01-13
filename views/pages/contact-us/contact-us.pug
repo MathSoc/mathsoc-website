@@ -15,10 +15,10 @@ html(lang="en")
 
   body 
     include /views/partials/navbar.pug
-    +banner-image("/assets/img/banners/pinktie-mc.jpeg")
+    +banner-image("/assets/img/banners/pinktie-mc.jpeg", ["grey"], "Get in touch")
     div(class="content")
       section(class="white")
-        h1 Contact Us
+        h1 Contact our executive team
 
         div(id="execs-grid")
           each exec in execs.concat(businessManager) 

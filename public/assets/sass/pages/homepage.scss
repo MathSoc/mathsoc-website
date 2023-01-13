@@ -2,14 +2,14 @@
     width: 100%;
 
     .cards {
-        width: 70%;
         margin:auto;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         justify-items: center;
         border-radius: 20px;
+        gap: 32px;
 
         @media (max-width: 1312px) {
               flex-direction: column;
@@ -54,7 +54,9 @@
     background-color: transparent;
     border-radius: 20px;
     width: 300px;
-    height: 300px;
+
+    $caption-height: 3em;
+    height: calc(300px + $caption-height);
     border: 1px solid #f1f1f1;
     perspective: 1000px; 
 
@@ -62,7 +64,7 @@
         position: relative;
         width: 100%;
         border-radius: 20px;
-        height: 100%;
+        height: calc(100% - $caption-height);
         text-align: center;
         transition: transform 0.8s;
         transform-style: preserve-3d;

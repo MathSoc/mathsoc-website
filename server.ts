@@ -1,8 +1,12 @@
 import { Request, Response } from 'express';
 
-const dotenv = require('dotenv');
-const express = require('express');
-const path = require('path');
+import dotenv from 'dotenv';
+import express from 'express';
+import path from 'path';
+
+import routes from './server/routes';
+import authRoutes from "./server/routes/auth";
+import api from './server/api';
 
 dotenv.config(); // load .env variables
 
@@ -10,10 +14,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.set('view engine', 'pug');
-
-const routes = require('./server/routes');
-const authRoutes = require("./server/routes/auth");
-const api = require('./server/api');
 
 app.locals.basedir = path.join(__dirname, '');
 

@@ -36,6 +36,11 @@
     opacity: 0.5;
   }
 
+  &.grey .overlay-filter {
+    background-color: #888;
+    opacity: 0.5;
+  }
+
   &.small {
     height: 200px;
   }
