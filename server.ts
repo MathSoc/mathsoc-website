@@ -10,6 +10,8 @@ import api from './server/api';
 
 dotenv.config(); // load .env variables
 
+// hi
+
 const app = express();
 const port = process.env.PORT || 3000;
 
