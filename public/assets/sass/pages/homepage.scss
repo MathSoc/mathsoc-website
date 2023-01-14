@@ -1,4 +1,4 @@
-@import "mixins/_pink-button";
+@import "../mixins/pink-button";
 
 .container {
     width: 100%;
@@ -74,8 +74,13 @@
             width: 30%;
 
             @media (max-width: 1312px) {
-                width: 40%;
+                width: 50%;
                 margin:auto;
+            }
+            
+            @media (max-width: 768px) {
+                width: 90%;
+                margin: auto;
             }
 
             .row {
