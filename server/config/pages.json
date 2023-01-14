@@ -2,7 +2,10 @@
   {
     "title": "Home",
     "ref": "/",
-    "view": "/home"
+    "view": "/home",
+    "dataSources": {
+      "home": "/home"
+    }
   },
   {
     "title": "Get Involved",
