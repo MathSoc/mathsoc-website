@@ -1,13 +1,21 @@
-import { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 
 const fs = require('fs');
 const path = require('path');
 
-class PageLoader {
+interface Page {
+  title: string,
+  ref?: string, // if no ref specified, the "page" is just a category; no page route is created
+  view?: string,
+  dataSources?: Record<string, string>,
+  children?: Page[]
+}
+
+export class PageLoader {
   static navItems = require('../config/navbar.json');
   static footer = require('../config/footer.json');
 
-  static buildRoutes(pageArray, router) {
+  static buildRoutes(pageArray: Page[], router: Router) {
     for (const page of pageArray) {
       if (page.ref) {
         router.get(page.ref, async (req: Request, res: Response) => {
@@ -41,7 +49,7 @@ class PageLoader {
   }
 
   // require() automatically caches what is retrieved.  This function ensures that cache is erased when relevant.
-  static getPageData(pageRef: string) {
+  static getPageData(pageRef: string): object | any[] | null {
     if (fs.existsSync(`server/data${pageRef}.json`)) {
       const url = path.join(__dirname, "../../server/data/contact-us.json");
       delete require.cache[url];
@@ -51,5 +59,3 @@ class PageLoader {
     }
   }
 }
-
-module.exports = PageLoader;

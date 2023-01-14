@@ -1,12 +1,14 @@
-const nodemailer = require('nodemailer');
-const validator = require('validator');
-const contactUsData = require('../data/contact-us.json');
-const Logger = require('./logger.js');
+import nodemailer from 'nodemailer';
+import validator from 'validator';
+import { Request, Response } from 'express';
 
-class ContactUsController {
+import { Logger } from './logger';
+import contactUsData from '../data/contact-us.json';
+
+export class ContactUsController {
   static logger = new Logger();
 
-  static handleRequest(req, res) {
+  static handleRequest(req: Request, res: Response) {
     if (!req.body) res.status(400).end();
 
     if (
@@ -28,7 +30,7 @@ class ContactUsController {
     return this.sendMessage(name, address, subject, message);
   }
 
-  static async sendMessage(name, address, subject, message) {
+  static async sendMessage(name: string, address: string, subject: string, message: string) {
     if (!process.env.forms_gmail_sender_username) {
       this.logger.error(`No email username set in .env; message '${subject}' by ${name} <${address}> could not be sent`);
       return false;
@@ -63,7 +65,7 @@ class ContactUsController {
     let success = true;
     transporter.sendMail(email, function (error, info) {
       if (error) {
-        ContactUsController.logger.error(error);
+        ContactUsController.logger.error(error.message);
         success = false;
       } else {
         ContactUsController.logger.info(`Email sent at ${new Date().toString()}: ${info.response}`);
@@ -73,7 +75,7 @@ class ContactUsController {
     return success;
   }
 
-  static validateText(value, maxLength) {
+  static validateText(value: any, maxLength: number): boolean {
     if (!value || typeof value !== "string" || value.length > maxLength) {
       return false;
     }

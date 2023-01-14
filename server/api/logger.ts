@@ -1,11 +1,9 @@
-import { Logger as WinstonLogger } from 'winston';
+import Winston, { Logger as WinstonLogger } from 'winston';
 
-const Winston = require('winston');
-
-class Logger {
+export class Logger {
   private _logger: WinstonLogger;
 
-  constructor(name: string) {
+  constructor(name?: string) {
     this._logger = Winston.createLogger({
       level: 'info',
       format: Winston.format.combine(
@@ -32,17 +30,15 @@ class Logger {
     }
   }
 
-  info(message: string, ...meta: any[]) {
+  info(message: string, ...meta: any[]): void {
     this._logger.info(message, ...meta);
   }
 
-  warn(message: string, ...meta: any[]) {
+  warn(message: string, ...meta: any[]): void {
     this._logger.warn(message, ...meta);
   }
 
-  error(message: string, ...meta: any[]) {
+  error(message: string, ...meta: any[]): void {
     this._logger.error(message, ...meta);
   }
 }
-
-module.exports = Logger;
