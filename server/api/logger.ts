@@ -30,15 +30,15 @@ export class Logger {
     }
   }
 
-  info(message: string, ...meta: any[]): void {
+  info(message: any, ...meta: any[]): void {
     this._logger.info(message, ...meta);
   }
 
-  warn(message: string, ...meta: any[]): void {
+  warn(message: any, ...meta: any[]): void {
     this._logger.warn(message, ...meta);
   }
 
-  error(message: string, ...meta: any[]): void {
+  error(message: any, ...meta: any[]): void {
     this._logger.error(message, ...meta);
   }
 }
