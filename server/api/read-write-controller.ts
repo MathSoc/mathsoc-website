@@ -39,6 +39,31 @@ export class ReadWriteController {
     this.queues[fileName].push(fileName, res, 'w', newData);
   }
 
+  static getJSONDataPath(filePath: any, res: Response): void {
+    if(!filePath) {
+      res.status(400).end();
+    }
+
+    if(!this.queues[filePath]) {
+      this.queues[filePath] = new RequestQueue();
+    }
+    
+    this.queues[filePath].push(filePath, res, 'r');
+
+  }
+
+  static overwriteJSONDataPath(filePath: any, res: Response, newData: any[] | object): void {
+    if(!filePath) {
+      res.status(400).end();
+    }
+
+    if(!this.queues[filePath]) {
+      this.queues[filePath] = new RequestQueue();
+    }
+
+    this.queues[filePath].push(filePath, res, 'w', newData);
+  }
+
   static async processReadEntry(requestData: ReadRequestData): Promise<void> {
     const promise = new Promise((resolve, reject) => {
       const terminateWith = (code: number) => {

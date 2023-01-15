@@ -8,6 +8,14 @@ const router = require('express').Router();
 import navItems from '../config/navbar.json';
 import footer from '../config/footer.json';
 
+router.get('/data', (req: Request, res: Response) => {
+  ReadWriteController.getJSONDataPath(req.query.path, res);
+})
+
+router.post('/data', (req: Request, res: Response) => {
+  ReadWriteController.overwriteJSONDataPath(req.query.path, res, req.body);
+})
+
 router.get('/data/:fileName', (req: Request, res: Response) => {
   ReadWriteController.getJSONData(req.params.fileName, res);
 });

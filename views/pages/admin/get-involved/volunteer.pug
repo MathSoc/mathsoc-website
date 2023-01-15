@@ -1,0 +1,27 @@
+extends /views/templates/admin-base.pug
+
+append styles
+    link(href="/assets/css/pages/admin/get-involved/volunteer.css" rel="stylesheet")
+
+append scripts
+    script(src="/assets/js/editor.js")
+    script.
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            const sources = !{JSON.stringify(sources)}
+            const editor = new Editor();
+            editor.useEditor(sources.volunteer);
+
+            document.getElementById("save-button").addEventListener("click", () => {
+                editor.saveData('/api/data?path=get-involved/volunteer');
+            })
+
+        });
+block body
+    div(id="jsoneditor" style="margin-bottom:50px;" )
+    div(class="save")
+        +pink-button("Update", "save-button")
+
+
+
+
+    
