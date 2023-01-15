@@ -14,7 +14,7 @@ class MobileNavigation {
 
   static registerDropdownListeners() {
     const mobileNav = document.getElementById('mobile-nav');
-    const dropdowns = mobileNav.querySelectorAll('.dropdown');
+    const dropdowns = Array.from(mobileNav.querySelectorAll('.dropdown'));
 
     for (const dropdown of dropdowns) {
       const contentId = '.dropdown-content';
@@ -25,17 +25,18 @@ class MobileNavigation {
           for (const closedDropdown of dropdowns) {
             closedDropdown.classList.remove('active');
 
-            const closedContent = closedDropdown.querySelector(contentId);
+            const closedContent = closedDropdown.querySelector(contentId) as HTMLElement;
             if (closedContent) {
               closedContent.style.maxHeight = '';
             }
           }
 
           dropdown.classList.toggle('active');
+          const content = dropdown.querySelector(contentId) as HTMLElement;
           if (dropdown.classList.contains('active')) {
-            dropdown.querySelector(contentId).style.maxHeight = dropdown.querySelector(contentId).scrollHeight + 'px';
+            content.style.maxHeight = dropdown.querySelector(contentId).scrollHeight + 'px';
           } else {
-            dropdown.querySelector(contentId).style.maxHeight = '';
+            content.style.maxHeight = '';
           }
 
           MobileNavigation.resizeMobileMenu();
@@ -47,7 +48,7 @@ class MobileNavigation {
   static resizeMobileMenu() {
     const mobileNav = document.getElementById('mobile-nav');
     if (mobileNav.classList.contains('active')) {
-      const dropdowns = mobileNav.querySelectorAll('.dropdown');
+      const dropdowns = Array.from(mobileNav.querySelectorAll('.dropdown'));
       let height = 0;
 
       for (const dropdown of dropdowns) {

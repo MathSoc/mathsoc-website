@@ -1,13 +1,22 @@
 import { Response } from 'express';
-import fs, { readlink } from 'fs';
+import fs, { read } from 'fs';
 
 import { Logger } from './logger';
 
 type RequestData = {
   fileName: string,
-  body?: object | any[]
   res: Response,
   type: 'r' | 'w'
+  body?: object | any[] | string
+}
+
+type ReadRequestData = RequestData & {
+  type: 'r'
+}
+
+type WriteRequestData = RequestData & {
+  body: object | any[] | string
+  type: 'w'
 }
 
 export class ReadWriteController {
@@ -30,93 +39,100 @@ export class ReadWriteController {
     this.queues[fileName].push(fileName, res, 'w', newData);
   }
 
-  static async processReadEntry(requestData: RequestData): Promise<void> {
-    const fail = (e: Error, reject: (reason?: any) => void) => {
-      this.logger.warn(e);
-      requestData.res.status(500).end();
-      reject();
-    }
-
+  static async processReadEntry(requestData: ReadRequestData): Promise<void> {
     const promise = new Promise((resolve, reject) => {
+      const terminateWith = (code: number) => {
+        requestData.res.status(code).end();
+        resolve(code);
+      }
+
       try {
-        fs.readFile(`server/data/${requestData.fileName}.json`, (err: NodeJS.ErrnoException, data: Buffer) => {
+        fs.readFile(`server/data/${requestData.fileName}.json`, (err: NodeJS.ErrnoException | null, readData: Buffer) => {
+          // If any errors immediately occur, handle them
           if (this.handleErrors(requestData.res, err)) {
-            reject();
+            resolve(null);
             return;
           };
 
+          // If no content, return 204 code
+          if (!readData || readData.length === 0) {
+            terminateWith(204);
+            return;
+          } 
+          
+          // Parse the file as JSON and return it
           try {
-            this.readFile(data, requestData.res);
+            const parsedJSON = JSON.parse(readData.toString('utf-8'));
+            requestData.res.json(parsedJSON);
+        
+            terminateWith(200);
           } catch (e) {
-            fail(e, reject);
+            this.logger.error(e);
+            terminateWith(500);
           }
-
-          resolve(null);
         });
       } catch (e) {
-        fail(e, reject);
+        this.logger.error(e);
+        terminateWith(500);
       }
     });
 
     await promise;
   }
 
-  private static readFile(data: Buffer, res: Response): void {
-    if (!data || data.length === 0) {
-      res.status(204).end(); // success, no data
-      return;
-    }
-
-    const parsedJson = JSON.parse(data.toString('utf-8'));
-    res.json(parsedJson);
-
-    res.status(200).end();
-  }
-
-  static async processWriteEntry(data: RequestData): Promise<void> {
+  static async processWriteEntry(data: WriteRequestData): Promise<void> {
     const promise = new Promise((resolve, reject) => {
-      try {
-        let writeData: string = this.getWriteData(data.body, data.res);
-
-        // Want to first ensure the file exists, then write to it
-        if (!fs.existsSync(`server/data/${data.fileName}.json`)) {
-          data.res.status(404).end();
-        }
-
-        fs.writeFile(
-          `server/data/${data.fileName}.json`,
-          writeData,
-          { encoding: 'utf8', flag: 'w' },
-          (err: NodeJS.ErrnoException) => {
-            if (this.handleErrors(data.res, err)) return;
-
-            data.res.status(200).end(); // if no errors, return 200: SUCCESS
-            resolve(null);
-          }
-        );
-      } catch (e) {
-        this.logger.warn(e);
-        data.res.status(500).end();
-        reject(e);
+      const terminateWith = (code: number) => {
+        data.res.status(code).end();
+        resolve(code);
       }
+
+      let writeData: string;
+
+      // First need to get the written data as a string
+      try {
+        writeData = this.getWriteData(data.body);
+      } catch (e) {
+        terminateWith(400);
+        return;
+      }
+
+      // Want to first ensure the file exists before writing to it
+      if (!fs.existsSync(`server/data/${data.fileName}.json`)) {
+        terminateWith(404);
+        return;
+      }
+
+      fs.writeFile(
+        `server/data/${data.fileName}.json`,
+        writeData,
+        { encoding: 'utf8', flag: 'w' },
+        (err: NodeJS.ErrnoException | null) => {
+          if (this.handleErrors(data.res, err)) return;
+
+          terminateWith(200);
+        }
+      );
     });
 
     await promise;
   }
 
-  private static getWriteData(requestBody: object | any[] | string, res: Response): string {
-    try {
-      return typeof requestBody === "object" // 'object' includes arrays
-        ? JSON.stringify(requestBody)
-        : requestBody;
-    } catch (e) {
-      res.status(400).end(); // probably can't read body
-      return null;
+  private static getWriteData(requestBody: object | any[] | string): string {
+    const type = typeof requestBody;
+
+    switch (type) {
+      case "object":
+        return JSON.stringify(requestBody);
+      case "string":
+        return requestBody as string;
+      default:
+        throw new Error('Bad requestBody');
     }
   }
 
   /** Returns true if an error is encountered */
-  private static handleErrors(res: Response, err: NodeJS.ErrnoException) {
+  private static handleErrors(res: Response, err: NodeJS.ErrnoException | null) {
     if (err) {
       if (err.code === 'ENOENT') res.status(404).end();
       else res.status(500).end();
@@ -132,7 +148,7 @@ class RequestQueue {
   private queue: RequestData[] = [];
 
   push(fileName: string, res: Response, type: 'r' | 'w', body?: object | any[]): void {
-    const data: RequestData = { fileName, res, type, body };
+    const data: RequestData = { fileName, res, type, body: body };
 
     this.queue.push(data);
 
@@ -144,10 +160,10 @@ class RequestQueue {
   private async process(): Promise<void> {
     switch (this.queue[0].type) {
       case 'r':
-        await ReadWriteController.processReadEntry(this.queue[0]);
+        await ReadWriteController.processReadEntry(this.queue[0] as ReadRequestData);
         break;
       case 'w':
-        await ReadWriteController.processWriteEntry(this.queue[0]);
+        await ReadWriteController.processWriteEntry(this.queue[0] as WriteRequestData);
         break;
       default:
         ReadWriteController.logger.warn('Queued request has bad type');

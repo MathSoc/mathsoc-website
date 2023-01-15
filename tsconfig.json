@@ -4,8 +4,12 @@
     "esModuleInterop": true,
     "incremental": true,
     "module": "CommonJS",
+    "outDir": "public/assets/js",
     "removeComments": true,
     "resolveJsonModule": true,
     "sourceMap": false
   },
+  "include": [
+    "public/assets/ts/*.ts",
+  ]
 }
