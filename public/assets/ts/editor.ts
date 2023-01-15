@@ -26,6 +26,6 @@ class Editor {
             body: JSON.stringify(data)
         }
 
-        fetch(link, options).then(() => console.log("done"));
+        fetch(link, options).then(() => location.reload());
     }
 }
