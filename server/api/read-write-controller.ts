@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import fs from 'fs';
+import fs, { readlink } from 'fs';
 
 import { Logger } from './logger';
 
@@ -22,25 +22,46 @@ export class ReadWriteController {
     this.queues[fileName].push(fileName, res, 'r');
   }
 
-  static _processJSONReadQueue(requestData: RequestData): void {
-    try {
-      fs.readFile(`server/data/${requestData.fileName}.json`, (err: NodeJS.ErrnoException, data: Buffer) => {
-        try {
-          if (this._handleErrors(requestData.res, err)) return;
-
-          this._readFile(data, requestData.res);
-        } catch (e) {
-          this.logger.warn(e);
-          requestData.res.status(500).end();
-        }
-      });
-    } catch (e) {
-      this.logger.warn(e);
-      requestData.res.status(500).end();
+  static overwriteJSONData(fileName: string, res: Response, newData: any[] | object): void {
+    if (!this.queues[fileName]) {
+      this.queues[fileName] = new RequestQueue();
     }
+
+    this.queues[fileName].push(fileName, res, 'w', newData);
   }
 
-  private static _readFile(data: Buffer, res: Response): void {
+  static async processReadEntry(requestData: RequestData): Promise<void> {
+    const fail = (e: Error, reject: (reason?: any) => void) => {
+      this.logger.warn(e);
+      requestData.res.status(500).end();
+      reject();
+    }
+
+    const promise = new Promise((resolve, reject) => {
+      try {
+        fs.readFile(`server/data/${requestData.fileName}.json`, (err: NodeJS.ErrnoException, data: Buffer) => {
+          if (this.handleErrors(requestData.res, err)) {
+            reject();
+            return;
+          };
+
+          try {
+            this.readFile(data, requestData.res);
+          } catch (e) {
+            fail(e, reject);
+          }
+
+          resolve(null);
+        });
+      } catch (e) {
+        fail(e, reject);
+      }
+    });
+
+    await promise;
+  }
+
+  private static readFile(data: Buffer, res: Response): void {
     if (!data || data.length === 0) {
       res.status(204).end(); // success, no data
       return;
@@ -52,43 +73,38 @@ export class ReadWriteController {
     res.status(200).end();
   }
 
-  static overwriteJSONData(fileName: string, res: Response, newData: any[] | object): void {
-    if (!this.queues[fileName]) {
-      this.queues[fileName] = new RequestQueue();
-    }
+  static async processWriteEntry(data: RequestData): Promise<void> {
+    const promise = new Promise((resolve, reject) => {
+      try {
+        let writeData: string = this.getWriteData(data.body, data.res);
 
-    this.queues[fileName].push(fileName, res, 'w', newData);
-  }
-
-  static _processJSONOverwriteQueue(requestData: RequestData): void {
-    try {
-      let writeData: string = this._getWriteData(requestData.body, requestData.res);
-
-      fs.open(`server/data/${requestData.fileName}.json`,
-        'r+',
-        null,
-        (err: NodeJS.ErrnoException) => {
-          if (this._handleErrors(requestData.res, err)) return;
-
-          fs.writeFile(
-            `server/data/${requestData.fileName}.json`,
-            writeData,
-            { encoding: 'utf8', flag: 'w' },
-            (err: NodeJS.ErrnoException) => {
-              if (this._handleErrors(requestData.res, err)) return;
-
-              requestData.res.status(200).end();
-            }
-          );
+        // Want to first ensure the file exists, then write to it
+        if (!fs.existsSync(`server/data/${data.fileName}.json`)) {
+          data.res.status(404).end();
         }
-      );
-    } catch (e) {
-      this.logger.warn(e);
-      requestData.res.status(500).end();
-    }
+
+        fs.writeFile(
+          `server/data/${data.fileName}.json`,
+          writeData,
+          { encoding: 'utf8', flag: 'w' },
+          (err: NodeJS.ErrnoException) => {
+            if (this.handleErrors(data.res, err)) return;
+
+            data.res.status(200).end(); // if no errors, return 200: SUCCESS
+            resolve(null);
+          }
+        );
+      } catch (e) {
+        this.logger.warn(e);
+        data.res.status(500).end();
+        reject(e);
+      }
+    });
+
+    await promise;
   }
 
-  private static _getWriteData(requestBody: object | any[] | string, res: Response): string {
+  private static getWriteData(requestBody: object | any[] | string, res: Response): string {
     try {
       return typeof requestBody === "object" // 'object' includes arrays
         ? JSON.stringify(requestBody)
@@ -100,7 +116,7 @@ export class ReadWriteController {
   }
 
   /** Returns true if an error is encountered */
-  private static _handleErrors(res: Response, err: NodeJS.ErrnoException) {
+  private static handleErrors(res: Response, err: NodeJS.ErrnoException) {
     if (err) {
       if (err.code === 'ENOENT') res.status(404).end();
       else res.status(500).end();
@@ -116,20 +132,26 @@ class RequestQueue {
   private queue: RequestData[] = [];
 
   push(fileName: string, res: Response, type: 'r' | 'w', body?: object | any[]): void {
-    if (this.queue.length === 0) {
-      this.queue.push({ fileName: fileName, res: res, type: type, body: body });
+    const data: RequestData = { fileName, res, type, body };
+
+    this.queue.push(data);
+
+    if (this.queue.length === 1) {
       this.process();
-    } else this.queue.push({ fileName: fileName, res: res, type: type, body: body });
+    }
   }
 
-  private process(): void {
-    if (this.queue[0].type === 'r')
-      ReadWriteController._processJSONReadQueue(this.queue[0]);
-    else if (this.queue[0].type === 'w')
-      ReadWriteController._processJSONOverwriteQueue(this.queue[0]);
-    else {
-      ReadWriteController.logger.warn('Queued request has bad type');
-      this.queue[0].res.status(500).end();
+  private async process(): Promise<void> {
+    switch (this.queue[0].type) {
+      case 'r':
+        await ReadWriteController.processReadEntry(this.queue[0]);
+        break;
+      case 'w':
+        await ReadWriteController.processWriteEntry(this.queue[0]);
+        break;
+      default:
+        ReadWriteController.logger.warn('Queued request has bad type');
+        this.queue[0].res.status(500).end();
     }
 
     this.queue.splice(0, 1);
