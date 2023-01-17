@@ -26,6 +26,12 @@ class Editor {
             body: JSON.stringify(data)
         }
 
-        fetch(link, options).then(() => location.reload());
+        fetch(link, options).then(res => {
+            if(res.status == 401) {
+                console.log("BAD OBJECT SHAPE")
+            } else {
+                location.reload();
+            }
+        });
     }
 }

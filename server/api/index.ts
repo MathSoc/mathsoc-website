@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-
 import { ReadWriteController } from './read-write-controller';
 import { ContactUsController } from './contact-us-controller';
 import { ContactUsAdminService } from './admin-services/contact-us'
-
+import { getValidator } from '../types/endpointSchemaMap';
+ 
 const router = require('express').Router();
 import navItems from '../config/navbar.json';
 import footer from '../config/footer.json';
@@ -13,7 +13,16 @@ router.get('/data', (req: Request, res: Response) => {
 })
 
 router.post('/data', (req: Request, res: Response) => {
-  ReadWriteController.overwriteJSONDataPath(req.query.path, res, req.body);
+  const validator = getValidator(req.query.path);
+  if(validator) {
+    if(validator(req.body)) {
+      ReadWriteController.overwriteJSONDataPath(req.query.path, res, req.body);
+    } else {
+      res.status(401).end();
+    }
+  } else {
+    res.status(401).end();
+  }
 })
 
 router.get('/data/:fileName', (req: Request, res: Response) => {
