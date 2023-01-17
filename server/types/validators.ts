@@ -1,11 +1,13 @@
 import { VolunteerDataSchema } from './types'
 import { Request, Response, NextFunction } from 'express';
 
-const defaultValidator = (req: Request, res: Response, next: NextFunction) => {
+type ExpressValidator = (req: Request, res: Response, next: NextFunction) => void;
+
+const defaultValidator: ExpressValidator = (req: Request, res: Response, next: NextFunction) => {
     next();
 }
 
-const volunteerDataValidator = (req: Request, res: Response, next: NextFunction) => {
+const volunteerDataValidator: ExpressValidator = (req: Request, res: Response, next: NextFunction) => {
     try {
         const data = req.body;
         const parsed = VolunteerDataSchema.safeParse(data);
@@ -20,4 +22,4 @@ const volunteerDataValidator = (req: Request, res: Response, next: NextFunction)
     } 
 }
 
-export { defaultValidator, volunteerDataValidator };
+export { defaultValidator, volunteerDataValidator, ExpressValidator };
