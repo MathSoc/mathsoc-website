@@ -7,7 +7,7 @@ export const mapping = {
     'get-involved/volunteer': volunteerDataValidator
 }
 
-// fix this
+
 export const validate = (req: Request, res: Response, next: NextFunction) => {
     const filePath = req.query.path;
     let validator = defaultValidator;
