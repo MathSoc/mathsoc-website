@@ -1,4 +1,4 @@
-@import 'mixins/pink-button';
+@import "mixins/pink-button";
 
 #navbar {
   background-color: var(--mathsoc-pink);
@@ -106,4 +106,23 @@
 .save {
   width: 100%;
   text-align: center;
+}
+
+.jsoneditor {
+  border-color: var(--mathsoc-pink);
+
+  .jsoneditor-menu {
+    border-color: var(--mathsoc-pink);
+    background-color: var(--mathsoc-pink);
+  }
+
+  .jsoneditor-value {
+    &.jsoneditor-string {
+      color: var(--mathsoc-pink-2);
+    }
+  }
+}
+
+#data-endpoints {
+  display: none;
 }
