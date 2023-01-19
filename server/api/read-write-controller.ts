@@ -1,85 +1,91 @@
-import { Response } from 'express';
-import fs, { read } from 'fs';
+import { Response } from "express";
+import fs from "fs";
 
-import { Logger } from './logger';
+import { Logger } from "./logger";
 
 type RequestData = {
-  fileName: string,
-  res: Response,
-  type: 'r' | 'w'
-  body?: object | any[] | string
-}
+  fileName: string;
+  res: Response;
+  type: "r" | "w";
+  body?: object | any[] | string;
+};
 
 type ReadRequestData = RequestData & {
-  type: 'r'
-}
+  type: "r";
+};
 
 type WriteRequestData = RequestData & {
-  body: object | any[] | string
-  type: 'w'
-}
+  body: object | any[] | string;
+  type: "w";
+};
 
 export class ReadWriteController {
   static queues: Record<string, RequestQueue> = {};
   static logger = new Logger();
 
   static getJSONDataPath(filePath: any, res: Response) {
-    if(!filePath) {
+    if (!filePath) {
       return res.status(400).end();
     }
 
-    if(!this.queues[filePath]) {
+    if (!this.queues[filePath]) {
       this.queues[filePath] = new RequestQueue();
     }
-    
-    this.queues[filePath].push(filePath, res, 'r');
 
+    this.queues[filePath].push(filePath, res, "r");
   }
 
-  static overwriteJSONDataPath(filePath: any, res: Response, newData: any[] | object) {
-    if(!filePath) {
+  static overwriteJSONDataPath(
+    filePath: any,
+    res: Response,
+    newData: any[] | object
+  ) {
+    if (!filePath) {
       return res.status(400).end();
     }
 
-    if(!this.queues[filePath]) {
+    if (!this.queues[filePath]) {
       this.queues[filePath] = new RequestQueue();
     }
 
-    this.queues[filePath].push(filePath, res, 'w', newData);
+    this.queues[filePath].push(filePath, res, "w", newData);
   }
 
   static async processReadEntry(requestData: ReadRequestData): Promise<void> {
-    const promise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve) => {
       const terminateWith = (code: number) => {
         requestData.res.status(code).end();
         resolve(code);
-      }
+      };
 
       try {
-        fs.readFile(`server/data/${requestData.fileName}.json`, (err: NodeJS.ErrnoException | null, readData: Buffer) => {
-          // If any errors immediately occur, handle them
-          if (this.handleErrors(requestData.res, err)) {
-            resolve(null);
-            return;
-          };
+        fs.readFile(
+          `server/data/${requestData.fileName}.json`,
+          (err: NodeJS.ErrnoException | null, readData: Buffer) => {
+            // If any errors immediately occur, handle them
+            if (this.handleErrors(requestData.res, err)) {
+              resolve(null);
+              return;
+            }
 
-          // If no content, return 204 code
-          if (!readData || readData.length === 0) {
-            terminateWith(204);
-            return;
-          } 
-          
-          // Parse the file as JSON and return it
-          try {
-            const parsedJSON = JSON.parse(readData.toString('utf-8'));
-            requestData.res.json(parsedJSON);
-        
-            terminateWith(200);
-          } catch (e) {
-            this.logger.error(e);
-            terminateWith(500);
+            // If no content, return 204 code
+            if (!readData || readData.length === 0) {
+              terminateWith(204);
+              return;
+            }
+
+            // Parse the file as JSON and return it
+            try {
+              const parsedJSON = JSON.parse(readData.toString("utf-8"));
+              requestData.res.json(parsedJSON);
+
+              terminateWith(200);
+            } catch (e) {
+              this.logger.error(e);
+              terminateWith(500);
+            }
           }
-        });
+        );
       } catch (e) {
         this.logger.error(e);
         terminateWith(500);
@@ -90,11 +96,11 @@ export class ReadWriteController {
   }
 
   static async processWriteEntry(data: WriteRequestData): Promise<void> {
-    const promise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve) => {
       const terminateWith = (code: number) => {
         data.res.status(code).end();
         resolve(code);
-      }
+      };
 
       let writeData: string;
 
@@ -115,7 +121,7 @@ export class ReadWriteController {
       fs.writeFile(
         `server/data/${data.fileName}.json`,
         writeData,
-        { encoding: 'utf8', flag: 'w' },
+        { encoding: "utf8", flag: "w" },
         (err: NodeJS.ErrnoException | null) => {
           if (this.handleErrors(data.res, err)) return;
 
@@ -136,14 +142,17 @@ export class ReadWriteController {
       case "string":
         return requestBody as string;
       default:
-        throw new Error('Bad requestBody');
+        throw new Error("Bad requestBody");
     }
   }
 
   /** Returns true if an error is encountered */
-  private static handleErrors(res: Response, err: NodeJS.ErrnoException | null) {
+  private static handleErrors(
+    res: Response,
+    err: NodeJS.ErrnoException | null
+  ) {
     if (err) {
-      if (err.code === 'ENOENT') res.status(404).end();
+      if (err.code === "ENOENT") res.status(404).end();
       else res.status(500).end();
       this.logger.error(err.message);
       return true;
@@ -156,7 +165,12 @@ export class ReadWriteController {
 class RequestQueue {
   private queue: RequestData[] = [];
 
-  push(fileName: string, res: Response, type: 'r' | 'w', body?: object | any[]): void {
+  push(
+    fileName: string,
+    res: Response,
+    type: "r" | "w",
+    body?: object | any[]
+  ): void {
     const data: RequestData = { fileName, res, type, body: body };
 
     this.queue.push(data);
@@ -168,20 +182,23 @@ class RequestQueue {
 
   private async process(): Promise<void> {
     switch (this.queue[0].type) {
-      case 'r':
-        await ReadWriteController.processReadEntry(this.queue[0] as ReadRequestData);
+      case "r":
+        await ReadWriteController.processReadEntry(
+          this.queue[0] as ReadRequestData
+        );
         break;
-      case 'w':
-        await ReadWriteController.processWriteEntry(this.queue[0] as WriteRequestData);
+      case "w":
+        await ReadWriteController.processWriteEntry(
+          this.queue[0] as WriteRequestData
+        );
         break;
       default:
-        ReadWriteController.logger.warn('Queued request has bad type');
+        ReadWriteController.logger.warn("Queued request has bad type");
         this.queue[0].res.status(500).end();
     }
 
     this.queue.splice(0, 1);
 
-    if (this.queue.length > 0)
-      this.process();
+    if (this.queue.length > 0) this.process();
   }
 }

@@ -1,6 +1,6 @@
 import express from "express";
-import pages from '../config/auth-pages.json';
-import { PageLoader } from './page-loader';
+import pages from "../config/auth-pages.json";
+import { PageLoader } from "./page-loader";
 
 const router = express.Router();
 
