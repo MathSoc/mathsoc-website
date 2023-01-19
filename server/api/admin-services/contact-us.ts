@@ -22,7 +22,7 @@ export class ContactUsAdminService {
       return;
     }
 
-    ReadWriteController.overwriteJSONData('contact-us', res, currentContactUs);
+    ReadWriteController.overwriteJSONDataPath('contact-us', res, currentContactUs);
 
     res.status(200).end();
   }

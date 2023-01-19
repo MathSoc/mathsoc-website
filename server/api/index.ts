@@ -16,14 +16,6 @@ router.post('/data', validate, (req: Request, res: Response) => {
   ReadWriteController.overwriteJSONDataPath(req.query.path, res, req.body);
 })
 
-router.get('/data/:fileName', (req: Request, res: Response) => {
-  ReadWriteController.getJSONData(req.params.fileName, res);
-});
-
-router.post('/data/:fileName', (req: Request, res: Response) => {
-  ReadWriteController.overwriteJSONData(req.params.fileName, res, req.body);
-});
-
 router.post('/admin/contact-us/execs', (req: Request, res: Response) => {
   ContactUsAdminService.updateExecs(req, res);
 });

@@ -23,25 +23,9 @@ export class ReadWriteController {
   static queues: Record<string, RequestQueue> = {};
   static logger = new Logger();
 
-  static getJSONData(fileName: string, res: Response): void {
-    if (!this.queues[fileName]) {
-      this.queues[fileName] = new RequestQueue();
-    }
-
-    this.queues[fileName].push(fileName, res, 'r');
-  }
-
-  static overwriteJSONData(fileName: string, res: Response, newData: any[] | object): void {
-    if (!this.queues[fileName]) {
-      this.queues[fileName] = new RequestQueue();
-    }
-
-    this.queues[fileName].push(fileName, res, 'w', newData);
-  }
-
-  static getJSONDataPath(filePath: any, res: Response): void {
+  static getJSONDataPath(filePath: any, res: Response) {
     if(!filePath) {
-      res.status(400).end();
+      return res.status(400).end();
     }
 
     if(!this.queues[filePath]) {
@@ -52,9 +36,9 @@ export class ReadWriteController {
 
   }
 
-  static overwriteJSONDataPath(filePath: any, res: Response, newData: any[] | object): void {
+  static overwriteJSONDataPath(filePath: any, res: Response, newData: any[] | object) {
     if(!filePath) {
-      res.status(400).end();
+      return res.status(400).end();
     }
 
     if(!this.queues[filePath]) {

@@ -10,11 +10,11 @@ const VolunteerDataSchema = z.object({
             title: z.string(),
             description: z.string(),
             link: z.string(),
-        }))
-    })),
+        }).strict()),
+    }).strict()),
     clubsTitle: z.string(),
     clubsSubheader: z.string()
-})
+}).strict();
 
 
 export { VolunteerDataSchema };
