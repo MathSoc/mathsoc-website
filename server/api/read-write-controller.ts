@@ -23,20 +23,29 @@ export class ReadWriteController {
   static queues: Record<string, RequestQueue> = {};
   static logger = new Logger();
 
-  static getJSONData(fileName: string, res: Response): void {
-    if (!this.queues[fileName]) {
-      this.queues[fileName] = new RequestQueue();
+  static getJSONDataPath(filePath: any, res: Response) {
+    if(!filePath) {
+      return res.status(400).end();
     }
 
-    this.queues[fileName].push(fileName, res, 'r');
+    if(!this.queues[filePath]) {
+      this.queues[filePath] = new RequestQueue();
+    }
+    
+    this.queues[filePath].push(filePath, res, 'r');
+
   }
 
-  static overwriteJSONData(fileName: string, res: Response, newData: any[] | object): void {
-    if (!this.queues[fileName]) {
-      this.queues[fileName] = new RequestQueue();
+  static overwriteJSONDataPath(filePath: any, res: Response, newData: any[] | object) {
+    if(!filePath) {
+      return res.status(400).end();
     }
 
-    this.queues[fileName].push(fileName, res, 'w', newData);
+    if(!this.queues[filePath]) {
+      this.queues[filePath] = new RequestQueue();
+    }
+
+    this.queues[filePath].push(filePath, res, 'w', newData);
   }
 
   static async processReadEntry(requestData: ReadRequestData): Promise<void> {

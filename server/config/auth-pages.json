@@ -11,5 +11,16 @@
     "dataSources": {
       "contact": "/contact-us"
     }
+  },
+  {
+    "title": "Get Involved",
+    "children": [{
+      "title": "Volunteer at MathSoc",
+      "ref": "/admin/get-involved/volunteer",
+      "view": "/admin/get-involved/volunteer",
+      "dataSources": {
+        "volunteer": "/get-involved/volunteer"
+      }
+    }]
   }
 ]

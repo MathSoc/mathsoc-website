@@ -51,7 +51,7 @@ export class PageLoader {
   // require() automatically caches what is retrieved.  This function ensures that cache is erased when relevant.
   static getPageData(pageRef: string): object | any[] | null {
     if (fs.existsSync(`server/data${pageRef}.json`)) {
-      const url = path.join(__dirname, "../../server/data/contact-us.json");
+      const url = path.join(__dirname, `../../server/data/${pageRef}.json`);
       delete require.cache[url];
       return require(`../data${pageRef}.json`);
     } else {
