@@ -9,3 +9,6 @@ Thanks for your interest in MathSoc's website rebuild project!  We gladly welcom
 Open projects are tracked in the GitHub issues log, found [here](https://github.com/MathSoc/mathsoc-website/issues).  
 
 We will gladly consider PRs submitted by contributors outside of the development team.
+
+In the interest of maintaining a common style throughout the codebase, please use Prettier to format your work.
+You can set up Prettier in VS Code by downloading the official Prettier extension, then setting Prettier as your default formatter.

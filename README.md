@@ -7,6 +7,7 @@ Our stack is
 * `Express` as our web server
 * `JSON` files to hold data.  We prefer this to an SQL server in the interest of long-term maintainability.
 * `SCSS` stylesheets to style web content.
+* `Prettier` and `ESLint` to enforce style.
 
 We always accept contributions from **current University of Waterloo students**.  Those interested in a more active role should consider applying to join MathSoc's web development team; applications open near the beginning of term.  
 
