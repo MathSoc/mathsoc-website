@@ -1,40 +1,53 @@
-import { Request, Response, Router } from 'express';
+import { Request, Response, Router } from "express";
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 interface Page {
-  title: string,
-  ref?: string, // if no ref specified, the "page" is just a category; no page route is created
-  view?: string,
-  dataSources?: Record<string, string>,
-  children?: Page[]
+  title: string;
+  ref?: string; // if no ref specified, the "page" is just a category; no page route is created
+  view?: string;
+  dataSources?: Record<string, string>;
+  children?: Page[];
+}
+
+interface PipedData {
+  navItems;
+  footer;
+  data?;
+  title: string;
+  ref?: string;
+  sources?: Record<string, object | any[] | null>;
+  dataEndpoints?: string[];
 }
 
 export class PageLoader {
-  static navItems = require('../config/navbar.json');
-  static footer = require('../config/footer.json');
+  static navItems = require("../config/navbar.json");
+  static footer = require("../config/footer.json");
 
   static buildRoutes(pageArray: Page[], router: Router) {
     for (const page of pageArray) {
       if (page.ref) {
         router.get(page.ref, async (req: Request, res: Response) => {
-          const data = {
+          const data: PipedData = {
             navItems: PageLoader.navItems,
             footer: PageLoader.footer,
-            data: PageLoader.getPageData(page.ref),
+            data: PageLoader.getPageData(page.ref ?? ""),
             title: page.title,
             ref: page.ref,
-            sources: null
           };
 
           // Load any additional sources of data for the page
           if (page.dataSources) {
             const sources = Object.keys(page.dataSources);
             data.sources = {};
+            data.dataEndpoints = [];
 
             for (const source of sources) {
-              data.sources[source] = PageLoader.getPageData(`/${page.dataSources[source]}`);
+              data.sources[source] = PageLoader.getPageData(
+                `/${page.dataSources[source]}`
+              );
+              data.dataEndpoints[source] = page.dataSources[source];
             }
           }
 
