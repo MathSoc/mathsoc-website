@@ -1,21 +1,53 @@
 class Editor {
-  JSONEditor: any;
-  container: HTMLElement;
   options: any;
   editor: any;
+  sourceDataURL: string;
 
-  constructor() {
-    this.JSONEditor = window["JSONEditor"];
-    this.container = document.getElementById("jsoneditor") as HTMLElement;
+  constructor(
+    container: HTMLElement,
+    sourceDataURL: string,
+    initialJSON: string
+  ) {
     this.options = {};
-    this.editor = new this.JSONEditor(this.container, this.options);
+    this.sourceDataURL = sourceDataURL;
+    this.editor = new window["JSONEditor"](container, this.options);
+    this.editor.set(JSON.parse(initialJSON));
+    this.createSaveButton(container);
   }
 
-  useEditor(data): void {
-    this.editor.set(data);
+  private createSaveButton(container: HTMLElement) {
+    const saveButton = document.createElement("button");
+    saveButton.classList.add("save", "pink-button");
+    saveButton.innerText = `Save "${this.getFormattedURL()}"`;
+    saveButton.addEventListener("click", () => {
+      this.saveData(`/api/data?path=${this.sourceDataURL}`);
+    });
+
+    const saveButtonContainer = document.createElement("div");
+    saveButtonContainer.classList.add("save-button-container");
+
+    saveButtonContainer.appendChild(saveButton);
+    container.appendChild(saveButtonContainer);
   }
 
-  saveData(link: string): void {
+  /**
+   * @example getFormattedURL('/get-involved/volunteer') => 'Get Involved / Volunteer'
+   * @returns
+   */
+  private getFormattedURL() {
+    return this.sourceDataURL // /get-involved/volunteer
+      .substring(1) // get-involved/volunteer
+      .replace(/-/g, " ") // get involved/volunteer
+      .replace(/\//g, " / ") // get involved / volunteer
+      .split(" ")
+      .map((word: string) => {
+        return word[0].toUpperCase() + word.substring(1);
+      })
+      .join(" ") // Get Involved / Volunteer
+      .trim();
+  }
+
+  private saveData(link: string): void {
     const data = this.editor.get();
 
     const options = {

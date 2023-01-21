@@ -1,23 +1,17 @@
+interface JSONResponse {
+  endpoint: string;
+  response: any;
+}
+
 class EditorLoader {
   static async init() {
-    const editor = new Editor();
-
-    this.initSaveButton(editor);
-
     const sources = await this.getDataSources();
 
-    // @todo What if there are more than 1 data sources?  Create multiple Editors.
-    if (sources.length === 1) {
-      editor.useEditor(JSON.parse(sources[0]));
-    }
-  }
+    const editorsContainer = document.getElementById("editors-container");
 
-  static initSaveButton(editor: Editor) {
-    const saveButton = document.getElementById("save-button");
-    if (saveButton) {
-      saveButton.addEventListener("click", () => {
-        editor.saveData("/api/data?path=get-involved/volunteer");
-      });
+    for (const source of sources) {
+      console.log(source);
+      const editor = new Editor(editorsContainer, source.endpoint, source.response);
     }
   }
 
@@ -29,10 +23,10 @@ class EditorLoader {
         sourcesList.querySelectorAll("span")
       ).map((span) => span.innerText);
 
-      const results: string[] = [];
+      const results: JSONResponse[] = [];
       const promises = sources.map((source) =>
         this.getData(source).then((data) => {
-          results.push(data);
+          results.push({ endpoint: source, response: data });
         })
       );
 
