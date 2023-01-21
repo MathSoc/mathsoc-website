@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 interface Page {
   title: string;
@@ -62,7 +62,7 @@ export class PageLoader {
   }
 
   // require() automatically caches what is retrieved.  This function ensures that cache is erased when relevant.
-  static getPageData(pageRef: string): object | any[] | null {
+  static getPageData(pageRef?: string): object | any[] | null {
     if (fs.existsSync(`server/data${pageRef}.json`)) {
       const url = path.join(__dirname, `../../server/data/${pageRef}.json`);
       delete require.cache[url];
