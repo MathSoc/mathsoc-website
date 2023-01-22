@@ -9,7 +9,7 @@
     "host-dev-server": "nodemon server.ts",
     "sass-build": "sass public/assets/sass:public/assets/css --no-source-map",
     "sass-watch": "sass --watch public/assets/sass:public/assets/css --no-source-map",
-    "lint": "npx eslint server/ public/assets/ts",
+    "lint": "npx eslint server/ public/assets/ts *.ts",
     "ts-build": "tsc --build",
     "ts-watch": "tsc --watch --preserveWatchOutput",
     "test": "echo \"Error: no test specified\" && exit 1",
