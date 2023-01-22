@@ -1,3 +1,4 @@
+import { NextFunction, Request, Response } from "express";
 import Winston, { Logger as WinstonLogger } from "winston";
 
 export class Logger {
@@ -46,3 +47,10 @@ export class Logger {
     this._logger.error(message, ...meta);
   }
 }
+
+export const loggerMiddleware = (logger: Logger) => {
+  return (req: Request, _: Response, next: NextFunction) => {
+    logger.info(`${req.method} to ${req.originalUrl}`);
+    next();
+  };
+};

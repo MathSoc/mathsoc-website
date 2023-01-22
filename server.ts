@@ -7,6 +7,8 @@ import path from "path";
 import routes from "./server/routes";
 import authRoutes from "./server/routes/auth";
 import api from "./server/api";
+import { Logger, loggerMiddleware } from "./server/api/logger";
+const logger = new Logger();
 
 dotenv.config(); // load .env variables
 
@@ -22,6 +24,7 @@ app
   .use(express.urlencoded({ extended: false }))
   .use(express.static(path.join(__dirname, "public")))
   .set("views", path.join(__dirname, "views"))
+  .use(loggerMiddleware(logger))
   .use(routes)
   .use("/api", api)
   //Auth Middleware ...
@@ -30,4 +33,8 @@ app
     res.status(404).render("pages/error");
   });
 
-app.listen(port, () => console.log("Application live on localhost:3000"));
+app.listen(port, () =>
+  console.info(
+    "\n=========================\nlive on localhost:3000 🚀\n=========================\n"
+  )
+);
