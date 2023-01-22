@@ -8,6 +8,7 @@ import routes from "./server/routes";
 import authRoutes from "./server/routes/auth";
 import api from "./server/api";
 import { Logger, loggerMiddleware } from "./server/api/logger";
+import fs from "fs";
 const logger = new Logger();
 
 dotenv.config(); // load .env variables
@@ -33,8 +34,9 @@ app
     res.status(404).render("pages/error");
   });
 
-app.listen(port, () =>
+app.listen(port, () => {
   console.info(
-    "\n=========================\nlive on localhost:3000 🚀\n=========================\n"
-  )
-);
+    "\n=========================\nlive on localhost:3000 🚀\n=========================\n" +
+      fs.readFileSync("logo.txt", "utf-8")
+  );
+});
