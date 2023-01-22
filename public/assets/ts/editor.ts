@@ -1,3 +1,4 @@
+/* eslint-disable-next-line */
 class Editor {
   JSONEditor: any;
   container: HTMLElement;
