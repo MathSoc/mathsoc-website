@@ -10,7 +10,7 @@ class EditorLoader {
     const editorsContainer = document.getElementById("editors-container");
 
     for (const source of sources) {
-      new Editor(editorsContainer, source.endpoint, source.response);
+      new window["Editor"](editorsContainer, source.endpoint, source.response);
     }
   }
 

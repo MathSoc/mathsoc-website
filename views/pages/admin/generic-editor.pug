@@ -1,0 +1,10 @@
+extends /views/templates/admin-base.pug
+
+append scripts
+  script(src="/assets/js/admin/editor.js")
+  script(src="/assets/js/admin/editor-loader.js")
+  script(src="/assets/js/admin/generic-editor.js" defer)
+block body
+  div(id="jsoneditor" data-source=editorSource)
+
+  h4 Warning: proof of concept, subject to being extremely buggy

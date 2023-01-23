@@ -3,23 +3,32 @@ class Editor {
   options: any;
   editor: any;
   sourceDataURL: string;
+  name: string;
 
   constructor(
     container: HTMLElement,
     sourceDataURL: string,
-    initialJSON: string
+    options?: {
+      name?: string;
+    }
   ) {
     this.options = {};
     this.sourceDataURL = sourceDataURL;
     this.editor = new window["JSONEditor"](container, this.options);
-    this.editor.set(JSON.parse(initialJSON));
+    
+    // @todo fix this
+    this.name = this.getFormattedURL(this.sourceDataURL.split("path=")[1]);
     this.createSaveButton(container);
+
+    (async () => {
+      this.editor.set(await this.getFileData());
+    })();
   }
 
   private createSaveButton(container: HTMLElement) {
     const saveButton = document.createElement("button");
     saveButton.classList.add("save", "pink-button");
-    saveButton.innerText = `Save "${this.getFormattedURL()}"`;
+    saveButton.innerText = `Save "${this.name}"`;
     saveButton.addEventListener("click", () => {
       this.saveData(`/api/data?path=${this.sourceDataURL}`);
     });
@@ -32,12 +41,11 @@ class Editor {
   }
 
   /**
-   * @example getFormattedURL('/get-involved/volunteer') => 'Get Involved / Volunteer'
+   * @example getFormattedURL('/data?path=get-involved/volunteer') => 'Get Involved / Volunteer'
    * @returns
    */
-  private getFormattedURL() {
-    return this.sourceDataURL // /get-involved/volunteer
-      .substring(1) // get-involved/volunteer
+  private getFormattedURL(url: string) {
+    return url // get-involved/volunteer
       .replace(/-/g, " ") // get involved/volunteer
       .replace(/\//g, " / ") // get involved / volunteer
       .split(" ")
@@ -46,6 +54,23 @@ class Editor {
       })
       .join(" ") // Get Involved / Volunteer
       .trim();
+  }
+
+  private async getFileData(): Promise<any> {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await fetch(this.sourceDataURL, options);
+
+    if (response.status == 400) {
+      console.error("BAD REQUEST");
+    } else {
+      return response.json();
+    }
   }
 
   private saveData(link: string): void {
