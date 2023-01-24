@@ -1,0 +1,27 @@
+@import "../../mixins/banner-image";
+@import "../../mixins/collapsible";
+
+section {
+  max-width: var(--content-width);
+  margin: 30px auto;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+h2 {
+  font-family: var(--title-font);
+  font-size: 1.6em;
+}
+
+h3 {
+  font-family: var(--title-font);
+  font-size: 1.4em;
+}
+
+h4 {
+  font-family: var(--title-font);
+  font-size: 1.2em;
+  margin-bottom: 4px;
+}

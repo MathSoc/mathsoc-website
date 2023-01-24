@@ -1,0 +1,24 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+    link(href="/assets/css/pages/get-involved/council.css" rel="stylesheet")
+
+append scripts
+    script(src="/assets/js/collapsible.js" defer)
+
+block body
+    +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
+    div(class="content")
+        section(class="white")
+            h1 #{data.councilHeader}
+            div=data.councilResponse
+            h1 #{data.compositionOfCouncilHeader}
+            div!=data.compositionOfCouncilResponse
+            h1 #{data.execsHeader}
+            div(class="execs-grid")
+                each exec in sources.execs.execs 
+                    +person-card(exec.name, exec.role, exec.email, exec.image)
+            h1 #{data.councilRepHeader}
+            div(class="execs-grid")
+                each rep in data.councilRepresentatives 
+                    +person-card(rep.name, rep.role, rep.email, rep.image)

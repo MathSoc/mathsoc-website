@@ -1,0 +1,88 @@
+{
+  "councilHeader": "What is Council?",
+  "councilResponse": "Council represents the members of the Society by setting advocacy priorities, approving the budgets of clubs and executives as well as providing a voice for students (Bylaw 7.1). Council is further responsible to uphold the purpose of the Society and to hold the Executives and any other persons involved in Society affairs to account (Bylaw 7.6). Furthermore Council approves the termly budgets of execs and clubs.",
+  "compositionOfCouncilHeader": "Composition of Council",
+  "compositionOfCouncilResponse": "<meta charset=\"utf-8\" /><p style=\" font-size: 0.95rem; margin: 0px 0px 20px; padding-top: 1rem; animation: 0.3s ease-in-out 0s 1 normal none running open; color: rgb(74, 78, 87); font-family: &quot;Open Sans&quot;\">MathSoc Council is composed of up to 35 voting members, the 5 executive members and up to 30 Representatives (Bylaw 7.2). Please note that all non software engineering first years are not eligible to be Program Representatives,<span>&nbsp;</span><a href=\"https://mathsoc.uwaterloo.ca/wp-content/uploads/bylaws-public.pdf#subsection.7.3\" style=\" text-decoration: none; transition-property: color, background-color, border-color; transition-duration: 0.2s; transition-timing-function: linear; color: rgb(198, 0, 120)\">(Bylaw 7.3)</a><span>&nbsp;</span>but First Year Representatives.</p><ol style=\" animation: 0.3s ease-in-out 0s 1 normal none running open; color: rgb(74, 78, 87); font-family: &quot;Open Sans&quot;; font-size: 16px\"><li><strong style=\" font-weight: 700\">Five (5) First Year Representatives,</strong><span>&nbsp;</span>which are open to all math students registered as first-year with the University, except for those in the Software Engineering program. First Year Representatives are elected once the term begins but before October 15 and shall serve until they are no longer a student in their first year, or until the end of the next Spring term,whichever is first.</li><li><strong style=\" font-weight: 700\">Three (3) Actuarial Science Representatives,</strong><span>&nbsp;</span>which are open to all math students in Actuarial Science or Mathematical Finance programs.</li><li><strong style=\" font-weight: 700\">Two (2) Statistics Representatives,</strong><span>&nbsp;</span>which are open to all math students in Statistics programs.</li><li><strong style=\" font-weight: 700\">Two (2) Pure Mathematics, Applied Mathematics, and Combinatorics and Optimization Representatives,</strong><span>&nbsp;</span>which are open to all math students in Pure Mathematics, Applied Mathematics, Combinatorics and Optimization, Mathematical Finance, or Computational Mathematics programs;</li><li><strong style=\" font-weight: 700\">Six (6) Computer Science Representatives,</strong><span>&nbsp;</span>which are open to all math students in programs offered by the David R. Cheriton School of Computer Science, as well as all students in Computational Mathematics programs;</li><li><strong style=\" font-weight: 700\">Four (4) Business Representatives,</strong><span>&nbsp;</span>which are open to all math students in Mathematics/Business programs, as well as all students in the Business Administration and Computer Science Double Degree program.</li><li><strong style=\" font-weight: 700\">One (1) Computing and Financial Management Representative,<span>&nbsp;</span></strong>which is open to all math students in the Computing and Financial Management program.</li><li><strong style=\" font-weight: 700\">Two (2) Software Engineering Representatives,</strong><span>&nbsp;</span>which are open to all math students in the Software Engineering program. The process to become a Software Engineering Representative is different from the other positions and is described in Bylaw 7.3.1.</li><li><strong style=\" font-weight: 700\">One (1) Teaching Representative,</strong><span>&nbsp;</span>which is open to all math students in the Mathematics/Teaching or Pure Mathematics/Teaching programs.</li><li><strong style=\" font-weight: 700\">Three (3) Mathematical Studies and Other Representatives,<span>&nbsp;</span></strong>which are open to all math students in Mathematical Studies programs and all math students not counted in one of the other constituencies.</li></ol>",
+  "execsHeader": "Executives",
+  "councilRepHeader": "Council Representatives",
+  "councilRepresentatives": [
+    {
+      "name": "EVAN GIRARDIN",
+      "role": "Pure Math, Applied Math, and Combinatorics and Optimization Representative",
+      "email": "egirardin@uwaterloo.ca",
+      "image": "https://placekitten.com/200/305"
+    },
+    {
+      "name": "ZEV FRIEDMAN",
+      "role": "Pure Math, Applied Math, and Combinatorics and Optimization Representative",
+      "email": "zfriedma@uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    },
+    {
+      "name": "NAMAN SOOD",
+      "role": "Computer Science Representative",
+      "email": "naman.sood@uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    },
+    {
+      "name": "GRACE FENG",
+      "role": "Computer Science Representative",
+      "email": "g27feng@uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    },
+    {
+      "name": "MARCUS CHAN",
+      "role": "Computer Science Representative",
+      "email": "vpo@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/2000/3000"
+    },
+    {
+      "name": "KEVIN GUO",
+      "role": "Computer Science Representative",
+      "email": "kevin.guo1@uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    },
+    {
+      "name": "DANIEL MATLIN",
+      "role": "Computer Science Representative",
+      "email": "dmatlin@uwaterloo.ca",
+      "image": "https://placekitten.com/200/305"
+    },
+    {
+      "name": "EDDIE PEI",
+      "role": "Computer Science Representative",
+      "email": "epei@uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    },
+    {
+      "name": "JEFFREY QIN",
+      "role": "First Year Representative",
+      "email": "jzqin@uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    },
+    {
+      "name": "KAUSHIK CHATTERJEE",
+      "role": "First Year Representative",
+      "email": "kchatter@uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    },
+    {
+      "name": "ADIT SINSINWAL",
+      "role": "First Year Representative",
+      "email": "asinsinw@uwaterloo.ca",
+      "image": "https://placekitten.com/2000/3000"
+    },
+    {
+      "name": "CHARLES CHEN",
+      "role": "First Year Representative",
+      "email": "c38chen@uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    },
+    {
+      "name": "SARAH WILSON",
+      "role": "First Year Representative",
+      "email": "s5wilson@uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    }
+  ]
+}

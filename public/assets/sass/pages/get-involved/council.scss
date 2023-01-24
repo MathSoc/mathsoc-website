@@ -1,0 +1,31 @@
+@import "../../mixins/banner-image";
+@import "../../mixins/collapsible";
+@import "../../mixins/person-card";
+
+section {
+  max-width: var(--content-width);
+  margin: 30px auto;
+
+  h1 {
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  div {
+    margin-bottom: 20px;
+  }
+
+  .execs-grid {
+    display: flex;
+    flex-flow: wrap;
+    column-gap: 5%;
+    row-gap: 1em;
+    align-items: center;
+  }
+
+  .person-card {
+    margin: auto;
+    margin-bottom: 0;
+    padding: 8px;
+  }
+}
