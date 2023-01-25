@@ -18,22 +18,29 @@ export class PageLoader {
   static navItems = require("../config/navbar.json");
   static footer = require("../config/footer.json");
 
-  static buildRoutes(pageArray: Page[], router: Router) {
+  static buildRoutes(
+    pageArray: Page[],
+    router: Router,
+    dataTransformer?: (data: PipedData) => any & PipedData
+  ) {
     for (const page of pageArray) {
       if (page.ref) {
-        const data = this.getPagePipedData(page);
+        const data = this.getPagePipedData(page, dataTransformer);
         router.get(page.ref, async (req: Request, res: Response) => {
           res.render(`pages/${page.view}.pug`, data);
         });
       }
 
       if (page.children) {
-        PageLoader.buildRoutes(page.children, router);
+        PageLoader.buildRoutes(page.children, router, dataTransformer);
       }
     }
   }
 
-  static getPagePipedData(page: Page): PipedData {
+  static getPagePipedData(
+    page: Page,
+    dataTransformer: ((data: PipedData) => any) = (data) => data
+  ): PipedData {
     const data: PipedData = {
       navItems: PageLoader.navItems,
       footer: PageLoader.footer,
@@ -56,7 +63,7 @@ export class PageLoader {
       }
     }
 
-    return data;
+    return dataTransformer(data);
   }
 
   // require() automatically caches what is retrieved.  This function ensures that cache is erased when relevant.

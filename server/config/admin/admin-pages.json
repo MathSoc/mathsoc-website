@@ -5,22 +5,13 @@
     "view": "/admin/home"
   },
   {
-    "title": "Contact Us",
-    "ref": "/admin/contact-us",
-    "view": "/admin/contact-us",
-    "dataSources": {
-      "contact": "/contact-us"
-    }
+    "title": "Page Editors",
+    "ref": "/admin/editor?page=home",
+    "view": "/admin/home"
   },
   {
-    "title": "Get Involved",
-    "children": [{
-      "title": "Volunteer at MathSoc",
-      "ref": "/admin/get-involved/volunteer",
-      "view": "/admin/get-involved/volunteer",
-      "dataSources": {
-        "volunteer": "/get-involved/volunteer"
-      }
-    }]
+    "title": "Exam Bank",
+    "ref": "/admin/exam-bank",
+    "view": "/admin/exam-bank"
   }
 ]

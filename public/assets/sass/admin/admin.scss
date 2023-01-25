@@ -1,4 +1,4 @@
-@import "mixins/pink-button";
+@import "../mixins/pink-button";
 
 #navbar {
   background-color: var(--mathsoc-pink);
@@ -47,7 +47,6 @@
 #admin-title {
   color: var(--mathsoc-pink);
   text-align: center;
-  margin-bottom: 0;
 }
 
 #sections-menu {

@@ -16,7 +16,6 @@ class Editor {
     this.sourceDataURL = sourceDataURL;
     this.editor = new window["JSONEditor"](container, this.options);
     
-    // @todo fix this
     this.name = this.getFormattedURL(this.sourceDataURL.split("path=")[1]);
     this.createSaveButton(container);
 
@@ -30,7 +29,7 @@ class Editor {
     saveButton.classList.add("save", "pink-button");
     saveButton.innerText = `Save "${this.name}"`;
     saveButton.addEventListener("click", () => {
-      this.saveData(`/api/data?path=${this.sourceDataURL}`);
+      this.saveData(this.sourceDataURL);
     });
 
     const saveButtonContainer = document.createElement("div");
