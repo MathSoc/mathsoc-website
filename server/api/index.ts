@@ -6,8 +6,8 @@ import { validate } from "../types/endpointSchemaMap";
 import express from "express";
 
 const router = express.Router();
-import navItems from "../config/navbar.json";
-import footer from "../config/footer.json";
+import navItems from "../data/shared/navbar.json";
+import footer from "../data/shared/footer.json";
 
 router.get("/data", (req: Request, res: Response) => {
   ReadWriteController.getJSONDataPath(req.query.path, res);

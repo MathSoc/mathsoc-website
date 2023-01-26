@@ -14,6 +14,14 @@
         "title": "Volunteer at MathSoc",
         "ref": "/get-involved/volunteer",
         "view": "/get-involved/volunteer"
+      },
+      {
+        "title": "MathSoc Council",
+        "ref": "/get-involved/council",
+        "view": "/get-involved/council",
+        "dataSources": {
+          "execs": "/shared/execs"
+        }
       }
     ]
   },
@@ -36,6 +44,9 @@
     "title": "Contact Us",
     "ref": "/contact-us",
     "view": "/contact-us/contact-us",
+    "dataSources": {
+      "execs": "/shared/execs"
+    },
     "children": [
       {
         "title": "Success!",

@@ -1,0 +1,40 @@
+{
+  "execs": [
+    {
+      "name": "NICHOLAS PRIEBE",
+      "role": "President",
+      "email": "president@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/200/305"
+    },
+    {
+      "name": "CIARAN NEELY",
+      "role": "Vice President, Academic",
+      "email": "vpa@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    },
+    {
+      "name": "RACHEL TANIA",
+      "role": "Vice President, Internal",
+      "email": "vpi@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    },
+    {
+      "name": "GRACIE ZHANG",
+      "role": "Vice President, Finance",
+      "email": "vpf@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    },
+    {
+      "name": "DAMIAN MUSTATEA",
+      "role": "Vice President, Operations",
+      "email": "vpo@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/2000/3000"
+    },
+    {
+      "name": "DANIEL HUAB",
+      "role": "Vice President, Communications",
+      "email": "vpc@mathsoc.uwaterloo.ca",
+      "image": "https://placekitten.com/2000/1400"
+    }
+  ]
+}
