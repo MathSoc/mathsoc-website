@@ -5,15 +5,16 @@ import {
   ExpressValidator,
 } from "./validators";
 import * as schemas from "./types";
+import { DataPaths } from "./dataPaths";
 
 // MAPPING OF FILEPATH TO FILE SCHEMA
 // 'get-involved/volunteer' refers to /data/get-involved/volunteer.json
 export const mapping = {
-  "get-involved/volunteer": schemas.VolunteerDataSchema,
-  home: schemas.HomeDataSchema,
-  "cartoons/about-us": schemas.CartoonsAboutUsDataSchema,
-  "resources/mental-wellness": schemas.MentalWellnessDataSchema,
-  elections: schemas.ElectionsDataSchema,
+  [DataPaths.GET_INVOLVED_VOLUNTEER]: schemas.VolunteerDataSchema,
+  [DataPaths.HOME]: schemas.HomeDataSchema,
+  [DataPaths.CARTOONS_ABOUT_US]: schemas.CartoonsAboutUsDataSchema,
+  [DataPaths.RESOUCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
+  [DataPaths.ELECTIONS]: schemas.ElectionsDataSchema,
 };
 
 export const validate = (req: Request, res: Response, next: NextFunction) => {
