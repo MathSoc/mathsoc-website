@@ -22,7 +22,7 @@ interface PipedData {
 }
 
 export class PageLoader {
-  static navItems = require("../data/shared/navbar.json");
+  static navItems = require("../config/navbar.json");
   static footer = require("../data/shared/footer.json");
 
   static buildRoutes(pageArray: Page[], router: Router) {
