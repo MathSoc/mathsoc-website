@@ -9,7 +9,7 @@ import { DataPaths } from "./dataPaths";
 
 // MAPPING OF FILEPATH TO FILE SCHEMA
 // 'get-involved/volunteer' refers to /data/get-involved/volunteer.json
-export const mapping = {
+export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
   [DataPaths.GET_INVOLVED_VOLUNTEER]: schemas.VolunteerDataSchema,
   [DataPaths.HOME]: schemas.HomeDataSchema,
   [DataPaths.CARTOONS_ABOUT_US]: schemas.CartoonsAboutUsDataSchema,
@@ -19,12 +19,10 @@ export const mapping = {
 
 export const validate = (req: Request, res: Response, next: NextFunction) => {
   const filePath = req.query.path;
-  let validator: ExpressValidator = defaultValidator;
-  for (const [key, value] of Object.entries(mapping)) {
-    if (key == filePath) {
-      validator = dataValidator(value);
-    }
-  }
+  const validator: ExpressValidator =
+    filePath && mapping[filePath as DataPaths]
+      ? dataValidator(mapping[filePath as string])
+      : defaultValidator;
 
   validator(req, res, next);
 };
