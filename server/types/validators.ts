@@ -10,9 +10,14 @@ type ExpressValidator = (
 const defaultValidator: ExpressValidator = (
   req: Request,
   res: Response,
-  next: NextFunction
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _next: NextFunction
 ) => {
-  next();
+  return res
+    .status(401)
+    .send(
+      "A schema validator has not been set up for this data file. Please set one up and try again. Contact Aryaman or River for help :)"
+    );
 };
 
 const dataValidator: (schema: z.ZodTypeAny) => ExpressValidator = (
