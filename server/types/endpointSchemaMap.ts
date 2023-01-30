@@ -20,7 +20,7 @@ export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
 export const validate = (req: Request, res: Response, next: NextFunction) => {
   const filePath = req.query.path;
   const validator: ExpressValidator =
-    filePath && mapping[filePath as DataPaths]
+    filePath && mapping[filePath as string]
       ? dataValidator(mapping[filePath as string])
       : defaultValidator;
 
