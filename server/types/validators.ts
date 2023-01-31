@@ -1,25 +1,34 @@
-import { VolunteerDataSchema } from './types'
-import { Request, Response, NextFunction } from 'express';
+import { z } from "zod";
+import { Request, Response, NextFunction } from "express";
 
-type ExpressValidator = (req: Request, res: Response, next: NextFunction) => void;
+type ExpressValidator = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => void;
 
-const defaultValidator: ExpressValidator = (req: Request, res: Response, next: NextFunction) => {
-    next();
-}
+const defaultValidator: ExpressValidator = (
+  req: Request,
+  res: Response,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _next: NextFunction
+) => {
+  return res
+    .status(401)
+    .send(
+      "A schema validator has not been set up for this data file. Please set one up and try again. Contact Aryaman or River for help :)"
+    );
+};
 
-const volunteerDataValidator: ExpressValidator = (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const data = req.body;
-        const parsed = VolunteerDataSchema.safeParse(data);
+const dataValidator: (schema: z.ZodTypeAny) => ExpressValidator = (
+  schema: z.ZodTypeAny
+) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const data = req.body;
+    const parsed = schema.safeParse(data);
 
-        if(parsed.success == true) {
-            next();
-        } else {
-            res.status(401).end();
-        }
-    } catch (err) {
-        res.status(401).end();
-    } 
-}
+    return parsed.success ? next() : res.status(401).send(parsed).end();
+  };
+};
 
-export { defaultValidator, volunteerDataValidator, ExpressValidator };
+export { defaultValidator, dataValidator, ExpressValidator };

@@ -1,21 +1,28 @@
 import { NextFunction, Request, Response } from "express";
-import { defaultValidator, ExpressValidator, volunteerDataValidator } from "./validators";
+import {
+  defaultValidator,
+  dataValidator,
+  ExpressValidator,
+} from "./validators";
+import * as schemas from "./types";
+import { DataPaths } from "./dataPaths";
 
-// MAPPING OF FILEPATH TO VALIDATOR OF FILE SCHEMA
+// MAPPING OF FILEPATH TO FILE SCHEMA
 // 'get-involved/volunteer' refers to /data/get-involved/volunteer.json
-export const mapping = {
-    'get-involved/volunteer': volunteerDataValidator
-}
-
+export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
+  [DataPaths.GET_INVOLVED_VOLUNTEER]: schemas.VolunteerDataSchema,
+  [DataPaths.HOME]: schemas.HomeDataSchema,
+  [DataPaths.CARTOONS_ABOUT_US]: schemas.CartoonsAboutUsDataSchema,
+  [DataPaths.RESOUCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
+  [DataPaths.ELECTIONS]: schemas.ElectionsDataSchema,
+};
 
 export const validate = (req: Request, res: Response, next: NextFunction) => {
-    const filePath = req.query.path;
-    let validator: ExpressValidator = defaultValidator;
-    for (const [key, value] of Object.entries(mapping)) {
-        if(key == filePath) {
-            validator = value;
-        }
-    }
+  const filePath = req.query.path;
+  const validator: ExpressValidator =
+    filePath && mapping[filePath as string]
+      ? dataValidator(mapping[filePath as string])
+      : defaultValidator;
 
-    validator(req, res, next);
-}
+  validator(req, res, next);
+};
