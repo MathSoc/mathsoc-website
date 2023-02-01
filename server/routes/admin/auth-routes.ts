@@ -7,7 +7,7 @@ import {
   AdminPageOutflow,
   DirectoryEntry,
   PageOutflow,
-} from "../../types/page";
+} from "../../types/routing";
 
 interface EditorPageOutflow extends PageOutflow {
   editors: DirectoryEntry[];

@@ -1,6 +1,6 @@
 import fs from "fs";
 import customPages from "../../config/admin/admin-pages.json";
-import { DirectoryEntry, PageInflow } from "../../types/page";
+import { DirectoryEntry, PageInflow } from "../../types/routing";
 import { getFormattedURL } from "../util";
 
 /**
