@@ -12,7 +12,7 @@ html(lang="en")
     h1(id="admin-title") MathSoc Admin
     div(id="sections-menu")
       ul
-        each section in adminPages
+        each section in adminNavSections
           li
             - const currentPageClass = ref.replace(/\?.*/, '') === section.ref.replace(/\?.*/, '') ? " active" : "";
             a(class="section-button" + currentPageClass href=section.ref)=section.title

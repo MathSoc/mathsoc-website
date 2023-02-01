@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 import express from "express";
 import path from "path";
 
-import routes from "./server/routes";
-import authRoutes from "./server/routes/auth";
+import publicRoutes from "./server/routes/public-routes";
+import authRoutes from "./server/routes/admin/auth-routes";
 import api from "./server/api";
 import { Logger, loggerMiddleware } from "./server/api/logger";
 import fs from "fs";
@@ -26,7 +26,7 @@ app
   .use(express.static(path.join(__dirname, "public")))
   .set("views", path.join(__dirname, "views"))
   .use(loggerMiddleware(logger))
-  .use(routes)
+  .use(publicRoutes)
   .use("/api", api)
   //Auth Middleware ...
   .use(authRoutes)

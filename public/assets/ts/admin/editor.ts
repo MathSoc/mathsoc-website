@@ -15,7 +15,7 @@ class Editor {
     this.options = {};
     this.sourceDataURL = sourceDataURL;
     this.editor = new window["JSONEditor"](container, this.options);
-    
+
     this.name = this.getFormattedURL(this.sourceDataURL.split("path=")[1]);
     this.createSaveButton(container);
 
@@ -27,7 +27,7 @@ class Editor {
   private createSaveButton(container: HTMLElement) {
     const saveButton = document.createElement("button");
     saveButton.classList.add("save", "pink-button");
-    saveButton.innerText = `Save "${this.name}"`;
+    saveButton.innerHTML = `Save <span class="editor-name">${this.name}</span>`;
     saveButton.addEventListener("click", () => {
       this.saveData(this.sourceDataURL);
     });
@@ -64,11 +64,26 @@ class Editor {
     };
 
     const response = await fetch(this.sourceDataURL, options);
+    const responseCodeClass = Math.floor(response.status / 100) * 100;
 
-    if (response.status == 400) {
-      console.error("BAD REQUEST");
-    } else {
+    if (responseCodeClass === 200) {
       return response.json();
+    } else {
+      switch (response.status) {
+        case 400: {
+          throw new Error(`Bad GET request to ${this.sourceDataURL}.`);
+        }
+        case 404: {
+          throw new Error(
+            `File not found from GET request to ${this.sourceDataURL}.`
+          );
+        }
+        default: {
+          throw new Error(
+            `Unexpected ${response.status} error from GET request to ${this.sourceDataURL}.`
+          );
+        }
+      }
     }
   }
 
@@ -83,11 +98,39 @@ class Editor {
       body: JSON.stringify(data),
     };
 
-    fetch(link, options).then((res) => {
-      if (res.status == 401) {
-        console.error("BAD OBJECT SHAPE");
-      } else {
+    fetch(link, options).then((response) => {
+      const responseCodeClass = Math.floor(response.status / 100) * 100;
+
+      if (responseCodeClass === 200) {
         location.reload();
+      } else {
+        switch (response.status) {
+          case 400: {
+            throw new Error(`Bad POST request to ${this.sourceDataURL}.`);
+          }
+          case 401: {
+            throw new Error(
+              `Unauthorized POST request to ${this.sourceDataURL}.`
+            );
+          }
+          case 403: {
+            throw new Error(
+              `Forbidden POST request to ${
+                this.sourceDataURL
+              } with data ${JSON.stringify(data)}`
+            );
+          }
+          case 404: {
+            throw new Error(
+              `File not found in POST request to ${this.sourceDataURL}.`
+            );
+          }
+          default: {
+            throw new Error(
+              `Unexpected ${response.status} error from GET request to ${this.sourceDataURL}`
+            );
+          }
+        }
       }
     });
   }

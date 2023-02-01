@@ -1,25 +1,21 @@
 import fs from "fs";
-import customPages from "../config/admin/admin-pages.json";
-import { Page } from "../types/page";
-import { getFormattedURL } from "./util";
+import customPages from "../../config/admin/admin-pages.json";
+import { DirectoryEntry, PageInflow } from "../../types/page";
+import { getFormattedURL } from "../util";
 
-type DirectoryEntry =
-  | { name: string; type: "page"; ref: string }
-  | {
-      name: string;
-      type: "directory";
-      subdirectory: DirectoryEntry[];
-      ref: string;
-    }
-  | DirectoryEntry[];
-
-export class BackendConstructor {
-  static getPageStructure(): Page[] {
+/**
+ * Constructs the /admin/editor menu structure
+ */
+export class EditorDirectoryStructureConstructor {
+  /**
+   * @returns The Pages required to create admin editor pages for each JSON file in the data folder.
+   */
+  static getPageStructure(): PageInflow[] {
     const dataDirectory = this.getDataDirectoryStructure();
 
     const map = mapSubdirectoryLevel(dataDirectory);
 
-    function mapSubdirectoryLevel(level: DirectoryEntry[]): Page[] {
+    function mapSubdirectoryLevel(level: DirectoryEntry[]): PageInflow[] {
       return level.map(mapSubdirectoryEntry);
     }
 
@@ -35,20 +31,27 @@ export class BackendConstructor {
       } else {
         return {
           title: entry.name,
-          children: mapSubdirectoryEntry(entry.subdirectory) as Page[],
+          children: mapSubdirectoryEntry(entry.subdirectory) as PageInflow[],
         };
       }
     }
 
-    const result = map.concat(customPages);
-
-    return result;
+    return map.concat(customPages);
   }
 
-  static getDataDirectoryStructure() {
+  /**
+   * @returns A data structure representing the structure of the /data directory
+   */
+  static getDataDirectoryStructure(): DirectoryEntry[] {
     return this.getDirectoryStructure("server/data");
   }
 
+  /**
+   * @returns A data structure representing the structure of the directory found at the indicated path
+   * @param path The relative path to the directory (e.g. server/data)
+   * @param options **SHOULD NOT BE PASSED IN FROM EXTERNAL CALLS.**  This
+   * is used recursively to keep track of the directory we want the structure of.
+   */
   private static getDirectoryStructure(
     path: string,
     options?: {
@@ -85,19 +88,27 @@ export class BackendConstructor {
       }
     }
 
-    // Sorting idea: sort alphabetically, but push directories (arrays) to the end of the list
-    const sorted = directory.sort((a, b) => {
-      const isADirectory = Array.isArray(a);
-      const isBDirectory = Array.isArray(b);
+    return this.sortDirectoryEntries(directory);
+  }
 
-      if (isADirectory && isBDirectory) {
+  /**
+   * Sorts DirectoryEntries alphabetically, but pushes directories (arrays) to the end of the list and files (not arrays) to the beginning of the list
+   */
+  private static sortDirectoryEntries(
+    directory: DirectoryEntry[]
+  ): DirectoryEntry[] {
+    return directory.sort((a: DirectoryEntry, b: DirectoryEntry) => {
+      const is_A_A_Directory = Array.isArray(a);
+      const is_B_A_Directory = Array.isArray(b);
+
+      if (is_A_A_Directory && is_B_A_Directory) {
         // should not occur
         return 0;
-      } else if (!isADirectory && isBDirectory) {
+      } else if (!is_A_A_Directory && is_B_A_Directory) {
         return -1; // a first
-      } else if (isADirectory && !isBDirectory) {
+      } else if (is_A_A_Directory && !is_B_A_Directory) {
         return 1; // b first
-      } else if (!isADirectory && !isBDirectory) {
+      } else if (!is_A_A_Directory && !is_B_A_Directory) {
         if (a.type === b.type) {
           return a.name < b.name ? -1 : 1;
         } else if (a.type === "page") {
@@ -107,9 +118,7 @@ export class BackendConstructor {
         }
       }
 
-      return -1;
+      throw new Error(`Sorting algorithm failed to sort two DirectoryEntries.`);
     });
-
-    return sorted;
   }
 }

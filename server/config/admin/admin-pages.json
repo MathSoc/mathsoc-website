@@ -6,8 +6,9 @@
   },
   {
     "title": "Page Editors",
-    "ref": "/admin/editor?page=home",
-    "view": "/admin/home"
+    "ref": "/admin/editor",
+    "view": "/admin/generic-editor",
+    "noRouting": true
   },
   {
     "title": "Exam Bank",

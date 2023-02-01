@@ -1,6 +1,6 @@
 /**
+ * Autogenerates a page title based on a URL.
  * @example getFormattedURL('/data?path=get-involved/volunteer.json') => 'Get Involved / Volunteer'
- * @returns
  */
 export function getFormattedURL(url: string) {
   return url // get-involved/volunteer.json
