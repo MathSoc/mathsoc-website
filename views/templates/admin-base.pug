@@ -2,25 +2,21 @@ include /views/mixins/components.pug
 
 doctype html
 html(lang="en")
-    include /views/partials/header.pug
-    link(href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.9.2/jsoneditor.min.css" rel="stylesheet" type="text/css")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.9.2/jsoneditor.min.js" integrity="sha512-MP2pEPP3BGw032ovuAsX6yTu7O4J6L3YTXuyq3IpR+LuwRun9BBjOeeIKgO3bRiNlI88x3oCVb9I1/1+xmvFIg==" crossorigin="anonymous" referrerpolicy="no-referrer")
-    
-    body 
-        include /views/partials/navbar.pug
-        h1(id="admin-title") MathSoc Admin
-        div(id="sections-menu")
-          ul
-            - const itemsMap = navItems.map((item) => { return {title: item.title, ref: "/admin/" + item.title.toLowerCase().replaceAll(/\s/g, '-')}; })
-            - const sections = [{title: "Home", ref: "/admin"}].concat(itemsMap);
-            each section in sections
-              li
-                - const currentPageClass = ref === section.ref ? " active" : "";
-                a(class="section-button" + currentPageClass href=section.ref)=section.title
-        div(id="body")
-          block body
-        div(id="footer")
-          +pink-button("Return to Frontend", "frontend-return", "/")
+  include /views/partials/header.pug
+  link(href="/assets/css/admin/admin.css" rel="stylesheet")
+  link(href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.9.2/jsoneditor.min.css" rel="stylesheet" type="text/css")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.9.2/jsoneditor.min.js" integrity="sha512-MP2pEPP3BGw032ovuAsX6yTu7O4J6L3YTXuyq3IpR+LuwRun9BBjOeeIKgO3bRiNlI88x3oCVb9I1/1+xmvFIg==" crossorigin="anonymous" referrerpolicy="no-referrer")
 
-append styles 
-    link(href="/assets/css/admin.css" rel="stylesheet")
+  body 
+    include /views/partials/navbar.pug
+    h1(id="admin-title") MathSoc Admin
+    div(id="sections-menu")
+      ul
+        each section in adminNavSections
+          li
+            - const currentPageClass = ref.replace(/\?.*/, '') === section.ref.replace(/\?.*/, '') ? " active" : "";
+            a(class="section-button" + currentPageClass href=section.ref)=section.title
+    block body
+    div(id="footer")
+      +pink-button("Return to Frontend", "frontend-return", "/")
+

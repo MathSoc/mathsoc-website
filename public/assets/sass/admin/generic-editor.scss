@@ -1,0 +1,98 @@
+@import "../util/sass-mixins";
+
+#editor-nav-menu {
+  position: absolute;
+  left: 0;
+  padding-left: 16px;
+
+  #side-menu-title {
+    font-size: 1.2em;
+  }
+
+  ul {
+    padding-left: 0;
+  }
+
+  > ul {
+    ul {
+      padding-left: 16px;
+      border-left: 2px solid var(--mathsoc-pink);
+    }
+  }
+
+  a {
+    text-decoration: none;
+
+    color: var(--text-color);
+
+    &:hover {
+      color: var(--mathsoc-pink);
+    }
+  }
+
+  li {
+    list-style-type: none;
+    line-height: 2em;
+
+    &.active-page a {
+      color: var(--mathsoc-pink);
+    }
+  }
+
+  .dropdown {
+    .dropdown-name {
+      cursor: pointer;
+      // color: #777;
+    }
+
+    > ul {
+      display: none;
+    }
+
+    &:hover {
+      color: var(--mathsoc-grey);
+    }
+
+    &.active {
+      > ul {
+        display: block;
+      }
+    }
+  }
+}
+
+.editor-name {
+  font-weight: bold;
+}
+
+@include tablet-down {
+  #editor-menu-and-body {
+    display: flex;
+    flex-direction: column-reverse;
+
+    #editor-nav-menu {
+      position: relative;
+      padding-left: 0;
+      text-align: center;
+
+      > ul {
+        ul {
+          padding-left: 0;
+          border: none;
+        }
+      }
+
+      .dropdown.active {
+        box-shadow: 0 0 4px 4px inset #8888;
+
+        .dropdown-name {
+          font-weight: bold;
+        }
+      }
+    }
+
+    #body {
+      min-height: unset;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Home",
+    "ref": "/admin",
+    "view": "/admin/home"
+  },
+  {
+    "title": "Page Editors",
+    "ref": "/admin/editor",
+    "view": "/admin/generic-editor",
+    "noRouting": true
+  },
+  {
+    "title": "Exam Bank",
+    "ref": "/admin/exam-bank",
+    "view": "/admin/exam-bank"
+  }
+]

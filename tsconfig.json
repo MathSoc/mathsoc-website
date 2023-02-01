@@ -10,6 +10,6 @@
     "sourceMap": false
   },
   "include": [
-    "public/assets/ts/*.ts",
+    "public/assets/ts/**/*.ts"
   ]
 }
