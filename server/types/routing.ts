@@ -1,5 +1,5 @@
 import navigationItems from "../config/navbar.json";
-import footerData from "../config/footer.json";
+import footerData from "../data/shared/footer.json";
 
 export interface PageInflow {
   title: string;
@@ -8,7 +8,9 @@ export interface PageInflow {
   // if noRouting is true, the router should not build a page at this ref.  
   // This should be used for pages that are routed to in unique ways; not intended for categories.
   noRouting?: boolean; 
-  dataSources?: Record<string, string>;
+  dataSources?: {
+    [key: string]: string | undefined
+  };
   children?: PageInflow[];
 }
 
