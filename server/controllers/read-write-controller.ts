@@ -1,7 +1,7 @@
 import { Response } from "express";
 import fs from "fs";
 
-import { Logger } from "./logger";
+import { Logger } from "../util/logger";
 
 type RequestData = {
   fileName: string;

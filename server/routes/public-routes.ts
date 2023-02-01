@@ -1,6 +1,6 @@
 import express from "express";
 import pages from "../config/pages.json";
-import { PageLoader } from "./page-loader";
+import { PageLoader } from "../controllers/page-loader";
 
 const router = express.Router();
 
