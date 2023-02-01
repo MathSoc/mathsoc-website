@@ -1,4 +1,4 @@
-@import 'util/_variables';
+@import "util/_variables";
 
 body {
   background-color: var(--background-colour);
@@ -7,14 +7,27 @@ body {
   margin: 0;
 }
 
-h1 {
+h1,
+h2,
+h3 {
   font-family: var(--title-font);
-  font-size: 2.5em;
+}
+
+h1 {
+  font-size: 3.5em;
+  margin-bottom: 0.2em;
 }
 
 h2 {
-  font-family: var(--title-font);
+  font-size: 3em;
+}
+
+h3 {
   font-size: 2em;
+}
+
+h4 {
+  font-size: 1.5em;
 }
 
 p {
@@ -55,14 +68,24 @@ textarea {
 }
 
 section {
-  margin: 30px auto;
-  padding: 24px;
+  margin:  auto;
+  padding: 30px 24px;
 }
 
 section:last-child {
   padding-bottom: 30px;
 }
 
-section.pink {
+section {
   padding: 40px;
+}
+
+section.pink {
+  background-color: var(--mathsoc-pink-1);
+  color: white;
+}
+
+section.grey {
+  background-color: var(--mathsoc-grey);
+  color: white;
 }
