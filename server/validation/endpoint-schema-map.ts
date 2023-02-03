@@ -4,8 +4,8 @@ import {
   dataValidator,
   ExpressValidator,
 } from "./validators";
-import * as schemas from "./types";
-import { DataPaths } from "./dataPaths";
+import * as schemas from "../types/schemas";
+import { DataPaths } from "./data-paths";
 
 // MAPPING OF FILEPATH TO FILE SCHEMA
 // 'get-involved/volunteer' refers to /data/get-involved/volunteer.json
@@ -15,6 +15,10 @@ export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
   [DataPaths.CARTOONS_ABOUT_US]: schemas.CartoonsAboutUsDataSchema,
   [DataPaths.RESOUCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
   [DataPaths.ELECTIONS]: schemas.ElectionsDataSchema,
+  [DataPaths.COUNCIL_DATA]: schemas.CouncilDataSchema,
+  [DataPaths.CONTACT_US]: schemas.ContactUsDataSchema,
+  [DataPaths.SHARED_FOOTER]: schemas.SharedFooterSchema,
+  [DataPaths.SHARED_EXECS]: schemas.SharedExecsSchema,
 };
 
 export const validate = (req: Request, res: Response, next: NextFunction) => {

@@ -5,9 +5,9 @@ import express from "express";
 import path from "path";
 
 import publicRoutes from "./server/routes/public-routes";
-import authRoutes from "./server/routes/admin/auth-routes";
+import authRoutes from "./server/routes/auth-routes";
 import api from "./server/api";
-import { Logger, loggerMiddleware } from "./server/api/logger";
+import { Logger, loggerMiddleware } from "./server/util/logger";
 import fs from "fs";
 const logger = new Logger();
 

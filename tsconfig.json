@@ -7,9 +7,8 @@
     "outDir": "public/assets/js",
     "removeComments": true,
     "resolveJsonModule": true,
-    "sourceMap": false
+    "sourceMap": false,
+    "noUnusedLocals": true
   },
-  "include": [
-    "public/assets/ts/**/*.ts"
-  ]
+  "include": ["public/assets/ts/**/*.ts"]
 }

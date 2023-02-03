@@ -8,6 +8,7 @@ class Editor {
   constructor(
     container: HTMLElement,
     sourceDataURL: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     options?: {
       name?: string;
     }

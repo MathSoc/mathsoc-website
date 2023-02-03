@@ -2,8 +2,8 @@ import nodemailer from "nodemailer";
 import validator from "validator";
 import { Request, Response } from "express";
 
-import { Logger } from "./logger";
-import contactUsData from "../data/contact-us.json";
+import { Logger } from "../../util/logger";
+import contactUsData from "../../data/contact-us.json";
 
 export class ContactUsController {
   static logger = new Logger();

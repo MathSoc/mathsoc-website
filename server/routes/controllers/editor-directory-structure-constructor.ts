@@ -1,7 +1,7 @@
 import fs from "fs";
 import customPages from "../../config/admin/admin-pages.json";
 import { DirectoryEntry, PageInflow } from "../../types/routing";
-import { getFormattedURL } from "../util";
+import { getFormattedURL } from "../../util/util";
 
 /**
  * Constructs the /admin/editor menu structure

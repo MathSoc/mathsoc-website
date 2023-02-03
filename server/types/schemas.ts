@@ -46,7 +46,7 @@ const ElectionsDataSchema = z.array(
         .object({
           name: z.string(),
           position: z.string(),
-          election: z.boolean(),
+          elected: z.boolean(),
           platform: z.string(),
         })
         .strict()
@@ -57,7 +57,7 @@ const ElectionsDataSchema = z.array(
           candidate: z.string(),
           date: z.string(),
           allegation: z.string().optional(),
-          defence: z.string().optional(),
+          defense: z.string().optional(),
           decision: z.string().optional(),
           penalties: z.array(z.string()).optional(),
           penaltyDescription: z.string().optional(),
@@ -116,7 +116,7 @@ const CartoonsAboutUsDataSchema = z.object({
     archive: z
       .object({
         text: z.string(),
-        linkt: z.string(),
+        link: z.string(),
       })
       .strict(),
   }),
@@ -130,7 +130,7 @@ const CartoonsAboutUsDataSchema = z.object({
       email: z.string(),
     })
     .strict(),
-  socialLints: z
+  socialLinks: z
     .object({
       instagram: z.string(),
       facebook: z.string(),
@@ -140,10 +140,86 @@ const CartoonsAboutUsDataSchema = z.object({
     .strict(),
 });
 
+const CouncilDataSchema = z
+  .object({
+    councilHeader: z.string(),
+    councilResponse: z.string(),
+    compositionOfCouncilHeader: z.string(),
+    compositionOfCouncilResponseMarkdown: z.string(),
+    execsHeader: z.string(),
+    councilRepHeader: z.string(),
+    councilRepresentatives: z.array(
+      z
+        .object({
+          name: z.string(),
+          role: z.string(),
+          email: z.string(),
+          image: z.string(),
+        })
+        .strict()
+    ),
+  })
+  .strict();
+
+const ContactUsDataSchema = z.object({
+  staff: z.object({
+    businessManager: z
+      .object({
+        name: z.string(),
+        role: z.string(),
+        email: z.string(),
+      })
+      .strict(),
+  }),
+  locations: z.array(
+    z
+      .object({
+        name: z.string(),
+        room: z.string(),
+        img: z.string(),
+      })
+      .strict()
+  ),
+});
+
+const SharedFooterSchema = z
+  .object({
+    phoneNumber: z.string(),
+    addressLine1: z.string(),
+    addressLine2: z.string(),
+    addressLine3: z.string(),
+    socialLinks: z
+      .object({
+        facbook: z.string().optional(),
+        twitter: z.string().optional(),
+        instagram: z.string().optional(),
+        mail: z.string().optional(),
+        discord: z.string().optional(),
+        youtube: z.string().optional(),
+      })
+      .strict(),
+  })
+  .strict();
+
+const SharedExecsSchema = z.object({
+  execs: z.array(
+    z.object({
+      name: z.string(),
+      role: z.string(),
+      email: z.string(),
+      image: z.string(),
+    })
+  ),
+});
+
 export {
   VolunteerDataSchema,
   HomeDataSchema,
   ElectionsDataSchema,
   MentalWellnessDataSchema,
   CartoonsAboutUsDataSchema,
+  CouncilDataSchema,
+  ContactUsDataSchema,
+  SharedFooterSchema,
+  SharedExecsSchema
 };

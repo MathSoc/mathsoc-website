@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 import fs from "fs";
 import path from "path";
-import { PageInflow, PageOutflow } from "../types/routing.js";
+import { PageInflow, PageOutflow } from "../../types/routing.js";
 
 /**
  * Contains functions related to the construction of new page routes and the population of

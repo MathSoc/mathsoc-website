@@ -1,13 +1,13 @@
 import express, { Request, Response } from "express";
-import adminPages from "../../config/admin/admin-pages.json";
-import { EditorDirectoryStructureConstructor } from "./editor-directory-structure-constructor";
-import { PageLoader } from "../page-loader";
-import { getFormattedURL } from "../util";
+import adminPages from "../config/admin/admin-pages.json";
+import { EditorDirectoryStructureConstructor } from "./controllers/editor-directory-structure-constructor";
+import { PageLoader } from "./controllers/page-loader";
+import { getFormattedURL } from "../util/util";
 import {
   AdminPageOutflow,
   DirectoryEntry,
   PageOutflow,
-} from "../../types/routing";
+} from "../types/routing";
 
 interface EditorPageOutflow extends PageOutflow {
   editors: DirectoryEntry[];
