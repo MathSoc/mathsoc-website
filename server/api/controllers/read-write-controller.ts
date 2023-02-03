@@ -1,22 +1,27 @@
 import { Response } from "express";
 import fs from "fs";
 
-import { Logger } from "../util/logger";
+import { Logger } from "../../util/logger";
+
+enum ReadWrite {
+  READ = "r",
+  WRITE = "w",
+}
 
 type RequestData = {
   fileName: string;
   res: Response;
-  type: "r" | "w";
+  type: ReadWrite;
   body?: object | any[] | string;
 };
 
 type ReadRequestData = RequestData & {
-  type: "r";
+  type: ReadWrite.READ;
 };
 
 type WriteRequestData = RequestData & {
   body: object | any[] | string;
-  type: "w";
+  type: ReadWrite.WRITE;
 };
 
 export class ReadWriteController {
@@ -32,7 +37,7 @@ export class ReadWriteController {
       this.queues[filePath] = new RequestQueue();
     }
 
-    this.queues[filePath].push(filePath, res, "r");
+    this.queues[filePath].push(filePath, res, ReadWrite.READ);
   }
 
   static overwriteJSONDataPath(
@@ -48,7 +53,7 @@ export class ReadWriteController {
       this.queues[filePath] = new RequestQueue();
     }
 
-    this.queues[filePath].push(filePath, res, "w", newData);
+    this.queues[filePath].push(filePath, res, ReadWrite.WRITE, newData);
   }
 
   static async processReadEntry(requestData: ReadRequestData): Promise<void> {
@@ -121,7 +126,7 @@ export class ReadWriteController {
       fs.writeFile(
         `server/data/${data.fileName}.json`,
         writeData,
-        { encoding: "utf8", flag: "w" },
+        { encoding: "utf8", flag: ReadWrite.WRITE },
         (err: NodeJS.ErrnoException | null) => {
           if (this.handleErrors(data.res, err)) return;
 
@@ -168,7 +173,7 @@ class RequestQueue {
   push(
     fileName: string,
     res: Response,
-    type: "r" | "w",
+    type: ReadWrite,
     body?: object | any[]
   ): void {
     const data: RequestData = { fileName, res, type, body: body };
@@ -182,12 +187,12 @@ class RequestQueue {
 
   private async process(): Promise<void> {
     switch (this.queue[0].type) {
-      case "r":
+      case ReadWrite.READ:
         await ReadWriteController.processReadEntry(
           this.queue[0] as ReadRequestData
         );
         break;
-      case "w":
+      case ReadWrite.WRITE:
         await ReadWriteController.processWriteEntry(
           this.queue[0] as WriteRequestData
         );

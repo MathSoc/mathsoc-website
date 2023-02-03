@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { ReadWriteController } from "../controllers/read-write-controller";
-import { ContactUsController } from "../controllers/contact-us-controller";
+import { ReadWriteController } from "./controllers/read-write-controller";
+import { ContactUsController } from "./controllers/contact-us-controller";
 import { validate } from "../validation/endpoint-schema-map";
 import express from "express";
 

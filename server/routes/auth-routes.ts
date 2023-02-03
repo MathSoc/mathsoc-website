@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import adminPages from "../config/admin/admin-pages.json";
-import { EditorDirectoryStructureConstructor } from "../controllers/editor-directory-structure-constructor";
-import { PageLoader } from "../controllers/page-loader";
+import { EditorDirectoryStructureConstructor } from "./controllers/editor-directory-structure-constructor";
+import { PageLoader } from "./controllers/page-loader";
 import { getFormattedURL } from "../util/util";
 import {
   AdminPageOutflow,
