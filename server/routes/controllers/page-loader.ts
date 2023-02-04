@@ -8,8 +8,8 @@ import { PageInflow, PageOutflow } from "../../types/routing.js";
  * the pug views those routes redirect to
  */
 export class PageLoader {
-  static navItems = require("../config/navbar.json");
-  static footer = require("../data/shared/footer.json");
+  static navItems = require("../../config/navbar.json");
+  static footer = require("../../data/shared/footer.json");
 
   /**
    * Accepts an array of pages, and creates routes to each of their refs.
@@ -79,9 +79,9 @@ export class PageLoader {
    */
   static getPageDataSource(pageRef?: string): object | any[] | null {
     if (fs.existsSync(`server/data${pageRef}.json`)) {
-      const url = path.join(__dirname, `../../server/data/${pageRef}.json`);
+      const url = path.join(__dirname, `../../server/data${pageRef}.json`);
       delete require.cache[url];
-      return require(`../data${pageRef}.json`);
+      return require(`../../data${pageRef}.json`);
     } else {
       return null;
     }
