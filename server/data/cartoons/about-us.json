@@ -8,7 +8,7 @@
     "subheadingCaption": "MathSoc Cartoons is a student-run comic series explaining undergraduate math and computer science concepts. All of our comics can be found here, as well as on our <a href='https://www.instagram.com/uwmathsoc/'>Instagram</a> and <a href='https://www.facebook.com/mathsoc'>Facebook</a> pages.",
     "joinUs": "Join Us",
     "applicationsCaption": "Applications are now open for Winter 2023!",
-    "signupMarkup": "<ul> <li> Want to join our team? <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdWl7Op8QZRoG9BZXjB4kl8Xo4BJv8CjQI2-R9Vt6LqIZHTUg/closedform\" target=\"_blank\">Apply to be a writer/artist!</a> </li> <li> Want early access to our new comics? <a href=\"https://docs.google.com/forms/d/e/1FAIpQLScRRe_Cg6n-wJjH1XQ0yFALE_w8hSfCwvjGhi-dRuSXIo_aEA/viewform\" target=\"_blank\">Sign up to be a reviewers!</a> </li> </ul>",
+    "signupMarkdown": "<ul> <li> Want to join our team? <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdWl7Op8QZRoG9BZXjB4kl8Xo4BJv8CjQI2-R9Vt6LqIZHTUg/closedform\" target=\"_blank\">Apply to be a writer/artist!</a> </li> <li> Want early access to our new comics? <a href=\"https://docs.google.com/forms/d/e/1FAIpQLScRRe_Cg6n-wJjH1XQ0yFALE_w8hSfCwvjGhi-dRuSXIo_aEA/viewform\" target=\"_blank\">Sign up to be a reviewers!</a> </li> </ul>",
     "buttons": {
         "team": {
             "text": "Meet the Team",
@@ -22,10 +22,10 @@
     "carouselImages": ["/assets/img/cartoons/characters2.jpg", "/assets/img/cartoons/characters1.jpg"],
     "getInTouch": "Get in touch with the cartoons team!",
     "socialButtons": {
-        "instagram": "<i class='fa fa-instagram'></i> <span>Instagram</span>",
-        "facebook": "<i class='fa fa-facebook'></i> <span>Facebook</span>",
-        "feedback": "<i class='fa-solid fa-comment'> </i> <span>Feedback</span>",
-        "email": "<i class='fa-solid fa-envelope'></i> <span>Email</email>"
+        "instagramMarkdown": "<i class='fa fa-instagram'></i> <span>Instagram</span>",
+        "facebookMarkdown": "<i class='fa fa-facebook'></i> <span>Facebook</span>",
+        "feedbackMarkdown": "<i class='fa-solid fa-comment'> </i> <span>Feedback</span>",
+        "emailMarkdown": "<i class='fa-solid fa-envelope'></i> <span>Email</email>"
     },
     "socialLinks": {
         "instagram": "https://www.instagram.com/mathsoccartoons/",

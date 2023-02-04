@@ -16,7 +16,7 @@ block body
                 if team.subheader != ""
                     p #{team.subheader}
                 each role in team.roles
-                    +collapsible(role.title, role.description, role.link)
+                    +collapsible(role.title, role.descriptionMarkdown, role.link)
             h1 #{data.clubsTitle}
             p !{data.clubsSubheader}
         
