@@ -1,13 +1,22 @@
 head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(href="/assets/css/main.css", rel="stylesheet")
-    link(href='/assets/css/navbar.css' rel="stylesheet")
-    link(href="/assets/css/footer.css" rel="stylesheet")
-    link(href="/assets/img/icons/favicon.svg" rel="icon")
-    block styles
-    script(src="/assets/js/navbar.js" defer)
-    block scripts
-    block title
-        title=title + " \u2013 Mathsoc" 
+  meta(charset="UTF-8")
+  meta(http-equiv="X-UA-Compatible" content="IE=edge")
+  meta(name="viewport" content="width=device-width, initial-scale=1.0")
+  
+  block title
+    title=title + " \u2013 Mathsoc" 
+
+  link(rel="preconnect" href="https://fonts.googleapis.com")
+  link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+  - const googleFontsLink = "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Zilla+Slab:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=block"; 
+  link(rel="preload" as="style" href=googleFontsLink)
+  link(href=googleFontsLink rel="stylesheet")
+  
+  link(href="/assets/css/main.css" rel="stylesheet")
+  link(href='/assets/css/navbar.css' rel="stylesheet")
+  link(href="/assets/css/footer.css" rel="stylesheet")
+  link(href="/assets/img/icons/favicon.svg" rel="icon")
+  block styles
+  
+  script(src="/assets/js/navbar.js" defer)
+  block scripts
