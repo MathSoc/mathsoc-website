@@ -122,6 +122,34 @@
   }
 }
 
+.open-editor-container {
+  width: 100%;
+  text-align: center;
+
+  .open-editor-button {
+    appearance: initial;
+    display: block;
+    margin: 1em auto;
+    text-align: center;
+    width: 250px;
+    height: 60px;
+    padding: 1em 2em;
+    border: none;
+    color: white;
+    font-family: var(--primary-font);
+    transition: background-color 0.15s;
+    background-color: grey;
+
+    &.enabled {
+      background-color: var(--mathsoc-pink) !important;
+      &:hover {
+        background-color: var(--mathsoc-pink-2);
+      }
+      cursor: pointer;
+    }
+  }
+}
+
 #data-endpoints {
   display: none;
 }

@@ -4,28 +4,48 @@ class Editor {
   editor: any;
   sourceDataURL: string;
   name: string;
+  rtEditor: any;
 
   constructor(
     container: HTMLElement,
     sourceDataURL: string,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    options?: {
+    options: {
       name?: string;
+      onEditable: (node) => void;
+      onEvent: ({ field }, event: Event) => void;
     }
   ) {
-    this.options = {};
+    this.rtEditor = new window["Quill"]("#quill-editor", { theme: "snow" });
+    this.options = {
+      onEditable: this.onEditorEditable,
+      onEvent: this.onEditorEvent.bind(this),
+    };
+
     this.sourceDataURL = sourceDataURL;
     this.editor = new window["JSONEditor"](container, this.options);
 
     this.name = this.getFormattedURL(this.sourceDataURL.split("path=")[1]);
-    this.createSaveButton(container);
+    this.createButtons(container);
 
     (async () => {
       this.editor.set(await this.getFileData());
     })();
   }
 
-  private createSaveButton(container: HTMLElement) {
+  private createButtons(container: HTMLElement) {
+    const openButton = document.createElement("button");
+    openButton.innerHTML = "Open Markdown Editor";
+    openButton.disabled = true;
+    openButton.classList.add("open-editor-button", "disabled");
+    openButton.id = "open-editor-btn";
+    openButton.onclick = this.openRichTextModal;
+
+    const openButtonContainer = document.createElement("div");
+    openButtonContainer.classList.add("open-editor-container");
+    openButtonContainer.appendChild(openButton);
+    container.appendChild(openButtonContainer);
+
     const saveButton = document.createElement("button");
     saveButton.classList.add("save", "pink-button");
     saveButton.innerHTML = `Save <span class="editor-name">${this.name}</span>`;
@@ -38,6 +58,103 @@ class Editor {
 
     saveButtonContainer.appendChild(saveButton);
     container.appendChild(saveButtonContainer);
+  }
+
+  // open the rich text modal
+  private openRichTextModal() {
+    const modal = document.getElementById("modal");
+    modal.style.display = "block";
+  }
+
+  // close the rich text modal
+  private closeRichTextModal() {
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+  }
+
+  /*
+  controls the rich text editor
+  - enables the button once a markdown field is clicked
+  - disables it otherwise
+  - saves the new markdown into the data once the new markdown has been saved
+  - saves and restores the expansion state of the json editor 
+  */
+  private onEditorEvent(
+    node: { field?: string; value?: string; path?: (string | number)[] },
+    event: Event
+  ) {
+    if (event instanceof PointerEvent) {
+      const openEditorButton = document.getElementById(
+        "open-editor-btn"
+      ) as HTMLButtonElement;
+      if (node && node.field && node.field.includes("Markdown")) {
+        openEditorButton.classList.replace("disabled", "enabled");
+
+        const delta = this.rtEditor.clipboard.convert(node.value);
+        this.rtEditor.setContents(delta);
+
+        const saveRichTextButton = document.getElementById(
+          "save-rich-text-btn"
+        ) as HTMLButtonElement;
+
+        const cancelRichTextButton = document.getElementById(
+          "cancel-rich-text-btn"
+        ) as HTMLButtonElement;
+
+        saveRichTextButton.onclick = () => {
+          const data = this.editor.get();
+          this.setDataField(data, node.path, this.rtEditor.root.innerHTML);
+
+          const state = {};
+          this.saveExpansionState(this.editor.node, state);
+          this.editor.set(data);
+          this.editor.refresh();
+          this.restoreExpansionState(this.editor.node, state);
+          this.closeRichTextModal();
+        };
+
+        cancelRichTextButton.onclick = this.closeRichTextModal;
+
+        openEditorButton.disabled = false;
+      } else {
+        openEditorButton.classList.replace("enabled", "disabled");
+        openEditorButton.disabled = true;
+      }
+    }
+  }
+
+  // to save the expanded view of the editor
+  private saveExpansionState(node, state) {
+    state[node.getPath().join()] = node.expanded;
+    if (node.childs) {
+      node.childs.forEach((child) => this.saveExpansionState(child, state));
+    }
+  }
+
+  // to restore the expanded view of the editor
+  private restoreExpansionState(node, state) {
+    if (state[node.getPath().join()]) node.expand(false);
+    if (node.childs) {
+      node.childs.forEach((child) => this.restoreExpansionState(child, state));
+    }
+  }
+
+  /*
+  - stops users from modifying field and value for markdown fields
+  - stops users from modifying field names for the rest of the fields
+  */
+  private onEditorEditable(node: { field?: string }) {
+    if (node && node.field && node.field.includes("Markdown")) {
+      return {
+        field: false,
+        value: false,
+      };
+    }
+
+    return {
+      field: false,
+      value: true,
+    };
   }
 
   /**
@@ -134,5 +251,21 @@ class Editor {
         }
       }
     });
+  }
+
+  /*
+  - updates a nested field in an object with a value, given a path.
+  
+  */
+  private setDataField(
+    dataObject: object,
+    path: (string | number)[],
+    value: string
+  ) {
+    if (path.length === 1) {
+      dataObject[path[0]] = value;
+      return;
+    }
+    return this.setDataField(dataObject[path[0]], path.slice(1), value);
   }
 }
