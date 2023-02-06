@@ -9,5 +9,8 @@
     "resolveJsonModule": true,
     "sourceMap": false
   },
-  "include": ["public/assets/ts/**/*.ts"]
+  "include": ["public/assets/ts/**/*.ts"],
+  "ts-node": {
+    "swc": true
+  }
 }

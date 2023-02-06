@@ -3,16 +3,16 @@ include /views/mixins/pink-button.pug
 
 
 block title 
-    title MathSoc Home
-    
+  title MathSoc Home
+
 append styles
-    link(href="/assets/css/carousel.css" rel="stylesheet")
-    link(href='/assets/css/pages/homepage.css' rel="stylesheet")
+  link(href="/assets/css/carousel.css" rel="stylesheet")
+  link(href='/assets/css/pages/homepage.css' rel="stylesheet")
 
 append scripts
-    script(src="/assets/js/carousel.js" defer)
-    script(src="https://kit.fontawesome.com/c02fb43ad1.js" crossorigin="anonymous")
-    
+  script(src="/assets/js/carousel.js" defer)
+  script(src="https://kit.fontawesome.com/c02fb43ad1.js" crossorigin="anonymous")
+
 block body
     div(class="container")
         +carousel(["/assets/img/banners/mathsoc-wall.jpeg", "/assets/img/banners/exec-office.jpeg", "/assets/img/banners/pinktie-mc.jpeg", "/assets/img/banners/board-games.jpeg"])
@@ -38,6 +38,3 @@ block body
                         +pink-button(homepageData.socialButtons.instagramMarkdown, "instagram", footer.socialLinks.instagram)
                         +pink-button(homepageData.socialButtons.discordMarkdown, "discord", footer.socialLinks.discord)
                         +pink-button(homepageData.socialButtons.youtubeMarkdown, "youtube", footer.socialLinks.youtube)
-
-
-                        

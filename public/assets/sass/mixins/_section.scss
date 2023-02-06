@@ -1,0 +1,8 @@
+.section-mixin {
+  max-width: unset;
+
+  .section-mixin-internals {
+    max-width: var(--content-width);
+    margin: auto;
+  }
+}
