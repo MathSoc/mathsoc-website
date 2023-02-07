@@ -101,5 +101,3 @@ export class ContactUsController {
     return true;
   }
 }
-
-module.exports = ContactUsController;
