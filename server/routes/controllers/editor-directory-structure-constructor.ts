@@ -66,8 +66,14 @@ export class EditorDirectoryStructureConstructor {
       withFileTypes: true,
     });
     const directory: DirectoryEntry = [];
-
     for (const entry of directoryEntries) {
+      if (
+        entry.isFile() &&
+        entry.name.split(".")[entry.name.split(".").length - 1] !== "json"
+      ) {
+        continue;
+      }
+
       const pathToEntry = `${path}/${entry.name}`;
       const ref = options?.root
         ? pathToEntry.replace(options.root + "/", "")

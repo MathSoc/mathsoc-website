@@ -1,21 +1,18 @@
 /* eslint-disable-next-line */
 class Editor {
-  options: any;
+  options: {
+    onEditable: (node: { field?: string }) => void;
+    onEvent: (
+      node: { field?: string; value?: string; path?: (string | number)[] },
+      event: Event
+    ) => void;
+  };
   editor: any;
   sourceDataURL: string;
   name: string;
   rtEditor: any;
 
-  constructor(
-    container: HTMLElement,
-    sourceDataURL: string,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    options: {
-      name?: string;
-      onEditable: (node) => void;
-      onEvent: ({ field }, event: Event) => void;
-    }
-  ) {
+  constructor(container: HTMLElement, sourceDataURL: string) {
     this.rtEditor = new window["Quill"]("#quill-editor", { theme: "snow" });
     this.options = {
       onEditable: this.onEditorEditable,
@@ -83,43 +80,34 @@ class Editor {
     node: { field?: string; value?: string; path?: (string | number)[] },
     event: Event
   ) {
-    if (event instanceof PointerEvent) {
-      const openEditorButton = document.getElementById(
-        "open-editor-btn"
+    if (!(event instanceof PointerEvent)) {
+      return;
+    }
+
+    const openEditorButton = document.getElementById(
+      "open-editor-btn"
+    ) as HTMLButtonElement;
+    if (node && node.field && node.field.includes("Markdown")) {
+      openEditorButton.classList.replace("disabled", "enabled");
+
+      const htmlContent = this.rtEditor.clipboard.convert(node.value);
+      this.rtEditor.setContents(htmlContent);
+
+      const saveRichTextButton = document.getElementById(
+        "save-rich-text-btn"
       ) as HTMLButtonElement;
-      if (node && node.field && node.field.includes("Markdown")) {
-        openEditorButton.classList.replace("disabled", "enabled");
 
-        const delta = this.rtEditor.clipboard.convert(node.value);
-        this.rtEditor.setContents(delta);
+      const cancelRichTextButton = document.getElementById(
+        "cancel-rich-text-btn"
+      ) as HTMLButtonElement;
 
-        const saveRichTextButton = document.getElementById(
-          "save-rich-text-btn"
-        ) as HTMLButtonElement;
+      saveRichTextButton.onclick = () => this.saveQuillMarkdownToEditor(node);
+      cancelRichTextButton.onclick = this.closeRichTextModal;
 
-        const cancelRichTextButton = document.getElementById(
-          "cancel-rich-text-btn"
-        ) as HTMLButtonElement;
-
-        saveRichTextButton.onclick = () => {
-          const data = this.editor.get();
-          this.setDataField(data, node.path, this.rtEditor.root.innerHTML);
-
-          const state = {};
-          this.saveExpansionState(this.editor.node, state);
-          this.editor.set(data);
-          this.editor.refresh();
-          this.restoreExpansionState(this.editor.node, state);
-          this.closeRichTextModal();
-        };
-
-        cancelRichTextButton.onclick = this.closeRichTextModal;
-
-        openEditorButton.disabled = false;
-      } else {
-        openEditorButton.classList.replace("enabled", "disabled");
-        openEditorButton.disabled = true;
-      }
+      openEditorButton.disabled = false;
+    } else {
+      openEditorButton.classList.replace("enabled", "disabled");
+      openEditorButton.disabled = true;
     }
   }
 
@@ -137,6 +125,22 @@ class Editor {
     if (node.childs) {
       node.childs.forEach((child) => this.restoreExpansionState(child, state));
     }
+  }
+
+  private saveQuillMarkdownToEditor(node: {
+    field?: string;
+    value?: string;
+    path?: (string | number)[];
+  }) {
+    const data = this.editor.get();
+    this.setDataField(data, node.path, this.rtEditor.root.innerHTML);
+
+    const state = {};
+    this.saveExpansionState(this.editor.node, state);
+    this.editor.set(data);
+    this.editor.refresh();
+    this.restoreExpansionState(this.editor.node, state);
+    this.closeRichTextModal();
   }
 
   /*
@@ -255,7 +259,6 @@ class Editor {
 
   /*
   - updates a nested field in an object with a value, given a path.
-  
   */
   private setDataField(
     dataObject: object,
