@@ -37,6 +37,11 @@
         "title": "Mental Wellness",
         "ref": "/resources/mental-wellness",
         "view": "/resources/mental-wellness"
+      },
+      {
+        "title": "Discord Access",
+        "ref": "/resources/discord-access",
+        "view": "/resources/discord-access"
       }
     ]
   },

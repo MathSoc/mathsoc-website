@@ -1,0 +1,18 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+    link(href="/assets/css/pages/resources/discord-access.css" rel="stylesheet")
+
+block body
+    +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
+    div(class="content")
+    section(class="white")
+        h1 #{data.title}
+        p(class="subheader") #{data.subheader}
+        ol(class="stepper")
+            each step in data.steps
+                li(class="stepper_item")
+                    div(class="stepper_content")
+                        h3(class="stepper_title") #{step.title}
+                        p(class="stepper_text")!=step.text
+                        img(src=step.img)

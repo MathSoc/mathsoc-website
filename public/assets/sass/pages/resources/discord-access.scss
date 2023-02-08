@@ -1,0 +1,61 @@
+@import "../../util/_sass-mixins";
+@import "../../util/variables";
+@import "../../mixins/banner-image";
+
+section {
+  max-width: var(--content-width);
+  margin: 30px auto;
+  position: relative;
+
+  .stepper {
+    margin-top: 50px;
+    --size: 3rem;
+    --spacing: 0.5rem;
+
+    .stepper_item {
+      margin: 0;
+      position: relative;
+      display: flex;
+      gap: 1rem;
+      padding-bottom: 2rem;
+    }
+    .stepper_item::before {
+      content: "";
+      position: relative;
+      z-index: 1;
+      flex: 0 0 var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      background-color: var(--mathsoc-pink-3);
+    }
+    .stepper_item:not(:last-child):after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      background-color: lightgray;
+      transform: translateX(calc(var(--size) / 2));
+      top: calc(var(--size) + var(--spacing));
+      left: 0;
+      bottom: var(--spacing);
+    }
+
+    .stepper_content {
+      display: inline-block;
+    }
+
+    .stepper_title {
+      margin: 0.3rem 0 0 0;
+      white-space: nowrap;
+      display: block;
+      color: var(--mathsoc-pink-2);
+    }
+  }
+
+  h1 {
+    color: var(--accent-colour-1);
+  }
+
+  img {
+    width: 100%;
+  }
+}
