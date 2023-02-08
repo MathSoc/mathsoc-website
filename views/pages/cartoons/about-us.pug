@@ -25,7 +25,7 @@ block body
                     p!=data.subheadingCaption
                     h3 #{data.joinUs}
                     p(class="app-caption") #{data.applicationsCaption}
-                    div!=data.signupMarkup
+                    div!=data.signupMarkdown
                     div(style="width: 100%; text-align:center;")
                         +pink-button(data.buttons.team.text, '', data.buttons.team.link)
                         br
@@ -37,11 +37,11 @@ block body
                 h1 #{data.getInTouch}
             div(class="row button-row")
                 div(class="col")
-                    +pink-button(data.socialButtons.email, "email", data.socialLinks.email)
+                    +pink-button(data.socialButtons.emailMarkdown, "email", data.socialLinks.email)
                 div(class="col")
-                    +pink-button(data.socialButtons.feedback, "feedback", data.socialLinks.feedback)
+                    +pink-button(data.socialButtons.feedbackMarkdown, "feedback", data.socialLinks.feedback)
                 div(class="col")
-                    +pink-button(data.socialButtons.instagram, "instagram", data.socialLinks.instagram)
+                    +pink-button(data.socialButtons.instagramMarkdown, "instagram", data.socialLinks.instagram)
                 div(class="col")
-                    +pink-button(data.socialButtons.facebook, "facebook", data.socialLinks.facebook)
+                    +pink-button(data.socialButtons.facebookMarkdown, "facebook", data.socialLinks.facebook)
 

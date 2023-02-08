@@ -1,8 +1,8 @@
 {
-    "socialText": "Follow us on social media to get the latest updates about new events, services, and resources!",
-    "socialButtons": {
-        "instagram": "<i class='fa fa-instagram'></i> <span>Instagram</span>",
-        "discord": "<i class='fa-brands fa-discord'></i> <span>Discord</span>",
-        "youtube": "<i class='fa fa-youtube'></i> <span>Youtube</span>"
-    }
+  "socialText": "Follow us on social media to get the latest updates about new events, services, and resources!",
+  "socialButtons": {
+    "instagramMarkdown": "<i class='fa fa-instagram'></i> <span>Instagram</span>",
+    "discordMarkdown": "<i class='fa-brands fa-discord'></i> <span>Discord</span>",
+    "youtubeMarkdown": "<i class='fa fa-youtube'></i> <span>Youtube</span>"
+  }
 }

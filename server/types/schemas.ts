@@ -13,7 +13,7 @@ const VolunteerDataSchema = z
             z
               .object({
                 title: z.string(),
-                description: z.string(),
+                descriptionMarkdown: z.string(),
                 link: z.string(),
               })
               .strict()
@@ -22,7 +22,7 @@ const VolunteerDataSchema = z
         .strict()
     ),
     clubsTitle: z.string(),
-    clubsSubheader: z.string(),
+    clubsSubheaderMarkdown: z.string(),
   })
   .strict();
 
@@ -30,9 +30,9 @@ const HomeDataSchema = z
   .object({
     socialText: z.string(),
     socialButtons: z.object({
-      instagram: z.string(),
-      discord: z.string(),
-      youtube: z.string(),
+      instagramMarkdown: z.string(),
+      discordMarkdown: z.string(),
+      youtubeMarkdown: z.string(),
     }),
   })
   .strict();
@@ -105,7 +105,7 @@ const CartoonsAboutUsDataSchema = z.object({
   subheadingCaption: z.string(),
   joinUs: z.string(),
   applicationsCaption: z.string(),
-  signupMarkup: z.string(),
+  signupMarkdown: z.string(),
   buttons: z.object({
     team: z
       .object({
@@ -124,10 +124,10 @@ const CartoonsAboutUsDataSchema = z.object({
   getInTouch: z.string(),
   socialButtons: z
     .object({
-      instagram: z.string(),
-      facebook: z.string(),
-      feedback: z.string(),
-      email: z.string(),
+      instagramMarkdown: z.string(),
+      facebookMarkdown: z.string(),
+      feedbackMarkdown: z.string(),
+      emailMarkdown: z.string(),
     })
     .strict(),
   socialLinks: z
@@ -145,7 +145,7 @@ const CouncilDataSchema = z
     councilHeader: z.string(),
     councilResponse: z.string(),
     compositionOfCouncilHeader: z.string(),
-    compositionOfCouncilResponseMarkdown: z.string(),
+    compositionOfCouncilMarkdown: z.string(),
     execsHeader: z.string(),
     councilRepHeader: z.string(),
     councilRepresentatives: z.array(
@@ -221,5 +221,5 @@ export {
   CouncilDataSchema,
   ContactUsDataSchema,
   SharedFooterSchema,
-  SharedExecsSchema
+  SharedExecsSchema,
 };
