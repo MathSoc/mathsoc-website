@@ -138,6 +138,10 @@
       {
         "title": "Course Evaluations",
         "ref": "/"
+      },
+      {
+        "title": "Discord Access",
+        "ref": "/resources/discord-access"
       }
     ]
   },
