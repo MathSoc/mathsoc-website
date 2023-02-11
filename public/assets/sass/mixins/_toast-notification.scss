@@ -1,0 +1,44 @@
+.toast {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  transform: translateY(100%);
+  opacity: 0;
+
+  transition: opacity 500ms, transform 500ms;
+
+  &.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .toast-body {
+    margin: 28px;
+    padding: 20px 24px;
+    border-radius: 4px;
+    width: 20%;
+
+    &.success {
+      background-color: lightgreen;
+    }
+
+    &.fail {
+      background-color: red;
+    }
+
+    .toast-header {
+      font-size: "20px";
+      color: black;
+      font-weight: bold;
+    }
+
+    .toast-message {
+      font-size: "14px";
+      color: black;
+    }
+  }
+}

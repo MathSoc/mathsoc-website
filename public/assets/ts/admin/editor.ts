@@ -222,20 +222,35 @@ class Editor {
 
     fetch(link, options).then((response) => {
       const responseCodeClass = Math.floor(response.status / 100) * 100;
+      const errMessage = `Failed to save ${this.name}`;
+      const successMessage = `${this.name} saved successfully!`;
 
       if (responseCodeClass === 200) {
-        location.reload();
+        showToast(successMessage, "success");
       } else {
         switch (response.status) {
           case 400: {
+            showToast(
+              errMessage + `Bad POST request to ${this.sourceDataURL}.`,
+              "fail"
+            );
             throw new Error(`Bad POST request to ${this.sourceDataURL}.`);
           }
           case 401: {
+            showToast(
+              errMessage +
+                `Unauthorized POST request to ${this.sourceDataURL}.`,
+              "fail"
+            );
             throw new Error(
               `Unauthorized POST request to ${this.sourceDataURL}.`
             );
           }
           case 403: {
+            showToast(
+              errMessage + `Forbidden POST request to ${this.sourceDataURL}`,
+              "fail"
+            );
             throw new Error(
               `Forbidden POST request to ${
                 this.sourceDataURL
@@ -243,11 +258,21 @@ class Editor {
             );
           }
           case 404: {
+            showToast(
+              errMessage +
+                `File not found in POST request to ${this.sourceDataURL}.`,
+              "fail"
+            );
             throw new Error(
               `File not found in POST request to ${this.sourceDataURL}.`
             );
           }
           default: {
+            showToast(
+              errMessage +
+                `Unexpected ${response.status} error from GET request to ${this.sourceDataURL}`,
+              "fail"
+            );
             throw new Error(
               `Unexpected ${response.status} error from GET request to ${this.sourceDataURL}`
             );
