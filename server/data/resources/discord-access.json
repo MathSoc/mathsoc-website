@@ -1,0 +1,31 @@
+{
+    "title": "How to Access the MathSoc Discord",
+    "subheader": "Feel free to join and ask any general or academic questions and contact any of the Mathsoc executives and councillors!",
+    "steps": [
+        {
+            "title": "Step 1",
+            "descriptionMarkdown": "Open the <strong>Discord app</strong> on your computer.",
+            "img": ""
+        },
+        {
+            "title": "Step 2",
+            "descriptionMarkdown": "Click on the <strong>Explore Public Servers</strong> Icon.",
+            "img": "/assets/img/discord-steps/Step-3.png"
+        },
+        {
+            "title": "Step 3",
+            "descriptionMarkdown": "You will land on the official Discord server directory’s front page. Click the <strong>Student Hubs</strong> category and then click on <strong>Join Hub</strong>.",
+            "img": "/assets/img/discord-steps/Step-3.png"
+        },
+        {
+            "title": "Step 4",
+            "descriptionMarkdown": "You will be prompted to enter your school email. Please enter your <strong>@uwaterloo.ca</strong> email and click on <strong>Join Hub</strong>.",
+            "img": "/assets/img/discord-steps/Step-4.png"
+        },
+        {
+            "title": "Step 5",
+            "descriptionMarkdown": "After joining the University of Waterloo student hub you can search for the <strong>MathSoc server</strong> using the search bar as shown in the image. You can then click on <strong>Join</strong> in order to join the server.",
+            "img": "/assets/img/discord-steps/Step-5.png"
+        }
+    ]
+}

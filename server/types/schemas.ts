@@ -95,6 +95,19 @@ const MentalWellnessDataSchema = z.object({
   ),
 });
 
+const DiscordAccessSchema = z.object({
+  title: z.string(),
+  subheader: z.string(),
+  steps: z.array(
+    z
+    .object({
+      title: z.string(),
+      text: z.string(),
+      img: z.string(),
+    }).strict()
+  ),
+});
+
 const CartoonsAboutUsDataSchema = z.object({
   pageTitle: z.string(),
   heading: z.string(),
@@ -217,6 +230,7 @@ export {
   HomeDataSchema,
   ElectionsDataSchema,
   MentalWellnessDataSchema,
+  DiscordAccessSchema,
   CartoonsAboutUsDataSchema,
   CouncilDataSchema,
   ContactUsDataSchema,
