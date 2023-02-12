@@ -23,22 +23,24 @@
     width: 20%;
 
     &.success {
-      background-color: lightgreen;
+      background-color: var(--mathsoc-pink-2);
+      color: white;
     }
 
     &.fail {
-      background-color: red;
+      background-color: var(--mathsoc-pink-4);
+      color: black;
     }
 
     .toast-header {
-      font-size: "20px";
-      color: black;
+      font-size: 20px;
       font-weight: bold;
+      font-family: var(--title-font);
     }
 
     .toast-message {
-      font-size: "14px";
-      color: black;
+      font-size: 14px;
+      font-family: var(--primary-font);
     }
   }
 }

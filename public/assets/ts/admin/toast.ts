@@ -10,6 +10,11 @@ function showToast(message: string, intent: "success" | "fail") {
 
   toastHeader.innerHTML = intent === "success" ? "Success" : "Failure";
   toastMessage.innerHTML = message;
+
+  if (toast.classList.contains("visible")) {
+    return;
+  }
+
   toast.classList.add("visible");
   toastBody.classList.add(intent);
 
