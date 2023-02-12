@@ -7,8 +7,8 @@ export class ExamBankController {
   static logger = new Logger("Exam Bank Controller");
 
   /**
-   * Re-creates the exam list JSON file based on the current 
-   * contents of the exams directory 
+   * Re-creates the exam list JSON file based on the current
+   * contents of the exams directory
    */
   static rewriteFile(): void {
     const url = "_hidden/exams-list";
@@ -25,10 +25,13 @@ export class ExamBankController {
           case 404:
             this.logger.error(`${url} not found`);
             break;
-          case 200:
-          case 201:
-            this.logger.info("Exams file rewritten");
-            break;
+          default:
+            if (statusCode.toString()[0] === "2") { // 2XX success codes
+              this.logger.info("Exams file rewritten");
+              break;
+            } else {
+              this.logger.warn("Unexpected exams file rewrite result")
+            }
         }
       },
       this.generateJSON()
@@ -80,9 +83,9 @@ export class ExamBankController {
   }
 
   /**
-   * Sorts a list of exams, alphabetically by department, 
+   * Sorts a list of exams, alphabetically by department,
    * course code, then chronologically, then by the test type where
-   * midterms are prioritized 
+   * midterms are prioritized
    */
   private static sortExams(a: Exam, b: Exam): number {
     if (a.department !== b.department) {
