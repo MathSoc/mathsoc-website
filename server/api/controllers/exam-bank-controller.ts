@@ -26,11 +26,12 @@ export class ExamBankController {
             this.logger.error(`${url} not found`);
             break;
           default:
-            if (statusCode.toString()[0] === "2") { // 2XX success codes
+            if (statusCode.toString()[0] === "2") {
+              // 2XX success codes
               this.logger.info("Exams file rewritten");
               break;
             } else {
-              this.logger.warn("Unexpected exams file rewrite result")
+              this.logger.warn("Unexpected exams file rewrite result");
             }
         }
       },
@@ -58,17 +59,19 @@ export class ExamBankController {
         type = parts.slice(3).join(" ").split(".")[0].replace(" sol", ""); // strip file extension and solutions marker
 
       const isSolution = file.name.includes("-sol");
-      const mapKey = [department, course, term].join("-");
+      const dictionaryKey = [department, course, term].join("-");
 
-      if (unfilteredExams[mapKey]) {
+      if (unfilteredExams[dictionaryKey]) {
+        // If this exam is already in the dictionary, add this file (e.g. the exam) to it.
         if (isSolution) {
-          unfilteredExams[mapKey].solutionFile = file.name;
+          unfilteredExams[dictionaryKey].solutionFile = file.name;
         } else {
-          unfilteredExams[mapKey].type = type;
-          unfilteredExams[mapKey].examFile = file.name;
+          unfilteredExams[dictionaryKey].type = type;
+          unfilteredExams[dictionaryKey].examFile = file.name;
         }
       } else {
-        unfilteredExams[mapKey] = {
+        // If this exam has no files read yet, add it to the dictionary with the file we have.
+        unfilteredExams[dictionaryKey] = {
           department,
           courseCode: course,
           term,
