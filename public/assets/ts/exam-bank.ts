@@ -106,7 +106,9 @@ class ExamBankFrontend {
    * Builds the exam bank table
    */
   static async populateTable() {
-    const exams: Exam[] = await (await fetch("/api/exams")).json();
+    const exams: Exam[] = await fetch("/api/exams").then((response) =>
+      response.json()
+    );
 
     const tableBody = this.getExamList().querySelector("tbody");
     const hiddenRow = tableBody.querySelector("#hidden-row");

@@ -76,8 +76,7 @@ export class ExamBankController {
       }
     }
 
-    const exams = Object.values(unfilteredExams).sort(this.sortExams);
-    return exams;
+    return Object.values(unfilteredExams).sort(this.sortExams);
   }
 
   /**
