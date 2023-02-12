@@ -1,51 +1,51 @@
+extends /views/templates/frontend-base.pug
+
 include /views/mixins/banner-image.pug
 include /views/mixins/person-card.pug
 include /views/mixins/pink-button.pug
 include /views/mixins/section.pug
 
-- const execs = sources.execs.execs
-- const businessManager = data.staff.businessManager;
-- const locations = data.locations;
+block title
+  title Contact Us &#8211; MathSoc 
 
-doctype html
-html(lang="en")
-  head 
-    title Contact Us &#8211; MathSoc
-    include /views/partials/header.pug
-    link(href="/assets/css/pages/contact-us.css" rel="stylesheet")
+append styles
+  link(href="/assets/css/pages/contact-us.css" rel="stylesheet")
 
-  body 
-    include /views/partials/navbar.pug
-    div(class="content")
-      section(class="white")
-        h1 Contact our executive team
+block body 
 
-        div(id="execs-grid")
-          each exec in execs.concat(businessManager) 
-            +person-card(exec.name, exec.role, exec.email, exec.image)
+  - const execs = sources.execs.execs
+  - const businessManager = data.staff.businessManager;
+  - const locations = data.locations;
 
-      +section("grey")
-        h2 Visit us in person
-        div(id="locations-grid")
-          each location in locations
-            div(class="location")
-              img(src=location.img alt="")
-              span(class="location-name")=location.name
-              span(class="location-room")=location.room
+  div(class="content")
+    section(class="white")
+      h1 Contact our executive team
 
-      +banner-image("/assets/img/banners/pinktie-mc.jpeg", ['grey'])
-      +section("white")
-        h2 General Inquiries and Feedback
+      div(id="execs-grid")
+        each exec in execs.concat(businessManager) 
+          +person-card(exec.name, exec.role, exec.email, exec.image)
 
-        form(action="/api/general-inquiries" method="post")
-          label(for="name") Your name
-          input(id="name" class="text-input" name="name" placeholder="John Goose" required maxlength="100")
-          label(for="email") Your email
-          input(id="email" type="email" pattern=".+@.+\..+" class="text-input" name="email" placeholder="j2goose@uwaterloo.ca" required maxlength="100")
-          label(for="subject") Subject of your message
-          input(id="subject" class="text-input" name="subject" placeholder="How do I sign out a locker?" required maxlength="150")
-          label(for="message") Your message
-          textarea(id="message" class="text-input" name="message" required maxlength="6000")
-          div(id="submit-container")
-            input(type="submit" id="submit-button" class="pink-button" value="Submit message" method="post") 
-    include /views/partials/footer.pug
+    +section("grey")
+      h2 Visit us in person
+      div(id="locations-grid")
+        each location in locations
+          div(class="location")
+            img(src=location.img alt="")
+            span(class="location-name")=location.name
+            span(class="location-room")=location.room
+
+    +banner-image("/assets/img/banners/pinktie-mc.jpeg", ['grey'])
+    +section("white")
+      h2 General Inquiries and Feedback
+
+      form(action="/api/general-inquiries" method="post")
+        label(for="name") Your name
+        input(id="name" class="text-input" name="name" placeholder="John Goose" required maxlength="100")
+        label(for="email") Your email
+        input(id="email" type="email" pattern=".+@.+\..+" class="text-input" name="email" placeholder="j2goose@uwaterloo.ca" required maxlength="100")
+        label(for="subject") Subject of your message
+        input(id="subject" class="text-input" name="subject" placeholder="How do I sign out a locker?" required maxlength="150")
+        label(for="message") Your message
+        textarea(id="message" class="text-input" name="message" required maxlength="6000")
+        div(id="submit-container")
+          input(type="submit" id="submit-button" class="pink-button" value="Submit message" method="post") 
