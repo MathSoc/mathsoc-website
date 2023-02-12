@@ -68,8 +68,9 @@ export class EditorDirectoryStructureConstructor {
     const directory: DirectoryEntry = [];
     for (const entry of directoryEntries) {
       if (
-        entry.isFile() &&
-        entry.name.split(".")[entry.name.split(".").length - 1] !== "json"
+        (entry.isFile() &&
+          entry.name.split(".")[entry.name.split(".").length - 1] !== "json") ||
+        entry.name[0] === "_" // hide files/directories like '/_hidden/exams'
       ) {
         continue;
       }
