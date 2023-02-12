@@ -4,3 +4,9 @@ block body
   div(id="body")
     h1 Exam Bank
     p This is where the VPA will be able to manage the exam bank.
+
+    form(action="/api/exams/rebuild" method="post")
+      h3 Reload exams JSON file
+      label This is a temporary button to rebuild the JSON file that the exam bank uses to populate its table.
+      div(style="text-align:center; padding: 1em;")
+        button(type="submit" style="border: 1px solid var(--mathsoc-pink); display: block; margin: auto; padding: 1em; cursor: pointer;") Rebuild the exam bank list.
