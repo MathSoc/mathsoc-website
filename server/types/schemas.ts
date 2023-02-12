@@ -102,7 +102,7 @@ const CartoonsAboutUsDataSchema = z.object({
   coverPicSrcMobile: z.string(),
   comicExample: z.string(),
   subheading: z.string(),
-  subheadingCaption: z.string(),
+  subheadingCaptionMarkdown: z.string(),
   joinUs: z.string(),
   applicationsCaption: z.string(),
   signupMarkdown: z.string(),

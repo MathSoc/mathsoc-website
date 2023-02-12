@@ -5,7 +5,7 @@
   "coverPicSrcMobile": "/assets/img/cartoons/cartoons-cover-mobile.jpg",
   "comicExample": "/assets/img/cartoons/characters2.jpg",
   "subheading": "About Us",
-  "subheadingCaption": "MathSoc Cartoons is a student-run comic series explaining undergraduate math and computer science concepts. All of our comics can be found here, as well as on our <a href='https://www.instagram.com/uwmathsoc/'>Instagram</a> and <a href='https://www.facebook.com/mathsoc'>Facebook</a> pages.",
+  "subheadingCaptionMarkdown": "MathSoc Cartoons is a student-run comic series explaining undergraduate math and computer science concepts. All of our comics can be found here, as well as on our <a href='https://www.instagram.com/uwmathsoc/'>Instagram</a> and <a href='https://www.facebook.com/mathsoc'>Facebook</a> pages.",
   "joinUs": "Join Us",
   "applicationsCaption": "Applications are now open for Winter 2023!",
   "signupMarkdown": "<ul> <li> Want to join our team? <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdWl7Op8QZRoG9BZXjB4kl8Xo4BJv8CjQI2-R9Vt6LqIZHTUg/closedform\" target=\"_blank\">Apply to be a writer/artist!</a> </li> <li> Want early access to our new comics? <a href=\"https://docs.google.com/forms/d/e/1FAIpQLScRRe_Cg6n-wJjH1XQ0yFALE_w8hSfCwvjGhi-dRuSXIo_aEA/viewform\" target=\"_blank\">Sign up to be a reviewers!</a> </li> </ul>",
