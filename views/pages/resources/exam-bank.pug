@@ -1,0 +1,33 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+  link(href="/assets/css/pages/resources/exam-bank.css" rel="stylesheet")
+
+append scripts
+  script(src="/assets/js/exam-bank.js" defer)
+
+block body 
+  +banner-image("/assets/img/banners/mathsoc-wall.jpeg", ['grey'], 'MathSoc Exam Bank')
+  div(id="content")
+    div(id="exam-bank-searchbar")
+      label(id="exams-search-label") Filter for your exam then find it in the list below
+      input(id="exam-list-filter" placeholder="CS 136" aria-labelledby="exams-search-label")
+
+    h2 Exams
+    table(id="exams-table")
+      thead 
+        tr 
+          th(class="exam-course") Course
+          th(class="exam-type") Type
+          th(class="exam-offering") Offering
+          th(class="exam-link") Exam
+          th(class="exam-link") Solutions
+      tbody
+        tr(id="hidden-row" data-course-dept="$COURSE-DEPT$" data-course-code="$COURSE-CODE$")
+          td(class="exam-course") $COURSE-NAME$
+          td(class="exam-type") $TYPE$
+          td(class="exam-offering") $OFFERING$
+          td(class="exam-link") 
+            a(class="exam-download" href="$EXAM-FILE$") Download exam
+          td(class="exam-link") 
+            a(class="solution-download" href="$SOLUTION-FILE$") Download solutions

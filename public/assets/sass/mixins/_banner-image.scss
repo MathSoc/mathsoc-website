@@ -22,7 +22,7 @@
 
   .banner-title {
     position: absolute;
-    font-size: 2.5em;
+    font-size: 4.5em;
     color: white;
     width: 100%;
     text-align: center;
@@ -37,7 +37,12 @@
   }
 
   &.grey .overlay-filter {
-    background-color: #888;
+    background-color: #444;
+    opacity: 0.5;
+  }
+
+  &.dark-grey .overlay-filter {
+    background-color: #444;
     opacity: 0.5;
   }
 

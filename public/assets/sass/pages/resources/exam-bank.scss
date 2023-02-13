@@ -1,0 +1,126 @@
+@import "../../mixins/_banner-image.scss";
+
+#content {
+  max-width: var(--content-width);
+  margin: auto;
+  padding: 0 2em;
+}
+
+#exam-bank-searchbar {
+  margin: auto;
+  text-align: center;
+  padding: 1em;
+
+  #exams-search-label {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0.5em 0 1em;
+  }
+
+  input {
+    width: 80%;
+    min-width: 200px;
+    font-size: 1.5em;
+    text-align: center;
+
+    &::placeholder {
+      opacity: 1;
+      color: #999;
+    }
+  }
+}
+
+h2 {
+  margin: 0.25em 0;
+}
+
+#exams-table {
+  width: 100%;
+
+  margin-bottom: 40px;
+
+  text-align: left;
+
+  @mixin match-filters($filter-classes) {
+    tbody {
+      tr:not(#{$filter-classes}) {
+        display: none;
+      }
+      tr#{$filter-classes} {
+        display: table-row;
+      }
+    }
+  }
+
+  &.filtered-dept:not(.filtered-code) {
+    @include match-filters(".dept-match");
+  }
+
+  &.filtered-code:not(.filtered-dept) {
+    @include match-filters(".code-match");
+  }
+
+  &.filtered-code.filtered-dept {
+    @include match-filters(".dept-match.code-match");
+  }
+
+  .exam-course {
+    width: 12.5%;
+  }
+  .exam-offering {
+    width: 10%;
+  }
+  .exam-type {
+    width: 20%;
+  }
+
+  .exam-link {
+    width: calc(47.5% / 2);
+  }
+
+  thead tr {
+    background-color: var(--mathsoc-pink);
+    color: white;
+    font-weight: bold;
+
+    th {
+      padding: 1em;
+    }
+  }
+
+  tbody {
+    tr:nth-child(2n + 1) {
+      background-color: #eee;
+    }
+
+    td {
+      padding: 0.5em 1em;
+    }
+  }
+
+  a {
+    background-color: var(--background-colour);
+    border: 1px solid var(--mathsoc-pink);
+    color: var(--mathsoc-pink);
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: 0.15s;
+    text-align: center;
+    text-decoration: none;
+
+    display: none;
+    &.active {
+      display: block;
+    }
+
+    &:hover {
+      background-color: var(--background-hover);
+    }
+  }
+
+  #hidden-row {
+    display: none;
+  }
+}

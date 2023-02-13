@@ -5,7 +5,8 @@ import express from "express";
 import path from "path";
 
 import publicRoutes from "./server/routes/public-routes";
-import authRoutes from "./server/routes/auth-routes";
+import authenticatedRoutes from "./server/routes/authenticated-routes";
+import adminRoutes from "./server/routes/admin-routes";
 import api from "./server/api";
 import { Logger, loggerMiddleware } from "./server/util/logger";
 import fs from "fs";
@@ -28,8 +29,10 @@ app
   .use(loggerMiddleware(logger))
   .use(publicRoutes)
   .use("/api", api)
-  //Auth Middleware ...
-  .use(authRoutes)
+  // @todo General student authentication
+  .use(authenticatedRoutes)
+  // @todo Admin authentication
+  .use(adminRoutes)
   .use((req: Request, res: Response) => {
     res.status(404).render("pages/error");
   });

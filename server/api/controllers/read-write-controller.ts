@@ -1,4 +1,3 @@
-import { Response } from "express";
 import fs from "fs";
 
 import { Logger } from "../../util/logger";
@@ -8,11 +7,12 @@ enum ReadWrite {
   WRITE = "w",
 }
 
+type RequestCallback = (responseCode: number, responseBody?: string) => any;
+
 type RequestData = {
   fileName: string;
-  res: Response;
   type: ReadWrite;
-  body?: object | any[] | string;
+  callback: RequestCallback;
 };
 
 type ReadRequestData = RequestData & {
@@ -20,7 +20,7 @@ type ReadRequestData = RequestData & {
 };
 
 type WriteRequestData = RequestData & {
-  body: object | any[] | string;
+  body: any;
   type: ReadWrite.WRITE;
 };
 
@@ -28,47 +28,47 @@ export class ReadWriteController {
   static queues: Record<string, RequestQueue> = {};
   static logger = new Logger();
 
-  static getJSONDataPath(filePath: any, res: Response) {
+  static getJSONDataPath(filePath: string, callback: RequestCallback) {
     if (!filePath) {
-      return res.status(400).end();
+      throw new Error("No file path given to getJSONDataPath");
     }
 
     if (!this.queues[filePath]) {
       this.queues[filePath] = new RequestQueue();
     }
 
-    this.queues[filePath].push(filePath, res, ReadWrite.READ);
+    this.queues[filePath].push(filePath, ReadWrite.READ, callback);
   }
 
   static overwriteJSONDataPath(
-    filePath: any,
-    res: Response,
+    filePath: string,
+    callback: RequestCallback,
     newData: any[] | object
   ) {
     if (!filePath) {
-      return res.status(400).end();
+      throw new Error("No file path given to overwriteJSONDataPath");
     }
 
     if (!this.queues[filePath]) {
       this.queues[filePath] = new RequestQueue();
     }
 
-    this.queues[filePath].push(filePath, res, ReadWrite.WRITE, newData);
+    this.queues[filePath].push(filePath, ReadWrite.WRITE, callback, newData);
   }
 
-  static async processReadEntry(requestData: ReadRequestData): Promise<void> {
+  static async processReadEntry(data: ReadRequestData): Promise<void> {
     const promise = new Promise((resolve) => {
-      const terminateWith = (code: number) => {
-        requestData.res.status(code).end();
+      const terminateWith = (code: number, body?: any) => {
+        data.callback(code, body);
         resolve(code);
       };
 
       try {
         fs.readFile(
-          `server/data/${requestData.fileName}.json`,
+          `server/data/${data.fileName}.json`,
           (err: NodeJS.ErrnoException | null, readData: Buffer) => {
             // If any errors immediately occur, handle them
-            if (this.handleErrors(requestData.res, err)) {
+            if (this.handleErrors(err)) {
               resolve(null);
               return;
             }
@@ -82,9 +82,8 @@ export class ReadWriteController {
             // Parse the file as JSON and return it
             try {
               const parsedJSON = JSON.parse(readData.toString("utf-8"));
-              requestData.res.json(parsedJSON);
 
-              terminateWith(200);
+              terminateWith(200, parsedJSON);
             } catch (e) {
               this.logger.error(e);
               terminateWith(500);
@@ -103,7 +102,7 @@ export class ReadWriteController {
   static async processWriteEntry(data: WriteRequestData): Promise<void> {
     const promise = new Promise((resolve) => {
       const terminateWith = (code: number) => {
-        data.res.status(code).end();
+        data.callback(code);
         resolve(code);
       };
 
@@ -128,7 +127,7 @@ export class ReadWriteController {
         writeData,
         { encoding: "utf8", flag: ReadWrite.WRITE },
         (err: NodeJS.ErrnoException | null) => {
-          if (this.handleErrors(data.res, err)) return;
+          if (this.handleErrors(err)) return;
 
           terminateWith(200);
         }
@@ -152,13 +151,8 @@ export class ReadWriteController {
   }
 
   /** Returns true if an error is encountered */
-  private static handleErrors(
-    res: Response,
-    err: NodeJS.ErrnoException | null
-  ) {
+  private static handleErrors(err: NodeJS.ErrnoException | null) {
     if (err) {
-      if (err.code === "ENOENT") res.status(404).end();
-      else res.status(500).end();
       this.logger.error(err.message);
       return true;
     }
@@ -168,15 +162,20 @@ export class ReadWriteController {
 }
 
 class RequestQueue {
-  private queue: RequestData[] = [];
+  private queue: (ReadRequestData | WriteRequestData)[] = [];
 
   push(
     fileName: string,
-    res: Response,
     type: ReadWrite,
-    body?: object | any[]
+    callback: RequestCallback,
+    body?: any
   ): void {
-    const data: RequestData = { fileName, res, type, body: body };
+    const data: ReadRequestData | WriteRequestData = {
+      fileName,
+      type,
+      callback,
+      body: body,
+    };
 
     this.queue.push(data);
 
@@ -197,9 +196,6 @@ class RequestQueue {
           this.queue[0] as WriteRequestData
         );
         break;
-      default:
-        ReadWriteController.logger.warn("Queued request has bad type");
-        this.queue[0].res.status(500).end();
     }
 
     this.queue.splice(0, 1);
