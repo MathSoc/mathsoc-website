@@ -4,13 +4,14 @@
 
 section {
   max-width: var(--content-width);
-  margin: 30px 30px 30px 0;
+  margin: 30px;
   padding-left: 0;
   position: relative;
 
   .stepper {
-    margin-top: 50px;
+    margin: 50px 30px 30px 0;
     --size: 3rem;
+    --size-stepper-item: 3.5rem;
 
     .stepper_item {
       margin: 0;
@@ -27,13 +28,12 @@ section {
       flex: 0 0 var(--size);
       height: var(--size);
       border-radius: 50%;
-      background-color: var(--mathsoc-grey-2);
+      background-color: var(--mathsoc-pink-4);
       pointer-events: all;
-      border: 1px solid var(--mathsoc-grey-2);
+      border: 4px solid #0c2b6e;
       transition: all .25s ease-out;
     }
     .stepper_item:hover::before {
-      pointer-events: all;
       background-color: var(--mathsoc-pink-2);
       transition: all .25s ease-in;
     }
@@ -41,8 +41,8 @@ section {
       content: "";
       position: absolute;
       width: .5px;
-      background-color: var(--mathsoc-grey-2);
-      transform: translateX(calc(var(--size) / 2));
+      background-color: var(--mathsoc-grey);
+      transform: translateX(calc(var(--size-stepper-item) / 2));
       top: calc(var(--size));
       left: 0;
       bottom: 0;
@@ -53,9 +53,9 @@ section {
     }
 
     .stepper_title {
-      margin: .3rem 0 0 0;
+      margin: .5rem 0 0 0;
       display: block;
-      color: var(--mathsoc-grey-2);
+      color: var(--mathsoc-grey);
       pointer-events: all;
       transition: all .25s ease-out;
     }
@@ -66,7 +66,11 @@ section {
     }
   }
 
-  .club_link{
+  h1 {
+    color: var(--mathsoc-grey)
+  }
+
+  .community_link{
     text-decoration: none;
   }
 }

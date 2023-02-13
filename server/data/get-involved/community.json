@@ -1,0 +1,45 @@
+{
+  "communityHeader": "Community Links",
+  "communities": [
+    {
+      "title": "Math Ambassadors",
+      "text": "This is a volunteer program that will put your pride, experience, and knowledge to work; increase your knowledge of campus and the Faculty of Mathematics; and help to develop your leadership skills. You’ll have the opportunity to share your valuable insight and experience with high school students and their parents, and tell everyone why you love Waterloo Math!",
+      "link": "https://uwaterloo.ca/math/campus-resources/join-math-faculty-ambassador-team"
+    },
+    {
+      "title": "Math Endowment Fund",
+      "text": "The Mathematics Endowment Fund (MEF) is an income-generating fund that exists to finance projects that are in the best interests of undergraduate math students at the University of Waterloo.",
+      "link": "https://uwaterloo.ca/math-endowment-fund/"
+    },
+    {
+      "title": "Math Orientation",
+      "text": "Whether you are coming to Waterloo, or staying where you are, we hope you are able to find a community to succeed and thrive both in and outside of academics. Whether it is here through Orientation or another club or society, we hope you are able to feel both Faculty and School pride. You are a Waterloo Warrior!",
+      "link": "https://www.facebook.com/MathOrientation/"
+    },
+    {
+      "title": "mathNEWS",
+      "text": "Waterloo’s Bastion of Erudite Thought",
+      "link": "https://mathnews.uwaterloo.ca/"
+    },
+    {
+      "title": "Women in Math",
+      "text": "Mathematics is a powerful tool, and diversity among mathematicians increases the potential for positive impact. The Women in Mathematics (WiM) committee exists to encourage and advocate for women* who are interested in studying mathematics and who seek careers in mathematics. The committee engages with cultural and institutional reasons for under-representation, and strives for all genders to be well-represented in mathematics.",
+      "link": "https://uwaterloo.ca/women-in-mathematics/"
+    },
+    {
+      "title": "Women in Computer Science",
+      "text": "Women in Computer Science (WiCS) is dedicated to promoting women who are interested in studying computer science and who seek to pursue careers in computing.",
+      "link": "https://cs.uwaterloo.ca/wics"
+    },
+    {
+      "title": "Mathematics Graduation Committee",
+      "text": "UW Mathematics Graduation Committee organizes events for graduating students in the Mathematics Faculty such as the Grad Ball and Yearbook production. If you would like to get involved or have any questions, please reach out to mgc@mathsoc.uwaterloo.ca.",
+      "link": "https://www.facebook.com/UWMathGrad/"
+    },
+    {
+      "title": "MathSoc Cartoons",
+      "text": "MathSoc Cartoons is a student-run comic series explaining undergraduate math and computer science concepts.",
+      "link": "https://mathsoc.uwaterloo.ca/cartoons/about-us"
+    }
+  ]
+}

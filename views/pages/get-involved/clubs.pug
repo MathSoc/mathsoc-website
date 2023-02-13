@@ -7,8 +7,6 @@ block body
     +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
     div(class="content")
     section(class="white")
-        //- h1 #{data.title}
-        //- p(class="subheader") #{data.subheader}
         ol(class="stepper")
             each club in data.clubs
                 li(class="stepper_item")
@@ -16,4 +14,3 @@ block body
                         a(href=club.link target="_blank" class="club_link")
                             h3(class="stepper_title") #{club.title}
                         p(class="stepper_text")!=club.text
-                        //- img(src=step.img)
