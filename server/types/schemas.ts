@@ -225,6 +225,16 @@ const SharedExecsSchema = z.object({
   ),
 });
 
+const ClubsSchema = z.object({
+  clubs: z.array(
+    z.object({
+      title: z.string(),
+      text: z.string(),
+      link: z.string(),
+    })
+  )
+});
+
 export {
   VolunteerDataSchema,
   HomeDataSchema,
@@ -236,4 +246,5 @@ export {
   ContactUsDataSchema,
   SharedFooterSchema,
   SharedExecsSchema,
+  ClubsSchema,
 };
