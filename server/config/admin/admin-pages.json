@@ -18,6 +18,12 @@
   {
     "title": "Image Store",
     "ref": "/admin/image-store",
-    "view": "/admin/image-store"
+    "view": "/admin/image-store",
+  },
+  {
+    "title": "Documents",
+    "ref": "/admin/document-upload",
+    "view": "/admin/document-upload",
+    "noRouting": true
   }
 ]

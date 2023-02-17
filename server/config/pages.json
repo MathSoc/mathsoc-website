@@ -94,6 +94,16 @@
     ]
   },
   {
+    "title": "Documents",
+    "children": [
+      {
+        "title": "Policies and Bylaws",
+        "ref": "/documents/policies-and-bylaws",
+        "view": "/documents/policies-and-bylaws"
+      }
+    ]
+  },
+  {
     "title": "Cartoons",
     "children": [
       {

@@ -15,6 +15,12 @@ interface EditorPageOutflow extends PageOutflow {
   editorName: string;
 }
 
+interface DocumentPageOutflow extends PageOutflow {
+  documents: DirectoryEntry[];
+  documentSource: string;
+  documentName: string;
+}
+
 class AuthRoutesConstructor {
   static buildRoutes() {
     PageLoader.buildRoutes(
@@ -23,6 +29,7 @@ class AuthRoutesConstructor {
       this.addAdminSpecificOutflowToPage
     );
     this.generateEditorPage();
+    this.generateDocumentUploadPage();
   }
 
   /**
@@ -53,6 +60,37 @@ class AuthRoutesConstructor {
         editorName: getFormattedURL(filename),
       };
       res.render(`pages/admin/generic-editor.pug`, editorOutflow);
+    });
+  }
+
+  /**
+   * Handles the custom data input necessary for the document upload pages.
+   */
+  static generateDocumentUploadPage() {
+    const genericDocumentPageOutflow = PageLoader.getAllPageData(
+      {
+        title: "Document Upload",
+        ref: "/admin/document-upload",
+      },
+      this.addAdminSpecificOutflowToPage
+    );
+    const documentNavigationStructure =
+      EditorDirectoryStructureConstructor.getDocumentDataDirectoryStructure();
+    console.log(documentNavigationStructure)
+
+    router.get("/admin/document-upload", async (req: Request, res: Response) => {
+      const file = req.query["page"] ?? "home";
+      const filename: string =
+        typeof file === "string" ? file : file.toString();
+
+      const documentOutflow: DocumentPageOutflow = {
+        ...genericDocumentPageOutflow,
+
+        documents: documentNavigationStructure,
+        documentSource: `/api/data?path=${filename}`,
+        documentName: getFormattedURL(filename),
+      };
+      res.render(`pages/admin/generic-editor.pug`, documentOutflow);
     });
   }
 

@@ -26,16 +26,11 @@ append scripts
 block body
   div(id="editor-menu-and-body")
     nav(id="editor-nav-menu")
-      h2(id="side-menu-title") Document Page Select
+      h2(id="side-menu-title") Editor Select
       +menuLayer(editors)
     div(id="body")
       h2(id="editor-title")=editorName
       div(id="jsoneditor" data-source=editorSource)
-      div(class="open-editor-container")
-        button(class="pink-button disabled open-editor-button" id="open-editor-btn" disabled="true") Open Markdown Editor
-      div(class="save-button-container")
-        button(class="save pink-button" id="save-editor-btn") Save 
-          span(class="editor-name")
       div(id="modal" class="modal")
         div(class="modal-content")
           div(id="quill-editor")
