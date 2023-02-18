@@ -32,9 +32,10 @@ block body
       h2(id="editor-title")=editorName
       div(id="jsoneditor" data-source=editorSource)
       div(class="open-editor-container")
-        button(class="pink-button disabled open-editor-button" id="open-editor-btn" disabled="true")
+        button(class="pink-button disabled open-editor-button" id="open-editor-btn" disabled="true") Open Markdown Editor
       div(class="save-button-container")
-        button(class="save pink-button" id="save-editor-btn")
+        button(class="save pink-button" id="save-editor-btn") Save 
+          span(class="editor-name")
       div(id="modal" class="modal")
         div(class="modal-content")
           div(id="quill-editor")

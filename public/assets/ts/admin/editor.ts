@@ -34,8 +34,7 @@ class Editor {
     const openButton = document.getElementById("open-editor-btn");
     const saveButton = document.getElementById("save-editor-btn");
 
-    openButton.innerHTML = "Open Markdown Editor";
-    saveButton.innerHTML = `Save <span class="editor-name">${this.name}</span>`;
+    saveButton.querySelector(".editor-name").innerHTML = this.name;
     openButton.onclick = this.openRichTextModal;
     saveButton.onclick = () => this.saveData(this.sourceDataURL);
   }
