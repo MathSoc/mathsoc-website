@@ -23,38 +23,20 @@ class Editor {
     this.editor = new window["JSONEditor"](container, this.options);
 
     this.name = this.getFormattedURL(this.sourceDataURL.split("path=")[1]);
-    this.createButtons(container);
+    this.attachButtonHandlers();
 
     (async () => {
       this.editor.set(await this.getFileData());
     })();
   }
 
-  private createButtons(container: HTMLElement) {
-    const openButton = document.createElement("button");
-    openButton.innerHTML = "Open Markdown Editor";
-    openButton.disabled = true;
-    openButton.classList.add("open-editor-button", "disabled");
-    openButton.id = "open-editor-btn";
+  private attachButtonHandlers() {
+    const openButton = document.getElementById("open-editor-btn");
+    const saveButton = document.getElementById("save-editor-btn");
+
+    saveButton.querySelector(".editor-name").innerHTML = this.name;
     openButton.onclick = this.openRichTextModal;
-
-    const openButtonContainer = document.createElement("div");
-    openButtonContainer.classList.add("open-editor-container");
-    openButtonContainer.appendChild(openButton);
-    container.appendChild(openButtonContainer);
-
-    const saveButton = document.createElement("button");
-    saveButton.classList.add("save", "pink-button");
-    saveButton.innerHTML = `Save <span class="editor-name">${this.name}</span>`;
-    saveButton.addEventListener("click", () => {
-      this.saveData(this.sourceDataURL);
-    });
-
-    const saveButtonContainer = document.createElement("div");
-    saveButtonContainer.classList.add("save-button-container");
-
-    saveButtonContainer.appendChild(saveButton);
-    container.appendChild(saveButtonContainer);
+    saveButton.onclick = () => this.saveData(this.sourceDataURL);
   }
 
   // open the rich text modal
