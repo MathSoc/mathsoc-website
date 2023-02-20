@@ -229,8 +229,9 @@ const ClubsSchema = z.object({
   clubs: z.array(
     z.object({
       title: z.string(),
-      text: z.string(),
+      descriptionMarkdown: z.string(),
       link: z.string(),
+      icon: z.string(),
     })
   )
 });
@@ -240,7 +241,7 @@ const CommunitySchema = z.object({
   communities: z.array(
     z.object({
       title: z.string(),
-      text: z.string(),
+      descriptionMarkdown: z.string(),
       link: z.string(),
     })
   )

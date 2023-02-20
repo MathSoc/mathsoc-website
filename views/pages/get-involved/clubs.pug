@@ -9,8 +9,8 @@ block body
     section(class="white")
         ol(class="stepper")
             each club in data.clubs
-                li(class="stepper_item")
+                li(class="stepper_item" style=`--icon: url('${club.icon}')`)
                     div(class="stepper_content")
                         a(href=club.link target="_blank" class="club_link")
                             h3(class="stepper_title") #{club.title}
-                        p(class="stepper_text")!=club.text
+                        p!=club.descriptionMarkdown

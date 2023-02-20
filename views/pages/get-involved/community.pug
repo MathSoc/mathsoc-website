@@ -10,8 +10,8 @@ block body
         h1 #{data.communityHeader}
         ul(class="stepper")
             each community in data.communities
-                li(class="stepper_item")
+                li(class="stepper_item" style=`--icon: url('${community.icon}')`)
                     div(class="stepper_content")
                         a(href=community.link target="_blank" class="community_link")
                             h3(class="stepper_title") #{community.title}
-                        p(class="stepper_text")!=community.text
+                        p!=community.descriptionMarkdown
