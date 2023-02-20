@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { UploadedFile } from "express-fileupload";
 import { Logger } from "../../util/logger";
 import { Image } from "../../types/image";
-// import path from "path";
 import {
   Dirent,
   existsSync,
