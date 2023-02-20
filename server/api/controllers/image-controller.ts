@@ -31,6 +31,11 @@ type ImageDeleteRequest = ImageRequest & {
   type: Action.DELETE;
 };
 
+enum ImageMimetypes {
+  JPEG = "image/jpeg",
+  PNG = "image/png",
+}
+
 export class ImageController {
   static logger = new Logger();
   private static queues: Record<string, ImageRequestQueue> = {};
@@ -47,6 +52,12 @@ export class ImageController {
         throw new Error("No mimetype/filetype provided with the image.");
       }
 
+      if (
+        image.mimetype !== ImageMimetypes.JPEG &&
+        image.mimetype !== ImageMimetypes.PNG
+      ) {
+        throw new Error("Unsupported filetype uploaded.");
+      }
       const transformedImage: Image = {
         fileName: image.name,
         fileType: image.name.split(".")[1],

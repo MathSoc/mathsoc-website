@@ -28,7 +28,7 @@ app
   .use(
     fileUpload({
       safeFileNames: true,
-      preserveExtension: true,
+      preserveExtension: 4, // jpeg is longest we can use
     })
   )
   .use(express.static(path.join(__dirname, "public")))
