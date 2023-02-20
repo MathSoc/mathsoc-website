@@ -1,6 +1,10 @@
 @import "../mixins/pink-button";
 @import "../mixins/toast-notification";
 
+body {
+  min-height: 800px;
+}
+
 #navbar {
   background-color: var(--mathsoc-pink);
   color: white;
@@ -92,11 +96,14 @@
   max-width: var(--content-width);
   padding: 0 1em;
   margin: auto;
-
   min-height: 500px;
 }
 
 #footer {
+  bottom: 0;
+  left: 0;
+  position: static;
+
   #frontend-return {
     margin: 0 auto;
     align-self: center;

@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import dotenv from "dotenv";
 import express from "express";
 import path from "path";
+import fileUpload from "express-fileupload";
 
 import publicRoutes from "./server/routes/public-routes";
 import authenticatedRoutes from "./server/routes/authenticated-routes";
@@ -24,6 +25,7 @@ app.locals.basedir = path.join(__dirname, "");
 app
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
+  .use(fileUpload())
   .use(express.static(path.join(__dirname, "public")))
   .set("views", path.join(__dirname, "views"))
   .use(loggerMiddleware(logger))

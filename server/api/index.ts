@@ -7,6 +7,7 @@ import express from "express";
 import navItems from "../config/navbar.json";
 import footer from "../data/shared/footer.json";
 import { ExamBankController } from "./controllers/exam-bank-controller";
+import { ImageController } from "./controllers/image-controller";
 
 const router = express.Router();
 
@@ -46,6 +47,28 @@ router.post("/general-inquiries", (req: Request, res: Response) => {
       footer: footer,
     });
   }
+});
+
+router.post("/image/upload", async (req: Request, res: Response) => {
+  ImageController.uploadImage(req, res);
+  // if (response.status === "fail") {
+  //   res.status(400).redirect("/admin/image-store");
+  // } else {
+  //   res.status(200).redirect("/admin/image-store");
+  // }
+});
+
+router.post("/image/delete", async (req: Request, res: Response) => {
+  ImageController.deleteImage(req, res);
+  // if (response) {
+  //   res.status(200).json("done");
+  // } else {
+  //   res.status(400).json("not done");
+  // }
+});
+
+router.get("/images", (_req: Request, res: Response) => {
+  ReadWriteAPIController.getJSONDataPath("_hidden/image-list", res);
 });
 
 export default router;

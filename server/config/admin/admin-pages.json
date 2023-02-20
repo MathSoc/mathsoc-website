@@ -14,5 +14,10 @@
     "title": "Exam Bank",
     "ref": "/admin/exam-bank",
     "view": "/admin/exam-bank"
+  },
+  {
+    "title": "Image Store",
+    "ref": "/admin/image-store",
+    "view": "/admin/image-store"
   }
 ]

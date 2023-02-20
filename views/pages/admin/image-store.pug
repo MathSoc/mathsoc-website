@@ -1,0 +1,29 @@
+extends /views/templates/admin-base.pug
+
+append styles
+    link(href="/assets/css/admin/image-store.css" rel="stylesheet")
+
+append scripts 
+    script(src="/assets/js/admin/image-store.js" defer)
+
+block body
+  div(id="content")
+    h1 MathSoc Images
+    div(class="actions")
+        input(type="text" name="image-search-input" placeholder="Search for images...")
+        form(method="POST" action="/api/image/upload" enctype="multipart/form-data")
+            input(type="file" name="image")
+            button(class="upload-btn" type="submit") Upload Image
+    div(class="images")
+        div(id="hidden-image" data-filename="$FILE-NAME$")
+            img(src="")
+            div(class="img-desc")
+                p(class="img-name")
+                div(class="actions-container")
+                    buton(class="img-delete")
+                        i(class="fa fa-trash" aria-hidden="true" style="font-size: 24px")
+                    button(class="img-link-copy")
+                        i(class="fa-solid fa-link" aria-hidden="true" style="font-size: 24px")
+    div(class="no-images-message")
+        h3 There are no uploaded images. Click "Choose file" to select an image and then "Upload Image" to upload it.
+    
