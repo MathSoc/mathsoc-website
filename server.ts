@@ -25,7 +25,12 @@ app.locals.basedir = path.join(__dirname, "");
 app
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
-  .use(fileUpload())
+  .use(
+    fileUpload({
+      safeFileNames: true,
+      preserveExtension: true,
+    })
+  )
   .use(express.static(path.join(__dirname, "public")))
   .set("views", path.join(__dirname, "views"))
   .use(loggerMiddleware(logger))

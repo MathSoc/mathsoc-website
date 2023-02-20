@@ -88,7 +88,12 @@ class ImageStoreFrontend {
       res.json()
     );
     if (response.status === "success") {
-      location.reload();
+      const imageContainer = this.getImageContainer();
+      const target = Array.from(imageContainer.childNodes).find(
+        (item: HTMLElement) =>
+          item.getAttribute("data-filename") === img.fileName
+      );
+      (target as HTMLElement).style.display = "none";
     } else {
       if (response.message) {
         showToast("Cannot delete file that is in use.", "fail");
