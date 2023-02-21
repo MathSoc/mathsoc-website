@@ -3,9 +3,6 @@ import { ContactUsController } from "./controllers/contact-us-controller";
 import { ReadWriteAPIController } from "./controllers/read-write-api-controller";
 import { validate } from "../validation/endpoint-schema-map";
 import express from "express";
-
-import navItems from "../config/navbar.json";
-import footer from "../data/shared/footer.json";
 import { ExamBankController } from "./controllers/exam-bank-controller";
 import { ImageController } from "./controllers/image-controller";
 
@@ -42,10 +39,7 @@ router.post("/general-inquiries", (req: Request, res: Response) => {
   const success = ContactUsController.handleRequest(req, res);
   // If the res hasn't been closed by bad input, then redirect to success page
   if (success) {
-    res.render("pages/contact-us/contact-us-success", {
-      navItems: navItems,
-      footer: footer,
-    });
+    res.redirect("/contact-us/success");
   }
 });
 
