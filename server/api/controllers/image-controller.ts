@@ -1,3 +1,4 @@
+// @todo: Autogenerate uploads folder if it doesn't exist on startup
 import { Request, Response } from "express";
 import { UploadedFile } from "express-fileupload";
 import { Logger } from "../../util/logger";
@@ -40,6 +41,11 @@ export class ImageController {
   static logger = new Logger();
   private static queues: Record<string, ImageRequestQueue> = {};
 
+  /*
+  Handles the /api/image/upload endpoint 
+  - handles all possible errors with the file upload (no file, no fileype, not recognized filetype)
+  - if validation passes, adds the request to the ImageRequestQueue
+  */
   static uploadImage(req: Request, res: Response) {
     try {
       const image = req.files?.image as UploadedFile;
@@ -82,6 +88,12 @@ export class ImageController {
     }
   }
 
+  /*
+  Handles the /api/image/delete endpoint
+  - checks that file was passed
+  - checks that file exists
+  - if validations pass, adds the delete request to the ImageRequestQueue
+  */
   static deleteImage(req: Request, res: Response) {
     try {
       const { fileName, fileType, path, publicLink } = req.body;
@@ -117,6 +129,9 @@ export class ImageController {
     }
   }
 
+  /*
+    Processes the actual upload - moves the file into the /public/assets/img/uploads/ folder and then rewrites the image-list.json file.
+  */
   static async processImageUpload(request: ImageUploadRequest) {
     const { uploadedFile, fileName, res, path } = request;
 
@@ -131,6 +146,10 @@ export class ImageController {
     res.redirect("/admin/image-store");
   }
 
+  /*
+    Processes the delete request - checks for occurences of the image in the datafiles to ensure we don't have faulty image
+    links in the frontend, and then deletes the image if no occurences were found, and then rewrites the image-list.json file.
+  */
   static processImageDelete(request: ImageDeleteRequest) {
     const { path, res, fileName, publicLink } = request;
     try {
@@ -151,6 +170,9 @@ export class ImageController {
     }
   }
 
+  /*
+   Helper function for rewriteImageJson();
+  */
   private static generateJSON(): Image[] {
     const uploadedFiles: Dirent[] = readdirSync(this.getImagePath(""), {
       withFileTypes: true,
@@ -172,6 +194,9 @@ export class ImageController {
     return images;
   }
 
+  /*
+    Creates a json file with all image metadata (fileName, fileType, path, publicLink) to be served to the frontend image store
+  */
   private static rewriteImageJson(): void {
     const url = "_hidden/image-list";
     ReadWriteController.overwriteJSONDataPath(
@@ -192,7 +217,9 @@ export class ImageController {
     return `/assets/img/uploads/${fileName}`;
   }
 
-  // find occurences of image inside data folder before deleting.
+  /*
+    Helper function for checkImageOccurences
+  */
   private static getDataFiles(mainPath: string, target: string): string[] {
     const files: string[] = [];
 
@@ -214,6 +241,9 @@ export class ImageController {
     return files;
   }
 
+  /*
+    Checks for occurence of an image in the server/data files, to make sure we aren't deleting an image that is in use on the frontend.
+  */
   private static checkImageOccurences(mainPath: string, target: string) {
     const files = this.getDataFiles(mainPath, target);
     const matches: string[] = [];

@@ -2,6 +2,7 @@
 /node_modules
 /public/assets/css
 /public/assets/js
+/public/assets/img/uploads
 /public/exams
 .env
 *.tsbuildinfo

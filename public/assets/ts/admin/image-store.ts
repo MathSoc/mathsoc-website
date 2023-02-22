@@ -7,6 +7,8 @@ type Image = {
 };
 
 class ImageStoreFrontend {
+  static deletedImages: string[] = [];
+
   static init() {
     this.populateImages();
     (<HTMLInputElement>(
@@ -94,6 +96,19 @@ class ImageStoreFrontend {
           item.getAttribute("data-filename") === img.fileName
       );
       (target as HTMLElement).style.display = "none";
+      const imageResponse = await this.getImages();
+      const noImagesContainer = document.querySelector(
+        ".no-images-message"
+      ) as HTMLDivElement;
+
+      if (imageResponse.length === 0) {
+        noImagesContainer.style.display = "flex";
+        imageContainer.style.display = "none";
+      } else {
+        imageContainer.style.display = "flex";
+        noImagesContainer.style.display = "none";
+      }
+      this.deletedImages.push(img.fileName);
     } else {
       if (response.message) {
         showToast("Cannot delete file that is in use.", "fail");
@@ -110,7 +125,10 @@ class ImageStoreFrontend {
       children.forEach((child) => {
         const element = child as HTMLElement;
         const fileName = element.getAttribute("data-filename");
-        if (!fileName.includes(filter)) {
+        if (
+          !fileName.includes(filter) ||
+          this.deletedImages.includes(fileName)
+        ) {
           element.style.display = "none";
         } else {
           element.style.display = "block";
@@ -119,7 +137,12 @@ class ImageStoreFrontend {
     } else {
       children.forEach((child) => {
         const element = child as HTMLElement;
-        if (element.id !== "hidden-image") element.style.display = "block";
+        if (
+          element.id !== "hidden-image" &&
+          !this.deletedImages.includes(element.getAttribute("data-filename"))
+        ) {
+          element.style.display = "block";
+        }
       });
     }
   }

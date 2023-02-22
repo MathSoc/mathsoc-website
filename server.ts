@@ -22,6 +22,12 @@ app.set("view engine", "pug");
 
 app.locals.basedir = path.join(__dirname, "");
 
+// @todo: remove this code when autogenerating all required folders
+const isUploadDirectory = fs.existsSync("public/assets/img/uploads");
+if (!isUploadDirectory) {
+  fs.mkdirSync("public/assets/img/uploads");
+}
+
 app
   .use(express.json())
   .use(express.urlencoded({ extended: false }))

@@ -15,6 +15,8 @@
   display: none;
   margin-bottom: 6rem;
   margin-top: 2rem;
+  font-family: var(--title-font);
+  font-size: 2em;
 }
 
 .actions {
@@ -85,11 +87,13 @@
       .img-delete:hover {
         transition: 0.3s;
         color: var(--mathsoc-pink);
+        cursor: pointer;
       }
 
       .img-link-copy:hover {
         transition: 0.3s;
         color: var(--mathsoc-pink);
+        cursor: pointer;
       }
     }
   }
