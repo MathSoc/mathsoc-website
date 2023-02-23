@@ -47,7 +47,7 @@ router.post("/image/upload", async (req: Request, res: Response) => {
   ImageController.uploadImage(req, res);
 });
 
-router.post("/image/delete", async (req: Request, res: Response) => {
+router.delete("/image/delete", async (req: Request, res: Response) => {
   ImageController.deleteImage(req, res);
 });
 

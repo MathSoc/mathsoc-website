@@ -80,7 +80,7 @@ class ImageStoreFrontend {
 
   private static async deleteImage(img: Image) {
     const options = {
-      method: "POST",
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
