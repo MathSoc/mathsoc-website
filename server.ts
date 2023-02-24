@@ -11,7 +11,7 @@ import adminRoutes from "./server/routes/admin-routes";
 import api from "./server/api";
 import { Logger, loggerMiddleware } from "./server/util/logger";
 import fs from "fs";
-import { DirectoryPrebuilder } from "./server/routes/controllers/directory-prebuilder";
+import { DirectoryPrebuilder } from "./server/util/directory-prebuilder";
 const logger = new Logger();
 
 dotenv.config(); // load .env variables
