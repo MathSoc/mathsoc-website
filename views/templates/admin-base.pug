@@ -3,12 +3,13 @@ include /views/mixins/components.pug
 doctype html
 html(lang="en")
   include /views/partials/header.pug
-  link(href="/assets/css/admin/admin.css" rel="stylesheet")
   link(href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.9.2/jsoneditor.min.css" rel="stylesheet" type="text/css")
   link(href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.9.2/jsoneditor.min.js" integrity="sha512-MP2pEPP3BGw032ovuAsX6yTu7O4J6L3YTXuyq3IpR+LuwRun9BBjOeeIKgO3bRiNlI88x3oCVb9I1/1+xmvFIg==" crossorigin="anonymous" referrerpolicy="no-referrer")
   script(src="https://cdn.quilljs.com/1.3.6/quill.js")
+  script(src="https://kit.fontawesome.com/c02fb43ad1.js" crossorigin="anonymous")
   script(src="/assets/js/admin/toast.js")
+  link(href="/assets/css/admin/admin.css" rel="stylesheet")
   
   body 
     include /views/partials/navbar.pug
@@ -21,6 +22,6 @@ html(lang="en")
             - const currentPageClass = ref.replace(/\?.*/, '') === section.ref.replace(/\?.*/, '') ? " active" : "";
             a(class="section-button" + currentPageClass href=section.ref)=section.title
     block body
-    div(id="footer")
-      +pink-button("Return to Frontend", "frontend-return", "/")
+  footer(id="footer")
+    +pink-button("Return to Frontend", "frontend-return", "/")
 

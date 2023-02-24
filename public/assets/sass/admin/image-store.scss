@@ -1,0 +1,105 @@
+@import "../util/sass-mixins";
+
+#content {
+  max-width: var(--content-width);
+  margin: auto;
+  padding: 0 2em;
+  min-height: 450px;
+}
+
+.no-images-message {
+  width: 100%;
+  height: 500px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  margin-bottom: 6rem;
+  margin-top: 2rem;
+  font-family: var(--title-font);
+  font-size: 2em;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .upload-btn {
+    margin: 3px;
+    border: 1px solid var(--mathsoc-pink);
+    padding: 4px;
+    font-size: 16px;
+    color: black;
+
+    &:hover {
+      background-color: var(--mathsoc-pink);
+      transition: 0.3s;
+    }
+  }
+
+  input[type="file"] {
+    background-color: white;
+  }
+
+  input[type="file"]::file-selector-button {
+    border: 1px solid var(--mathsoc-pink);
+    margin: 3px;
+    padding: 4px;
+    font-size: 16px;
+    background-color: white;
+    &:hover {
+      background-color: var(--mathsoc-pink);
+      transition: 0.3s;
+    }
+  }
+}
+
+.images {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 6rem;
+  margin-top: 2rem;
+
+  .image-card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: auto;
+  }
+
+  /* On mouse-over, add a deeper shadow */
+  .image-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  /* Add some padding inside the card container */
+  .img-desc {
+    padding: 2px 16px;
+
+    .actions-container {
+      > * {
+        margin: 5px;
+      }
+
+      .img-delete:hover {
+        transition: 0.3s;
+        color: var(--mathsoc-pink);
+        cursor: pointer;
+      }
+
+      .img-link-copy:hover {
+        transition: 0.3s;
+        color: var(--mathsoc-pink);
+        cursor: pointer;
+      }
+    }
+  }
+
+  #hidden-image {
+    display: none;
+  }
+}

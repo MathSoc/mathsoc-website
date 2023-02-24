@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import dotenv from "dotenv";
 import express from "express";
 import path from "path";
+import fileUpload from "express-fileupload";
 
 import publicRoutes from "./server/routes/public-routes";
 import authenticatedRoutes from "./server/routes/authenticated-routes";
@@ -21,9 +22,21 @@ app.set("view engine", "pug");
 
 app.locals.basedir = path.join(__dirname, "");
 
+// @todo: remove this code when autogenerating all required folders
+const isUploadDirectory = fs.existsSync("public/assets/img/uploads");
+if (!isUploadDirectory) {
+  fs.mkdirSync("public/assets/img/uploads");
+}
+
 app
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
+  .use(
+    fileUpload({
+      safeFileNames: true,
+      preserveExtension: 4, // jpeg is longest we can use
+    })
+  )
   .use(express.static(path.join(__dirname, "public")))
   .set("views", path.join(__dirname, "views"))
   .use(loggerMiddleware(logger))

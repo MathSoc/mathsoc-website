@@ -3,10 +3,8 @@ import { ContactUsController } from "./controllers/contact-us-controller";
 import { ReadWriteAPIController } from "./controllers/read-write-api-controller";
 import { validate } from "../validation/endpoint-schema-map";
 import express from "express";
-
-import navItems from "../config/navbar.json";
-import footer from "../data/shared/footer.json";
 import { ExamBankController } from "./controllers/exam-bank-controller";
+import { ImageController } from "./controllers/image-controller";
 
 const router = express.Router();
 
@@ -41,11 +39,20 @@ router.post("/general-inquiries", (req: Request, res: Response) => {
   const success = ContactUsController.handleRequest(req, res);
   // If the res hasn't been closed by bad input, then redirect to success page
   if (success) {
-    res.render("pages/contact-us/contact-us-success", {
-      navItems: navItems,
-      footer: footer,
-    });
+    res.redirect("/contact-us/success");
   }
+});
+
+router.post("/image/upload", async (req: Request, res: Response) => {
+  ImageController.uploadImage(req, res);
+});
+
+router.delete("/image/delete", async (req: Request, res: Response) => {
+  ImageController.deleteImage(req, res);
+});
+
+router.get("/images", (_req: Request, res: Response) => {
+  ReadWriteAPIController.getJSONDataPath("_hidden/image-list", res);
 });
 
 export default router;
