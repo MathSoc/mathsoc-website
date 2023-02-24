@@ -1,17 +1,21 @@
-[
-    {
-        "title": "Policies",
-        "date": "February 1, 2023",
-        "location": "public/documents/policies-and-bylaws/policies.pdf"
-    },
-    {
-        "title": "Board Procedures",
-        "date": "February 10, 2023",
-        "location": "public/documents/policies-and-bylaws/board-procedures-public.pdf"
-    },
-    {
-        "title": "Bylaws",
-        "date": "December 31, 2022",
-        "location": "public/documents/policies-and-bylaws/bylaws-public.pdf"
-    }
-]
+{
+    "policies-and-bylaws":
+    [
+        {
+            "title": "Policies",
+            "date": "February 1, 2023",
+            "location": "public/documents/policies-and-bylaws/policies.pdf"
+        },
+        {
+            "title": "Board Procedures",
+            "date": "February 10, 2023",
+            "location": "public/documents/policies-and-bylaws/board-procedures-public.pdf"
+        },
+        {
+            "title": "Bylaws",
+            "date": "December 31, 2022",
+            "location": "public/documents/policies-and-bylaws/bylaws-public.pdf"
+        }
+    ],
+    "update": "true"
+}

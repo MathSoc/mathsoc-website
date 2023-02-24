@@ -76,12 +76,13 @@ class AuthRoutesConstructor {
     );
     const documentNavigationStructure =
       EditorDirectoryStructureConstructor.getDocumentDataDirectoryStructure();
-    console.log(documentNavigationStructure)
 
     router.get("/admin/document-upload", async (req: Request, res: Response) => {
-      const file = req.query["page"] ?? "home";
+      const file = req.query["page"] ?? "policies-and-bylaws";
       const filename: string =
         typeof file === "string" ? file : file.toString();
+      
+      console.log(filename)
 
       const documentOutflow: DocumentPageOutflow = {
         ...genericDocumentPageOutflow,
@@ -90,7 +91,7 @@ class AuthRoutesConstructor {
         documentSource: `/api/data?path=${filename}`,
         documentName: getFormattedURL(filename),
       };
-      res.render(`pages/admin/generic-editor.pug`, documentOutflow);
+      res.render(`pages/admin/document-upload.pug`, documentOutflow);
     });
   }
 

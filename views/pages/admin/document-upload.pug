@@ -4,12 +4,12 @@ mixin menuLayer(items, name)
   ul
     each page of items 
       if page.type === 'page'
-        - const pageIsActive = editorSource.split('path=')[1].includes(page.ref.replace('.json', ''));
+        - const pageIsActive = documentSource.split('path=')[1].includes(page.ref.replace('.json', ''));
         - const activeClass = pageIsActive ? 'active-page' : '';
         li(class=activeClass)
           a(href="/admin/editor?page=" + page.ref.replace('.json', ''))=page.name
       else 
-        - const dropdownIsActive = editorSource.split('path=')[1].includes(page.ref);
+        - const dropdownIsActive = documentSource.split('path=')[1].includes(page.ref);
         - const activeClass = dropdownIsActive ? ' active' : '';
         li(class="dropdown" + activeClass)
           div(class="dropdown-name")=page.name
@@ -26,14 +26,8 @@ append scripts
 block body
   div(id="editor-menu-and-body")
     nav(id="editor-nav-menu")
-      h2(id="side-menu-title") Editor Select
-      +menuLayer(editors)
+      h2(id="side-menu-title") Upload Page Select
+      +menuLayer(documents)
     div(id="body")
-      h2(id="editor-title")=editorName
-      div(id="jsoneditor" data-source=editorSource)
-      div(id="modal" class="modal")
-        div(class="modal-content")
-          div(id="quill-editor")
-          div(class="save-rich-text")
-            +pink-button("Save Rich Text", "save-rich-text-btn")
-            +pink-button("Cancel", "cancel-rich-text-btn")
+      h2(id="editor-title")=documentName
+      p #{documents}

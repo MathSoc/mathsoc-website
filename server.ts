@@ -32,7 +32,7 @@ app
       preserveExtension: 4, // jpeg is longest we can use
     })
   )
-  .use(express.static(path.join(__dirname, "public")))
+  .use(express.static(path.join(__dirname, "public"))) 
   .set("views", path.join(__dirname, "views"))
   .use(loggerMiddleware(logger))
   .use(publicRoutes)

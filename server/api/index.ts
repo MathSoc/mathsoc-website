@@ -5,6 +5,7 @@ import { validate } from "../validation/endpoint-schema-map";
 import express from "express";
 import { ExamBankController } from "./controllers/exam-bank-controller";
 import { ImageController } from "./controllers/image-controller";
+import { DocumentController } from "./controllers/document-controller";
 
 const router = express.Router();
 
@@ -54,5 +55,8 @@ router.delete("/image/delete", async (req: Request, res: Response) => {
 router.get("/images", (_req: Request, res: Response) => {
   ReadWriteAPIController.getJSONDataPath("_hidden/image-list", res);
 });
+router.post("/document/update", async (req: Request, res: Response) => {
+  DocumentController.updateDocument(req, res);
+})
 
 export default router;
