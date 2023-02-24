@@ -12,7 +12,7 @@ block body
     div(class="actions")
         input(type="text" name="image-search-input" placeholder="Search for images...")
         form(method="POST" action="/api/image/upload" enctype="multipart/form-data")
-            input(type="file" name="image" required multiple)
+            input(type="file" name="image" required multiple accept="image/*")
             button(class="upload-btn" type="submit") Upload Image
     div(class="images")
         div(id="hidden-image" data-filename="$FILE-NAME$")
