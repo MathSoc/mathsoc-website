@@ -44,7 +44,7 @@ router.post("/general-inquiries", (req: Request, res: Response) => {
 });
 
 router.post("/image/upload", async (req: Request, res: Response) => {
-  ImageController.uploadImage(req, res);
+  ImageController.uploadImages(req, res);
 });
 
 router.delete("/image/delete", async (req: Request, res: Response) => {
