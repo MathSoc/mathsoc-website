@@ -7,6 +7,7 @@ block body
     +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
     div(class="content")
     section(class="white")
+        h1 #{data.clubsHeader}
         ol(class="stepper")
             each club in data.clubs
                 li(class="stepper_item" style=`--icon: url('${club.icon}')`)
