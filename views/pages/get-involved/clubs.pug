@@ -1,0 +1,17 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+    link(href="/assets/css/pages/get-involved/clubs.css" rel="stylesheet")
+
+block body
+    +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
+    div(class="content")
+    section(class="white")
+        h1 #{data.clubsHeader}
+        ol(class="stepper")
+            each club in data.clubs
+                li(class="stepper_item" style=`--icon: url('${club.icon}')`)
+                    div(class="stepper_content")
+                        a(href=club.link target="_blank" class="club_link")
+                            h3(class="stepper_title") #{club.title}
+                        p!=club.descriptionMarkdown

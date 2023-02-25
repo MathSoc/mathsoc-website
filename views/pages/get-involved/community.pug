@@ -1,0 +1,17 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+    link(href="/assets/css/pages/get-involved/community.css" rel="stylesheet")
+
+block body
+    +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
+    div(class="content")
+    section(class="white")
+        h1 #{data.communityHeader}
+        ul(class="stepper")
+            each community in data.communities
+                li(class="stepper_item" style=`--icon: url('${community.icon}')`)
+                    div(class="stepper_content")
+                        a(href=community.link target="_blank" class="community_link")
+                            h3(class="stepper_title") #{community.title}
+                        p!=community.descriptionMarkdown

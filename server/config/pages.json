@@ -22,6 +22,16 @@
         "dataSources": {
           "execs": "/shared/execs"
         }
+      },
+      {
+        "title": "MathSoc Clubs",
+        "ref": "/get-involved/clubs",
+        "view": "/get-involved/clubs"
+      },
+      {
+        "title": "MathSoc Community",
+        "ref": "/get-involved/community",
+        "view": "/get-involved/community"
       }
     ]
   },

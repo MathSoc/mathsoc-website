@@ -225,6 +225,29 @@ const SharedExecsSchema = z.object({
   ),
 });
 
+const ClubsSchema = z.object({
+  clubsHeader: z.string(),
+  clubs: z.array(
+    z.object({
+      title: z.string(),
+      descriptionMarkdown: z.string(),
+      link: z.string(),
+      icon: z.string(),
+    })
+  )
+});
+
+const CommunitySchema = z.object({
+  communityHeader: z.string(),
+  communities: z.array(
+    z.object({
+      title: z.string(),
+      descriptionMarkdown: z.string(),
+      link: z.string(),
+    }).strict()
+  )
+}).strict();
+
 export {
   VolunteerDataSchema,
   HomeDataSchema,
@@ -236,4 +259,6 @@ export {
   ContactUsDataSchema,
   SharedFooterSchema,
   SharedExecsSchema,
+  ClubsSchema,
+  CommunitySchema,
 };
