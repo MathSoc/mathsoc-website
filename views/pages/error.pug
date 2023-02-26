@@ -11,25 +11,8 @@ block body
         p(class="error-404") 404
         div(class="error-links")
             h2 Helpful Links 
-            ul 
-                li 
-                    i.fa.fa-angle-right
-                    a(href="/") Home 
-                li 
-                    i.fa.fa-angle-right
-                    a(href="/get-involved/volunteer") Get Involved
-                li 
-                    i.fa.fa-angle-right
-                    a Services
-                li 
-                    i.fa.fa-angle-right
-                    a Documents
-                li 
-                    i.fa.fa-angle-right
-                    a(href="/elections") Elections
-                li 
-                    i.fa.fa-angle-right
-                    a Resources
-                li 
-                    i.fa.fa-angle-right
-                    a(href="/contact-us") Contact Us
+            ul
+                each item in navItems
+                        li
+                            i.fa.fa-angle-right
+                            a(href=item.ref) #{item.title}
