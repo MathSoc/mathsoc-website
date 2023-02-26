@@ -10,7 +10,4 @@
     "sourceMap": false
   },
   "include": ["public/assets/ts/**/*.ts"],
-  "ts-node": {
-    "swc": true
-  }
 }
