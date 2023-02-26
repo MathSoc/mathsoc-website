@@ -31,11 +31,6 @@ type ImageDeleteRequest = Image & {
   type: Action.DELETE;
 };
 
-enum ImageMimetypes {
-  JPEG = "image/jpeg",
-  PNG = "image/png",
-}
-
 export class ImageController {
   static logger = new Logger();
   private static queues: Record<string, ImageRequestQueue> = {};
@@ -50,7 +45,8 @@ export class ImageController {
     try {
       // this is done because express-upload has no way to tell you whether one file or multiple files were uploaded
       // casting singular file to an array, or keeping multiple files as an existing array
-      const images = (req.files?.images as UploadedFile[]).length
+
+      const images = Array.isArray(req.files?.images)
         ? (req.files?.images as UploadedFile[])
         : [req.files?.images as UploadedFile];
 
@@ -67,17 +63,16 @@ export class ImageController {
           continue;
         }
 
-        if (
-          image.mimetype !== ImageMimetypes.JPEG &&
-          image.mimetype !== ImageMimetypes.PNG
-        ) {
-          errors.push(`Unsupported filetype for ${image.name}`);
+        if (image.mimetype.match(/(^image)(\/)[a-zA-Z0-9_]*/gm) === null) {
+          errors.push(
+            `Unsupported filetype for ${image.name}. We only support image file types.`
+          );
           continue;
         }
 
         const transformedImage: ImageWithFile = {
           fileName: image.name,
-          fileType: image.name.split(".")[1],
+          fileType: image.name.split(".").slice(1).join("."),
           path: this.getImagePath(image.name),
           publicLink: this.getPublicLink(image.name),
           uploadedFile: image,
@@ -157,7 +152,7 @@ export class ImageController {
 
     const urlSearchParams = new URLSearchParams();
     errors.forEach((item) => urlSearchParams.append("errors", item));
-    res.redirect(`/admin/image-store?${urlSearchParams}`);
+    res.send({ status: "success", errors: errors });
   }
 
   /*
@@ -198,7 +193,7 @@ export class ImageController {
       if (img.isFile()) {
         images.push({
           fileName: img.name,
-          fileType: img.name.split(".")[1],
+          fileType: img.name.split(".").slice(1).join("."),
           path: this.getImagePath(img.name),
           publicLink: this.getPublicLink(img.name),
         });
