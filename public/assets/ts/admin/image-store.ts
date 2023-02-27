@@ -14,6 +14,8 @@ class ImageStoreFrontend {
     (<HTMLInputElement>(
       document.getElementsByName("image-search-input")[0]
     )).addEventListener("input", ImageStoreFrontend.filterImages);
+    (<HTMLButtonElement>document.getElementById("upload-images-btn")).onclick =
+      this.uploadImages;
   }
 
   static filterImages(this: HTMLInputElement) {
@@ -35,7 +37,7 @@ class ImageStoreFrontend {
     const hiddenImage = this.getImageContainer().querySelector("#hidden-image");
     const newImageCard = hiddenImage.cloneNode(true) as HTMLElement;
 
-    newImageCard.id = "";
+    newImageCard.id = img.fileName;
     newImageCard.setAttribute("data-filename", img.fileName);
     newImageCard.classList.add("image-card");
     newImageCard.querySelector("img").setAttribute("src", img.publicLink);
@@ -57,6 +59,50 @@ class ImageStoreFrontend {
     return newImageCard;
   }
 
+  private static async uploadImages() {
+    const fileInput = document.getElementsByName(
+      "images"
+    )[0] as HTMLInputElement;
+    const files = fileInput.files;
+
+    if (!files.length) {
+      showToast(
+        "No files were uploaded. Please try again after uploading a file.",
+        "fail"
+      );
+      return;
+    }
+
+    const formData = new FormData();
+
+    for (let file = 0; file < files.length; file++) {
+      formData.append("images", files.item(file));
+    }
+
+    const options = {
+      method: "POST",
+      body: formData,
+    };
+
+    const response = await fetch("/api/image/upload", options);
+    const parsedResponse = await response.json();
+    await ImageStoreFrontend.populateImages();
+    if (parsedResponse.errors.length) {
+      showToast(parsedResponse.errors.join(", "), "fail");
+    }
+
+    return;
+  }
+
+  private static resetImageContainer() {
+    const container = this.getImageContainer();
+    Array.from(container.children).forEach((child) => {
+      if (child.id !== "hidden-image") {
+        container.removeChild(child);
+      }
+    });
+  }
+
   private static async populateImages() {
     const imageContainer = this.getImageContainer();
     const imageResponse = await this.getImages();
@@ -71,6 +117,8 @@ class ImageStoreFrontend {
       imageContainer.style.display = "flex";
       noImagesContainer.style.display = "none";
     }
+
+    this.resetImageContainer();
 
     for (const image of imageResponse) {
       const newImageCard = this.createImageCard(image);
