@@ -42,6 +42,11 @@
         "title": "Discord Access",
         "ref": "/resources/discord-access",
         "view": "/resources/discord-access"
+      },
+      {
+        "title": "Cheque Request Information and Other Forms",
+        "ref": "/resources/cheque-requests",
+        "view": "/resources/cheque-requests"
       }
     ]
   },

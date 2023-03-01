@@ -1,0 +1,117 @@
+{
+  "title": "Cheque Request Forms",
+  "formLinks": [
+    {
+      "title": "Club Cheque Request Form",
+      "link": "https://mathsoc.uwaterloo.ca/wp-content/uploads/Club-Cheque-Request-Form.pdf"
+    },
+    {
+      "title": "MathSoc Cheque Request Form",
+      "link": "https://mathsoc.uwaterloo.ca/wp-content/uploads/MathSoc-Cheque-Request-Form-1.pdf"
+    }
+  ],
+  "process": {
+    "header": "The Process",
+    "description": "For accounting and auditing purposes the form must be properly filled out and any additional documentation required must be provided.",
+    "requirementsSubheader": "All Cheque Requests Require",
+    "requirements": [
+      {
+        "descriptionMarkdown": "<p>A <b><u>completed cheque request form</u></b> with legal name and signed by executives and VPF.</p>"
+      },
+      {
+        "descriptionMarkdown": "<p><b><u>ORIGINAL itemized receipt</u></b> (no photocopies or pictures. Please take photocopies or pictures for your own records) which lists all the items purchased. Some places (like fast food restaurants, pizza delivery, sushi buffets) will not offer an itemized receipt to you <b>unless you ask in advance</b>.</p>"
+      },
+      {
+        "descriptionMarkdown": "<p><b><u>Proof of payment</u></b> that shows the total amount of the transaction and its completion. This would be a debit of credit receipt. It must include any tips given. If you pay by cash, ensure you get the itemized receipt. For pizza, this is given to you at the time of delivery. You may need to request it in advance. So, please ask when ordering. As a last resort we will accept a bank or credit card statement.</p>"
+      }
+    ]
+  },
+  "additionalDocumentationItems": {
+    "header": "Items that require additional Documentation",
+    "items": [
+      {
+        "title": "Donations",
+        "description": "The amount of the donation should be net proceeds. Donations should only be made to Canadian registered charities. Attach a link to the executive, board or council minutes that clearly state the approval of the donation."
+      },
+      {
+        "title": "Gift Cards",
+        "description": "Receipts for gift cards, gift baskets or any other items given as a good gesture must be accompanied by recipients’ name, address, phone # and email address."
+      },
+      {
+        "title": "Kijiji / Facebook Purchases",
+        "description": "Must be approved in advance. Actual advertisement and conversation finalizing the payment must also be included."
+      },
+      {
+        "title": "Online Purchases",
+        "description": "Online vendors send a “confirmation of order” email once an order has been place and they also send a receipt once the payment has been made. Both are required. In some cases, for online orders the itemized receipt will say something like “paid by visa **********1234”. This is also acceptable."
+      }
+    ]
+  },
+  "frequentlyAskedQuestions": {
+    "header": "Frequently Asked Questions",
+    "questions": [
+      {
+        "question": "Where do I send my cheque request to?",
+        "questionMarkdown": "<p>You can send a photo or scan of your reimbursement as well as the itemized receipt and/or credit card statement request to the VPF at vpf@mathsoc.uwaterloo.ca . If you do provide a credit card statement please black out any personal or non-pertinent information If the purchase is over $100 you will also need to mail the complete cheque request, receipts and proof or payment to the WUSA accountant at the information below. Use the naming convention Cheque Request – Club Name – Event Number – W-23. See below for how to know your event number.<br><br>Gurpreet Saini<br>WUSA SLC 2118<br>200 University Ave W.,<br>Waterloo ON N2L 3G1</p>"
+      },
+      {
+        "question": "What is an event number? How do I get one?",
+        "questionMarkdown": "<p>All MathSoc events and MathSoc club events need to be registered through WUSA. Clubs need to fill out a WUSA Clubs Event form at least 14 days as per WUSA/Societies MoU prior to your clubs’ event to obtain an event number. This form can be found <a href='https://forms.office.com/pages/responsepage.aspx?id=685YobAEf0GogoWyMNQSrRXeQtb5sYlMrG6Jfc3ybc5UM0o3VU1NMkw4MFVGMzgxTEk5MUFFOUszUy4u' target=''_blank>here</a>.</p>"
+      },
+      {
+        "question": "How long should the process take?",
+        "questionMarkdown": "It’s hard to give an exact estimate on how long the process should take but to ensure that the process is as efficient as possible please review the common mistakes in the question below. Feel free to reach out to us at <a href='mailto:vpf@mathsoc.uwaterloo.ca' target='_blank'>vpf@mathsoc.uwaterloo.ca</a>."
+      },
+      {
+        "question": "What are common mistakes that delay the cheque request process?",
+        "questionMarkdown": "<p><ul><li>The preferred name instead of legal name is given on a cheque request form. The person providing the reimbursement needs to provide their name as it would appear with their bank.</li><li>When issuing a cheque request for gift card, the recipients names and emails are not provided. We cannot begin processing the request until we have this information.</li><li>Missing receipts, proof of purchase and event ID number</li><li>Mailing address (as all cheques will be mailed out if they do not get picked up)</li></ul></p>"
+      },
+      {
+        "question": "What happens if my cheque request is denied?",
+        "questionMarkdown": "<p>We will reach out to you if we require more information about your cheque request but as long as your purchase is for an event your club has in their budget and is within budget we should be able to process it. Make sure with gift cards you provide the legal name and email address of the gift card recipients.</p>"
+      },
+      {
+        "question": "What if this is not for a club reimbursement?",
+        "questionMarkdown": "<p>Please see the other MathSoc cheque request form that is used for all non-club events on the website. For any additional questions please email <a href='mailto:vpf@mathsoc.uwaterloo.ca' target='_blank'>vpf@mathsoc.uwaterloo.ca</a>.</p>"
+      },
+      {
+        "question": "How should tips be entered?",
+        "questionMarkdown": "<p>If a tip is given please make a small note under the total tax paid on all purchase line and make sure the club signing officer initials beside the written-in tip. Then include the tip when summing the subtotal and total tax paid on the total line.</p>"
+      },
+      {
+        "question": "What if I have other questions?",
+        "questionMarkdown": "<p>We would love to answer any other questions you may have! Shoot us an email at <a href='mailto:vpf@mathsoc.uwaterloo.ca' target='_blank'>vpf@mathsoc.uwaterloo.ca</a> and we will help you find the answer to your questions.</p>"
+      }
+    ]
+  },
+  "otherForms": {
+    "header": "Other Forms",
+    "footnote": "This form is used to request a refund of the MathSoc fee. It must be filled out in the first month of the term.",
+    "forms": [
+      {
+        "title": "Academic Feedback Form",
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLScl3yNAcyJO0v3z2Pot_PLnVtnsMGHrCFZm4eM90YF6no7SlQ/viewform"
+      },
+      {
+        "title": "Capital Improvements Fund Form",
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLSc9vgDsq-Dn2EWAzyhThaIcCr1QIa02-gAIRCylMPxlAGxgVQ/viewform"
+      },
+      {
+        "title": "Events Form",
+        "link": "https://forms.office.com/pages/responsepage.aspx?id=685YobAEf0GogoWyMNQSrRXeQtb5sYlMrG6Jfc3ybc5UM0o3VU1NMkw4MFVGMzgxTEk5MUFFOUszUy4u"
+      },
+      {
+        "title": "Key Request Forms",
+        "link": "https://drive.google.com/file/d/1H3__BDY9av87kz2WabZnEBAYtpYw_lYm/view"
+      },
+      {
+        "title": "Refund Form",
+        "link": "https://docs.google.com/forms/d/1Y2uYL_CiMF2O2p8tfmyMH3O2WFJzi-ew692his_ZP1U/closedform"
+      }
+    ]
+  },
+  "mathSocFees": {
+    "header": "MathSoc Fees Opt-In",
+    "description": "If you are not a Math student and would like to pay your MathSoc fees, please visit the MathSoc Office at MC 3038 during our office hours to pay them. You will receive a card indicating that you have paid your fees for the term."
+  }
+}
