@@ -29,8 +29,6 @@ block body
                 button(type="button" class="collapsible-button" value="" + title + "")= question.question
                 div(class="collapsible-content")
                     p!=question.questionMarkdown
-                //- +collapsible(question.question, question.questionMarkdown, "")
-
             h1 #{data.otherForms.header}
             each form in data.otherForms.forms
                 a(href=form.link target="_blank" class="form-link")
@@ -38,4 +36,3 @@ block body
             p!=data.otherForms.footnote 
             h2 #{data.mathSocFees.header}
             p!=data.mathSocFees.description            
-        
