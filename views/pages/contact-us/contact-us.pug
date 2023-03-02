@@ -9,7 +9,7 @@ block title
   title Contact Us &#8211; MathSoc 
 
 append styles
-  link(href="/assets/css/pages/contact-us.css" rel="stylesheet")
+  link(href="/assets/css/pages/contact-us/contact-us.css" rel="stylesheet")
 
 block body 
 
@@ -18,7 +18,7 @@ block body
   - const locations = data.locations;
 
   div(class="content")
-    section(class="white")
+    +section(null, "white")
       h1 Contact our executive team
 
       div(id="execs-grid")

@@ -1,13 +1,13 @@
 mixin carousel(images)
   div(class="carousel")
-    div(class="slideshow-container")
+    div(class="slides-container")
       each image in images 
-        div(class="mySlides fade")
+        div(class="slide")
           img(src=image style="width:100%; height:100%;")
+      div(class="carousel-overlay")
       a(class="prev") &#10094;
       a(class="next") &#10095;
-    br
-    div(style="text-align:center")
+    div(class="carousel-dots")
       each val, index in images
         - var ind = index + 1
         span(class="dot" data-index=ind)

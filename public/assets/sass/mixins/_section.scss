@@ -1,8 +1,20 @@
 .section-mixin {
   max-width: unset;
+  padding: 40px 0;
 
   .section-mixin-internals {
     max-width: var(--content-width);
+    padding: 0 40px;
     margin: auto;
+  }
+
+  &.pink {
+    background-color: var(--mathsoc-pink-1);
+    color: white;
+  }
+
+  &.grey {
+    background-color: var(--mathsoc-grey);
+    color: white;
   }
 }

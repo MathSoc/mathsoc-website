@@ -1,8 +1,9 @@
-mixin flipCard(caption, imgSource, imgText)
+mixin flipCard(caption, imgSource)
     div(class="flip-card")
         div(class="flip-card-inner")
             div(class="flip-card-front")
                 img(src=imgSource class="flip-card-image")
             div(class="flip-card-back")
-                p=imgText
-        p=caption
+                div(class="flip-card-back-inner")
+                    block 
+        p(class="flip-card-caption")=caption

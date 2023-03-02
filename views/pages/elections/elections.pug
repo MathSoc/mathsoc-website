@@ -11,7 +11,7 @@ block body
   - const openPositions = currentElection.candidates.map((c) => c.position).filter((position, index, array) => index === array.indexOf(position));
   +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
   div(class="content")
-    section(class="white")
+    +section(null,"white")
       div(class="title")
         h1 Election Complete
         span #{currentElection.term}
@@ -25,7 +25,7 @@ block body
           p We thank all candidates for their efforts.
 
     +banner-image("/assets/img/banners/exec-office.jpeg", ['pink', 'small'], 'Candidate Platforms')
-    section(class="white")
+    +section(null,"white")
       each position in openPositions 
         div(class="position" id=position.toLowerCase().replaceAll(/\s/g, '-').replaceAll(/,/g, ''))
           h2 Candidates for #{position}
@@ -36,7 +36,7 @@ block body
               p=candidate.platform
               
     +banner-image("/assets/img/banners/pinktie-mc.jpeg", ['pink'], 'Allegations and Appeals')
-    section(class="white")
+    +section(null,"white")
       h2 Decisions 
       - 
         const decisions = currentElection.decisions.map((decision, index) => {

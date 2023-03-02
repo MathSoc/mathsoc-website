@@ -1,36 +1,37 @@
 nav(id="navbar")
+  div(id="inner-navbar")
     a(href="/")
-        img(src="/assets/img/icons/horizontal-logo.svg" class="nav-logo" id="pink-logo"  alt="MathSoc Logo.  Click to return to homepage")
-        img(src="/assets/img/icons/horizontal-logo-white.svg" class="nav-logo" id="white-logo" alt="MathSoc Logo.  Click to return to homepage")
+      img(src="/assets/img/icons/horizontal-logo.svg" class="nav-logo" id="pink-logo" alt="MathSoc Logo.  Click to return to homepage")
+      img(src="/assets/img/icons/horizontal-logo-white.svg" class="nav-logo" id="white-logo" alt="MathSoc Logo.  Click to return to homepage")
     ul(class="items")
-        each category in navItems
-            li(class="dropdown")
-                if !category.ref
-                    button(class="dropdown-button") #{category.title}
-                else 
-                    a(href=category.ref)
-                        div(class="dropdown-button") #{category.title}
-                - var length = category.children ? category.children.length : 0;
-                if length
-                    div(class="dropdown-content")
-                        each item in category.children
-                            a(href=""+ item.ref +"") #{item.title}
+      each category in navItems
+        li(class="dropdown")
+          if !category.ref
+            button(class="dropdown-button") #{category.title}
+          else 
+            a(href=category.ref)
+              div(class="dropdown-button") #{category.title}
+          - var length = category.children ? category.children.length : 0;
+          if length
+            div(class="dropdown-content")
+              each item in category.children
+                a(href=""+ item.ref +"") #{item.title}
     button(id="mobile-menu-button")
-        img(src="/assets/img/icons/single-downvote.svg")
+      img(src="/assets/img/icons/single-downvote.svg")
 
 nav(id="mobile-nav")
-    ul(class="items")
-        each category in navItems
-            li(class="dropdown")
-                - var length = category.children ? category.children.length : 0;
-                if category.ref
-                    a(href=category.ref)
-                        div(class="dropdown-button") #{category.title}
-                else 
-                    button(class="dropdown-button") #{category.title}
-                if length
-                    ul(class="dropdown-content")
-                        each item in category.children
-                            li(class="sub-button")
-                                a(href=item.ref) #{item.title}
+  ul(class="items")
+    each category in navItems
+      li(class="dropdown")
+        - var length = category.children ? category.children.length : 0;
+        if category.ref
+          a(href=category.ref)
+            div(class="dropdown-button") #{category.title}
+        else 
+          button(class="dropdown-button") #{category.title}
+        if length
+          ul(class="dropdown-content")
+            each item in category.children
+              li(class="sub-button")
+                a(href=item.ref) #{item.title}
 
