@@ -1,6 +1,21 @@
-doctype html
-html(lang="en")
-    include ../partials/header.pug 
-    body 
-        p Hello World! 
-        p The webpage you are looking for does not exist!
+extends /views/templates/frontend-base.pug
+include /views/mixins/pink-button.pug
+
+append styles
+    link(href="/assets/css/pages/error.css" rel="stylesheet")  
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css")
+
+block body 
+    h1 Oops, This Page Could Not Be Found!
+    section(class="error-main")
+        p(class="error-404") 404
+        div(class="error-links")
+            h2 Helpful Links 
+            ul
+                li
+                    i.fa.fa-angle-right 
+                    a(href="/") Home
+                each item in navItems
+                        li
+                            i.fa.fa-angle-right
+                            a(href=item.ref) #{item.title}

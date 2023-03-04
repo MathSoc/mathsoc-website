@@ -79,5 +79,10 @@
         "view": "/cartoons/about-us"
       }
     ]
+  },
+  {
+    "title": "Page Not Found",
+    "ref": "/error",
+    "view": "/error"
   }
 ]

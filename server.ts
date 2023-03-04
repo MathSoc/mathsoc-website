@@ -48,7 +48,7 @@ app
   // @todo Admin authentication
   .use(adminRoutes)
   .use((req: Request, res: Response) => {
-    res.status(404).render("pages/error");
+    res.status(404).redirect("/error");
   });
 
 DirectoryPrebuilder.prebuild();
