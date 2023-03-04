@@ -1,10 +1,55 @@
+class CarouselSlide {
+  dot: HTMLElement;
+  image: HTMLElement;
+  index: number;
+
+  constructor(image: HTMLElement, dot: HTMLElement, index: number) {
+    this.image = image;
+    this.dot = dot;
+    this.index = index;
+  }
+
+  makeActive() {
+    this.dot.classList.add("active");
+    this.image.classList.add("active");
+  }
+
+  makeInactive() {
+    this.dot.classList.remove("active");
+    this.image.classList.remove("active");
+  }
+}
+
 class Carousel {
   private element: HTMLElement;
   private slideIndex: number = 1;
+  private slides: CarouselSlide[] = [];
+  private timeOfLastChange: number = Date.now();
+  private readonly DELAY_BETWEEN_AUTO_UPDATES = 6 * 1000;
 
   constructor(container: HTMLElement) {
     this.element = container;
 
+    this.initializeSlides();
+    this.initializeControls();
+
+    this.showSlide(this.slides[0]);
+    this.setAutoChangeTimeout();
+  }
+
+  private initializeSlides() {
+    const slideImages = Array.from(
+      this.element.querySelectorAll(".slide")
+    ) as HTMLElement[];
+    const dots = Array.from(
+      this.element.querySelectorAll(".dot")
+    ) as HTMLElement[];
+    for (let i = 0; i < slideImages.length && i < dots.length; i++) {
+      this.slides.push(new CarouselSlide(slideImages[i], dots[i], i));
+    }
+  }
+
+  private initializeControls() {
     this.element.querySelector(".prev").addEventListener("click", () => {
       this.plusSlides(-1);
     });
@@ -12,47 +57,50 @@ class Carousel {
       this.plusSlides(1);
     });
 
-    this.element.querySelectorAll(".dot").forEach((dot) => {
-      dot.addEventListener("click", () => {
-        this.showSlide(parseInt(dot.getAttribute("data-index")));
+    for (const slide of this.slides) {
+      slide.dot.addEventListener("click", () => {
+        this.showSlide(slide);
       });
-    });
-
-    this.showSlide(this.slideIndex);
+    }
   }
 
-  plusSlides(n: number) {
-    this.showSlide(this.slideIndex + n);
+  private plusSlides(slideIncrement: number) {
+    const mathModulus = (n: number, m: number) => ((n % m) + m) % m;
+
+    const targetSlide = this.slides.find(
+      (slide) =>
+        slide.index ===
+        mathModulus(this.slideIndex + slideIncrement, this.slides.length)
+    );
+
+    this.showSlide(targetSlide);
   }
 
-  currentSlide(n: number) {
-    this.showSlide(n);
+  private showSlide(target: CarouselSlide) {
+    for (const slide of this.slides) {
+      if (slide === target) {
+        slide.makeActive();
+      } else {
+        slide.makeInactive();
+      }
+    }
+
+    this.slideIndex = target.index;
+    this.timeOfLastChange = Date.now();
   }
 
-  showSlide(newSlideIndex: number) {
-    const slides = Array.from(
-      this.element.querySelectorAll(".mySlides")
-    ) as HTMLElement[];
+  private setAutoChangeTimeout() {
+    const timeElapsedSinceLastChange = Date.now() - this.timeOfLastChange;
 
-    const dots = this.element.querySelectorAll(".dot");
+    setTimeout(() => {
+      if (timeElapsedSinceLastChange < this.DELAY_BETWEEN_AUTO_UPDATES) {
+        this.setAutoChangeTimeout();
+        return;
+      }
 
-    if (newSlideIndex > slides.length) {
-      this.slideIndex = 1;
-    } else if (newSlideIndex < 1) {
-      this.slideIndex = slides.length;
-    } else {
-      this.slideIndex = newSlideIndex;
-    }
-
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].classList.remove("active");
-    }
-
-    slides[this.slideIndex - 1].style.display = "block";
-    dots[this.slideIndex - 1].classList.add("active");
+      this.plusSlides(1);
+      this.setAutoChangeTimeout();
+    }, this.DELAY_BETWEEN_AUTO_UPDATES - timeElapsedSinceLastChange);
   }
 }
 

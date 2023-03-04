@@ -68,25 +68,7 @@ textarea {
   font-family: var(--primary-font);
 }
 
-section {
-  margin:  auto;
-  padding: 30px 24px;
-}
-
 section:last-child {
   padding-bottom: 30px;
 }
 
-section {
-  padding: 40px;
-}
-
-section.pink {
-  background-color: var(--mathsoc-pink-1);
-  color: white;
-}
-
-section.grey {
-  background-color: var(--mathsoc-grey);
-  color: white;
-}

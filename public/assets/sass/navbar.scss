@@ -1,4 +1,4 @@
-@import 'util/_sass-mixins';
+@import "util/_sass-mixins";
 
 #navbar {
   min-width: 100%;
@@ -6,10 +6,15 @@
   font-size: 14px;
   position: relative;
 
+  #inner-navbar {
+    max-width: calc(var(--content-width) + 120px);
+    position: relative;
+    margin: auto;
+  }
+
   .nav-logo {
     height: 75px;
     width: 200px;
-    margin-left: 5%;
 
     &#white-logo {
       display: none;
@@ -33,28 +38,12 @@
       text-align: center;
       text-decoration: none;
       display: inline-block;
-      margin: 0 16px;
+      margin: 0 4px;
       height: 100%;
 
       $vertical-padding: 28px;
       .dropdown-button {
-        padding: $vertical-padding 16px;
-      } 
-
-      @media only screen and (max-width: 1200px) {
-        margin: 0 12px;
-
-        .dropdown-button {
-          padding: $vertical-padding 12px;
-        }
-      }
-
-      @media only screen and (max-width: 1100px) {
-        margin: 0 4px;
-
-        .dropdown-button {
-          padding: $vertical-padding 12px;
-        }
+        padding: $vertical-padding 6px;
       }
 
       > a {
@@ -102,6 +91,7 @@
         background-color: white;
         border-style: solid none none none;
         border-color: var(--accent-colour-1);
+        box-shadow: 0 0 4px 0 #8888;
 
         transition: 0.3s ease;
 

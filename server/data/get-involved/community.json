@@ -46,7 +46,7 @@
     {
       "title": "MathSoc Cartoons",
       "descriptionMarkdown": "<p>MathSoc Cartoons is a student-run comic series explaining undergraduate math and computer science concepts. All of our comics can be found <a href='https://mathsoc.uwaterloo.ca/comics-archive/' target='_blank'>here</a>, as well as on our <a href='https://www.instagram.com/mathsoccartoons/' target='_blank'>Instagram</a> and &nbsp;<a href='https://www.facebook.com/mathsoccartoons'>Facebook</a> pages!</p>",
-      "link": "https://mathsoc.uwaterloo.ca/cartoons/about-us",
+      "link": "/cartoons/about-us",
       "icon": "/assets/img/icons/community-icons/paint.png"
     }
   ]
