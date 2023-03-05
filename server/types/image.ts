@@ -7,4 +7,4 @@ export type Image = {
   fileType: string;
 };
 
-export type ImageWithFile = Image & { uploadedFile: UploadedFile };
+export type ImageWithFile = Image & { file: UploadedFile };

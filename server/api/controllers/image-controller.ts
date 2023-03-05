@@ -13,27 +13,22 @@ import {
 } from "fs";
 import { ReadWriteController } from "./read-write-controller";
 import path from "path";
-
-enum Action {
-  UPLOAD,
-  DELETE,
-}
+import { ProcessQueue } from "./util/process-queue";
 
 type ImageUploadRequest = {
   images: ImageWithFile[];
-  type: Action.UPLOAD;
   errors: string[];
   res: Response;
 };
 
 type ImageDeleteRequest = Image & {
   res: Response;
-  type: Action.DELETE;
 };
 
 export class ImageController {
   static logger = new Logger();
-  private static queues: Record<string, ImageRequestQueue> = {};
+  private static uploadQueue = new ProcessQueue(this.processImageUpload.bind(this));
+  private static deleteQueue = new ProcessQueue(this.processImageDelete.bind(this));
 
   /*
   Handles the /api/image/upload endpoint 
@@ -46,49 +41,46 @@ export class ImageController {
       // this is done because express-upload has no way to tell you whether one file or multiple files were uploaded
       // casting singular file to an array, or keeping multiple files as an existing array
 
-      const images = Array.isArray(req.files?.images)
+      const imageFiles = Array.isArray(req.files?.images)
         ? (req.files?.images as UploadedFile[])
         : [req.files?.images as UploadedFile];
 
-      if (!images.length) {
+      if (!imageFiles.length) {
         throw new Error("No images were uploaded");
       }
 
       const errors: string[] = [];
-      const imagesWithFile: ImageWithFile[] = [];
+      const imagesWithSupportedFileData: ImageWithFile[] = [];
 
-      for (const image of images) {
-        if (!image.mimetype) {
-          errors.push(`No mimetype/filetype provided with file ${image.name}`);
+      for (const imageFile of imageFiles) {
+        if (!imageFile.mimetype) {
+          errors.push(`No mimetype/filetype provided with file ${imageFile.name}`);
           continue;
         }
 
-        if (image.mimetype.match(/(^image)(\/)[a-zA-Z0-9_]*/gm) === null) {
+        if (imageFile.mimetype.match(/(^image)(\/)[a-zA-Z0-9_]*/gm) === null) {
           errors.push(
-            `Unsupported filetype for ${image.name}. We only support image file types.`
+            `Unsupported filetype for ${imageFile.name}. We only support image file types.`
           );
           continue;
         }
 
         const transformedImage: ImageWithFile = {
-          fileName: image.name,
-          fileType: image.name.split(".").slice(1).join("."),
-          path: this.getImagePath(image.name),
-          publicLink: this.getPublicLink(image.name),
-          uploadedFile: image,
+          fileName: imageFile.name,
+          fileType: imageFile.name.split(".").slice(1).join("."),
+          path: this.getImagePath(imageFile.name),
+          publicLink: this.getPublicLink(imageFile.name),
+          file: imageFile,
         };
 
-        imagesWithFile.push(transformedImage);
-      }
-      if (!this.queues[imagesWithFile.toString()]) {
-        this.queues[imagesWithFile.toString()] = new ImageRequestQueue();
+        imagesWithSupportedFileData.push(transformedImage);
       }
 
-      this.queues[imagesWithFile.toString()].pushUpload(
-        imagesWithFile,
+      this.uploadQueue.push({
+        images: imagesWithSupportedFileData,
         errors,
-        res
-      );
+        res,
+      });
     } catch (err) {
       this.logger.error(err.message);
       res.status(400).redirect("/admin/image-store");
@@ -121,11 +113,7 @@ export class ImageController {
         publicLink,
       };
 
-      if (!this.queues[transformedImage.fileName]) {
-        this.queues[transformedImage.fileName] = new ImageRequestQueue();
-      }
-
-      this.queues[transformedImage.fileName].pushDelete(transformedImage, res);
+      this.deleteQueue.push({ ...transformedImage, res });
     } catch (err) {
       this.logger.error(err.message);
       res.status(400).redirect("/admin/image-store");
@@ -141,7 +129,7 @@ export class ImageController {
 
     try {
       for (const image of images) {
-        await image.uploadedFile?.mv(image.path);
+        await image.file?.mv(image.path);
         this.logger.info(`${image.fileName} uploaded to ${image.path}`);
       }
 
@@ -162,7 +150,7 @@ export class ImageController {
   static processImageDelete(request: ImageDeleteRequest) {
     const { path, res, fileName, publicLink } = request;
     try {
-      const foundFiles = this.checkImageOccurences("server/data", publicLink);
+      const foundFiles = this.getImageOccurences("server/data", publicLink);
       if (foundFiles.length !== 0) {
         this.logger.error(`Delete path found in ${foundFiles}`);
         res.status(403).json({ status: "fail", message: foundFiles });
@@ -253,7 +241,7 @@ export class ImageController {
   /*
     Checks for occurence of an image in the server/data files, to make sure we aren't deleting an image that is in use on the frontend.
   */
-  private static checkImageOccurences(mainPath: string, target: string) {
+  private static getImageOccurences(mainPath: string, target: string) {
     const files = this.getDataFiles(mainPath, target);
     const matches: string[] = [];
     for (const file of files) {
@@ -264,57 +252,5 @@ export class ImageController {
     }
 
     return matches;
-  }
-}
-
-class ImageRequestQueue {
-  private queue: (ImageUploadRequest | ImageDeleteRequest)[] = [];
-
-  pushUpload(
-    imagesWithFile: ImageWithFile[],
-    errors: string[],
-    res: Response
-  ): void {
-    const data: ImageUploadRequest = {
-      images: imagesWithFile,
-      type: Action.UPLOAD,
-      errors,
-      res,
-    };
-
-    this.queue.push(data);
-
-    if (this.queue.length === 1) {
-      this.process();
-    }
-  }
-
-  pushDelete(img: Image, res: Response): void {
-    const data: ImageDeleteRequest = {
-      ...img,
-      res,
-      type: Action.DELETE,
-    };
-
-    this.queue.push(data);
-
-    if (this.queue.length === 1) {
-      this.process();
-    }
-  }
-
-  private async process() {
-    switch (this.queue[0].type) {
-      case Action.UPLOAD:
-        await ImageController.processImageUpload(
-          this.queue[0] as ImageUploadRequest
-        );
-        break;
-      case Action.DELETE:
-        ImageController.processImageDelete(this.queue[0] as ImageDeleteRequest);
-        break;
-    }
-    this.queue.splice(0, 1);
-    if (this.queue.length > 0) this.process();
   }
 }
