@@ -79,6 +79,13 @@ h2 {
     width: calc(47.5% / 2);
   }
 
+  .exam-actions {
+    > :hover {
+      color: var(--mathsoc-pink);
+      transition: 0.3s;
+    }
+  }
+
   thead tr {
     background-color: var(--mathsoc-pink);
     color: white;
