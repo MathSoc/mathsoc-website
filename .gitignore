@@ -5,5 +5,6 @@
 /public/assets/img/uploads
 /public/exams
 /server/data/_hidden/exams-list.json
+/server/data/_hidden/term-list.json
 .env
 *.tsbuildinfo

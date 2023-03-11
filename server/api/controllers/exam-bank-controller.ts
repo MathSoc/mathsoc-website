@@ -3,6 +3,7 @@ import { Exam } from "../../types/exam-bank";
 import { Logger } from "../../util/logger";
 import { ReadWriteController } from "./read-write-controller";
 import fs from "fs";
+import { TermNameController } from "./term-name-controller";
 
 export class ExamBankController {
   static logger = new Logger("Exam Bank Controller");
@@ -11,7 +12,7 @@ export class ExamBankController {
    * Re-creates the exam list JSON file based on the current
    * contents of the exams directory
    */
-  static rewriteFile(): void {
+  static async rewriteFile(): Promise<void> {
     const url = "_hidden/exams-list";
     const fullPath = `server/data/${url}.json`;
 
@@ -42,14 +43,16 @@ export class ExamBankController {
             }
         }
       },
-      this.generateJSON()
+      await this.generateJSON()
     );
   }
 
   /**
    * Gets an array of every exam currently in the exam list folder
    */
-  private static generateJSON(): Exam[] {
+  private static async generateJSON(): Promise<Exam[]> {
+    await this.validateTerms();
+
     const examFiles: Dirent[] = readdirSync("public/exams", {
       withFileTypes: true,
     });
@@ -85,6 +88,7 @@ export class ExamBankController {
           type,
           examFile: isSolution ? undefined : file.name,
           solutionFile: isSolution ? file.name : undefined,
+          termName: TermNameController.getTermNameFromTermCode(term),
         };
       }
     }
@@ -117,6 +121,28 @@ export class ExamBankController {
       } else {
         throw new Error("Unreachable code reached");
       }
+    }
+  }
+
+  private static async validateTerms() {
+    const examFiles: Dirent[] = readdirSync("public/exams", {
+      withFileTypes: true,
+    });
+
+    let valid = true;
+    for (const exam of examFiles) {
+      const parts = exam.name.split("-");
+      const term = parts[2].padStart(4, "0");
+
+      const isValidTerm = TermNameController.validateTerm(term);
+      if (!isValidTerm) {
+        valid = false;
+        break;
+      }
+    }
+
+    if (!valid) {
+      await TermNameController.overwriteTermsFile();
     }
   }
 }

@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 
 import dotenv from "dotenv";
+dotenv.config(); // load .env variables
+
 import express from "express";
 import path from "path";
 import fileUpload from "express-fileupload";
@@ -13,8 +15,6 @@ import { Logger, loggerMiddleware } from "./server/util/logger";
 import fs from "fs";
 import { DirectoryPrebuilder } from "./server/util/directory-prebuilder";
 const logger = new Logger();
-
-dotenv.config(); // load .env variables
 
 const app = express();
 const port = process.env.PORT || 3000;
