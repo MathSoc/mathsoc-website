@@ -36,6 +36,24 @@
     ]
   },
   {
+    "title": "Services",
+    "children": [
+      {
+        "title": "MathSoc Office",
+        "ref": "/"
+      },
+      {
+        "title": "Term Social Events",
+        "ref": "/"
+      },
+      {
+        "title": "Student Services",
+        "ref": "/services/student-services",
+        "view": "/services/student-services"
+      }
+    ]
+  },
+  {
     "title": "Elections",
     "ref": "/elections",
     "view": "/elections/elections"
