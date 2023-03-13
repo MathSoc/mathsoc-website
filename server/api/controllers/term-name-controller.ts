@@ -3,9 +3,6 @@ import fetch from "node-fetch";
 import { Term } from "../../types/exam-bank";
 import fs from "fs";
 
-import dotenv from "dotenv";
-dotenv.config(); // load .env variables
-
 export class TermNameController {
   static logger = new Logger("Term Name Controller");
 

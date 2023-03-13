@@ -1,19 +1,17 @@
 import { Request, Response } from "express";
-
-import dotenv from "dotenv";
-dotenv.config(); // load .env variables
-
 import express from "express";
 import path from "path";
 import fileUpload from "express-fileupload";
+import fs from "fs";
+import "dotenv/config";
 
 import publicRoutes from "./server/routes/public-routes";
 import authenticatedRoutes from "./server/routes/authenticated-routes";
 import adminRoutes from "./server/routes/admin-routes";
 import api from "./server/api";
 import { Logger, loggerMiddleware } from "./server/util/logger";
-import fs from "fs";
 import { DirectoryPrebuilder } from "./server/util/directory-prebuilder";
+
 const logger = new Logger();
 
 const app = express();
