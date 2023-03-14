@@ -21,11 +21,7 @@ app.set("view engine", "pug");
 
 app.locals.basedir = path.join(__dirname, "");
 
-// @todo: remove this code when autogenerating all required folders
-const isUploadDirectory = fs.existsSync("public/assets/img/uploads");
-if (!isUploadDirectory) {
-  fs.mkdirSync("public/assets/img/uploads");
-}
+DirectoryPrebuilder.prebuild();
 
 app
   .use(express.json())
@@ -48,9 +44,6 @@ app
   .use((req: Request, res: Response) => {
     res.status(404).redirect("/error");
   });
-
-DirectoryPrebuilder.prebuild();
-
 app.listen(port, () => {
   console.info(
     "\n=========================\nlive on localhost:3000 🚀\n=========================\n" +
