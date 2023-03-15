@@ -1,5 +1,11 @@
 extends /views/templates/admin-base.pug
 
+append styles
+  link(href="/assets/css/pages/resources/exam-bank.css" rel="stylesheet")
+
+append scripts
+  script(src="/assets/js/exam-bank.js" defer)
+
 block body
   div(id="body")
     h1 Exam Bank
@@ -10,3 +16,9 @@ block body
       label This is a temporary button to rebuild the JSON file that the exam bank uses to populate its table.
       div(style="text-align:center; padding: 1em;")
         button(type="submit" style="border: 1px solid var(--mathsoc-pink); display: block; margin: auto; padding: 1em; cursor: pointer;") Rebuild the exam bank list.
+    div(id="content")
+      div(id="exam-bank-searchbar")
+        label(id="exams-search-label") Filter for your exam then find it in the list below
+        input(id="exam-list-filter" placeholder="CS 136" aria-labelledby="exams-search-label")
+      h2 Exams 
+      +exam-bank-table(true)

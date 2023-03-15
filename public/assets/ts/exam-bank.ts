@@ -121,7 +121,9 @@ class ExamBankFrontend {
         .replace("$OFFERING$", exam.term)
         .replace("$TYPE$", exam.type)
         .replace("$EXAM-FILE$", `/exams/${exam.examFile}`)
-        .replace("$SOLUTION-FILE$", `/exams/${exam.solutionFile}`);
+        .replace("$SOLUTION-FILE$", `/exams/${exam.solutionFile}`)
+        .replace("$EXAM_HIDDEN$", "False")
+        .replace("$SOLUTION_HIDDEN$", "False");
 
       newRow.setAttribute("data-course-dept", exam.department);
       newRow.setAttribute("data-course-code", exam.courseCode);
