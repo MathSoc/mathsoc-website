@@ -14,20 +14,4 @@ block body
       input(id="exam-list-filter" placeholder="CS 136" aria-labelledby="exams-search-label")
 
     h2 Exams
-    table(id="exams-table")
-      thead 
-        tr 
-          th(class="exam-course") Course
-          th(class="exam-type") Type
-          th(class="exam-offering") Offering
-          th(class="exam-link") Exam
-          th(class="exam-link") Solutions
-      tbody
-        tr(id="hidden-row" data-course-dept="$COURSE-DEPT$" data-course-code="$COURSE-CODE$")
-          td(class="exam-course") $COURSE-NAME$
-          td(class="exam-type") $TYPE$
-          td(class="exam-offering") $OFFERING$
-          td(class="exam-link") 
-            a(class="exam-download" href="$EXAM-FILE$") Download exam
-          td(class="exam-link") 
-            a(class="solution-download" href="$SOLUTION-FILE$") Download solutions
+    +exam-bank-table(false)

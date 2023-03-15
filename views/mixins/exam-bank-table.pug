@@ -1,0 +1,37 @@
+//- cms is true (for cms exam bank) or false (for public exam bank)
+mixin exam-bank-table(cms) 
+    table(id="exams-table")
+        thead
+          tr 
+            th(class="exam-course") Course
+            th(class="exam-type") Type
+            th(class="exam-offering") Offering
+            th(class="exam-link") Exam
+            th(class="exam-link") Solutions
+            if cms
+              th(class="exam-actions") Exam Actions
+              th(class="solution-actions") Solution Actions
+              th(class="exam-hidden") Exam Hidden (?)
+              th(class="solutions-hidden") Solution Hidden (?)
+        tbody
+          tr(id="hidden-row" data-course-dept="$COURSE-DEPT$" data-course-code="$COURSE-CODE$")
+            td(class="exam-course") $COURSE-NAME$
+            td(class="exam-type") $TYPE$
+            td(class="exam-offering") $OFFERING$
+            td(class="exam-link") 
+              a(class="exam-download" href="$EXAM-FILE$") View exam
+            td(class="exam-link") 
+              a(class="solution-download" href="$SOLUTION-FILE$") View solutions
+            if cms
+                td(class="exam-actions")
+                  button(class="exam-delete-icon")
+                      i(class="fa fa-trash" aria-hideen="true")
+                  button(class="exam-hide-icon")
+                      i(class="fa fa-eye-slash" aria-hidden="true")
+                td(class="solution-actions")
+                  button(class="solution-delete-icon")
+                      i(class="fa fa-trash" aria-hideen="true")
+                  button(class="solution-hide-icon")
+                      i(class="fa fa-eye-slash" aria-hidden="true")
+                td(class="exam-hidden") $EXAM_HIDDEN$
+                td(class="solution-hidden") $SOLUTION_HIDDEN$

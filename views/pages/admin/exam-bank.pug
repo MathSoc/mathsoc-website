@@ -21,28 +21,4 @@ block body
         label(id="exams-search-label") Filter for your exam then find it in the list below
         input(id="exam-list-filter" placeholder="CS 136" aria-labelledby="exams-search-label")
       h2 Exams 
-      table(id="exams-table")
-        thead
-          tr 
-            th(class="exam-course") Course
-            th(class="exam-type") Type
-            th(class="exam-offering") Offering
-            th(class="exam-link") Exam
-            th(class="exam-link") Solutions
-            th(class="exam-actions") Actions
-            th(class="exam-hidden") Hidden (?)
-        tbody
-          tr(id="hidden-row" data-course-dept="$COURSE-DEPT$" data-course-code="$COURSE-CODE$")
-            td(class="exam-course") $COURSE-NAME$
-            td(class="exam-type") $TYPE$
-            td(class="exam-offering") $OFFERING$
-            td(class="exam-link") 
-              a(class="exam-download" href="$EXAM-FILE$") View exam
-            td(class="exam-link") 
-              a(class="solution-download" href="$SOLUTION-FILE$") View solutions
-            td(class="exam-actions")
-              button(class="exam-delete-icon")
-                i(class="fa fa-trash" aria-hideen="true")
-              button(class="exam-hide-icon")
-                i(class="fa fa-eye-slash" aria-hidden="true")
-            td(class="exam-hidden") $HIDDEN$
+      +exam-bank-table(true)
