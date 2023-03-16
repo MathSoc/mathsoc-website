@@ -22,8 +22,7 @@
   },
   {
     "title": "Documents",
-    "ref": "/admin/document-upload",
-    "view": "/admin/document-upload",
-    "noRouting": true
+    "ref": "/admin/documents",
+    "view": "/admin/documents"
   }
 ]

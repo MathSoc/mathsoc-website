@@ -47,13 +47,6 @@ export class EditorDirectoryStructureConstructor {
   }
 
   /**
-   * @returns A data structure representing the structure of the /document-data directory
-   */
-  static getDocumentDataDirectoryStructure(): DirectoryEntry[] {
-    return this.getDirectoryStructure("server/document_data");
-  }
-
-  /**
    * @returns A data structure representing the structure of the directory found at the indicated path
    * @param path The relative path to the directory (e.g. server/data)
    * @param options **SHOULD NOT BE PASSED IN FROM EXTERNAL CALLS.**  This

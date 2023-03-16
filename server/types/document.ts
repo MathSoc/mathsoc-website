@@ -1,6 +1,10 @@
+import { UploadedFile } from "express-fileupload";
+
 export type Document = {
     fileName: string;
     fileType: string;
     path: string;
-    docName?: string;
+    date: string;
 }
+
+export type DocumentWithFile = Document & {file: UploadedFile };

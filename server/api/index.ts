@@ -55,8 +55,29 @@ router.delete("/image/delete", async (req: Request, res: Response) => {
 router.get("/images", (_req: Request, res: Response) => {
   ReadWriteAPIController.getJSONDataPath("_hidden/image-list", res);
 });
-router.post("/document/update", async (req: Request, res: Response) => {
-  DocumentController.updateDocument(req, res);
-})
+
+/*
+**  REQUIRES: req.body.documentGroup
+**            req.body.documentName
+**            req.body.files: documents
+*/
+router.post("/document/upload", async (req: Request, res: Response) => {
+  DocumentController.uploadDocument(req, res);
+});
+
+/*
+**  REQUIRES: req.body.path
+*/
+router.delete("/document/delete", async (req: Request, res: Response) => {
+  DocumentController.deleteDocument(req, res);
+});
+
+/*
+**  REQUIRES: req.headers.documentGroup
+**            req.headers.documentName
+*/
+router.get("/documents", (req: Request, res: Response) => {
+  DocumentController.getDocument(req, res)
+});
 
 export default router;
