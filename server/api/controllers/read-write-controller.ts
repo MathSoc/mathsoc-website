@@ -69,7 +69,7 @@ export class ReadWriteController {
     );
   }
 
-  static async processReadEntry(data: RequestData): Promise<void> {
+  private static async processReadEntry(data: RequestData): Promise<void> {
     const promise = new Promise((resolve) => {
       const terminateWith = (code: number, body?: any) => {
         data.callback(code, body);
@@ -112,7 +112,7 @@ export class ReadWriteController {
     await promise;
   }
 
-  static async processWriteEntry(data: RequestData): Promise<void> {
+  private static async processWriteEntry(data: RequestData): Promise<void> {
     const promise = new Promise((resolve) => {
       const terminateWith = (code: number) => {
         data.callback(code);

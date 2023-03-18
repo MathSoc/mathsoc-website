@@ -44,9 +44,10 @@ app
   .use((req: Request, res: Response) => {
     res.status(404).redirect("/error");
   });
+
 app.listen(port, () => {
   console.info(
-    "\n=========================\nlive on localhost:3000 🚀\n=========================\n" +
+    `\n=========================\nlive on localhost:${port} 🚀\n=========================\n` +
       fs.readFileSync("logo.txt", "utf-8")
   );
 });

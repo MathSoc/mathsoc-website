@@ -47,7 +47,7 @@ const ElectionsDataSchema = z.array(
           name: z.string(),
           position: z.string(),
           elected: z.boolean(),
-          platform: z.string(),
+          platformMarkdown: z.string(),
         })
         .strict()
     ),
@@ -56,13 +56,13 @@ const ElectionsDataSchema = z.array(
         .object({
           candidate: z.string(),
           date: z.string(),
-          allegation: z.string().optional(),
-          defense: z.string().optional(),
-          decision: z.string().optional(),
+          allegationMarkdown: z.string().optional(),
+          defenseMarkdown: z.string().optional(),
+          decisionMarkdown: z.string().optional(),
           penalties: z.array(z.string()).optional(),
-          penaltyDescription: z.string().optional(),
-          appeal: z.string().optional(),
-          appealDecision: z.string().optional(),
+          penaltyDescriptionMarkdown: z.string().optional(),
+          appealMarkdown: z.string().optional(),
+          appealDecisionMarkdown: z.string().optional(),
         })
         .strict()
     ),
