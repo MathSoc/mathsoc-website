@@ -84,5 +84,10 @@
     "title": "Page Not Found",
     "ref": "/error",
     "view": "/error"
+  },
+  {
+    "title": "Authentication Redirect",
+    "ref": "/auth-redirect",
+    "view": "/auth-redirect"
   }
 ]
