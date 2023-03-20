@@ -95,6 +95,58 @@ const MentalWellnessDataSchema = z.object({
   ),
 });
 
+const ChequeRequestSchema = z.object({
+  title: z.string(),
+  formLinks: z.array(
+    z.object({
+      title: z.string(),
+      link: z.string()
+    }).strict()
+  ),
+  process: z.object({
+    header: z.string(),
+    description: z.string(),
+    requirementsSubheader: z.string(),
+    requirements: z.array(
+      z.object({
+        descriptionMarkdown: z.string()
+      }).strict()
+    )
+  }).strict(),
+  additionalDocumentationItems: z.object({
+    header: z.string(),
+    items: z.array(
+      z.object({
+        title: z.string(),
+        description: z.string()
+      })
+    )
+  }).strict(),
+  frequentlyAskedQuestions: z.object({
+    header: z.string(),
+    questions: z.array(
+      z.object({
+        question: z.string(),
+        questionMarkdown: z.string()
+      }).strict()
+    )
+  }).strict(),
+  otherForms: z.object({
+    header: z.string(),
+    footnote: z.string(),
+    forms: z.array(
+      z.object({
+        title:z.string(),
+        link: z.string()
+      }).strict()
+    )
+  }).strict(),
+  mathSocFees: z.object({
+    header: z.string(),
+    description: z.string()
+  }).strict()
+});
+
 const DiscordAccessSchema = z.object({
   title: z.string(),
   subheader: z.string(),
@@ -253,6 +305,7 @@ export {
   HomeDataSchema,
   ElectionsDataSchema,
   MentalWellnessDataSchema,
+  ChequeRequestSchema,
   DiscordAccessSchema,
   CartoonsAboutUsDataSchema,
   CouncilDataSchema,

@@ -1,0 +1,35 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+    link(href="/assets/css/pages/resources/cheque-requests.css" rel="stylesheet")
+
+block body
+    div(class="content")
+        section
+            h1 #{data.title}
+            each form in data.formLinks
+                a(href=form.link target="_blank" class="form-link")
+                    h2 #{form.title}
+            h1 #{data.process.header}
+            p !{data.process.description}
+            h2 #{data.process.requirementsSubheader}
+            ul
+                each req in data.process.requirements
+                    li
+                        p!=req.descriptionMarkdown
+            h2 #{data.additionalDocumentationItems.header}
+            each item in data.additionalDocumentationItems.items
+                h3 #{item.title}
+                p!=item.description
+            h1 #{data.frequentlyAskedQuestions.header}
+            each question in data.frequentlyAskedQuestions.questions
+                button(type="button" class="collapsible-button" value="" + title + "")= question.question
+                div(class="collapsible-content")
+                    p!=question.questionMarkdown
+            h1 #{data.otherForms.header}
+            each form in data.otherForms.forms
+                a(href=form.link target="_blank" class="form-link")
+                    h2 #{form.title}
+            p!=data.otherForms.footnote 
+            h2 #{data.mathSocFees.header}
+            p!=data.mathSocFees.description            
