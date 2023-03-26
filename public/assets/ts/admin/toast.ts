@@ -18,7 +18,10 @@ function showToast(message: string, intent: "success" | "fail") {
   toast.classList.add("visible");
   toastBody.classList.add(intent);
 
-  setTimeout(() => {
-    toast.classList.remove("visible");
-  }, 2000);
+  setTimeout(
+    () => {
+      toast.classList.remove("visible");
+    },
+    intent === "success" ? 2000 : 8000
+  );
 }

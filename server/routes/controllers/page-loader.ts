@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import fs from "fs";
-import path from "path";
+import { ReadWriteController } from "../../api/controllers/read-write-controller";
 import { PageInflow, PageOutflow } from "../../types/routing.js";
 
 /**
@@ -26,7 +26,7 @@ export class PageLoader {
     for (const page of pageArray) {
       if (page.ref && !page.noRouting) {
         router.get(page.ref, async (req: Request, res: Response) => {
-          const data = this.getAllPageData(page, dataTransformer);
+          const data = await this.getAllPageData(page, dataTransformer);
           res.render(`pages/${page.view}.pug`, data);
         });
       }
@@ -40,14 +40,14 @@ export class PageLoader {
   /**
    * @returns The data that gets passed into the pug template for a given page.
    */
-  static getAllPageData<PageOutflowExtension extends PageOutflow>(
+  static async getAllPageData<PageOutflowExtension extends PageOutflow>(
     page: PageInflow,
     dataTransformer: (data: PageOutflow) => PageOutflowExtension
-  ): PageOutflowExtension {
+  ): Promise<PageOutflowExtension> {
     const pageData: PageOutflow = {
       navItems: PageLoader.navItems,
       footer: PageLoader.footer,
-      data: PageLoader.getPageDataSource(page.ref),
+      data: page.ref ? await PageLoader.getPageDataSource(page.ref) : null,
       title: page.title,
       ref: page.ref,
     };
@@ -60,9 +60,9 @@ export class PageLoader {
 
       for (const source of sources) {
         pageData.dataEndpoints[source] = page.dataSources[source];
-        pageData.sources[source] = PageLoader.getPageDataSource(
+        pageData.sources[source] = (await PageLoader.getPageDataSource(
           `/${page.dataSources[source]}`
-        );
+        )) as object | any[];
       }
     }
 
@@ -77,11 +77,17 @@ export class PageLoader {
    *
    * @todo We don't actually need to delete the cache every time though, only on changes to the JSON files.
    */
-  static getPageDataSource(pageRef?: string): object | any[] | null {
-    if (fs.existsSync(`server/data${pageRef}.json`)) {
-      const url = path.join(__dirname, `../../server/data${pageRef}.json`);
-      delete require.cache[url];
-      return require(`../../data${pageRef}.json`);
+  static getPageDataSource(pageRef: string): Promise<unknown> | null {
+    const url = `server/data${pageRef}`;
+    if (fs.existsSync(`${url}.json`)) {
+      const result = new Promise((resolve) => {
+        console.log(`getting ${url}`);
+        ReadWriteController.getJSONDataPath(pageRef, (statusCode, body) =>
+          resolve(body)
+        );
+      });
+
+      return result;
     } else {
       return null;
     }
