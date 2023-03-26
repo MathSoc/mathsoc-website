@@ -67,6 +67,9 @@ router.post("/document/upload", async (req: Request, res: Response) => {
 
 /*
 **  REQUIRES: req.body.path
+**            req.body.fileName
+**            req.body.fileType
+**            req.body.publicLink
 */
 router.delete("/document/delete", async (req: Request, res: Response) => {
   DocumentController.deleteDocument(req, res);

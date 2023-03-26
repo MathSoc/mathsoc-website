@@ -44,10 +44,20 @@ export class DocumentController {
       Handles the GET /api/documents endpoint
     */
   static getDocument(req: Request, res: Response) {
-    ReadWriteAPIController.getJSONDataPath(
-      `_hidden/document-list/${req.headers.documentgroup}/${req.headers.documentname}`,
-      res
-    );
+    try{
+      if( !(req.headers.documentgroup && req.headers.documentname) ){
+        throw new Error("Incorrect request headers");
+      }
+
+      ReadWriteAPIController.getJSONDataPath(
+        `_hidden/document-list/${req.headers.documentgroup}/${req.headers.documentname}`,
+        res
+      );
+    } catch (err) {
+      this.logger.error(err.message);
+      res.status(400).redirect("/admin/documents");
+      return;
+    }
   }
 
   /*
@@ -57,6 +67,10 @@ export class DocumentController {
     */
   static uploadDocument(req: Request, res: Response) {
     try {
+      if( !(req.body.documentGroup && req.body.documentName) ){
+        throw new Error("Incorrect request body keys");
+      }
+
       const { documentGroup, documentName } = req.body;
 
       const documentFiles = Array.isArray(req.files?.documents)
@@ -117,6 +131,10 @@ export class DocumentController {
     */
   static deleteDocument(req: Request, res: Response, update: boolean = false) {
     try {
+      if( !(req.body.fileName && req.body.fileType && req.body.date) ){
+        throw new Error("Incorrect request body keys");
+      }
+
       const { fileName, fileType, path, date } = req.body;
 
       if (!path) {
@@ -229,14 +247,14 @@ export class DocumentController {
           fileName: document.name,
           fileType: document.name.split(".")[1],
           path: this.getDocumentPath(`${jsonEndPath}/${document.name}`),
-          date: this.findDate(jsonStructure, document.name),
+          date: this.findByDate(jsonStructure, document.name),
         });
       }
     }
     return documents;
   }
 
-  private static findDate(jsonStructure, fileName): string {
+  private static findByDate(jsonStructure, fileName): string {
     let fileDate;
 
     for (const doc of jsonStructure) {
