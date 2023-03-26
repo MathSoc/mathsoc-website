@@ -5,6 +5,7 @@ export enum DataPaths {
   GET_INVOLVED_VOLUNTEER = "get-involved/volunteer",
   CARTOONS_ABOUT_US = "cartoons/about-us",
   ELECTIONS = "elections",
+  STUDENT_SERVICES = "services/student-services",
   COUNCIL_DATA = "get-involved/council",
   CLUBS_DATA = "get-involved/clubs",
   COMMUNITY_DATA = "get-involved/community",
