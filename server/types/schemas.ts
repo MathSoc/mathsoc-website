@@ -160,6 +160,30 @@ const DiscordAccessSchema = z.object({
   ),
 });
 
+const StudentServicesSchema= z.object({
+  sections: z.array(
+    z
+    .object({
+      title: z.string(),
+      description: z.string(),
+      subdescription: z.string(),
+      items: z.array(
+        z
+        .object({
+          item: z.string()
+        })
+      ),
+      contacts: z.array(
+        z
+        .object({
+          contact: z.string()
+        })
+      ),
+      img: z.string()
+    })
+  )
+});
+
 const CartoonsAboutUsDataSchema = z.object({
   pageTitle: z.string(),
   heading: z.string(),
@@ -307,6 +331,7 @@ export {
   MentalWellnessDataSchema,
   ChequeRequestSchema,
   DiscordAccessSchema,
+  StudentServicesSchema,
   CartoonsAboutUsDataSchema,
   CouncilDataSchema,
   ContactUsDataSchema,

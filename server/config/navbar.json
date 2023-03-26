@@ -32,20 +32,9 @@
         "ref": "/"
       },
       {
-        "title": "Locker Sign Out",
-        "ref": "/"
-      },
-      {
-        "title": "Board Game Nights",
-        "ref": "/"
-      },
-      {
-        "title": "Math CnD",
-        "ref": "/"
-      },
-      {
-        "title": "MC Comfy",
-        "ref": "/"
+        "title": "Student Services",
+        "ref": "/services/student-services",
+        "view": "/services/student-services"
       }
     ]
   },
