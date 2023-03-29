@@ -19,5 +19,10 @@
     "title": "Image Store",
     "ref": "/admin/image-store",
     "view": "/admin/image-store"
+  },
+  {
+    "title": "Documents",
+    "ref": "/admin/documents",
+    "view": "/admin/documents"
   }
 ]
