@@ -25,7 +25,8 @@
     "children": [
       {
         "title": "MathSoc Office",
-        "ref": "/"
+        "ref": "/services/mathsoc-office",
+        "view": "/services/mathsoc-office"
       },
       {
         "title": "Term Social Events",

@@ -1,0 +1,21 @@
+extends /views/templates/frontend-base.pug
+include /views/mixins/pink-button.pug
+
+append styles
+    link(href="/assets/css/pages/services/student-services.css" rel="stylesheet")  
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css")
+
+block body 
+    each section in data.sections
+        section(class="service")
+            div(class="service-item")
+                h2(class="service-title") #{section.title}
+                p #{section.description}
+                p #{section.subdescription}
+                each item in section.items 
+                    li #{item.item}
+                each contact in section.contacts  
+                    p #{contact.contact}
+            img(src=section.img)
+    
+    
