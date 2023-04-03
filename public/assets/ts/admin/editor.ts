@@ -1,19 +1,32 @@
+enum MarkdownFieldHighlightClasses {
+  HOVERABLE = "hoverable-markdown-field",
+  CLICKED = "highlighted-markdown-field",
+}
+
+type EditorNode = {
+  field?: string;
+  value?: string;
+  path?: (string | number)[];
+};
+
 /* eslint-disable-next-line */
 class Editor {
   options: {
-    onEditable: (node: { field?: string }) => void;
-    onEvent: (
-      node: { field?: string; value?: string; path?: (string | number)[] },
-      event: Event
-    ) => void;
+    onEditable: (node: EditorNode) => void;
+    onEvent: (node: EditorNode, event: Event) => void;
   };
   editor: any;
   sourceDataURL: string;
   name: string;
-  rtEditor: any;
+  richTextEditor: any;
+
+  private lastHighlightedMarkdownNode: EditorNode = null;
+  private lastHighlightedMarkdownElement: HTMLElement = null;
 
   constructor(container: HTMLElement, sourceDataURL: string) {
-    this.rtEditor = new window["Quill"]("#quill-editor", { theme: "snow" });
+    this.richTextEditor = new window["Quill"]("#quill-editor", {
+      theme: "snow",
+    });
     this.options = {
       onEditable: this.onEditorEditable,
       onEvent: this.onEditorEvent.bind(this),
@@ -30,13 +43,34 @@ class Editor {
     })();
   }
 
+  private getOpenEditorButton() {
+    return document.getElementById("open-editor-btn") as HTMLButtonElement;
+  }
+
+  private getSaveEditorButton() {
+    return document.getElementById("save-editor-btn") as HTMLButtonElement;
+  }
+
+  private getSaveRichEditorButton() {
+    return document.getElementById("save-rich-text-btn") as HTMLButtonElement;
+  }
+
+  private getCancelRichTextEditorButton() {
+    return document.getElementById("cancel-rich-text-btn") as HTMLButtonElement;
+  }
+
   private attachButtonHandlers() {
-    const openButton = document.getElementById("open-editor-btn");
-    const saveButton = document.getElementById("save-editor-btn");
+    const openButton = this.getOpenEditorButton();
+    const saveButton = this.getSaveEditorButton();
+    const saveRichTextButton = this.getSaveRichEditorButton();
+
+    const cancelRichTextButton = this.getCancelRichTextEditorButton();
 
     saveButton.querySelector(".editor-name").innerHTML = this.name;
-    openButton.onclick = this.openRichTextModal;
     saveButton.onclick = () => this.saveData(this.sourceDataURL);
+    saveRichTextButton.onclick = () => this.saveQuillMarkdownToEditor();
+    openButton.onclick = () => this.openRichTextModal();
+    cancelRichTextButton.onclick = () => this.closeRichTextModal();
   }
 
   // open the rich text modal
@@ -58,39 +92,51 @@ class Editor {
   - saves the new markdown into the data once the new markdown has been saved
   - saves and restores the expansion state of the json editor 
   */
-  private onEditorEvent(
-    node: { field?: string; value?: string; path?: (string | number)[] },
-    event: Event
-  ) {
+
+  private onEditorEvent(node: EditorNode, event: Event) {
+    // when a markdown field is hovered, add a class with a :hover selector to it
+    if (
+      event.type === "mouseover" &&
+      node?.field?.includes("Markdown") &&
+      event.target instanceof HTMLElement
+    ) {
+      event.target.classList.add(MarkdownFieldHighlightClasses.HOVERABLE);
+    }
+
     if (!(event instanceof PointerEvent)) {
       return;
     }
 
-    const openEditorButton = document.getElementById(
-      "open-editor-btn"
-    ) as HTMLButtonElement;
-    if (node && node.field && node.field.includes("Markdown")) {
-      openEditorButton.classList.replace("disabled", "enabled");
+    // if anything is clicked, the last highlighted markdown element is no longer clicked
+    this.lastHighlightedMarkdownElement?.classList.remove(
+      MarkdownFieldHighlightClasses.CLICKED
+    );
 
-      const htmlContent = this.rtEditor.clipboard.convert(node.value);
-      this.rtEditor.setContents(htmlContent);
-
-      const saveRichTextButton = document.getElementById(
-        "save-rich-text-btn"
-      ) as HTMLButtonElement;
-
-      const cancelRichTextButton = document.getElementById(
-        "cancel-rich-text-btn"
-      ) as HTMLButtonElement;
-
-      saveRichTextButton.onclick = () => this.saveQuillMarkdownToEditor(node);
-      cancelRichTextButton.onclick = this.closeRichTextModal;
-
-      openEditorButton.disabled = false;
+    if (node?.field?.includes("Markdown")) {
+      this.handleMarkdownFieldClick(node, event);
     } else {
+      const openEditorButton = this.getOpenEditorButton();
       openEditorButton.classList.replace("enabled", "disabled");
       openEditorButton.disabled = true;
     }
+  }
+
+  // Sets up the editor modal to be used after some markdown field is clicked
+  private handleMarkdownFieldClick(node: EditorNode, event: PointerEvent) {
+    const openEditorButton = this.getOpenEditorButton();
+    if (!(event.target instanceof HTMLElement)) {
+      return;
+    }
+    
+    event.target.classList.add(MarkdownFieldHighlightClasses.CLICKED);
+    this.lastHighlightedMarkdownElement = event.target;
+    this.lastHighlightedMarkdownNode = node;
+
+    openEditorButton.classList.replace("disabled", "enabled");
+    openEditorButton.disabled = false;
+
+    const htmlContent = this.richTextEditor.clipboard.convert(node.value);
+    this.richTextEditor.setContents(htmlContent);
   }
 
   // to save the expanded view of the editor
@@ -109,13 +155,13 @@ class Editor {
     }
   }
 
-  private saveQuillMarkdownToEditor(node: {
-    field?: string;
-    value?: string;
-    path?: (string | number)[];
-  }) {
+  private saveQuillMarkdownToEditor() {
     const data = this.editor.get();
-    this.setDataField(data, node.path, this.rtEditor.root.innerHTML);
+    this.setDataField(
+      data,
+      this.lastHighlightedMarkdownNode.path,
+      this.richTextEditor.root.innerHTML
+    );
 
     const state = {};
     this.saveExpansionState(this.editor.node, state);
