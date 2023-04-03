@@ -81,7 +81,6 @@ export class PageLoader {
     const url = `server/data${pageRef}`;
     if (fs.existsSync(`${url}.json`)) {
       const result = new Promise((resolve) => {
-        console.log(`getting ${url}`);
         ReadWriteController.getJSONDataPath(pageRef, (statusCode, body) =>
           resolve(body)
         );
