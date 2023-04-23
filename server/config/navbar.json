@@ -3,20 +3,20 @@
     "title": "Get involved",
     "children": [
       {
-        "title": "Volunteer at MathSoc",
-        "ref": "/get-involved/volunteer"
-      },
-      {
-        "title": "Math Community",
+        "title": "Math community",
         "ref": "/get-involved/community"
       },
       {
-        "title": "MathSoc Clubs",
+        "title": "MathSoc clubs",
         "ref": "/get-involved/clubs"
       },
       {
-        "title": "MathSoc Council",
+        "title": "MathSoc council",
         "ref": "/get-involved/council"
+      },
+      {
+        "title": "Volunteer at MathSoc",
+        "ref": "/get-involved/volunteer"
       }
     ]
   },
@@ -24,33 +24,33 @@
     "title": "Services",
     "children": [
       {
-        "title": "MathSoc Office",
+        "title": "MathSoc office",
         "ref": "/"
       },
       {
-        "title": "Term Social Events",
+        "title": "Term social events",
         "ref": "/"
       },
       {
-        "title": "Student Services",
+        "title": "Student services",
         "ref": "/services/student-services",
         "view": "/services/student-services"
       }
     ]
   },
   {
+    "title": "Events",
+    "ref": "/"
+  },
+  {
     "title": "Cartoons",
     "children": [
       {
-        "title": "About Us",
+        "title": "About us",
         "ref": "/cartoons/about-us"
       },
       {
-        "title": "Meet the Team",
-        "ref": "/"
-      },
-      {
-        "title": "Cartoons Archive",
+        "title": "Cartoons archive",
         "ref": "/"
       }
     ]
@@ -59,83 +59,43 @@
     "title": "Documents",
     "children": [
       {
-        "title": "Council Meetings",
+        "title": "Meetings",
         "ref": "/"
       },
       {
-        "title": "Board Meetings",
-        "ref": "/"
-      },
-      {
-        "title": "Reports",
-        "ref": "/"
-      },
-      {
-        "title": "Policies and Bylaws",
+        "title": "Policies and bylaws",
         "ref": "/documents/policies-and-bylaws"
       },
       {
         "title": "Budgets",
         "ref": "/"
-      },
-      {
-        "title": "On Proctoring Software",
-        "ref": "/"
       }
     ]
-  },
-  {
-    "title": "Elections",
-    "ref": "/elections",
-    "children": []
   },
   {
     "title": "Resources",
     "children": [
       {
-        "title": "Exam Bank",
+        "title": "Exam bank",
         "ref": "/resources/exam-bank"
       },
       {
-        "title": "Work Term Report",
-        "ref": "/"
-      },
-      {
-        "title": "Academic Advising",
-        "ref": "https://uwaterloo.ca/math/academic-advising/"
-      },
-      {
-        "title": "Accessability Services",
-        "ref": "https://uwaterloo.ca/accessability-services/"
-      },
-      {
-        "title": "Mental Wellness",
-        "ref": "/resources/mental-wellness"
-      },
-      {
-        "title": "Coop Advice",
-        "ref": "/"
-      },
-      {
-        "title": "Guidlines for Picking Courses",
-        "ref": "/"
-      },
-      {
-        "title": "Cheque Request Information and Other Forms",
+        "title": "Cheque request information and other forms",
         "ref": "/resources/cheque-requests"
       },
       {
-        "title": "Course Evaluations",
-        "ref": "/"
+        "title": "Discord access",
+        "ref": "/resources/discord-access"
       },
       {
-        "title": "Discord Access",
-        "ref": "/resources/discord-access"
+        "title": "Elections",
+        "ref": "/elections",
+        "children": []
       }
     ]
   },
   {
-    "title": "Contact Us",
+    "title": "Contact us",
     "ref": "/contact-us"
   }
 ]
