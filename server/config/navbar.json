@@ -33,8 +33,7 @@
       },
       {
         "title": "Student services",
-        "ref": "/services/student-services",
-        "view": "/services/student-services"
+        "ref": "/services/student-services"
       }
     ]
   },

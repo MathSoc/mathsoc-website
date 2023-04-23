@@ -16,20 +16,20 @@ interface EditorPageOutflow extends PageOutflow {
 }
 
 class AuthRoutesConstructor {
-  static buildRoutes() {
+  static async buildRoutes() {
     PageLoader.buildRoutes(
       adminPages,
       router,
       this.addAdminSpecificOutflowToPage
     );
-    this.generateEditorPage();
+    await this.generateEditorPage();
   }
 
   /**
    * Handles the custom data input necessary for the editor pages.
    */
-  static generateEditorPage() {
-    const genericEditorPageOutflow = PageLoader.getAllPageData(
+  static async generateEditorPage() {
+    const genericEditorPageOutflow = await PageLoader.getAllPageData(
       {
         title: "Editor",
         ref: "/admin/editor",

@@ -61,6 +61,14 @@
   }
 }
 
+.jsoneditor .jsoneditor-value.jsoneditor-string {
+  &.highlighted-markdown-field,
+  &.hoverable-markdown-field:hover {
+    background: #df249829;
+    border: 1px dashed var(--mathsoc-pink);
+  }
+}
+
 .editor-name {
   font-weight: bold;
 }
