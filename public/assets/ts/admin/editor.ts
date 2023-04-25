@@ -119,6 +119,18 @@ class Editor {
       openEditorButton.classList.replace("enabled", "disabled");
       openEditorButton.disabled = true;
     }
+
+    // Enables the 'Are you sure you want to leave' prompt when the user leaves the page.
+    window.addEventListener("beforeunload", this.onAttemptedPageExit);
+  }
+
+  private onAttemptedPageExit(e: BeforeUnloadEvent) {
+    e.preventDefault();
+
+    // this message won't display on most browsers except possibly for Edge; on other browsers
+    //  any truthy value will trigger the exit message
+    return (e.returnValue =
+      "Are you sure you want to leave?  Your changes may not be saved.");
   }
 
   // Sets up the editor modal to be used after some markdown field is clicked
@@ -127,7 +139,7 @@ class Editor {
     if (!(event.target instanceof HTMLElement)) {
       return;
     }
-    
+
     event.target.classList.add(MarkdownFieldHighlightClasses.CLICKED);
     this.lastHighlightedMarkdownElement = event.target;
     this.lastHighlightedMarkdownNode = node;
@@ -255,6 +267,9 @@ class Editor {
 
       if (responseCodeClass === 200) {
         showToast(successMessage, "success");
+
+        // Disables 'are you sure you want to exit' prompt
+        window.removeEventListener("beforeunload", this.onAttemptedPageExit);
       } else {
         switch (response.status) {
           case 400: {
