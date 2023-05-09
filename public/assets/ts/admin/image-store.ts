@@ -1,3 +1,5 @@
+import { showToast } from "./toast";
+
 // @todo use a single source of the Image type for frontend and backend
 type Image = {
   fileName: string;
