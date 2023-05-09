@@ -9,8 +9,7 @@ type EditorNode = {
   path?: (string | number)[];
 };
 
-/* eslint-disable-next-line */
-class Editor {
+export class Editor {
   options: {
     onEditable: (node: EditorNode) => void;
     onEvent: (node: EditorNode, event: Event) => void;

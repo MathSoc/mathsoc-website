@@ -3,7 +3,7 @@ interface JSONResponse {
   response: any;
 }
 
-class EditorLoader {
+export class EditorLoader {
   static async init() {
     const sources = await this.getDataSources();
 
@@ -49,5 +49,3 @@ class EditorLoader {
     });
   }
 }
-
-EditorLoader.init();
