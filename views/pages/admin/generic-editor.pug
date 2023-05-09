@@ -10,7 +10,7 @@ mixin menuLayer(items, name)
           a(href="/admin/editor?page=" + page.ref.replace('.json', ''))=page.name
       else 
         - const dropdownIsActive = editorSource.split('path=')[1].includes(page.ref);
-        - const activeClass = dropdownIsActive ? ' active' : '';
+        - const activeClass = dropdownIsActive ? " active" : "";
         li(class="dropdown" + activeClass)
           div(class="dropdown-name")=page.name
           +menuLayer(page.subdirectory)
@@ -19,8 +19,6 @@ append styles
   link(href="/assets/css/admin/generic-editor.css" rel="stylesheet")
 
 append scripts
-  script(src="/assets/js/admin/editor.js")
-  script(src="/assets/js/admin/editor-loader.js")
   script(src="/assets/js/admin/generic-editor.js" defer)
 
 block body

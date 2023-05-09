@@ -1,13 +1,4 @@
-// @todo use a single source of the Exam type for frontend and backend
-type Exam = {
-  department: string;
-  courseCode: string;
-  term: string;
-  type: string;
-  examFile?: string;
-  solutionFile?: string;
-  termName?: string;
-};
+import { Exam } from "../../../server/types/exam-bank.js";
 
 class ExamBankFrontend {
   static getExamList(): HTMLTableElement {

@@ -1,9 +1,14 @@
+import { Editor } from "./editor";
+import { EditorLoader } from "./editor-loader";
+
 class GenericEditorPage {
   static init() {
     const editor = document.getElementById("jsoneditor");
     if (editor) {
       new Editor(editor, editor.getAttribute("data-source") as string);
     }
+
+    EditorLoader.init();
 
     this.addNavigationListeners();
   }
@@ -14,7 +19,7 @@ class GenericEditorPage {
     );
 
     for (const dropdown of dropdowns) {
-      dropdown.querySelector('.dropdown-name').addEventListener("click", () => {
+      dropdown.querySelector(".dropdown-name").addEventListener("click", () => {
         const parent = dropdown.parentElement;
 
         if (dropdown.classList.contains("active")) {
