@@ -1,7 +1,7 @@
 import passport from "passport";
 import { IProfile, OIDCStrategy, VerifyCallback } from "passport-azure-ad";
 import express, { NextFunction, Request, Response } from "express";
-
+import tokens from "../../config";
 import "express-session";
 declare module "express-session" {
   interface SessionData {
@@ -15,17 +15,17 @@ const router = express.Router();
 passport.use(
   new OIDCStrategy(
     {
-      identityMetadata: `${process.env.ADFS_SERVER}/adfs/.well-known/openid-configuration`,
-      clientID: process.env.ADFS_CLIENT_ID ?? "",
+      identityMetadata: `${tokens.ADFS_SERVER}/adfs/.well-known/openid-configuration`,
+      clientID: tokens.ADFS_CLIENT_ID ?? "",
       responseType: "id_token",
       responseMode: "form_post",
-      redirectUrl: process.env.REDIRECT_URI ?? "",
+      redirectUrl: tokens.REDIRECT_URI ?? "",
       passReqToCallback: true,
       useCookieInsteadOfSession: true,
       cookieEncryptionKeys: [
         {
-          key: process.env.COOKIE_ENCRYPTION_KEY ?? "",
-          iv: process.env.COOKIE_ENCRYPTION_IV ?? "",
+          key: tokens.COOKIE_ENCRYPTION_KEY ?? "",
+          iv: tokens.COOKIE_ENCRYPTION_IV ?? "",
         },
       ],
     },
@@ -80,19 +80,19 @@ router.get(
   "/authorize/login",
   passport.authenticate("azuread-openidconnect", {
     prompt: "login",
-    successRedirect: `${process.env.REDIRECT_URI}`,
+    successRedirect: `${tokens.REDIRECT_URI}`,
   })
 );
 
 router.post(
   "/authorize/callback",
   passport.authenticate("azuread-openidconnect", {
-    failureRedirect: process.env.POST_LOGOUT_REDIRECT_URI,
+    failureRedirect: tokens.POST_LOGOUT_REDIRECT_URI ?? "",
     prompt: "login",
   }),
   regenerateSessionAfterAuthentication,
   (_req: Request, res: Response) =>
-    res.redirect(process.env.REDIRECT_URI ?? "/auth-redirect")
+    res.redirect(tokens.REDIRECT_URI ?? "/auth-redirect")
 );
 
 export default router;

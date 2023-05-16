@@ -40,7 +40,6 @@
     "nodemon": "^2.0.20",
     "passport": "^0.6.0",
     "passport-azure-ad": "4.2",
-    "passport-azure-ad-oauth2": "^0.0.4",
     "pug": "^3.0.2",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",

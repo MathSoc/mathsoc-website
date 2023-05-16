@@ -1,9 +1,12 @@
+// CHECK ENV VARS BEFORE STARTING APP
+import "./config";
+
 import { Request, Response } from "express";
 import express from "express";
 import path from "path";
 import fileUpload from "express-fileupload";
 import fs from "fs";
-import "dotenv/config";
+import tokens from "./config";
 
 import publicRoutes from "./server/routes/public-routes";
 import authenticatedRoutes from "./server/routes/authenticated-routes";
@@ -30,7 +33,7 @@ DirectoryPrebuilder.prebuild();
 app
   .use(
     session({
-      secret: process.env.EXPRESS_SESSION_SECRET ?? "",
+      secret: tokens.EXPRESS_SESSION_SECRET ?? "",
       resave: false,
       cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }, // Optionally add secure: true if https,
       saveUninitialized: true,
