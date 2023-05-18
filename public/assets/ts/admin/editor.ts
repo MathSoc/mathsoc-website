@@ -147,7 +147,7 @@ export class Editor {
     openEditorButton.classList.replace("disabled", "enabled");
     openEditorButton.disabled = false;
 
-    // @ts-expect-error the type definition is wrong?  passing in the node.value string works. 
+    // @ts-expect-error the type definition is wrong; passing in the node.value string works. 
     const htmlContent = this.richTextEditor.clipboard.convert(node.value);
     this.richTextEditor.setContents(htmlContent);
   }
