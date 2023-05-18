@@ -1,4 +1,6 @@
 import { showToast } from "./toast";
+import Quill from "quill";
+import JSONEditor, { JSONEditorOptions } from "jsoneditor";
 
 enum MarkdownFieldHighlightClasses {
   HOVERABLE = "hoverable-markdown-field",
@@ -12,20 +14,17 @@ type EditorNode = {
 };
 
 export class Editor {
-  options: {
-    onEditable: (node: EditorNode) => void;
-    onEvent: (node: EditorNode, event: Event) => void;
-  };
-  editor: any;
+  options: JSONEditorOptions;
+  editor: JSONEditor;
   sourceDataURL: string;
   name: string;
-  richTextEditor: any;
+  richTextEditor: Quill;
 
   private lastHighlightedMarkdownNode: EditorNode = null;
   private lastHighlightedMarkdownElement: HTMLElement = null;
 
   constructor(container: HTMLElement, sourceDataURL: string) {
-    this.richTextEditor = new window["Quill"]("#quill-editor", {
+    this.richTextEditor = new Quill("#quill-editor", {
       theme: "snow",
     });
     this.options = {
@@ -34,7 +33,7 @@ export class Editor {
     };
 
     this.sourceDataURL = sourceDataURL;
-    this.editor = new window["JSONEditor"](container, this.options);
+    this.editor = new JSONEditor(container, this.options);
 
     this.name = this.getFormattedURL(this.sourceDataURL.split("path=")[1]);
     this.attachButtonHandlers();
@@ -148,6 +147,7 @@ export class Editor {
     openEditorButton.classList.replace("disabled", "enabled");
     openEditorButton.disabled = false;
 
+    // @ts-expect-error the type definition is wrong?  passing in the node.value string works. 
     const htmlContent = this.richTextEditor.clipboard.convert(node.value);
     this.richTextEditor.setContents(htmlContent);
   }
@@ -177,9 +177,13 @@ export class Editor {
     );
 
     const state = {};
+    // @TODO remove this 
+    // @ts-expect-error this.editor.node exists; ts does not declare it.
     this.saveExpansionState(this.editor.node, state);
     this.editor.set(data);
     this.editor.refresh();
+    // @TODO remove this 
+    // @ts-expect-error this.editor.node exists; ts does not declare it.
     this.restoreExpansionState(this.editor.node, state);
     this.closeRichTextModal();
   }
