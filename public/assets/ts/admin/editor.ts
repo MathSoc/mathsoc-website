@@ -176,15 +176,8 @@ export class Editor {
       this.richTextEditor.root.innerHTML
     );
 
-    const state = {};
-    // @TODO remove this 
-    // @ts-expect-error this.editor.node exists; ts does not declare it.
-    this.saveExpansionState(this.editor.node, state);
     this.editor.set(data);
     this.editor.refresh();
-    // @TODO remove this 
-    // @ts-expect-error this.editor.node exists; ts does not declare it.
-    this.restoreExpansionState(this.editor.node, state);
     this.closeRichTextModal();
   }
 
