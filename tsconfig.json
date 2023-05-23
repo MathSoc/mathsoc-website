@@ -5,6 +5,7 @@
     "incremental": true,
     "module": "CommonJS",
     "outDir": "public/assets/js",
+    "moduleResolution": "node",
     "removeComments": true,
     "resolveJsonModule": true,
     "sourceMap": false
