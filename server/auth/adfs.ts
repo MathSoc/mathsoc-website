@@ -45,7 +45,6 @@ const regenerateSessionAfterAuthentication = (
   next: NextFunction
 ) => {
   const passportInstance = req.session.passport;
-  console.log("Passport has regenerated session");
   return req.session.regenerate(function (err) {
     if (err) {
       return next(err);
@@ -60,8 +59,6 @@ export const adfsMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  console.log("adfs middleware called");
-  console.log(req);
   if (req.user) {
     next();
   } else {
@@ -88,7 +85,7 @@ router.get(
 );
 
 router.post(
-  "/authorize/callback",
+  "/auth-redirect",
   passport.authenticate("azuread-openidconnect", {
     failureRedirect: tokens.POST_LOGOUT_REDIRECT_URI ?? "",
     prompt: "login",

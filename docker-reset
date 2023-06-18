@@ -1,0 +1,9 @@
+#/bin/bash!
+
+# this is a helpful file to kill the current docker process,
+#  then pull any changes and start up docker again
+
+docker kill $(docker ps -q)
+git pull
+npm run dockerize
+docker logs $(docker ps -q)
