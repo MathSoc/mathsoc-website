@@ -45,6 +45,7 @@ const regenerateSessionAfterAuthentication = (
   next: NextFunction
 ) => {
   const passportInstance = req.session.passport;
+  console.log("Passport has regenerated session");
   return req.session.regenerate(function (err) {
     if (err) {
       return next(err);
@@ -59,6 +60,8 @@ export const adfsMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log("adfs middleware called");
+  console.log(req);
   if (req.user) {
     next();
   } else {
