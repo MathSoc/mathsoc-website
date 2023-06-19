@@ -85,7 +85,7 @@ router.get(
 );
 
 router.post(
-  "/authorize/callback",
+  "/auth-redirect",
   passport.authenticate("azuread-openidconnect", {
     failureRedirect: tokens.POST_LOGOUT_REDIRECT_URI ?? "",
     prompt: "login",
