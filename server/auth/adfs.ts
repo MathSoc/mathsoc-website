@@ -59,6 +59,11 @@ export const adfsMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
+  if (tokens.IS_PRODUCTION !== "true") {
+    next();
+    return;
+  }
+
   if (req.user) {
     next();
   } else {

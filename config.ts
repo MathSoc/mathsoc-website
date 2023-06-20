@@ -10,12 +10,13 @@ const tokens = {
   COOKIE_ENCRYPTION_KEY: process.env.COOKIE_ENCRYPTION_KEY ?? null,
   COOKIE_ENCRYPTION_IV: process.env.COOKIE_ENCRYPTION_IV ?? null,
   POST_LOGOUT_REDIRECT_URI: process.env.POST_LOGOUT_REDIRECT_URI ?? null,
+  IS_PRODUCTION: process.env.IS_PRODUCTION ?? null,
 };
 
 const missingTokens: string[] = [];
 
 for (const [key, value] of Object.entries(tokens)) {
-  if (!value) {
+  if (value === null) {
     missingTokens.push(key);
   }
 }
