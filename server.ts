@@ -10,7 +10,7 @@ import tokens from "./config";
 
 import publicRoutes from "./server/routes/public-routes";
 import authenticatedRoutes from "./server/routes/authenticated-routes";
-import adfsRoutes from "./server/auth/adfs";
+import authenticationFlowRoutes from "./server/auth/auth";
 import adminRoutes from "./server/routes/admin-routes";
 import api from "./server/api";
 import { Logger, loggerMiddleware } from "./server/util/logger";
@@ -54,7 +54,7 @@ app
   .set("views", path.join(__dirname, "views"))
   .use(loggerMiddleware(logger))
   .use(publicRoutes)
-  .use(adfsRoutes)
+  .use(authenticationFlowRoutes)
   .use("/api", api)
   // @todo General student authentication
   .use(authenticatedRoutes)

@@ -78,7 +78,7 @@ export const ADFSMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  if (tokens.IS_PRODUCTION !== "true") {
+  if (tokens.IS_DEVELOPMENT === "true") {
     next();
     return;
   }
@@ -95,7 +95,7 @@ export const GoogleMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  if (tokens.IS_PRODUCTION !== "true") {
+  if (tokens.IS_DEVELOPMENT === "true") {
     next();
     return;
   }
