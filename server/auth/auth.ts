@@ -90,22 +90,22 @@ export const ADFSMiddleware = (
   }
 };
 
-export const GoogleMiddleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  if (tokens.IS_DEVELOPMENT === "true") {
-    next();
-    return;
-  }
+// export const GoogleMiddleware = (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ) => {
+//   if (tokens.IS_DEVELOPMENT === "true") {
+//     next();
+//     return;
+//   }
 
-  if (req.user) {
-    next();
-  } else {
-    res.redirect(`/admin-login`);
-  }
-};
+//   if (req.user) {
+//     next();
+//   } else {
+//     res.redirect(`/admin-login`);
+//   }
+// };
 
 passport.serializeUser((user, done) => {
   // You can do some stuff here
@@ -125,13 +125,13 @@ router.get(
   })
 );
 
-router.get(
-  "/authorize/admin-login",
-  passport.authenticate("google", {
-    prompt: "login",
-    successRedirect: `${tokens.REDIRECT_URI}`,
-  })
-);
+// router.get(
+//   "/authorize/admin-login",
+//   passport.authenticate("google", {
+//     prompt: "login",
+//     successRedirect: `${tokens.REDIRECT_URI}`,
+//   })
+// );
 
 router.post(
   "/auth-redirect",

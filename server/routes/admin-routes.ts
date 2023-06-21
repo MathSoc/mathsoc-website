@@ -8,7 +8,7 @@ import {
   DirectoryEntry,
   PageOutflow,
 } from "../types/routing";
-import { GoogleMiddleware } from "../auth/auth";
+// import { GoogleMiddleware } from "../auth/auth";
 
 interface EditorPageOutflow extends PageOutflow {
   editors: DirectoryEntry[];
@@ -72,7 +72,7 @@ class AuthRoutesConstructor {
 
 const router = express.Router();
 
-router.use(GoogleMiddleware);
+// router.use(GoogleMiddleware);
 
 AuthRoutesConstructor.buildRoutes();
 
