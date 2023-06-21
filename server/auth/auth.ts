@@ -129,6 +129,7 @@ router.get(
   "/authorize/admin-login",
   passport.authenticate("google", {
     prompt: "login",
+    scope: ['profile'],
     successRedirect: `${tokens.REDIRECT_URI}`,
   })
 );
