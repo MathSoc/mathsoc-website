@@ -1,0 +1,5 @@
+#/bin/bash!
+
+# this is a helpful file to see into the current docker process
+
+docker logs $(docker ps -q)
