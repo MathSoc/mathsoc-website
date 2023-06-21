@@ -16,7 +16,7 @@ interface EditorPageOutflow extends PageOutflow {
   editorName: string;
 }
 
-class AuthRoutesConstructor {
+class AdminRoutesConstructor {
   static async buildRoutes() {
     PageLoader.buildRoutes(
       adminPages,
@@ -74,6 +74,6 @@ const router = express.Router();
 
 router.use(GoogleMiddleware);
 
-AuthRoutesConstructor.buildRoutes();
+AdminRoutesConstructor.buildRoutes();
 
 export default router;
