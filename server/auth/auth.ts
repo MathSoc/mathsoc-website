@@ -36,7 +36,7 @@ passport.use(
       if (!username) {
         return done(new Error("No username found"), null);
       }
-      return done(null, { username, highAccess: false });
+      return done(null, { username: username });
     }
   )
 );
