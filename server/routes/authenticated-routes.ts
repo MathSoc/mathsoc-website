@@ -1,10 +1,10 @@
 import express from "express";
 import authenticatedPages from "../config/authenticated-pages.json";
 import { PageLoader } from "./controllers/page-loader";
-import { adfsMiddleware } from "../auth/adfs";
+import { ADFSMiddleware } from "../auth/auth";
 const router = express.Router();
 
-router.use(adfsMiddleware);
+router.use(ADFSMiddleware);
 
 PageLoader.buildRoutes(authenticatedPages, router, (page) => page);
 

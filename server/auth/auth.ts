@@ -1,8 +1,10 @@
 import passport from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { IProfile, OIDCStrategy, VerifyCallback } from "passport-azure-ad";
 import express, { NextFunction, Request, Response } from "express";
 import tokens from "../../config";
 import "express-session";
+
 declare module "express-session" {
   interface SessionData {
     user: string;
@@ -34,7 +36,24 @@ passport.use(
       if (!username) {
         return done(new Error("No username found"), null);
       }
-      return done(null, { username: username });
+      return done(null, { username, highAccess: false });
+    }
+  )
+);
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: tokens.GOOGLE_CLIENT_ID ?? "",
+      clientSecret: tokens.GOOGLE_CLIENT_SECRET ?? "",
+      callbackURL: "https://staging9000.mathsoc.uwaterloo.ca/auth-redirect",
+    },
+    (_accessToken, _refreshToken, profile, done: VerifyCallback) => {
+      const username = profile.id;
+      if (!username) {
+        return done(new Error("No username found"), null);
+      }
+      return done(null, { username, highAccess: true });
     }
   )
 );
@@ -54,7 +73,7 @@ const regenerateSessionAfterAuthentication = (
   });
 };
 
-export const adfsMiddleware = (
+export const ADFSMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -67,7 +86,24 @@ export const adfsMiddleware = (
   if (req.user) {
     next();
   } else {
-    res.redirect(`/authorize/login`);
+    res.redirect(`/student-login`);
+  }
+};
+
+export const GoogleMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (tokens.IS_PRODUCTION !== "true") {
+    next();
+    return;
+  }
+
+  if (req.user) {
+    next();
+  } else {
+    res.redirect(`/admin-login`);
   }
 };
 
@@ -82,8 +118,16 @@ passport.deserializeUser((user, done) => {
 });
 
 router.get(
-  "/authorize/login",
+  "/authorize/student-login",
   passport.authenticate("azuread-openidconnect", {
+    prompt: "login",
+    successRedirect: `${tokens.REDIRECT_URI}`,
+  })
+);
+
+router.get(
+  "/authorize/admin-login",
+  passport.authenticate("google", {
     prompt: "login",
     successRedirect: `${tokens.REDIRECT_URI}`,
   })
