@@ -45,9 +45,8 @@ export const GoogleMiddleware = (
     next();
     return;
   }
-
-  // @ts-expect-error bad attribute
-  if (req.user.adminAccess == true) {
+  // @ts-expect-error No admin attributes are pre-defined to exist on Express.User.  This is custom.  
+  if (req.user?.adminAccess == true) {
     next();
   } else {
     res.redirect(`/authorize/admin-login`);
