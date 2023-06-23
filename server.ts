@@ -10,7 +10,8 @@ import tokens from "./config";
 
 import publicRoutes from "./server/routes/public-routes";
 import authenticatedRoutes from "./server/routes/authenticated-routes";
-import authenticationFlowRoutes from "./server/auth/auth";
+import ADFSAuthRoutes from "./server/auth/adfs";
+import GoogleAuthRoutes from "./server/auth/google";
 import adminRoutes from "./server/routes/admin-routes";
 import api from "./server/api";
 import { Logger, loggerMiddleware } from "./server/util/logger";
@@ -18,6 +19,7 @@ import { DirectoryPrebuilder } from "./server/util/directory-prebuilder";
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import session from "express-session";
+import { setUpPassport } from "./server/auth/auth";
 
 const logger = new Logger();
 
@@ -29,6 +31,7 @@ app.set("view engine", "pug");
 app.locals.basedir = path.join(__dirname, "");
 
 DirectoryPrebuilder.prebuild();
+setUpPassport();
 
 app
   .use(
@@ -54,7 +57,8 @@ app
   .set("views", path.join(__dirname, "views"))
   .use(loggerMiddleware(logger))
   .use(publicRoutes)
-  .use(authenticationFlowRoutes)
+  .use(ADFSAuthRoutes)
+  .use(GoogleAuthRoutes)
   .use("/api", api)
   // @todo General student authentication
   .use(authenticatedRoutes)
