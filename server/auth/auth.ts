@@ -46,15 +46,16 @@ passport.use(
     {
       clientID: tokens.GOOGLE_CLIENT_ID ?? "",
       clientSecret: tokens.GOOGLE_CLIENT_SECRET ?? "",
-      callbackURL: "https://staging9000.mathsoc.uwaterloo.ca/auth-redirect/google",
-      scope: ['profile'],
+      callbackURL:
+        "https://staging9000.mathsoc.uwaterloo.ca/auth-redirect/google",
+      scope: ["profile"],
     },
     (_accessToken, _refreshToken, profile, done: VerifyCallback) => {
       const username = profile.id;
-      // if (!username) {
-      //   return done(new Error("No username found"), null);
-      // }
-      return done(null, { username: username ?? 'john' });
+      if (!username) {
+        return done(new Error("No username found"), null);
+      }
+      return done(null, { username: username ?? "john" });
     }
   )
 );
@@ -74,6 +75,9 @@ const regenerateSessionAfterAuthentication = (
   });
 };
 
+/**
+ * Middleware to be used on low-authentication routes, including the exam bank
+ */
 export const ADFSMiddleware = (
   req: Request,
   res: Response,
@@ -91,6 +95,9 @@ export const ADFSMiddleware = (
   }
 };
 
+/**
+ * Middleware to be used on high-authentication routes, including the admin backend
+ */
 export const GoogleMiddleware = (
   req: Request,
   res: Response,
@@ -108,16 +115,24 @@ export const GoogleMiddleware = (
   }
 };
 
+/**
+ * needed for passport
+ */
 passport.serializeUser((user, done) => {
-  // You can do some stuff here
   done(null, user);
 });
 
+/**
+ * needed for passport
+ */
 passport.deserializeUser((user, done) => {
-  // Also here
   done(null, user as Express.User);
 });
 
+/**
+ * ADFS:
+ * For an unauthenticated general user, this redirects them to Waterloo's ADFS SSO system
+ */
 router.get(
   "/authorize/student-login",
   passport.authenticate("azuread-openidconnect", {
@@ -126,6 +141,10 @@ router.get(
   })
 );
 
+/**
+ * Google:
+ * For an unauthenticated user trying to access admin, this redirects them to Google's SSO
+ */
 router.get(
   "/authorize/admin-login",
   passport.authenticate("google", {
@@ -134,6 +153,11 @@ router.get(
   })
 );
 
+/**
+ * ADFS:
+ * When a user successfully logs in with ADFS, a POST request is made to this endpoint, with the data
+ * needed by passport to confirm authentication in the request body.  On success, we send them to /auth-redirect 
+ */
 router.post(
   "/auth-redirect",
   passport.authenticate("azuread-openidconnect", {
@@ -145,12 +169,17 @@ router.post(
     res.redirect(tokens.REDIRECT_URI ?? "/auth-redirect")
 );
 
+/**
+ * Google:
+ * When a user successfully logs in with Google, a GET request is made to this endpoint, with the data
+ * needed by passport to confirm authentication in the query string.  On success, we send them to /admin 
+ */
 router.get(
   "/auth-redirect/google",
   passport.authenticate("google", {
     failureMessage: true,
-    failureRedirect: `/`,
-    successRedirect: '/get-involved/community'
+    failureRedirect: "/",
+    successRedirect: "/admin", // since this is only accessible to admins, it's safe to redirect them here
   })
 );
 
