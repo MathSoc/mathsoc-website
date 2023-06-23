@@ -8,7 +8,7 @@ import {
   DirectoryEntry,
   PageOutflow,
 } from "../types/routing";
-import { GoogleMiddleware } from "../auth/auth";
+import { GoogleMiddleware } from "../auth/google";
 
 interface EditorPageOutflow extends PageOutflow {
   editors: DirectoryEntry[];
