@@ -13,13 +13,15 @@ declare module "express-session" {
 
 const router = express.Router();
 
+const LOGIN_URL = "/authorize/admin-login";
+const REDIRECT_URL = "/auth-redirect/google";
+
 passport.use(
   new GoogleStrategy(
     {
       clientID: tokens.GOOGLE_CLIENT_ID ?? "",
       clientSecret: tokens.GOOGLE_CLIENT_SECRET ?? "",
-      callbackURL:
-        "https://staging9000.mathsoc.uwaterloo.ca/auth-redirect/google",
+      callbackURL: REDIRECT_URL,
       scope: ["profile"],
     },
     (_accessToken, _refreshToken, profile, done) => {
@@ -45,11 +47,11 @@ export const GoogleMiddleware = (
     next();
     return;
   }
-  // @ts-expect-error No admin attributes are pre-defined to exist on Express.User.  This is custom.  
+  // @ts-expect-error No admin attributes are pre-defined to exist on Express.User.  This is custom.
   if (req.user?.adminAccess == true) {
     next();
   } else {
-    res.redirect(`/authorize/admin-login`);
+    res.redirect(LOGIN_URL);
   }
 };
 
@@ -58,10 +60,10 @@ export const GoogleMiddleware = (
  * For an unauthenticated user trying to access admin, this redirects them to Google's SSO
  */
 router.get(
-  "/authorize/admin-login",
+  LOGIN_URL,
   passport.authenticate("google", {
     prompt: "login",
-    successRedirect: `/auth-redirect/google`,
+    successRedirect: REDIRECT_URL,
   })
 );
 
@@ -71,7 +73,7 @@ router.get(
  * needed by passport to confirm authentication in the query string.  On success, we send them to /admin
  */
 router.get(
-  "/auth-redirect/google",
+  REDIRECT_URL,
   passport.authenticate("google", {
     failureMessage: true,
     failureRedirect: "/",
