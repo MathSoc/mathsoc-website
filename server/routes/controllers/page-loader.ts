@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { Request, RequestHandler, Response, Router } from "express";
 import fs from "fs";
 import { ReadWriteController } from "../../api/controllers/read-write-controller";
 import { PageInflow, PageOutflow } from "../../types/routing.js";
@@ -21,18 +21,30 @@ export class PageLoader {
   static buildRoutes<PageOutflowExtension extends PageOutflow>(
     pageArray: PageInflow[],
     router: Router,
-    dataTransformer: (data: PageOutflow) => PageOutflowExtension
+    dataTransformer: (data: PageOutflow) => PageOutflowExtension,
+    middleware?: RequestHandler
   ): void {
     for (const page of pageArray) {
+      const routeHandler = async (req: Request, res: Response) => {
+        const data = await this.getAllPageData(page, dataTransformer);
+        res.render(`pages/${page.view}.pug`, data);
+      };
+
       if (page.ref && !page.noRouting) {
-        router.get(page.ref, async (req: Request, res: Response) => {
-          const data = await this.getAllPageData(page, dataTransformer);
-          res.render(`pages/${page.view}.pug`, data);
-        });
+        if (middleware) {
+          router.get(page.ref, middleware, routeHandler);
+        } else {
+          router.get(page.ref, routeHandler);
+        }
       }
 
       if (page.children) {
-        PageLoader.buildRoutes(page.children, router, dataTransformer);
+        PageLoader.buildRoutes(
+          page.children,
+          router,
+          dataTransformer,
+          middleware
+        );
       }
     }
   }

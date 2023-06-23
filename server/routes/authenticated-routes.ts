@@ -4,8 +4,6 @@ import { PageLoader } from "./controllers/page-loader";
 import { ADFSMiddleware } from "../auth/adfs";
 const router = express.Router();
 
-router.use(ADFSMiddleware);
-
-PageLoader.buildRoutes(authenticatedPages, router, (page) => page);
+PageLoader.buildRoutes(authenticatedPages, router, (page) => page, ADFSMiddleware);
 
 export default router;

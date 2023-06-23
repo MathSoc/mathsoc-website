@@ -60,9 +60,7 @@ app
   .use(ADFSAuthRoutes)
   .use(GoogleAuthRoutes)
   .use("/api", api)
-  // @todo General student authentication
   .use(authenticatedRoutes)
-  // @todo Admin authentication
   .use(adminRoutes)
   .use((req: Request, res: Response) => {
     res.status(404).redirect("/error");
