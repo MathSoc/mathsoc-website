@@ -47,6 +47,7 @@ passport.use(
       clientID: tokens.GOOGLE_CLIENT_ID ?? "",
       clientSecret: tokens.GOOGLE_CLIENT_SECRET ?? "",
       callbackURL: "https://staging9000.mathsoc.uwaterloo.ca/auth-redirect",
+      scope: ['profile'],
     },
     (_accessToken, _refreshToken, profile, done: VerifyCallback) => {
       const username = profile.id;
@@ -129,8 +130,15 @@ router.get(
   "/authorize/admin-login",
   passport.authenticate("google", {
     prompt: "login",
-    scope: ['profile'],
-    successRedirect: `${tokens.REDIRECT_URI}`,
+    successRedirect: `/auth-redirect/google`,
+  })
+);
+
+router.get(
+  "/auth-redirect/google",
+  passport.authenticate("google", {
+    failureMessage: true,
+    failureRedirect: `/`,
   })
 );
 
