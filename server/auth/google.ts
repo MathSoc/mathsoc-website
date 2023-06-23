@@ -21,7 +21,7 @@ passport.use(
     {
       clientID: tokens.GOOGLE_CLIENT_ID ?? "",
       clientSecret: tokens.GOOGLE_CLIENT_SECRET ?? "",
-      callbackURL: REDIRECT_URL,
+      callbackURL: tokens.GOOGLE_AUTH_SUCCESS_REDIRECT,
       scope: ["profile"],
     },
     (_accessToken, _refreshToken, profile, done) => {

@@ -13,6 +13,7 @@ const tokens = {
   IS_DEVELOPMENT: process.env.IS_DEVELOPMENT,
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  GOOGLE_AUTH_SUCCESS_REDIRECT: process.env.GOOGLE_AUTH_SUCCESS_REDIRECT
 };
 
 const missingTokens: string[] = [];
