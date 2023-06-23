@@ -3,6 +3,7 @@ import { IProfile, OIDCStrategy, VerifyCallback } from "passport-azure-ad";
 import express, { NextFunction, Request, Response } from "express";
 import tokens from "../../config";
 import "express-session";
+
 declare module "express-session" {
   interface SessionData {
     user: string;
@@ -34,7 +35,7 @@ passport.use(
       if (!username) {
         return done(new Error("No username found"), null);
       }
-      return done(null, { username: username });
+      return done(null, { username, adminAccess: false });
     }
   )
 );
@@ -54,12 +55,15 @@ const regenerateSessionAfterAuthentication = (
   });
 };
 
-export const adfsMiddleware = (
+/**
+ * Middleware to be used on low-authentication routes, including the exam bank
+ */
+export const ADFSMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  if (tokens.IS_PRODUCTION !== "true") {
+  if (tokens.IS_DEVELOPMENT === "true") {
     next();
     return;
   }
@@ -67,28 +71,27 @@ export const adfsMiddleware = (
   if (req.user) {
     next();
   } else {
-    res.redirect(`/authorize/login`);
+    res.redirect(`/authorize/student-login`);
   }
 };
 
-passport.serializeUser((user, done) => {
-  // You can do some stuff here
-  done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-  // Also here
-  done(null, user as Express.User);
-});
-
+/**
+ * ADFS:
+ * For an unauthenticated general user, this redirects them to Waterloo's ADFS SSO system
+ */
 router.get(
-  "/authorize/login",
+  "/authorize/student-login",
   passport.authenticate("azuread-openidconnect", {
     prompt: "login",
     successRedirect: `${tokens.REDIRECT_URI}`,
   })
 );
 
+/**
+ * ADFS:
+ * When a user successfully logs in with ADFS, a POST request is made to this endpoint, with the data
+ * needed by passport to confirm authentication in the request body.  On success, we send them to /auth-redirect
+ */
 router.post(
   "/auth-redirect",
   passport.authenticate("azuread-openidconnect", {
