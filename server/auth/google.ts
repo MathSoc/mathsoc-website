@@ -16,24 +16,26 @@ const router = express.Router();
 const LOGIN_URL = "/authorize/admin-login";
 const REDIRECT_URL = "/auth-redirect/google";
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: tokens.GOOGLE_CLIENT_ID ?? "",
-      clientSecret: tokens.GOOGLE_CLIENT_SECRET ?? "",
-      callbackURL: tokens.GOOGLE_AUTH_SUCCESS_REDIRECT,
-      scope: ["profile"],
-    },
-    (_accessToken, _refreshToken, profile, done) => {
-      const username = profile.id;
-      if (!username) {
-        return done(new Error("No username found"));
-      }
+if (tokens.IS_DEVELOPMENT !== "true") {
+  passport.use(
+    new GoogleStrategy(
+      {
+        clientID: tokens.GOOGLE_CLIENT_ID ?? "",
+        clientSecret: tokens.GOOGLE_CLIENT_SECRET ?? "",
+        callbackURL: tokens.GOOGLE_AUTH_SUCCESS_REDIRECT,
+        scope: ["profile"],
+      },
+      (_accessToken, _refreshToken, profile, done) => {
+        const username = profile.id;
+        if (!username) {
+          return done(new Error("No username found"));
+        }
 
-      return done(null, { username, adminAccess: true });
-    }
-  )
-);
+        return done(null, { username, adminAccess: true });
+      }
+    )
+  );
+}
 
 /**
  * Middleware to be used on high-authentication routes, including the admin backend

@@ -13,32 +13,34 @@ declare module "express-session" {
 
 const router = express.Router();
 
-passport.use(
-  new OIDCStrategy(
-    {
-      identityMetadata: `${tokens.ADFS_SERVER}/adfs/.well-known/openid-configuration`,
-      clientID: tokens.ADFS_CLIENT_ID ?? "",
-      responseType: "id_token",
-      responseMode: "form_post",
-      redirectUrl: tokens.REDIRECT_URI ?? "",
-      passReqToCallback: true,
-      useCookieInsteadOfSession: true,
-      cookieEncryptionKeys: [
-        {
-          key: tokens.COOKIE_ENCRYPTION_KEY ?? "",
-          iv: tokens.COOKIE_ENCRYPTION_IV ?? "",
-        },
-      ],
-    },
-    (_req: Request, profile: IProfile, done: VerifyCallback) => {
-      const username = profile._json.winaccountname;
-      if (!username) {
-        return done(new Error("No username found"), null);
+if (tokens.IS_DEVELOPMENT !== "true") {
+  passport.use(
+    new OIDCStrategy(
+      {
+        identityMetadata: `${tokens.ADFS_SERVER}/adfs/.well-known/openid-configuration`,
+        clientID: tokens.ADFS_CLIENT_ID ?? "",
+        responseType: "id_token",
+        responseMode: "form_post",
+        redirectUrl: tokens.REDIRECT_URI ?? "",
+        passReqToCallback: true,
+        useCookieInsteadOfSession: true,
+        cookieEncryptionKeys: [
+          {
+            key: tokens.COOKIE_ENCRYPTION_KEY ?? "",
+            iv: tokens.COOKIE_ENCRYPTION_IV ?? "",
+          },
+        ],
+      },
+      (_req: Request, profile: IProfile, done: VerifyCallback) => {
+        const username = profile._json.winaccountname;
+        if (!username) {
+          return done(new Error("No username found"), null);
+        }
+        return done(null, { username, adminAccess: false });
       }
-      return done(null, { username, adminAccess: false });
-    }
-  )
-);
+    )
+  );
+}
 
 const regenerateSessionAfterAuthentication = (
   req: Request,
