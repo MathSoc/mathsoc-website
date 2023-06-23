@@ -150,6 +150,7 @@ router.get(
   passport.authenticate("google", {
     failureMessage: true,
     failureRedirect: `/`,
+    successRedirect: '/get-involved/community'
   })
 );
 
