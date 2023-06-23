@@ -46,7 +46,7 @@ export const GoogleMiddleware = (
     return;
   }
 
-  // @ts-expect-error admin
+  // @ts-expect-error bad attribute
   if (req.user.adminAccess == true) {
     next();
   } else {
