@@ -27,7 +27,8 @@ passport.use(
       if (!username) {
         return done(new Error("No username found"));
       }
-      return done(null, { username: username ?? "john" });
+
+      return done(null, { username, adminAccess: true });
     }
   )
 );
@@ -45,7 +46,8 @@ export const GoogleMiddleware = (
     return;
   }
 
-  if (req.user) {
+  // @ts-expect-error admin
+  if (req.user.adminAccess == true) {
     next();
   } else {
     res.redirect(`/authorize/admin-login`);
