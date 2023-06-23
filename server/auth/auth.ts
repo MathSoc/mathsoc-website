@@ -46,7 +46,7 @@ passport.use(
     {
       clientID: tokens.GOOGLE_CLIENT_ID ?? "",
       clientSecret: tokens.GOOGLE_CLIENT_SECRET ?? "",
-      callbackURL: "https://staging9000.mathsoc.uwaterloo.ca/auth-redirect",
+      callbackURL: "https://staging9000.mathsoc.uwaterloo.ca/auth-redirect/google",
       scope: ['profile'],
     },
     (_accessToken, _refreshToken, profile, done: VerifyCallback) => {
@@ -134,14 +134,6 @@ router.get(
   })
 );
 
-router.get(
-  "/auth-redirect/google",
-  passport.authenticate("google", {
-    failureMessage: true,
-    failureRedirect: `/`,
-  })
-);
-
 router.post(
   "/auth-redirect",
   passport.authenticate("azuread-openidconnect", {
@@ -151,6 +143,14 @@ router.post(
   regenerateSessionAfterAuthentication,
   (_req: Request, res: Response) =>
     res.redirect(tokens.REDIRECT_URI ?? "/auth-redirect")
+);
+
+router.get(
+  "/auth-redirect/google",
+  passport.authenticate("google", {
+    failureMessage: true,
+    failureRedirect: `/`,
+  })
 );
 
 export default router;
