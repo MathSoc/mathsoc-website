@@ -42,7 +42,7 @@ if (tokens.IS_DEVELOPMENT !== "true") {
 
         return done(
           new Error(
-            `MathSoc profile ${profile.username} is not authorized with admin permissions`
+            `MathSoc profile ${profile.displayName} is not authorized with admin permissions`
           )
         );
       }
