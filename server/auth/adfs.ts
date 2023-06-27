@@ -8,6 +8,7 @@ declare module "express-session" {
   interface SessionData {
     user: string;
     passport: any;
+    redirectUri: string | undefined;
   }
 }
 
@@ -87,15 +88,15 @@ export const ADFSMiddleware = (
 router.get(
   "/authorize/student-login",
   (req: Request, res: Response, next: NextFunction) => {
-    const state = req.query.next
-      ? Buffer.from(JSON.stringify({ redirect: req.query.next })).toString(
-          "base64"
-        )
-      : undefined;
+    const redirect = req.query.next;
+
+    req.session.redirectUri = redirect as string;
+
+    console.log(req.session.redirectUri);
     passport.authenticate("azuread-openidconnect", {
-      state,
       prompt: "login",
       successRedirect: tokens.REDIRECT_URI,
+      failureRedirect: tokens.POST_LOGOUT_REDIRECT_URI,
     })(req, res, next);
   }
 );
@@ -114,12 +115,10 @@ router.post(
   regenerateSessionAfterAuthentication,
   (req: Request, res: Response) => {
     try {
-      const state: unknown = req.query;
+      const redirect = req.session.redirectUri;
 
-      const redirect = JSON.parse(
-        Buffer.from(state as string, "base64").toString()
-      );
       if (typeof redirect === "string" && redirect.startsWith("/")) {
+        req.session.redirectUri = undefined;
         res.redirect(redirect);
       } else {
         res.redirect("/");
