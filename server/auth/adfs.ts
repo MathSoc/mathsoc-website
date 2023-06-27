@@ -73,7 +73,10 @@ export const ADFSMiddleware = (
   if (req.user) {
     next();
   } else {
-    res.redirect(`/authorize/student-login`);
+    const originalUrl = req.path;
+    res.redirect(
+      `/authorize/student-login?next=${encodeURIComponent(originalUrl)}`
+    );
   }
 };
 
@@ -83,10 +86,17 @@ export const ADFSMiddleware = (
  */
 router.get(
   "/authorize/student-login",
-  passport.authenticate("azuread-openidconnect", {
-    prompt: "login",
-    successRedirect: `${tokens.REDIRECT_URI}`,
-  })
+  (req: Request, res: Response, next: NextFunction) => {
+    const redirect = req.query.next;
+    passport.authenticate("azuread-openidconnect", {
+      prompt: "login",
+      successRedirect: redirect
+        ? `${tokens.REDIRECT_URI}?redirect=${encodeURIComponent(
+            redirect as string
+          )}`
+        : tokens.REDIRECT_URI,
+    })(req, res, next);
+  }
 );
 
 /**
@@ -101,8 +111,10 @@ router.post(
     prompt: "login",
   }),
   regenerateSessionAfterAuthentication,
-  (_req: Request, res: Response) =>
-    res.redirect(tokens.REDIRECT_URI ?? "/auth-redirect")
+  (req: Request, res: Response) => {
+    const redirect = req.query.redirect || '/';
+    res.redirect(redirect as string);
+  }
 );
 
 export default router;
