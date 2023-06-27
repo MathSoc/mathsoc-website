@@ -32,9 +32,11 @@ if (tokens.IS_DEVELOPMENT !== "true") {
           return done(new Error("No username found"));
         }
 
-        for (const email in profile.emails) {
-          if (PermissionsHandler.shouldHaveAdminRights(email)) {
-            return done(null, { username, adminAccess: true });
+        if (profile.emails) {
+          for (const email of profile.emails) {
+            if (PermissionsHandler.shouldHaveAdminRights(email.value)) {
+              return done(null, { username, adminAccess: true });
+            }
           }
         }
 
