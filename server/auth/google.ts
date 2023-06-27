@@ -3,6 +3,7 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import express, { NextFunction, Request, Response } from "express";
 import tokens from "../../config";
 import "express-session";
+import { PermissionsHandler } from "./permissions";
 
 declare module "express-session" {
   interface SessionData {
@@ -23,7 +24,7 @@ if (tokens.IS_DEVELOPMENT !== "true") {
         clientID: tokens.GOOGLE_CLIENT_ID ?? "",
         clientSecret: tokens.GOOGLE_CLIENT_SECRET ?? "",
         callbackURL: tokens.GOOGLE_AUTH_SUCCESS_REDIRECT,
-        scope: ["profile"],
+        scope: ["profile", "email"],
       },
       (_accessToken, _refreshToken, profile, done) => {
         const username = profile.id;
@@ -31,7 +32,17 @@ if (tokens.IS_DEVELOPMENT !== "true") {
           return done(new Error("No username found"));
         }
 
-        return done(null, { username, adminAccess: true });
+        for (const email in profile.emails) {
+          if (PermissionsHandler.shouldHaveAdminRights(email)) {
+            return done(null, { username, adminAccess: true });
+          }
+        }
+
+        return done(
+          new Error(
+            `MathSoc profile ${profile.username} is not authorized with admin permissions`
+          )
+        );
       }
     )
   );
