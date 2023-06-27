@@ -34,6 +34,10 @@
       {
         "title": "Student services",
         "ref": "/services/student-services"
+      },
+      {
+        "title": "Locker Signout",
+        "ref": "/services/locker-signout"
       }
     ]
   },
