@@ -48,11 +48,13 @@ const regenerateSessionAfterAuthentication = (
   res: Response,
   next: NextFunction
 ) => {
+  const redirectUri = req.session.redirectUri;
   const passportInstance = req.session.passport;
   return req.session.regenerate(function (err) {
     if (err) {
       return next(err);
     }
+    req.session.redirectUri = redirectUri;
     req.session.passport = passportInstance;
     return req.session.save(next);
   });
@@ -92,7 +94,6 @@ router.get(
 
     req.session.redirectUri = redirect as string;
 
-    console.log(req.session.redirectUri);
     passport.authenticate("azuread-openidconnect", {
       prompt: "login",
       successRedirect: tokens.REDIRECT_URI,
@@ -116,7 +117,6 @@ router.post(
   (req: Request, res: Response) => {
     try {
       const redirect = req.session.redirectUri;
-
       if (typeof redirect === "string" && redirect.startsWith("/")) {
         req.session.redirectUri = undefined;
         res.redirect(redirect);
