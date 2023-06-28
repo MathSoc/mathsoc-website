@@ -184,6 +184,11 @@ const StudentServicesSchema= z.object({
   )
 });
 
+const LockerSignOutSchema = z.object({
+  title: z.string(),
+  subheader: z.string(),
+});
+
 const CartoonsAboutUsDataSchema = z.object({
   pageTitle: z.string(),
   heading: z.string(),
@@ -332,6 +337,7 @@ export {
   ChequeRequestSchema,
   DiscordAccessSchema,
   StudentServicesSchema,
+  LockerSignOutSchema,
   CartoonsAboutUsDataSchema,
   CouncilDataSchema,
   ContactUsDataSchema,

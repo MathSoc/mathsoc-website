@@ -6,13 +6,11 @@ append styles
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css")
 
 block body
-    
     div(class="content")
-        h1 Locker Signout
-        section(class="service")
-            div(class="service-item")
-                p Locker rentals description: Lockers are on a term to term and first come first serve basis.
-                p To sign out a locker, please click the button below. Make sure you are signed in with your UWaterloo account. 
+        h1 #{data.title}
+        section(class="")
+            div(class="")
+                p #{data.description}
                 button(class="pink-button" onclick="submitForm()")
                     i(class="fas fa-lock")
                     | Sign out a locker
