@@ -8,6 +8,7 @@ declare module "express-session" {
   interface SessionData {
     user: string;
     passport: any;
+    redirectUri: string | undefined;
   }
 }
 
@@ -47,11 +48,13 @@ const regenerateSessionAfterAuthentication = (
   res: Response,
   next: NextFunction
 ) => {
+  const redirectUri = req.session.redirectUri;
   const passportInstance = req.session.passport;
   return req.session.regenerate(function (err) {
     if (err) {
       return next(err);
     }
+    req.session.redirectUri = redirectUri;
     req.session.passport = passportInstance;
     return req.session.save(next);
   });
@@ -73,7 +76,10 @@ export const ADFSMiddleware = (
   if (req.user) {
     next();
   } else {
-    res.redirect(`/authorize/student-login`);
+    const originalUrl = req.path;
+    res.redirect(
+      `/authorize/student-login?next=${encodeURIComponent(originalUrl)}`
+    );
   }
 };
 
@@ -83,10 +89,17 @@ export const ADFSMiddleware = (
  */
 router.get(
   "/authorize/student-login",
-  passport.authenticate("azuread-openidconnect", {
-    prompt: "login",
-    successRedirect: `${tokens.REDIRECT_URI}`,
-  })
+  (req: Request, res: Response, next: NextFunction) => {
+    const redirect = req.query.next;
+
+    req.session.redirectUri = redirect as string;
+
+    passport.authenticate("azuread-openidconnect", {
+      prompt: "login",
+      successRedirect: tokens.REDIRECT_URI,
+      failureRedirect: tokens.POST_LOGOUT_REDIRECT_URI,
+    })(req, res, next);
+  }
 );
 
 /**
@@ -101,8 +114,19 @@ router.post(
     prompt: "login",
   }),
   regenerateSessionAfterAuthentication,
-  (_req: Request, res: Response) =>
-    res.redirect(tokens.REDIRECT_URI ?? "/auth-redirect")
+  (req: Request, res: Response) => {
+    try {
+      const redirect = req.session.redirectUri;
+      if (typeof redirect === "string" && redirect.startsWith("/")) {
+        req.session.redirectUri = undefined;
+        res.redirect(redirect);
+      } else {
+        res.redirect("/");
+      }
+    } catch (err) {
+      res.redirect("/");
+    }
+  }
 );
 
 export default router;
