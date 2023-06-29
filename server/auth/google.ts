@@ -53,7 +53,7 @@ if (tokens.IS_DEVELOPMENT !== "true") {
 /**
  * Middleware to be used on high-authentication routes, including the admin backend
  */
-export const GoogleMiddleware = (
+export const AdminMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction

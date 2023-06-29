@@ -63,7 +63,7 @@ const regenerateSessionAfterAuthentication = (
 /**
  * Middleware to be used on low-authentication routes, including the exam bank
  */
-export const ADFSMiddleware = (
+export const StudentMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
