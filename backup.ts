@@ -5,6 +5,8 @@ import { exit } from "process";
 import path from "path";
 import { sys } from "typescript";
 
+process.title = "MathSoc Content Backup";
+
 const createDirectory = (directory: string) => {
   const exists = fs.existsSync(directory);
   if (!exists) {
@@ -80,7 +82,7 @@ const runJobs = () => {
     "America/Toronto"
   );
 
-  createDirectory(directoryName); 
+  createDirectory(directoryName);
   job.start();
 };
 
