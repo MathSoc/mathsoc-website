@@ -8,3 +8,4 @@
 /server/data/_hidden/term-list.json
 .env
 *.tsbuildinfo
+backups/
