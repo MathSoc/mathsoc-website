@@ -1,0 +1,20 @@
+#/bin/bash!
+
+# this is a script to manage backups
+npm install -g ts-node 
+
+file="backups/process.txt"
+
+line=$(head -n 1 "$file")
+pid=$(echo "$line" | awk '{print $1}')
+
+if [[ $pid =~ ^[0-9]+$ ]]; then
+    # Kill the process with the PID
+    echo "Killing process with PID: $pid"
+    kill -9 "$pid"
+else
+    echo "Invalid PID: $pid"
+fi
+
+nohup ts-node backup.ts > backups/process.txt &
+ps -ax | grep "MathSoc Content Backup" > backups/process.txt
