@@ -1,0 +1,14 @@
+[
+    {
+      "lockernumber": "lockerid1",
+      "lockerstatus": "status1"
+    },
+    {
+      "lockernumber": "lockerid2",
+      "lockerstatus": "status2"
+    },
+    {
+      "lockernumber": "lockerid3",
+      "lockerstatus": "status3"
+    }
+]
