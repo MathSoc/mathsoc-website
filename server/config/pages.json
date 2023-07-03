@@ -110,6 +110,14 @@
         "title": "About us",
         "ref": "/cartoons/about-us",
         "view": "/cartoons/about-us"
+      },
+      {
+        "title": "Archive",
+        "ref": "/cartoons/archive",
+        "view": "/cartoons/archive",
+        "dataSources": {
+          "cartoonsList": "/_hidden/cartoons-list"
+        }
       }
     ]
   },
