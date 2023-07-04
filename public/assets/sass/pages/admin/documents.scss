@@ -1,0 +1,12 @@
+@import "../../mixins/section";
+
+section.section-mixin {
+  padding-top: 0;
+}
+
+button {
+  background-color: var(--mathsoc-pink);
+  color: #fff;
+  padding: 1em;
+  cursor: pointer;
+}

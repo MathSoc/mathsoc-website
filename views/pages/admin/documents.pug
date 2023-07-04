@@ -1,1 +1,18 @@
 extends /views/templates/admin-base.pug
+
+append styles
+  link(href='/assets/css/pages/admin/documents.css' rel="stylesheet")
+
+append scripts
+  script(src='/assets/js/admin/documents.js' defer)
+
+block body 
+  +section()
+    h1 Documents
+  +section()
+    h2 Upload new
+
+    input(type="file" name="documents" required multiple accept=".pdf")
+    button(id="upload-btn" type="submit") Upload documents
+  +section() 
+    h2 Manage existing
