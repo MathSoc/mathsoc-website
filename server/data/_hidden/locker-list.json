@@ -1,14 +1,17 @@
 [
     {
-      "lockernumber": "lockerid1",
-      "lockerstatus": "status1"
+      "userId": "",
+      "lockerNumber": "lockerid1",
+      "lockerCombination": "123"
     },
     {
-      "lockernumber": "lockerid2",
-      "lockerstatus": "status2"
+      "userId": "",
+      "lockerNumber": "lockerid2",
+      "lockerCombination": "abc"
     },
     {
-      "lockernumber": "lockerid3",
-      "lockerstatus": "status3"
+      "userId": "",
+      "lockerNumber": "lockerid3",
+      "lockerCombination": "password"
     }
 ]
