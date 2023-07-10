@@ -1,9 +1,16 @@
 import { showToast } from "./toast";
-console.log('file');
+console.log("file");
 
 class DocumentUploader {
   static getUploadButton(): HTMLInputElement {
     return document.getElementById("upload-btn") as HTMLInputElement;
+  }
+
+  static getInputFiles(): FileList {
+    const fileInput = document.getElementsByName(
+      "documents"
+    )[0] as HTMLInputElement;
+    return fileInput.files;
   }
 
   static init() {
@@ -13,9 +20,7 @@ class DocumentUploader {
   }
 
   static async submitDocuments() {
-    const files = DocumentUploader.getUploadButton().files;
-    console.log(DocumentUploader.getUploadButton());
-    console.log(files);
+    const files = this.getInputFiles();
 
     if (!files?.length) {
       showToast(
