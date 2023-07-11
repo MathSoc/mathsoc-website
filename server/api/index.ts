@@ -6,6 +6,7 @@ import express from "express";
 import { ExamBankController } from "./controllers/exam-bank-controller";
 import { ImageController } from "./controllers/image-controller";
 import { DocumentController } from "./controllers/document-controller";
+import { LockerSignoutController } from "./controllers/locker-signout-controller";
 
 const router = express.Router();
 

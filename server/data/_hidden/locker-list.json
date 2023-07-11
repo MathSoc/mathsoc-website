@@ -1,17 +1,36 @@
-[
+{
+  "placeholderTerm1": [
     {
-      "userId": "",
-      "lockerNumber": "lockerid1",
-      "lockerCombination": "123"
+      "userId": 0,
+      "lockerNumber": 1,
+      "lockerCombination": "1111"
     },
     {
-      "userId": "",
-      "lockerNumber": "lockerid2",
-      "lockerCombination": "abc"
+      "userId": 0,
+      "lockerNumber": 2,
+      "lockerCombination": "2222"
     },
     {
-      "userId": "",
-      "lockerNumber": "lockerid3",
-      "lockerCombination": "password"
+      "userId": 0,
+      "lockerNumber": 3,
+      "lockerCombination": "3333"
     }
-]
+  ],
+  "placeholderTerm2": [
+    {
+      "userId": 0,
+      "lockerNumber": 1,
+      "lockerCombination": "1111"
+    },
+    {
+      "userId": 0,
+      "lockerNumber": 2,
+      "lockerCombination": "2222"
+    },
+    {
+      "userId": 0,
+      "lockerNumber": 3,
+      "lockerCombination": "3333"
+    }
+  ] 
+}

@@ -1,5 +1,5 @@
 export type Locker = {
-    userId: string;
-    lockerNumber: string;
+    userId: number;
+    lockerNumber: number;
     lockerCombination: string;
 };
