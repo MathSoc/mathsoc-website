@@ -186,7 +186,7 @@ const StudentServicesSchema= z.object({
 
 const LockerSignOutSchema = z.object({
   title: z.string(),
-  subheader: z.string(),
+  description: z.string(),
 });
 
 const CartoonsAboutUsDataSchema = z.object({
