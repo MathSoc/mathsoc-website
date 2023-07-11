@@ -27,7 +27,7 @@ export class LockerSignoutController {
             return;
         }
         availableLocker.userId = userId;
-        res.json({ lockerNumber: availableLocker.lockerNumber });
+        res.status(201).json({ lockerNumber: availableLocker.lockerNumber });
     }
 
     static getLockerByUserId(req: Request, res: Response) {
