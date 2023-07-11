@@ -40,7 +40,7 @@ export class LockerSignoutController {
           res.status(404).json({ error: "User ID not found or no locker assigned" });
           return;
         }
-        res.json({ lockerNumber: assignedLocker.lockerNumber });
+        res.status(200).json({ lockerNumber: assignedLocker.lockerNumber });
     }
 
     static getUserIdByLocker(req: Request, res: Response) {
