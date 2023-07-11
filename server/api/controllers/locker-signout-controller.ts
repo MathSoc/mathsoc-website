@@ -69,6 +69,6 @@ export class LockerSignoutController {
         const isAvailable = LockerData.some(
           (locker: Locker) => locker.lockerNumber === lockerNumber && !locker.userId
         );
-        res.json({ available: isAvailable });
+        res.status(200).json({ available: isAvailable });
     }
 }
