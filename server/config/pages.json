@@ -50,6 +50,16 @@
         "title": "Student Services",
         "ref": "/services/student-services",
         "view": "/services/student-services"
+      },
+      {
+        "title": "Locker Signout",
+        "ref": "/services/locker-signout",
+        "view": "/services/locker-signout"
+      },
+      {
+        "title": "Locker Success",
+        "ref": "/services/locker-success",
+        "view": "/services/locker-success"
       }
     ]
   },

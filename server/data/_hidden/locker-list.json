@@ -1,0 +1,17 @@
+[
+    {
+      "userId": "",
+      "lockerNumber": "lockerid1",
+      "lockerCombination": "123"
+    },
+    {
+      "userId": "",
+      "lockerNumber": "lockerid2",
+      "lockerCombination": "abc"
+    },
+    {
+      "userId": "",
+      "lockerNumber": "lockerid3",
+      "lockerCombination": "password"
+    }
+]
