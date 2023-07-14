@@ -23,7 +23,7 @@ export class CartoonsController {
       fs.mkdirSync(cartoonsUploadPath);
     }
 
-    const cartoonsList = await this.readExamsFromDirectory();
+    const cartoonsList = await this.readCartoonsFromDirectory();
 
     ReadWriteController.overwriteJSONDataPath(
       url,
@@ -72,7 +72,7 @@ export class CartoonsController {
    * }
    */
 
-  private static async readExamsFromDirectory(): Promise<CartoonsDirectoryStructure> {
+  private static async readCartoonsFromDirectory(): Promise<CartoonsDirectoryStructure> {
     const readCartoonsDir = (url: string) =>
       new Promise<fs.Dirent[]>((resolve, reject) => {
         fs.readdir(
