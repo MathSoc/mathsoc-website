@@ -1,3 +1,4 @@
+@import "../../util/variables";
 @import "../../mixins/section";
 
 section.section-mixin {
@@ -9,4 +10,19 @@ button {
   color: #fff;
   padding: 1em;
   cursor: pointer;
+}
+
+#document-list {
+  button {
+    margin-top: 20px;
+    width: 100%;
+    color: white;
+    background-color: var(--text-color);
+
+    &:hover {
+      background-color: var(--mathsoc-pink);
+      color: white;
+      transition-duration: 150ms;
+    }
+  }
 }

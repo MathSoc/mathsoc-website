@@ -44,7 +44,7 @@ router.get("/images", (_req: Request, res: Response) => {
  **            req.body.files: documents
  */
 router.post("/document/upload", async (req: Request, res: Response) => {
-  DocumentController.uploadDocument(req, res);
+  DocumentController.uploadDocuments(req, res);
 });
 
 /*
@@ -62,7 +62,7 @@ router.delete("/document/delete", async (req: Request, res: Response) => {
  **            req.headers.documentName
  */
 router.get("/documents", (req: Request, res: Response) => {
-  DocumentController.getDocument(req, res);
+  ReadWriteAPIController.getJSONDataPath("_hidden/document-list", res);
 });
 
 export default router;

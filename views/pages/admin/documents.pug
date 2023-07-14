@@ -7,8 +7,10 @@ append scripts
   script(src='/assets/js/admin/documents.js' defer)
 
 block body 
-  +section()
+  +section("white", "documents-section")
     h1 Documents
+    div(id="document-list")
+
   +section()
     h2 Upload new
 

@@ -4,7 +4,7 @@ export type Document = {
     fileName: string;
     fileType: string;
     path: string;
-    date: string;
+    publicLink: string
 }
 
 export type DocumentWithFile = Document & {file: UploadedFile };
