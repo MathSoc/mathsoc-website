@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Logger } from "../../util/logger";
 // import { ReadWriteAPIController } from "./read-write-api-controller";
-// import { ReadWriteController } from "./read-write-controller";
+import { ReadWriteController } from "./read-write-controller";
 import LockerData from "../../data/_hidden/locker-list.json";
 import { Locker } from "../../types/locker";
 
@@ -10,6 +10,7 @@ export class LockerSignoutController {
     
     /*
       Handles the POST /api/locker-signout/request endpoint
+      - requires: userId
       - checks if a locker is available
       - if available, assigns the locker to the given user
     */
@@ -17,17 +18,27 @@ export class LockerSignoutController {
       const { userId } = req.body;
       const term = "placeholderTerm1"; // will set current term later
   
-      const availableLocker = LockerData[term].find((locker: Locker) => !locker.userId);
+      const availableLocker = LockerData[term].find((locker: Locker) => locker.userId == 0);
       if (!availableLocker) {
         res.status(409).json({ error: "No available lockers" });
         return;
       }
+      const url = "_hidden/locker-list.json"
       availableLocker.userId = userId;
+      ReadWriteController.overwriteJSONDataPath(
+        url,
+        () => {
+          return;
+        },
+        // need to generate json file -- currently only overwriting locally
+        LockerData
+      );
       res.status(201).json({ lockerNumber: availableLocker.lockerNumber });
     }
 
     /*
       Handles the GET /api/locker-signout/locker-by-user endpoint
+      - requires: userId, term
       - checks if the locker is assigned to the given user
       - returns the locker number assigned to the given user if it exists
     */
@@ -41,10 +52,12 @@ export class LockerSignoutController {
         return;
       }
       res.status(200).json({ lockerNumber: assignedLocker.lockerNumber });
+      console.log("getLockerByUserId");
     }
 
     /*
       Handles the GET /api/locker-signout/user-by-locker endpoint
+      - requires: lockerNumber, term
       - checks if the locker is assigned to the given user
       - returns the user ID assigned to the given locker if it exists
     */
@@ -65,6 +78,7 @@ export class LockerSignoutController {
 
     /*
       Handles the GET /api/locker-signout/all-available endpoint
+      - requires: term
       - returns all available lockers
     */
     static getAvailableLockers(req: Request, res: Response) {
@@ -77,6 +91,7 @@ export class LockerSignoutController {
 
     /*
       Handles the GET /api/locker-signout/locker-available endpoint
+      - requires: lockerNumber, term
       - checks if the given locker is available
     */
     static checkLockerAvailability(req: Request, res: Response) {

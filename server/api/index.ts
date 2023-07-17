@@ -84,4 +84,38 @@ router.get("/documents", (req: Request, res: Response) => {
   DocumentController.getDocument(req, res)
 });
 
+
+// LOCKER SIGN OUT ENDPOINTS
+// remember to add admin only middleware to get endpoints
+// i think works
+router.get("/locker-signout/locker-by-user", (_req: Request, res: Response) => {
+  LockerSignoutController.getLockerByUserId(_req, res);
+});
+
+// probably works
+router.get("/locker-signout/user-by-locker", (_req: Request, res: Response) => {
+  LockerSignoutController.getUserIdByLocker(_req, res);
+});
+
+// works too
+router.get("/locker-signout/locker-available", (_req: Request, res: Response) => {
+  LockerSignoutController.checkLockerAvailability(_req, res);
+});
+
+// w working
+router.get("/locker-signout/all-available", (_req: Request, res: Response) => {
+  LockerSignoutController.getAvailableLockers(_req, res);
+});
+
+/*
+**  REQUIRES: req.body.userId        
+*/
+router.get("/locker-signout/request", async (req: Request, res: Response) => {
+  LockerSignoutController.requestLocker(req, res);
+});
+
+
+
+
+
 export default router;
