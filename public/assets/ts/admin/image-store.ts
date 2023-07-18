@@ -28,7 +28,7 @@ class ImageStoreFrontend {
     return document.querySelector(".images") as HTMLDivElement;
   }
   private static async getImages() {
-    const images: Image[] = await fetch("/api/images").then((res) =>
+    const images: Image[] = await fetch("/api/admin/images").then((res) =>
       res.json()
     );
 
@@ -86,7 +86,7 @@ class ImageStoreFrontend {
       body: formData,
     };
 
-    const response = await fetch("/api/image/upload", options);
+    const response = await fetch("/api/admin/image/upload", options);
     const parsedResponse = await response.json();
     await ImageStoreFrontend.populateImages();
     if (parsedResponse.errors.length) {
@@ -136,7 +136,7 @@ class ImageStoreFrontend {
       },
       body: JSON.stringify(img),
     };
-    const response = await fetch("/api/image/delete", options).then((res) =>
+    const response = await fetch("/api/admin/image/delete", options).then((res) =>
       res.json()
     );
     if (response.status === "success") {

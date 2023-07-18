@@ -5,8 +5,36 @@ import { ReadWriteController } from "./read-write-controller";
 import fs from "fs";
 import { TermNameController } from "./term-name-controller";
 
+/**
+ * Current invariants (could be changed later with added work)
+ * - All exams are PDFs
+ * - Exams' "natural names" do not contain the terms "-sol" or "-hidden"
+ */
+
 export class ExamBankController {
   static logger = new Logger("Exam Bank Controller");
+
+  static async hideExamFile(examName: string): Promise<void> {
+    const currentUrl = `public/exams/${examName}.pdf`;
+    const newUrl = `public/exams/${examName}-hidden.pdf`;
+
+    if (!fs.existsSync(currentUrl)) {
+      throw new Error("Exam not found");
+    }
+
+    fs.renameSync(currentUrl, newUrl);
+  }
+
+  static async showExamFile(examName: string): Promise<void> {
+    const currentUrl = `public/exams/${examName}.pdf`;
+    const newUrl = currentUrl.replace("-hidden", "");
+
+    if (!fs.existsSync(currentUrl)) {
+      throw new Error("Exam not found");
+    }
+
+    fs.renameSync(currentUrl, newUrl);
+  }
 
   /**
    * Re-creates the exam list JSON file based on the current

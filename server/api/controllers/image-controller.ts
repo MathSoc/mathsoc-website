@@ -28,6 +28,11 @@ export class ImageController extends AbstractFileController<
   ImageUploadRequest,
   ImageDeleteRequest
 > {
+  /*
+  Handles the /api/admin/image/upload endpoint 
+  - handles all possible errors with the file upload (no file, no fileype, not recognized filetype)
+  - if validation passes, adds the request with all uploaded files to the ImageRequestQueue
+  */
   uploadFiles(req: Request, res: Response): void {
     try {
       const imageFiles = Array.isArray(req.files?.images)
@@ -79,6 +84,12 @@ export class ImageController extends AbstractFileController<
     }
   }
 
+  /*
+  Handles the /api/admin/image/delete endpoint
+  - checks that file was passed
+  - checks that file exists
+  - if validations pass, adds the delete request to the ImageRequestQueue
+  */
   deleteFile(req: Request, res: Response): void {
     try {
       const { fileName, fileType, path, publicLink } = req.body;

@@ -28,16 +28,6 @@ router.get("/cartoons", (_req: Request, res: Response) => {
   ReadWriteAPIController.getJSONDataPath("_hidden/cartoons-list", res);
 });
 
-router.post("/exams/rebuild", (_req: Request, res: Response) => {
-  ExamBankController.rewriteFile();
-  res.status(201).send();
-});
-
-router.post("/cartoons/rebuild", (_req: Request, res: Response) => {
-  CartoonsController.rewriteFile();
-  res.status(201).send();
-});
-
 router.post("/general-inquiries", (req: Request, res: Response) => {
   const success = ContactUsController.handleRequest(req, res);
   // If the res hasn't been closed by bad input, then redirect to success page

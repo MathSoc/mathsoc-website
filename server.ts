@@ -14,6 +14,7 @@ import ADFSAuthRoutes from "./server/auth/adfs";
 import GoogleAuthRoutes from "./server/auth/google";
 import adminRoutes from "./server/routes/admin-routes";
 import api from "./server/api";
+import adminApi from "./server/api/admin";
 import { Logger, loggerMiddleware } from "./server/util/logger";
 import { DirectoryPrebuilder } from "./server/util/directory-prebuilder";
 import cookieParser from "cookie-parser";
@@ -60,6 +61,7 @@ app
   .use(ADFSAuthRoutes)
   .use(GoogleAuthRoutes)
   .use("/api", api)
+  .use("/api", adminApi)
   .use(authenticatedRoutes)
   .use(adminRoutes)
   .use((req: Request, res: Response) => {
