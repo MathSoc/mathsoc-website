@@ -4,9 +4,36 @@ import { Logger } from "../../util/logger";
 import { ReadWriteController } from "./read-write-controller";
 import LockerData from "../../data/_hidden/locker-list.json";
 import { Locker } from "../../types/locker";
+import fs from "fs";
 
 export class LockerSignoutController {
     static logger = new Logger("Locker Signout");
+
+    private static updateLockerStatus(term: string, userId: number, lockerNumber: number): boolean {
+      const lockerData = this.readLockerData();
+  
+      const targetTerm = lockerData[term];
+      const targetLocker = targetTerm.find((locker: Locker) => locker.lockerNumber === lockerNumber);
+  
+      if (targetLocker && targetLocker.userId === 0) {
+        targetLocker.userId = userId;
+        this.writeLockerData(lockerData); 
+        return true;
+      }
+  
+      return false;
+    }
+  
+    private static readLockerData(): { [key: string]: Locker[] } {
+      const jsonData = fs.readFileSync("server/data/_hidden/locker-list.json", "utf-8");
+      console.log(jsonData)
+      return JSON.parse(jsonData);
+    }
+  
+    private static writeLockerData(lockerData: { [key: string]: Locker[] }): void {
+      const jsonData = JSON.stringify(lockerData, null, 2);
+      fs.writeFileSync("server/data/_hidden/locker-list.json", jsonData, "utf-8");
+    }
     
     /*
       Handles the POST /api/locker-signout/request endpoint
@@ -31,9 +58,16 @@ export class LockerSignoutController {
           return;
         },
         // need to generate json file -- currently only overwriting locally
-        LockerData
+        this.readLockerData()
       );
       res.status(201).json({ lockerNumber: availableLocker.lockerNumber });
+    }
+
+    static getAvailableLocker(term: string): number {
+      const lockerData = this.readLockerData();
+      const availableLocker = lockerData[term].find((locker: Locker) => locker.userId === 0);
+  
+      return availableLocker ? availableLocker.lockerNumber : -1;
     }
 
     /*
