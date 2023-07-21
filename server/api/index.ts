@@ -44,6 +44,10 @@ router.post("/general-inquiries", (req: Request, res: Response) => {
   }
 });
 
+router.post("/volunteer-application", (req: Request, _res: Response) => {
+  console.log(req.headers);
+})
+
 router.post("/image/upload", async (req: Request, res: Response) => {
   ImageController.uploadImages(req, res);
 });

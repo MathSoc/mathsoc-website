@@ -4,6 +4,7 @@ export enum DataPaths {
   RESOURCES_DISCORD_ACCESS = "resources/discord-access",
   HOME = "home",
   GET_INVOLVED_VOLUNTEER = "get-involved/volunteer",
+  GET_INVOLVED_VOLUNTEER_APPLICATION = "get-involved/volunteer-application",
   CARTOONS_ABOUT_US = "cartoons/about-us",
   ELECTIONS = "elections",
   STUDENT_SERVICES = "services/student-services",

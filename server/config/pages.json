@@ -16,6 +16,11 @@
         "view": "/get-involved/volunteer"
       },
       {
+        "title": "MathSoc Volunteer Application",
+        "ref": "/get-involved/volunteer-application",
+        "view": "/get-involved/volunteer-application"
+      },
+      {
         "title": "MathSoc Council",
         "ref": "/get-involved/council",
         "view": "/get-involved/council",

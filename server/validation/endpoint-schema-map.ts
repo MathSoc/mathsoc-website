@@ -11,6 +11,7 @@ import { DataPaths } from "./data-paths";
 // 'get-involved/volunteer' refers to /data/get-involved/volunteer.json
 export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
   [DataPaths.GET_INVOLVED_VOLUNTEER]: schemas.VolunteerDataSchema,
+  [DataPaths.GET_INVOLVED_VOLUNTEER_APPLICATION]: schemas.VolunteerApplicationSchema,
   [DataPaths.HOME]: schemas.HomeDataSchema,
   [DataPaths.CARTOONS_ABOUT_US]: schemas.CartoonsAboutUsDataSchema,
   [DataPaths.RESOUCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
