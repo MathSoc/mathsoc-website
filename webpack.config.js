@@ -3,6 +3,7 @@ const entrypoints = [
   "collapsible",
   "exam-bank",
   "navbar",
+  "cartoons-archive",
   "admin/generic-editor",
   "admin/image-store",
   "admin/toast",
