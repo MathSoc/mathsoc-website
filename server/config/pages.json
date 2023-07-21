@@ -84,14 +84,7 @@
     "view": "/contact-us/contact-us",
     "dataSources": {
       "execs": "/shared/execs"
-    },
-    "children": [
-      {
-        "title": "Success!",
-        "ref": "/contact-us/success",
-        "view": "/contact-us/contact-us-success"
-      }
-    ]
+    }
   },
   {
     "title": "Documents",
@@ -117,5 +110,10 @@
     "title": "Page Not Found",
     "ref": "/error",
     "view": "/error"
+  },
+  {
+    "title": "Success!",
+    "ref": "/form-success",
+    "view": "/form-success"
   }
 ]

@@ -40,7 +40,7 @@ router.post("/general-inquiries", (req: Request, res: Response) => {
   const success = ContactUsController.handleRequest(req, res);
   // If the res hasn't been closed by bad input, then redirect to success page
   if (success) {
-    res.redirect("/contact-us/success");
+    res.redirect("/form-success");
   }
 });
 
