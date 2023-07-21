@@ -110,7 +110,7 @@ router.get("/locker-signout/all-available", (_req: Request, res: Response) => {
 /*
 **  REQUIRES: req.body.userId        
 */
-router.get("/locker-signout/request", async (req: Request, res: Response) => {
+router.post("/locker-signout/request", async (req: Request, res: Response) => {
   LockerSignoutController.requestLocker(req, res);
 });
 

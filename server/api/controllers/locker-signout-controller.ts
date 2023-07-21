@@ -26,13 +26,16 @@ export class LockerSignoutController {
   
     private static readLockerData(): { [key: string]: Locker[] } {
       const jsonData = fs.readFileSync("server/data/_hidden/locker-list.json", "utf-8");
-      console.log(jsonData)
       return JSON.parse(jsonData);
     }
   
     private static writeLockerData(lockerData: { [key: string]: Locker[] }): void {
       const jsonData = JSON.stringify(lockerData, null, 2);
       fs.writeFileSync("server/data/_hidden/locker-list.json", jsonData, "utf-8");
+    }
+
+    private static generateJson(lockerData: { [key: string]: Locker[] }): string {
+      return JSON.stringify(lockerData, null, 2);
     }
     
     /*
@@ -58,9 +61,11 @@ export class LockerSignoutController {
           return;
         },
         // need to generate json file -- currently only overwriting locally
-        this.readLockerData()
+        LockerData
       );
       res.status(201).json({ lockerNumber: availableLocker.lockerNumber });
+      console.log(LockerData);
+      console.log("this is working")
     }
 
     static getAvailableLocker(term: string): number {
