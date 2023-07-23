@@ -9,6 +9,10 @@ import { AdminMiddleware } from "../../auth/google";
 
 const router = express.Router();
 
+const IMAGES_PATH = "public/assets/img/uploads";
+const IMAGES_PUBLIC_LINK = "/assets/img/uploads";
+const IMAGES_URL = "_hidden/image-list";
+
 router.use(AdminMiddleware);
 
 ExamBankController.rewriteFile();
@@ -27,11 +31,17 @@ router.post("/exams/rebuild", (_req: Request, res: Response) => {
 });
 
 router.post("/image/upload", async (req: Request, res: Response) => {
-  ImageController.uploadImages(req, res);
+  new ImageController(IMAGES_PATH, IMAGES_PUBLIC_LINK, IMAGES_URL).uploadFiles(
+    req,
+    res
+  );
 });
 
 router.delete("/image/delete", async (req: Request, res: Response) => {
-  ImageController.deleteImage(req, res);
+  new ImageController(IMAGES_PATH, IMAGES_PUBLIC_LINK, IMAGES_URL).deleteFile(
+    req,
+    res
+  );
 });
 
 router.get("/images", (_req: Request, res: Response) => {
@@ -44,7 +54,11 @@ router.get("/images", (_req: Request, res: Response) => {
  **            req.body.files: documents
  */
 router.post("/document/upload", async (req: Request, res: Response) => {
-  DocumentController.uploadDocuments(req, res);
+  new DocumentController(
+    "public/assets/documents",
+    "assets/documents",
+    "_hidden/document-list"
+  ).uploadFiles(req, res);
 });
 
 /*
@@ -54,7 +68,11 @@ router.post("/document/upload", async (req: Request, res: Response) => {
  **            req.body.publicLink
  */
 router.delete("/document/delete", async (req: Request, res: Response) => {
-  DocumentController.deleteDocument(req, res);
+  new DocumentController(
+    "public/assets/documents",
+    "assets/documents",
+    "_hidden/document-list"
+  ).uploadFiles(req, res);
 });
 
 /*

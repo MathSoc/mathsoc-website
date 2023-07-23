@@ -96,9 +96,17 @@ class DocumentUploader {
     const newButton = document.createElement("button");
     newButton.innerText = doc.fileName;
     newButton.onclick = () => window.open(doc.publicLink);
-    newButton.classList.add("document-link");
+    newButton.classList.add("document-button");
 
-    return newButton;
+    const newDiv = document.createElement("div");
+    newDiv.style.display = "flex";
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.innerText = "Delete";
+    newDiv.appendChild(newButton);
+    newDiv.appendChild(deleteButton);
+
+    return newDiv;
   }
 }
 

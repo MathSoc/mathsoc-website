@@ -7,14 +7,14 @@ append scripts
   script(src='/assets/js/admin/documents.js' defer)
 
 block body 
-  +section("white", "documents-section")
-    h1 Documents
-    div(id="document-list")
-
   +section()
     h2 Upload new
 
     input(type="file" name="documents" required multiple accept=".pdf")
     button(id="upload-btn" type="submit") Upload documents
+  +section("white", "documents-section")
+    h1 Documents
+    div(id="document-list")
+ 
   +section() 
     h2 Manage existing
