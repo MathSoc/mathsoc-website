@@ -86,36 +86,51 @@ router.get("/documents", (req: Request, res: Response) => {
 
 
 // LOCKER SIGN OUT ENDPOINTS
-// remember to add admin only middleware to get endpoints
-// i think works
-router.get("/locker-signout/locker-by-user", (_req: Request, res: Response) => {
+router.get("/locker-signout/locker-by-user", (_req: Request, res: Response) => { // admin
   LockerSignoutController.getLockerByUserId(_req, res);
 });
 
-// probably works
-router.get("/locker-signout/user-by-locker", (_req: Request, res: Response) => {
-  LockerSignoutController.getUserIdByLocker(_req, res);
+router.get("/locker-signout/user-by-locker", (_req: Request, res: Response) => { // admin
+  LockerSignoutController.getUserIdByLocker(_req, res); 
 });
 
-// works too
-router.get("/locker-signout/locker-available", (_req: Request, res: Response) => {
+router.get("/locker-signout/locker-available", (_req: Request, res: Response) => { // admin
   LockerSignoutController.checkLockerAvailability(_req, res);
 });
 
-// w working
-router.get("/locker-signout/all-available", (_req: Request, res: Response) => {
+router.get("/locker-signout/all-available", (_req: Request, res: Response) => { // admin
   LockerSignoutController.getAvailableLockers(_req, res);
 });
 
 /*
 **  REQUIRES: req.body.userId        
 */
-router.post("/locker-signout/request", async (req: Request, res: Response) => {
+router.post("/locker-signout/request", async (req: Request, res: Response) => { // student
   LockerSignoutController.requestLocker(req, res);
 });
 
+/*
+**  REQUIRES: req.body.lockerNumber
+*/
+router.post("/locker-signout/unassign", async (req: Request, res: Response) => { // admin
+  LockerSignoutController.unassignLocker(req, res);
+});
 
+/*
+**  REQUIRES: req.body.term
+*/
+router.post("/locker-signout/unassign-all", async (req: Request, res: Response) => { // admin
+  LockerSignoutController.unassignAllLockers(req, res);
+});
 
-
+/*
+**  REQUIRES: req.body.lockerNumber
+**            req.body.userId
+**            req.body.lockerCombination
+**            (optional) req.body.term
+*/
+router.post("/locker-signout/assign", async (req: Request, res: Response) => { // admin
+  LockerSignoutController.assignLocker(req, res);
+});
 
 export default router;

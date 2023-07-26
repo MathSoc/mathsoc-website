@@ -8,36 +8,45 @@ import fs from "fs";
 
 export class LockerSignoutController {
     static logger = new Logger("Locker Signout");
-
-    private static updateLockerStatus(term: string, userId: number, lockerNumber: number): boolean {
-      const lockerData = this.readLockerData();
-  
-      const targetTerm = lockerData[term];
-      const targetLocker = targetTerm.find((locker: Locker) => locker.lockerNumber === lockerNumber);
-  
-      if (targetLocker && targetLocker.userId === 0) {
-        targetLocker.userId = userId;
-        this.writeLockerData(lockerData); 
-        return true;
-      }
-  
-      return false;
-    }
-  
-    private static readLockerData(): { [key: string]: Locker[] } {
-      const jsonData = fs.readFileSync("server/data/_hidden/locker-list.json", "utf-8");
-      return JSON.parse(jsonData);
-    }
-  
-    private static writeLockerData(lockerData: { [key: string]: Locker[] }): void {
-      const jsonData = JSON.stringify(lockerData, null, 2);
-      fs.writeFileSync("server/data/_hidden/locker-list.json", jsonData, "utf-8");
-    }
-
-    private static generateJson(lockerData: { [key: string]: Locker[] }): string {
-      return JSON.stringify(lockerData, null, 2);
-    }
     
+    /*
+      Handles the POST /api/locker-signout/assign endpoint
+      - requires: lockerNumber, userId, lockerCombination, (optional)term
+      - checks if the locker is available
+      - if available, assigns the locker to the given user with the given combination
+    */
+    static assignLocker(req: Request, res: Response) : void {
+      const { lockerNumber, userId, lockerCombination} = req.body;
+      let { term } = req.body;
+      if(term == null) {
+        term = "placeholderTerm1"; // will set current term later
+      } else {
+        term = String(term);
+      }
+
+      const assignedLocker = LockerData[term].find((locker: Locker) => locker.lockerNumber == lockerNumber);
+      if (!assignedLocker) {
+        res.status(404).json({ error: "Locker number not found" });
+        return;
+      }
+      if (assignedLocker.userId != 0) {
+        res.status(409).json({ error: "Locker already assigned" });
+        return;
+      }
+      assignedLocker.userId = userId;
+      assignedLocker.lockerCombination = lockerCombination;
+
+      const url = "_hidden/locker-list"
+      ReadWriteController.overwriteJSONDataPath(
+        url,
+        () => {
+          return;
+        },
+        LockerData
+      );
+      res.status(201).json({ lockerNumber: assignedLocker.lockerNumber });
+    }
+
     /*
       Handles the POST /api/locker-signout/request endpoint
       - requires: userId
@@ -53,26 +62,76 @@ export class LockerSignoutController {
         res.status(409).json({ error: "No available lockers" });
         return;
       }
-      const url = "_hidden/locker-list.json"
+      const url = "_hidden/locker-list"
       availableLocker.userId = userId;
       ReadWriteController.overwriteJSONDataPath(
         url,
         () => {
           return;
         },
-        // need to generate json file -- currently only overwriting locally
         LockerData
       );
       res.status(201).json({ lockerNumber: availableLocker.lockerNumber });
-      console.log(LockerData);
-      console.log("this is working")
     }
 
-    static getAvailableLocker(term: string): number {
-      const lockerData = this.readLockerData();
-      const availableLocker = lockerData[term].find((locker: Locker) => locker.userId === 0);
-  
-      return availableLocker ? availableLocker.lockerNumber : -1;
+
+    /*
+      Handles the POST /api/locker-signout/unassign endpoint
+      - requires: userId || lockerNumber
+      - unassigns the locker from the given user or locker number(locker userId set to 0)
+    */
+    static unassignLocker(req: Request, res: Response) : void {
+      const { lockerNumber, userId } = req.body;
+      const term = "placeholderTerm1"; // will set current term later
+
+      if (lockerNumber != null && userId != null) {
+        res.status(400).json({ error: "Please provide only lockerNumber or userId, not both." });
+        return;
+      }
+
+      let assignedLocker: Locker | undefined;
+      if(lockerNumber != null){
+        assignedLocker = LockerData[term].find((locker: Locker) => locker.lockerNumber == lockerNumber);
+      } else {
+        assignedLocker = LockerData[term].find((locker: Locker) => locker.userId == userId);
+      }
+      if (!assignedLocker) {
+        res.status(409).json({ error: "user or locker not assigned" });
+        return;
+      }
+      assignedLocker.userId = 0;
+
+      const url = "_hidden/locker-list"
+      ReadWriteController.overwriteJSONDataPath(
+        url,
+        () => {
+          return;
+        },
+        LockerData
+      );
+      res.status(201).json({ lockerNumber: assignedLocker.lockerNumber });
+    }
+
+    /*
+      Handles the POST /api/locker-signout/unassign-all endpoint
+      - unassigns all lockers (all locker userIds set to 0)
+    */
+    static unassignAllLockers(req: Request, res: Response) : void {
+      const term = "placeholderTerm1"; // will set current term later
+
+      LockerData[term].forEach((locker: Locker) => {
+        locker.userId = 0;
+      });
+
+      const url = "_hidden/locker-list"
+      ReadWriteController.overwriteJSONDataPath(
+        url,
+        () => {
+          return;
+        },
+        LockerData
+      );
+      res.status(201).json({ message: "All lockers unassigned" });
     }
 
     /*
