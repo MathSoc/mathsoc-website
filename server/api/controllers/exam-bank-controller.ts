@@ -37,10 +37,12 @@ export class ExamBankController {
             if (statusCode.toString()[0] === "2") {
               // 2XX success codes
               this.logger.info("Exams file rewritten");
-              break;
             } else {
-              this.logger.warn("Unexpected exams file rewrite result");
+              this.logger.warn(
+                `Unexpected exams file rewrite result: ${statusCode}`
+              );
             }
+            break;
         }
       },
       await this.generateJSON()

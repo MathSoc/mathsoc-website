@@ -42,10 +42,12 @@ export class CartoonsController {
             if (statusCode.toString()[0] === "2") {
               // 2XX success codes
               this.logger.info("Cartoons file rewritten");
-              break;
             } else {
-              this.logger.warn("Unexpected cartoons file rewrite result");
+              this.logger.warn(
+                `Unexpected cartoons file rewrite result: ${statusCode}`
+              );
             }
+            break;
         }
       },
       cartoonsList
