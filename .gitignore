@@ -8,6 +8,7 @@
 /server/data/_hidden/exams-list.json
 /server/data/_hidden/term-list.json
 /server/data/_hidden/document-list.json
+/server/data/_hidden/image-list.json
 
 .env
 *.tsbuildinfo
