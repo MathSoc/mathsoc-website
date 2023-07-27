@@ -13,6 +13,10 @@ const IMAGES_PATH = "public/assets/img/uploads";
 const IMAGES_PUBLIC_LINK = "/assets/img/uploads";
 const IMAGES_URL = "_hidden/image-list";
 
+const DOCUMENT_PATH = "public/assets/documents";
+const DOCUMENT_PUBLIC_LINK = "/assets/documents";
+const DOCUMENT_URL = "_hidden/document-list";
+
 router.use(AdminMiddleware);
 
 ExamBankController.rewriteFile();
@@ -45,42 +49,27 @@ router.delete("/image/delete", async (req: Request, res: Response) => {
 });
 
 router.get("/images", (_req: Request, res: Response) => {
-  ReadWriteAPIController.getJSONDataPath("_hidden/image-list", res);
+  ReadWriteAPIController.getJSONDataPath(IMAGES_URL, res);
 });
 
-/*
- **  REQUIRES: req.body.documentGroup
- **            req.body.documentName
- **            req.body.files: documents
- */
 router.post("/document/upload", async (req: Request, res: Response) => {
   new DocumentController(
-    "public/assets/documents",
-    "assets/documents",
-    "_hidden/document-list"
+    DOCUMENT_PATH,
+    DOCUMENT_PUBLIC_LINK,
+    DOCUMENT_URL
   ).uploadFiles(req, res);
 });
 
-/*
- **  REQUIRES: req.body.path
- **            req.body.fileName
- **            req.body.fileType
- **            req.body.publicLink
- */
 router.delete("/document/delete", async (req: Request, res: Response) => {
   new DocumentController(
-    "public/assets/documents",
-    "assets/documents",
-    "_hidden/document-list"
-  ).uploadFiles(req, res);
+    DOCUMENT_PATH,
+    DOCUMENT_PUBLIC_LINK,
+    DOCUMENT_URL
+  ).deleteFile(req, res);
 });
 
-/*
- **  REQUIRES: req.headers.documentGroup
- **            req.headers.documentName
- */
 router.get("/documents", (req: Request, res: Response) => {
-  ReadWriteAPIController.getJSONDataPath("_hidden/document-list", res);
+  ReadWriteAPIController.getJSONDataPath(DOCUMENT_URL, res);
 });
 
 export default router;

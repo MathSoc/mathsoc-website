@@ -95,18 +95,42 @@ class DocumentUploader {
   private static createDocumentButton(doc: Document): HTMLElement {
     const newButton = document.createElement("button");
     newButton.innerText = doc.fileName;
-    newButton.onclick = () => window.open(doc.publicLink);
+    newButton.onclick = () => {
+      location.href = doc.publicLink;
+    };
     newButton.classList.add("document-button");
 
     const newDiv = document.createElement("div");
     newDiv.style.display = "flex";
     const deleteButton = document.createElement("button");
+    deleteButton.onclick = () => this.deleteDocument(doc);
     deleteButton.classList.add("delete-button");
     deleteButton.innerText = "Delete";
     newDiv.appendChild(newButton);
     newDiv.appendChild(deleteButton);
 
     return newDiv;
+  }
+
+  private static async deleteDocument(doc: Document) {
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(doc),
+    };
+
+    const response = await fetch("/api/document/delete", options).then((res) =>
+      res.json()
+    );
+
+    if (response.status == "success") {
+      this.populateDocuments();
+    } else {
+      showToast("Unknown error. Could not delete document", "fail");
+      return;
+    }
   }
 }
 
