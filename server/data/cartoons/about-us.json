@@ -12,11 +12,11 @@
   "buttons": {
     "team": {
       "text": "Meet the Team",
-      "link": "https://mathsoc.uwaterloo.ca/mathsoc-cartoons-team/"
+      "link": "/mathsoc-cartoons-team/"
     },
     "archive": {
-      "text": "Comics Archive",
-      "link": "https://mathsoc.uwaterloo.ca/comics-archive/"
+      "text": "Cartoons Archive",
+      "link": "/cartoons/archive/"
     }
   },
   "carouselImages": [

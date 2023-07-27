@@ -1,0 +1,44 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+  link(href="/assets/css/pages/cartoons/archive.css" rel="stylesheet")
+
+append scripts
+  script(src="/assets/js/cartoons-archive.js" defer)
+
+block body
+
+  +section("white")
+    h1 Cartoons Archive
+
+  - const subjects = Object.entries(sources.cartoonsList);
+  each subjectPair in subjects
+    - const subject = subjectPair[0];
+    - const courses = Object.entries(subjectPair[1]);
+
+    +section("white")
+      h2 #{subject}
+      each coursePair in courses 
+        - const courseCode = coursePair[0];
+        - const cartoons = Object.entries(coursePair[1]);
+
+        div(class="menu-button-grid")
+          each cartoonsPair in cartoons
+            - const cartoonName = cartoonsPair[0].split('_').join(' ');
+            - const cartoonsSources = cartoonsPair[1].join(';');
+            button(class="course-button" 
+              data-img-srcs=cartoonsSources 
+              data-course-code=courseCode 
+              data-subject=subject 
+              data-cartoon-dirname=cartoonsPair[0]
+            )
+              span(class="course-title") #{subject} #{courseCode}
+              span(class="course-name") #{cartoonName}
+
+  div(id="cartoon-display-bg")
+    div(id="cartoon-display-modal")
+      div(id="title-bar")
+        h1 Principle of mathematical induction 
+        button(id="cartoons-modal-close-btn") x
+      div(id="cartoon-modal-content")
+

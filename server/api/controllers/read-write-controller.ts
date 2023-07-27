@@ -131,6 +131,9 @@ export class ReadWriteController {
 
       // Want to first ensure the file exists before writing to it
       if (!fs.existsSync(`server/data/${data.fileName}.json`)) {
+        this.logger.error(
+          `Attempted write to server/data/${data.fileName}.json failed; file not found. Try creating the file first!`
+        );
         terminateWith(404);
         return;
       }
@@ -142,7 +145,7 @@ export class ReadWriteController {
         (err: NodeJS.ErrnoException | null) => {
           if (ReadWriteController.handleErrors(err)) return;
 
-          terminateWith(200);
+          terminateWith(err?.code ? parseInt(err.code) : 201);
         }
       );
     });
