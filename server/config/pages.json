@@ -54,11 +54,6 @@
     ]
   },
   {
-    "title": "Elections",
-    "ref": "/elections",
-    "view": "/elections/elections"
-  },
-  {
     "title": "Resources",
     "children": [
       {
