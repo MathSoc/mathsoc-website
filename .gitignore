@@ -4,7 +4,9 @@
 /public/assets/js
 /public/assets/img/uploads
 /public/assets/documents
+/public/assets/img/cartoons/uploads
 /public/exams
+/server/data/_hidden/cartoons-list.json
 /server/data/_hidden/exams-list.json
 /server/data/_hidden/term-list.json
 /server/data/_hidden/document-list.json

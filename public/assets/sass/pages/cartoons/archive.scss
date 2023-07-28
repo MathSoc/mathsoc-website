@@ -1,0 +1,109 @@
+@import "../../mixins/banner-image";
+@import "../../mixins/section";
+@import "../../util/sass-mixins";
+
+h2,
+h3 {
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0;
+}
+
+.menu-button-grid {
+  display: flex;
+  flex-wrap: wrap;
+  
+  padding: 24px 0;
+  gap: 24px;
+  
+  .course-button {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    min-width: 30%;
+    background-color: var(--mathsoc-pink);
+    color: white;
+    padding: 1em;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.15s;
+
+    span {
+      display: block;
+
+      &.course-title {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--mathsoc-pink-2);
+    }
+  }
+
+  .course-title {
+    text-transform: uppercase;
+  }
+}
+
+#cartoon-display-bg {
+  z-index: 5;
+  background-color: #0008;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  display: none;
+  &.active {
+    display: block;
+  }
+
+  #cartoon-display-modal {
+    background-color: var(--background-colour);
+    margin: 50px 0;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    z-index: 6;
+
+    #title-bar {
+      background-color: var(--mathsoc-pink);
+      color: white;
+      font-size: 0.5em;
+      display: flex;
+      flex-direction: row;
+      padding: 8px 12px;
+
+      h1 {
+        margin: 0;
+      }
+
+      #cartoons-modal-close-btn {
+        font-size: 20px;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        flex-grow: 1;
+        padding-left: 24px;
+        text-align: right;
+      }
+    }
+
+    #cartoon-modal-content {
+      padding: 16px;
+      max-width: 80vw;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
