@@ -52,7 +52,6 @@
     "ts-node": "^10.9.1",
     "validator": "^13.7.0",
     "webpack": "^5.82.0",
-    "webpack-cli": "^5.1.0",
     "winston": "^3.8.2",
     "zod": "^3.20.2"
   },
@@ -75,7 +74,8 @@
     "npm-run-all": "^4.1.5",
     "prettier": "2.8.3",
     "sass": "^1.55.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "webpack-cli": "^5.1.4"
   },
   "nodemonConfig": {
     "ignore": [

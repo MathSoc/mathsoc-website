@@ -1,5 +1,7 @@
 {
     "title": "Locker Signouts",
-    "description": "Locker rentals description: Lockers are on a term to term and first come first serve basis. To sign out a locker, please click the button below. Make sure you are signed in with your UWaterloo account."
+    "description": "If a student in the math faculty is on a study term and has paid their MathSoc fee, they are eligible to book a locker for the period of the term. No perishable foods are allowed to be stored to avoid attracting pests.",
+    "subdescription": "Lockers are on a term-by-term and first come first serve basis. Locker will be available during the second week of the term. To sign out a locker, please click the button below. Make sure you are signed in with your UWaterloo account.",
+    "img": "/assets/img/services/lockers.jpg"
 
 }

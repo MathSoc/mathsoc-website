@@ -8,9 +8,47 @@ append styles
 block body
     div(class="content")
         h1 #{data.title}
-        section(class="")
+        section(class="two-cols")
             div(class="")
                 p #{data.description}
-                button(class="pink-button")
-                    i(class="fas fa-lock")
-                    | Sign out a locker
+                p #{data.subdescription}
+                +pink-button("Sign out a locker", "lockerSignoutBtn", "/locker-signout")
+            img(src=data.img)
+
+    // Modal
+    div(id="confirmationModal" class="modal")
+        div(class="modal-content")
+            h2 Are you sure you want to sign out a locker?
+            button(id="confirmBtn") Confirm
+            button(id="cancelBtn") Cancel
+
+    // JavaScript
+    script.
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('confirmationModal');
+            modal.style.display = "none";
+            var confirmBtn = document.getElementById('confirmBtn');
+            var cancelBtn = document.getElementById('cancelBtn');
+
+            document.addEventListener('click', function(event) {
+                if (event.target.matches('.pink-button')) {
+                    event.preventDefault();
+                    modal.style.display = "block";
+                }
+            });
+
+            confirmBtn.onclick = function() {
+                modal.style.display = "none";
+                // perform your action here...
+            }
+
+            cancelBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
