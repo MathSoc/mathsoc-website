@@ -61,7 +61,7 @@ app
   .use(ADFSAuthRoutes)
   .use(GoogleAuthRoutes)
   .use("/api", api)
-  .use("/api", adminApi)
+  .use("/api/admin", adminApi)
   .use(authenticatedRoutes)
   .use(adminRoutes)
   .use((req: Request, res: Response) => {
