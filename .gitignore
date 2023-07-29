@@ -6,11 +6,7 @@
 /public/assets/documents
 /public/assets/img/cartoons/uploads
 /public/exams
-/server/data/_hidden/cartoons-list.json
-/server/data/_hidden/exams-list.json
-/server/data/_hidden/term-list.json
-/server/data/_hidden/document-list.json
-/server/data/_hidden/image-list.json
+/server/data/_hidden/*
 
 .env
 *.tsbuildinfo

@@ -34,4 +34,13 @@ button {
       transition-duration: 150ms;
     }
   }
+
+  .copy-button {
+    margin-top: 20px;
+
+    &:hover {
+      background-color: var(--text-color);
+      transition-duration: 150ms;
+    }
+  }
 }

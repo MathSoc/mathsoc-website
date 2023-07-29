@@ -1,5 +1,4 @@
 import { showToast } from "./toast";
-console.log("file");
 
 // @todo use a single source of the DocumentType type for frontend and backend
 // i don't think this can be done because of the document interface on the DOM
@@ -106,8 +105,14 @@ class DocumentUploader {
     deleteButton.onclick = () => this.deleteDocument(doc);
     deleteButton.classList.add("delete-button");
     deleteButton.innerText = "Delete";
+    const copyLinkButton = document.createElement("button");
+    copyLinkButton.onclick = () =>
+      this.copyLinkToClipboard(doc.publicLink, doc.fileName);
+    copyLinkButton.classList.add("copy-button");
+    copyLinkButton.innerText = "Copy Link";
     newDiv.appendChild(newButton);
     newDiv.appendChild(deleteButton);
+    newDiv.appendChild(copyLinkButton)
 
     return newDiv;
   }
@@ -131,6 +136,14 @@ class DocumentUploader {
       showToast("Unknown error. Could not delete document", "fail");
       return;
     }
+  }
+
+  private static copyLinkToClipboard(link: string, fileName: string) {
+    navigator.clipboard.writeText(link);
+    showToast(
+      `Link for ${fileName} was copied to clipboard as ${link}`,
+      "success"
+    );
   }
 }
 
