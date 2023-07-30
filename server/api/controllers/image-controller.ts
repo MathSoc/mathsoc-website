@@ -1,7 +1,6 @@
 // @todo: Autogenerate uploads folder if it doesn't exist on startup
 import { Request, Response } from "express";
 import { UploadedFile } from "express-fileupload";
-import { Logger } from "../../util/logger";
 import { Image, ImageWithFile } from "../../types/image";
 import {
   Dirent,
@@ -11,9 +10,8 @@ import {
   readFileSync,
   unlinkSync,
 } from "fs";
-import { ReadWriteController } from "./read-write-controller";
 import path from "path";
-import { ProcessQueue } from "./util/process-queue";
+import { AbstractFileController } from "./util/file-controller";
 
 type ImageUploadRequest = {
   images: ImageWithFile[];
@@ -25,22 +23,13 @@ type ImageDeleteRequest = Image & {
   res: Response;
 };
 
-export class ImageController {
-  static logger = new Logger();
-  private static uploadQueue = new ProcessQueue(this.processImageUpload.bind(this));
-  private static deleteQueue = new ProcessQueue(this.processImageDelete.bind(this));
-
-  /*
-  Handles the /api/image/upload endpoint 
-  - handles all possible errors with the file upload (no file, no fileype, not recognized filetype)
-  - if validation passes, adds the request with all uploaded files to the ImageRequestQueue
-  */
-
-  static uploadImages(req: Request, res: Response) {
+export class ImageController extends AbstractFileController<
+  Image,
+  ImageUploadRequest,
+  ImageDeleteRequest
+> {
+  uploadFiles(req: Request, res: Response): void {
     try {
-      // this is done because express-upload has no way to tell you whether one file or multiple files were uploaded
-      // casting singular file to an array, or keeping multiple files as an existing array
-
       const imageFiles = Array.isArray(req.files?.images)
         ? (req.files?.images as UploadedFile[])
         : [req.files?.images as UploadedFile];
@@ -54,7 +43,9 @@ export class ImageController {
 
       for (const imageFile of imageFiles) {
         if (!imageFile.mimetype) {
-          errors.push(`No mimetype/filetype provided with file ${imageFile.name}`);
+          errors.push(
+            `No mimetype/filetype provided with file ${imageFile.name}`
+          );
           continue;
         }
 
@@ -68,7 +59,7 @@ export class ImageController {
         const transformedImage: ImageWithFile = {
           fileName: imageFile.name,
           fileType: imageFile.name.split(".").slice(1).join("."),
-          path: this.getImagePath(imageFile.name),
+          path: this.getFilePath(imageFile.name),
           publicLink: this.getPublicLink(imageFile.name),
           file: imageFile,
         };
@@ -88,13 +79,7 @@ export class ImageController {
     }
   }
 
-  /*
-  Handles the /api/image/delete endpoint
-  - checks that file was passed
-  - checks that file exists
-  - if validations pass, adds the delete request to the ImageRequestQueue
-  */
-  static deleteImage(req: Request, res: Response) {
+  deleteFile(req: Request, res: Response): void {
     try {
       const { fileName, fileType, path, publicLink } = req.body;
 
@@ -121,10 +106,7 @@ export class ImageController {
     }
   }
 
-  /*
-    Processes the actual upload - moves the file into the /public/assets/img/uploads/ folder and then rewrites the image-list.json file.
-  */
-  static async processImageUpload(request: ImageUploadRequest) {
+  async processFileUpload(request: ImageUploadRequest): Promise<void> {
     const { images, errors, res } = request;
 
     try {
@@ -133,7 +115,7 @@ export class ImageController {
         this.logger.info(`${image.fileName} uploaded to ${image.path}`);
       }
 
-      this.rewriteImageJson();
+      this.rewriteFileJson();
     } catch (err) {
       this.logger.error(err);
     }
@@ -143,11 +125,7 @@ export class ImageController {
     res.send({ status: "success", errors: errors });
   }
 
-  /*
-    Processes the delete request - checks for occurences of the image in the datafiles to ensure we don't have faulty image
-    links in the frontend, and then deletes the image if no occurences were found, and then rewrites the image-list.json file.
-  */
-  static processImageDelete(request: ImageDeleteRequest) {
+  processFileDelete(request: ImageDeleteRequest): void {
     const { path, res, fileName, publicLink } = request;
     try {
       const foundFiles = this.getImageOccurences("server/data", publicLink);
@@ -159,65 +137,14 @@ export class ImageController {
 
       unlinkSync(path);
       this.logger.info(`${fileName} deleted from ${path}`);
-      this.rewriteImageJson();
+      this.rewriteFileJson();
       res.status(200).json({ status: "success" });
     } catch (err) {
       this.logger.error(err);
       res.status(400).json({ status: "fail" });
     }
   }
-
-  /*
-   Helper function for rewriteImageJson();
-  */
-  private static generateJSON(): Image[] {
-    const uploadedFiles: Dirent[] = readdirSync(this.getImagePath(""), {
-      withFileTypes: true,
-    });
-
-    const images: Image[] = [];
-
-    for (const img of uploadedFiles) {
-      if (img.isFile()) {
-        images.push({
-          fileName: img.name,
-          fileType: img.name.split(".").slice(1).join("."),
-          path: this.getImagePath(img.name),
-          publicLink: this.getPublicLink(img.name),
-        });
-      }
-    }
-
-    return images;
-  }
-
-  /*
-    Creates a json file with all image metadata (fileName, fileType, path, publicLink) to be served to the frontend image store
-  */
-  private static rewriteImageJson(): void {
-    const url = "_hidden/image-list";
-    ReadWriteController.overwriteJSONDataPath(
-      url,
-      () => {
-        return;
-      },
-      this.generateJSON()
-    );
-    this.logger.info("Image list regenerated.");
-  }
-
-  private static getImagePath(fileName: string) {
-    return `public/assets/img/uploads/${fileName}`;
-  }
-
-  private static getPublicLink(fileName: string) {
-    return `/assets/img/uploads/${fileName}`;
-  }
-
-  /*
-    Helper function for checkImageOccurences
-  */
-  private static getDataFiles(mainPath: string, target: string): string[] {
+  private getDataFiles(mainPath: string, target: string): string[] {
     const files: string[] = [];
 
     const dataDir = readdirSync(mainPath);
@@ -239,9 +166,9 @@ export class ImageController {
   }
 
   /*
-    Checks for occurence of an image in the server/data files, to make sure we aren't deleting an image that is in use on the frontend.
-  */
-  private static getImageOccurences(mainPath: string, target: string) {
+        Checks for occurence of an image in the server/data files, to make sure we aren't deleting an image that is in use on the frontend.
+      */
+  private getImageOccurences(mainPath: string, target: string) {
     const files = this.getDataFiles(mainPath, target);
     const matches: string[] = [];
     for (const file of files) {
@@ -252,5 +179,26 @@ export class ImageController {
     }
 
     return matches;
+  }
+
+  generateJson(): Image[] {
+    const uploadedFiles: Dirent[] = readdirSync(this.getFilePath(""), {
+      withFileTypes: true,
+    });
+
+    const images: Image[] = [];
+
+    for (const img of uploadedFiles) {
+      if (img.isFile()) {
+        images.push({
+          fileName: img.name,
+          fileType: img.name.split(".").slice(1).join("."),
+          path: this.getFilePath(img.name),
+          publicLink: this.getPublicLink(img.name),
+        });
+      }
+    }
+
+    return images;
   }
 }

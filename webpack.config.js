@@ -5,6 +5,7 @@ const entrypoints = [
   "navbar",
   "cartoons-archive",
   "admin/generic-editor",
+  "admin/documents",
   "admin/image-store",
   "admin/toast",
 ].reduce((map, currentPath) => {

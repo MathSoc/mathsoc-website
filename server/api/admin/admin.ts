@@ -9,6 +9,14 @@ import { AdminMiddleware } from "../../auth/google";
 
 const router = express.Router();
 
+const IMAGES_PATH = "public/assets/img/uploads";
+const IMAGES_PUBLIC_LINK = "/assets/img/uploads";
+const IMAGES_URL = "_hidden/image-list";
+
+const DOCUMENT_PATH = "public/assets/documents";
+const DOCUMENT_PUBLIC_LINK = "/assets/documents";
+const DOCUMENT_URL = "_hidden/document-list";
+
 router.use(AdminMiddleware);
 
 ExamBankController.rewriteFile();
@@ -27,42 +35,41 @@ router.post("/exams/rebuild", (_req: Request, res: Response) => {
 });
 
 router.post("/image/upload", async (req: Request, res: Response) => {
-  ImageController.uploadImages(req, res);
+  new ImageController(IMAGES_PATH, IMAGES_PUBLIC_LINK, IMAGES_URL).uploadFiles(
+    req,
+    res
+  );
 });
 
 router.delete("/image/delete", async (req: Request, res: Response) => {
-  ImageController.deleteImage(req, res);
+  new ImageController(IMAGES_PATH, IMAGES_PUBLIC_LINK, IMAGES_URL).deleteFile(
+    req,
+    res
+  );
 });
 
 router.get("/images", (_req: Request, res: Response) => {
-  ReadWriteAPIController.getJSONDataPath("_hidden/image-list", res);
+  ReadWriteAPIController.getJSONDataPath(IMAGES_URL, res);
 });
 
-/*
- **  REQUIRES: req.body.documentGroup
- **            req.body.documentName
- **            req.body.files: documents
- */
 router.post("/document/upload", async (req: Request, res: Response) => {
-  DocumentController.uploadDocument(req, res);
+  new DocumentController(
+    DOCUMENT_PATH,
+    DOCUMENT_PUBLIC_LINK,
+    DOCUMENT_URL
+  ).uploadFiles(req, res);
 });
 
-/*
- **  REQUIRES: req.body.path
- **            req.body.fileName
- **            req.body.fileType
- **            req.body.publicLink
- */
 router.delete("/document/delete", async (req: Request, res: Response) => {
-  DocumentController.deleteDocument(req, res);
+  new DocumentController(
+    DOCUMENT_PATH,
+    DOCUMENT_PUBLIC_LINK,
+    DOCUMENT_URL
+  ).deleteFile(req, res);
 });
 
-/*
- **  REQUIRES: req.headers.documentGroup
- **            req.headers.documentName
- */
 router.get("/documents", (req: Request, res: Response) => {
-  DocumentController.getDocument(req, res);
+  ReadWriteAPIController.getJSONDataPath(DOCUMENT_URL, res);
 });
 
 export default router;

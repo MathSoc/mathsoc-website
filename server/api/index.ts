@@ -4,6 +4,7 @@ import { ReadWriteAPIController } from "./controllers/read-write-api-controller"
 import express from "express";
 import { ExamBankController } from "./controllers/exam-bank-controller";
 import { StudentMiddleware } from "../auth/adfs";
+import adminApiRoutes from "./admin/admin";
 import { CartoonsController } from "./controllers/cartoons-controller";
 
 const router = express.Router();
@@ -44,5 +45,7 @@ router.post("/general-inquiries", (req: Request, res: Response) => {
     res.redirect("/contact-us/success");
   }
 });
+
+router.use("/", adminApiRoutes);
 
 export default router;
