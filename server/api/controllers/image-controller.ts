@@ -29,7 +29,7 @@ export class ImageController extends AbstractFileController<
   ImageDeleteRequest
 > {
   /*
-  Handles the /api/admin/image/upload endpoint 
+  Handles the /api/image/upload endpoint 
   - handles all possible errors with the file upload (no file, no fileype, not recognized filetype)
   - if validation passes, adds the request with all uploaded files to the ImageRequestQueue
   */
@@ -85,7 +85,7 @@ export class ImageController extends AbstractFileController<
   }
 
   /*
-  Handles the /api/admin/image/delete endpoint
+  Handles the /api/image/delete endpoint
   - checks that file was passed
   - checks that file exists
   - if validations pass, adds the delete request to the ImageRequestQueue
