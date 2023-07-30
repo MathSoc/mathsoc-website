@@ -6,6 +6,7 @@ import { ExamBankController } from "./controllers/exam-bank-controller";
 import { StudentMiddleware } from "../auth/adfs";
 import adminApiRoutes from "./admin/admin";
 import { CartoonsController } from "./controllers/cartoons-controller";
+import adminApi from "./admin";
 
 const router = express.Router();
 
@@ -36,6 +37,6 @@ router.post("/general-inquiries", (req: Request, res: Response) => {
   }
 });
 
-router.use("/", adminApiRoutes);
+router.use("/admin", adminApi);
 
 export default router;
