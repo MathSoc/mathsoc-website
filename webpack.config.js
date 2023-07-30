@@ -1,14 +1,22 @@
-const entrypoints = [
-  "carousel",
-  "collapsible",
-  "exam-bank",
-  "navbar",
-  "cartoons-archive",
-  "admin/generic-editor",
-  "admin/documents",
-  "admin/image-store",
-  "admin/toast",
-].reduce((map, currentPath) => {
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const fs = require("fs");
+
+function findEntrypoints(subdirectory) {
+  const entrynames = fs.readdirSync(`./public/assets/ts/${subdirectory}`);
+  let results = [];
+
+  for (const entryname of entrynames) {
+    if (entryname.includes(".ts")) {
+      results.push(`${subdirectory}${entryname}`.replace(/\.ts$/, ""));
+    } else {
+      results = results.concat(findEntrypoints(`${subdirectory}${entryname}/`));
+    }
+  }
+
+  return results;
+}
+
+const entrypoints = findEntrypoints("").reduce((map, currentPath) => {
   map[
     `./public/assets/js/${currentPath}` // output path
   ] = `./public/assets/ts/${currentPath}`; // source file path
