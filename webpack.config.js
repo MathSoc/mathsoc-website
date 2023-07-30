@@ -1,3 +1,4 @@
+// Using require because this file uses module.exports
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require("fs");
 
