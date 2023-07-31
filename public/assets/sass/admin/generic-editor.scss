@@ -1,16 +1,50 @@
 @import "../util/sass-mixins";
 
 #editor-nav-menu {
-  position: absolute;
+  position: fixed;
+  bottom: 0;
   left: 0;
-  padding-left: 16px;
 
-  #side-menu-title {
+  padding-left: 16px;
+  background-color: var(--background-colour);
+  box-shadow: 0px 0px 2px 2px #8888;
+  z-index: 5;
+  padding: 8px 12px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+
+  h2 {
     font-size: 1.2em;
+  }
+
+  #open-side-menu-button {
+    cursor: pointer;
+  }
+
+  #close-side-menu-button {
+    padding: 4px 0;
+    width: 100%;
+    text-align: left;
+
+    cursor: pointer;
+    color: var(--mathsoc-pink);
+
+    display: none;
   }
 
   ul {
     padding-left: 0;
+    display: none;
+  }
+
+  &.open {
+    ul {
+      display: block;
+    }
+
+    #close-side-menu-button {
+      display: block;
+    }
   }
 
   > ul {
@@ -42,7 +76,6 @@
   .dropdown {
     .dropdown-name {
       cursor: pointer;
-      // color: #777;
     }
 
     > ul {
@@ -61,11 +94,53 @@
   }
 }
 
-.jsoneditor .jsoneditor-value.jsoneditor-string {
-  &.highlighted-markdown-field,
-  &.hoverable-markdown-field:hover {
-    background: #df249829;
-    border: 1px dashed var(--mathsoc-pink);
+#jsoneditor > .jsoneditor {
+  border: thin solid var(--mathsoc-pink);
+
+  .jsoneditor-menu {
+    border-color: var(--mathsoc-pink);
+    background-color: var(--mathsoc-pink);
+  }
+
+  .jsoneditor-field {
+    text-transform: capitalize;
+  }
+
+  .jsoneditor-field,
+  .jsoneditor-value,
+  .jsoneditor-readonly {
+    font-family: var(--primary-font);
+  }
+
+  .jsoneditor-highlight {
+    background-color: #ddd;
+  }
+
+  .jsoneditor-busy span,
+  div.jsoneditor-value[contenteditable="true"]:hover,
+  div.jsoneditor-value[contenteditable="true"]:focus,
+  div.jsoneditor-value[contenteditable="true"]:active {
+    background-color: var(--background-colour);
+    border: 1px var(--mathsoc-pink-2) dashed;
+  }
+
+  div.jsoneditor-value.jsoneditor-object {
+    display: none;
+  }
+
+  .jsoneditor-value.jsoneditor-string {
+    color: var(--mathsoc-pink-2);
+
+    &.highlighted-markdown-field,
+    &.hoverable-markdown-field:hover {
+      background: #df249829;
+      border: 1px dashed var(--mathsoc-pink);
+    }
+  }
+
+  // for boolean values, hide "true" text but leave checkbox
+  .jsoneditor-value.jsoneditor-boolean {
+    display: none;
   }
 }
 
@@ -103,6 +178,10 @@
       min-height: unset;
     }
   }
+
+  .jsoneditor {
+    min-width: 70vw;
+  }
 }
 
 .modal {
@@ -137,6 +216,40 @@
 
     .save-rich-text-btn {
       justify-content: center;
+    }
+  }
+}
+
+.open-editor-container {
+  width: 100%;
+  text-align: center;
+
+  #open-editor-btn {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: none;
+
+    appearance: initial;
+    margin: 1em auto;
+    text-align: center;
+    width: 250px;
+    height: 60px;
+    padding: 1em 2em;
+    border: none;
+    color: white;
+    font-family: var(--primary-font);
+    transition: background-color 0.15s;
+    background-color: grey;
+
+    &.enabled {
+      display: block;
+
+      background-color: var(--mathsoc-pink) !important;
+      &:hover {
+        background-color: var(--mathsoc-pink-2);
+      }
+      cursor: pointer;
     }
   }
 }
