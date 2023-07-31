@@ -17,6 +17,7 @@ export class DirectoryPrebuilder {
     "server/data/_hidden/exams-list.json",
     "server/data/_hidden/cartoons-list.json",
     "server/data/_hidden/term-list.json",
+    "server/data/_hidden/document-list.json"
   ];
 
   static prebuild() {
