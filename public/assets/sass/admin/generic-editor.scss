@@ -11,7 +11,6 @@
   z-index: 5;
   padding: 8px 12px;
   border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
 
   h2 {
     font-size: 1.2em;
@@ -22,7 +21,8 @@
   }
 
   #close-side-menu-button {
-    padding: 4px 0;
+    padding: 4px 0 4px 6px;
+
     width: 100%;
     text-align: left;
 
@@ -33,7 +33,7 @@
   }
 
   ul {
-    padding-left: 0;
+    padding-left: 6px;
     display: none;
   }
 
@@ -100,6 +100,25 @@
   .jsoneditor-menu {
     border-color: var(--mathsoc-pink);
     background-color: var(--mathsoc-pink);
+  }
+
+  // contextmenu recolouring
+  .jsoneditor-contextmenu .jsoneditor-menu button:focus,
+  .jsoneditor-contextmenu .jsoneditor-menu button:hover,
+  .jsoneditor-contextmenu .jsoneditor-menu li ul li button:focus,
+  .jsoneditor-contextmenu .jsoneditor-menu li ul li button:hover,
+  .jsoneditor-contextmenu .jsoneditor-menu li button.jsoneditor-selected,
+  .jsoneditor-contextmenu .jsoneditor-menu li button.jsoneditor-selected:focus,
+  .jsoneditor-contextmenu .jsoneditor-menu li button.jsoneditor-selected:hover {
+    background-color: white;
+
+    .jsoneditor-text {
+      color: var(--mathsoc-pink);
+    }
+  }
+
+  .jsoneditor-text {
+    color: white;
   }
 
   .jsoneditor-field {
