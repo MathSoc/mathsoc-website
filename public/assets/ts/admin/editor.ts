@@ -4,7 +4,7 @@ import JSONEditor, { JSONEditorOptions } from "jsoneditor";
 
 enum MarkdownFieldHighlightClasses {
   HOVERABLE = "hoverable-markdown-field",
-  CLICKED = "highlighted-markdown-field",
+  CLICKED = "highlighted-markdown-field"
 }
 
 type EditorNode = {
@@ -14,6 +14,7 @@ type EditorNode = {
 };
 
 export class Editor {
+  container: HTMLElement;
   options: JSONEditorOptions;
   editor: JSONEditor;
   sourceDataURL: string;
@@ -24,12 +25,16 @@ export class Editor {
   private lastHighlightedMarkdownElement: HTMLElement = null;
 
   constructor(container: HTMLElement, sourceDataURL: string) {
+    this.container = container;
     this.richTextEditor = new Quill("#quill-editor", {
-      theme: "snow",
+      theme: "snow"
     });
     this.options = {
       onEditable: this.onEditorEditable,
       onEvent: this.onEditorEvent.bind(this),
+      enableSort: false,
+      enableTransform: false,
+      navigationBar: false
     };
 
     this.sourceDataURL = sourceDataURL;
@@ -64,6 +69,12 @@ export class Editor {
     const saveButton = this.getSaveEditorButton();
     const saveRichTextButton = this.getSaveRichEditorButton();
 
+    const sideMenu = document.getElementById("editor-nav-menu");
+    const openSideMenuButton = document.getElementById("open-side-menu-button");
+    const closeSideMenuButton = document.getElementById(
+      "close-side-menu-button"
+    );
+
     const cancelRichTextButton = this.getCancelRichTextEditorButton();
 
     saveButton.querySelector(".editor-name").innerHTML = this.name;
@@ -71,6 +82,9 @@ export class Editor {
     saveRichTextButton.onclick = () => this.saveQuillMarkdownToEditor();
     openButton.onclick = () => this.openRichTextModal();
     cancelRichTextButton.onclick = () => this.closeRichTextModal();
+
+    openSideMenuButton.onclick = () => sideMenu.classList.add("open");
+    closeSideMenuButton.onclick = () => sideMenu.classList.remove("open");
   }
 
   // open the rich text modal
@@ -147,7 +161,7 @@ export class Editor {
     openEditorButton.classList.replace("disabled", "enabled");
     openEditorButton.disabled = false;
 
-    // @ts-expect-error the type definition is wrong; passing in the node.value string works. 
+    // @ts-expect-error the type definition is wrong; passing in the node.value string works.
     const htmlContent = this.richTextEditor.clipboard.convert(node.value);
     this.richTextEditor.setContents(htmlContent);
   }
@@ -189,13 +203,13 @@ export class Editor {
     if (node && node.field && node.field.includes("Markdown")) {
       return {
         field: false,
-        value: false,
+        value: false
       };
     }
 
     return {
       field: false,
-      value: true,
+      value: true
     };
   }
 
@@ -219,8 +233,8 @@ export class Editor {
     const options = {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     };
 
     const response = await fetch(this.sourceDataURL, options);
@@ -253,9 +267,9 @@ export class Editor {
     const options = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     };
 
     fetch(link, options).then((response) => {
