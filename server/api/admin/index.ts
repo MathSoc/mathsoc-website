@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
-import { ReadWriteAPIController } from "./../controllers/read-write-api-controller";
+import { ReadWriteAPIController } from "../controllers/read-write-api-controller";
 import { validate } from "../../validation/endpoint-schema-map";
 import express from "express";
-import { ExamBankController } from "./../controllers/exam-bank-controller";
-import { ImageController } from "./../controllers/image-controller";
-import { DocumentController } from "./../controllers/document-controller";
+import { ExamBankController } from "../controllers/exam-bank-controller";
+import { ImageController } from "../controllers/image-controller";
+import { DocumentController } from "../controllers/document-controller";
 import { AdminMiddleware } from "../../auth/google";
+import { CartoonsController } from "../controllers/cartoons-controller";
+import fs from "fs";
 
 const router = express.Router();
 
@@ -20,6 +22,34 @@ const DOCUMENT_URL = "_hidden/document-list";
 router.use(AdminMiddleware);
 
 ExamBankController.rewriteFile();
+
+router.post("/exams/rebuild", (_req: Request, res: Response) => {
+  ExamBankController.rewriteFile();
+  res.status(201).send();
+});
+
+router.patch("/exams/:examName/hide", (req: Request, res: Response) => {
+  try {
+    ExamBankController.hideExamFile(req.params.examName);
+    res.status(200).end();
+  } catch (e) {
+    res.status(404).end();
+  }
+});
+
+router.patch("/exams/:examName/show", (req: Request, res: Response) => {
+  try {
+    ExamBankController.showExamFile(req.params.examName);
+    res.status(200).end();
+  } catch (e) {
+    res.status(404).end();
+  }
+});
+
+router.post("/cartoons/rebuild", (_req: Request, res: Response) => {
+  CartoonsController.rewriteFile();
+  res.status(201).send();
+});
 
 router.post("/data", validate, (req: Request, res: Response) => {
   if (typeof req.query.path === "string") {
@@ -49,6 +79,10 @@ router.delete("/image/delete", async (req: Request, res: Response) => {
 });
 
 router.get("/images", (_req: Request, res: Response) => {
+  if (!fs.existsSync("server/data/_hidden/image-list.json")) {
+    fs.writeFileSync("server/data/_hidden/image-list.json", "");
+  }
+
   ReadWriteAPIController.getJSONDataPath(IMAGES_URL, res);
 });
 
