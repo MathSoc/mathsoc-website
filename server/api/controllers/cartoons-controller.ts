@@ -12,16 +12,6 @@ export class CartoonsController {
 
   static async rewriteFile(): Promise<void> {
     const url = "_hidden/cartoons-list";
-    const fullPath = `server/data/${url}.json`;
-
-    if (!fs.existsSync(fullPath)) {
-      fs.writeFileSync(fullPath, "");
-    }
-
-    const cartoonsUploadPath = "public/assets/img/cartoons/uploads";
-    if (!fs.existsSync(cartoonsUploadPath)) {
-      fs.mkdirSync(cartoonsUploadPath);
-    }
 
     const cartoonsList = await this.readCartoonsFromDirectory();
 
