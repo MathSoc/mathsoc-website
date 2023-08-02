@@ -66,7 +66,7 @@ router.post("/exams/rebuild", (_req: Request, res: Response) => {
 
 router.post("/image/upload", async (req: Request, res: Response) => {
   new ImageController(IMAGES_PATH, IMAGES_PUBLIC_LINK, IMAGES_URL).uploadFiles(
-    req,
+    req, 
     res
   );
 });

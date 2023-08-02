@@ -1,4 +1,5 @@
 import { Exam } from "../../../server/types/exam-bank.js";
+import { showToast } from "./admin/toast";
 
 class ExamBankFrontend {
   static getExamList(): HTMLTableElement {
@@ -116,11 +117,38 @@ class ExamBankFrontend {
         .replace("$TYPE$", exam.type)
         .replace("$EXAM-FILE$", `/exams/${exam.examFile}`)
         .replace("$SOLUTION-FILE$", `/exams/${exam.solutionFile}`)
-        .replace("$EXAM_HIDDEN$", "False")
-        .replace("$SOLUTION_HIDDEN$", "False");
+        .replace(
+          "$EXAM_HIDDEN$",
+          exam.examFile?.includes("-hidden") ? "True" : "False"
+        )
+        .replace(
+          "$SOLUTION_HIDDEN$",
+          exam.solutionFile?.includes("-hidden") ? "True" : "False"
+        );
 
       newRow.setAttribute("data-course-dept", exam.department);
       newRow.setAttribute("data-course-code", exam.courseCode);
+
+      const hideExamButton = newRow.getElementsByClassName("exam-actions")[0]
+        .children[1] as HTMLButtonElement;
+      const hideExamSolutionButton = newRow.getElementsByClassName(
+        "solution-actions"
+      )[0].children[1] as HTMLButtonElement;
+
+      const examName: string | null = exam.examFile
+        ? exam.examFile.replace(".pdf", "")
+        : null;
+      const examSolutionName: string | null = exam.solutionFile
+        ? exam.solutionFile?.replace(".pdf", "")
+        : null;
+
+      hideExamButton.onclick = () =>
+        this.toggleExamVisibility(examName, examName?.includes("-hidden"));
+      hideExamSolutionButton.onclick = () =>
+        this.toggleExamVisibility(
+          examSolutionName,
+          examSolutionName?.includes("-hidden")
+        );
 
       if (exam.examFile) {
         newRow.querySelector(".exam-download").classList.add("active");
@@ -130,6 +158,27 @@ class ExamBankFrontend {
       }
 
       tableBody.appendChild(newRow);
+    }
+  }
+
+  static async toggleExamVisibility(
+    examName: string | null,
+    currentlyHidden: boolean
+  ) {
+    const url = `/api/exams/${examName}/${currentlyHidden ? "show" : "hide"}`;
+    if (examName != null) {
+      const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      if (response.status == 200) {
+        showToast("Exam visibility toggled successfully.", "success");
+      } else {
+        showToast("Unable to toggle exam visibility.", "fail");
+      }
     }
   }
 }

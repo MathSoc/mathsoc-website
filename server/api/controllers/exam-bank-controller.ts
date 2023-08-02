@@ -1,4 +1,4 @@
-import { Dirent, readdirSync } from "fs";
+import { Dirent, readdirSync, existsSync, renameSync } from "fs";
 import { Exam } from "../../types/exam-bank";
 import { Logger } from "../../util/logger";
 import { ReadWriteController } from "./read-write-controller";
@@ -17,22 +17,24 @@ export class ExamBankController {
     const currentUrl = `public/exams/${examName}.pdf`;
     const newUrl = `public/exams/${examName}-hidden.pdf`;
 
-    if (!fs.existsSync(currentUrl)) {
+    if (!existsSync(currentUrl)) {
       throw new Error("Exam not found");
     }
 
-    fs.renameSync(currentUrl, newUrl);
+    renameSync(currentUrl, newUrl);
+    await this.rewriteFile();
   }
 
   static async showExamFile(examName: string): Promise<void> {
     const currentUrl = `public/exams/${examName}.pdf`;
     const newUrl = currentUrl.replace("-hidden", "");
 
-    if (!fs.existsSync(currentUrl)) {
+    if (!existsSync(currentUrl)) {
       throw new Error("Exam not found");
     }
 
-    fs.renameSync(currentUrl, newUrl);
+    renameSync(currentUrl, newUrl);
+    await this.rewriteFile();
   }
 
   /**
