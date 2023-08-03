@@ -24,5 +24,10 @@
     "title": "Documents",
     "ref": "/admin/documents",
     "view": "/admin/documents"
+  },
+  {
+    "title": "Exam Upload",
+    "ref": "/admin/upload-exam",
+    "view": "/admin/upload-exam"
   }
 ]

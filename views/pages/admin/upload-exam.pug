@@ -1,0 +1,31 @@
+extends /views/templates/admin-base.pug
+
+append styles
+    link(href="/assets/css/admin/upload-exam.css" rel="stylesheet")
+
+append scripts 
+    script(src="/assets/js/admin/upload-exam.js" defer)
+
+block body
+    div(id="body")
+        h1 Upload Exam
+        p Fill out this form to upload a new exam 
+
+        form()
+            h4 Course Name
+            input(type="text" class="upload-form-input" placeholder="CS, MATH, SCI, etc")
+            h4 Course Code (XX)
+            input(type="number" placeholder="241" class="upload-form-input")
+            h4 Offering Term
+            select(name="offering-term-select" class="upload-form-input upload-form-input-select")
+                option(value="Winter") Winter (January - April)
+                option(value="Spring") Spring (May - August)
+                option(value="Fall") Fall (September - December)
+            h4 Offering Year
+            select(name="offering-year-select" class="upload-form-input upload-form-input-select")
+            p Note that you must include either of the exam or solution files (or both). 
+            h4 Exam File
+            input(type="file" name="exam-file-input")
+            h4 Solution File
+            input(type="file" name="solution-file-input")
+            button(type="button" class="upload-btn") Upload Exam

@@ -1,0 +1,43 @@
+@import "../util/variables";
+
+input {
+  width: 80%;
+  min-width: 200px;
+  font-size: 1.5em;
+
+  &::placeholder {
+    opacity: 1;
+    color: #999;
+  }
+}
+
+select {
+  width: 80%;
+  min-width: 200px;
+  font-size: 1.5em;
+  padding: 10px;
+  background-color: var(--background-hover);
+
+  border: none;
+  outline: none;
+
+  option {
+    color: #999;
+  }
+}
+
+.upload-btn {
+  border: 1px solid var(--mathsoc-pink);
+  padding: 1em;
+  cursor: pointer;
+  margin: 2em;
+  margin-left: 0;
+
+  &:hover {
+    background-color: var(--mathsoc-pink);
+    color: white;
+    transition-duration: 200ms;
+    transition: all;
+  }
+
+}
