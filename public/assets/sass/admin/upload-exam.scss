@@ -32,6 +32,7 @@ select {
   cursor: pointer;
   margin: 2em;
   margin-left: 0;
+  font-size: 24px;
 
   &:hover {
     background-color: var(--mathsoc-pink);
@@ -39,5 +40,4 @@ select {
     transition-duration: 200ms;
     transition: all;
   }
-
 }

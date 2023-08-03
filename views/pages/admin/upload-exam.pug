@@ -11,11 +11,11 @@ block body
         h1 Upload Exam
         p Fill out this form to upload a new exam 
 
-        form()
+        form(id="exam-upload-form")
             h4 Course Name
-            input(type="text" class="upload-form-input" placeholder="CS, MATH, SCI, etc")
+            input(name="course-name" type="text" class="upload-form-input" placeholder="CS, MATH, SCI, etc")
             h4 Course Code (XX)
-            input(type="number" placeholder="241" class="upload-form-input")
+            input(name="course-code" type="number" placeholder="241" class="upload-form-input")
             h4 Offering Term
             select(name="offering-term-select" class="upload-form-input upload-form-input-select")
                 option(value="Winter") Winter (January - April)
@@ -23,9 +23,15 @@ block body
                 option(value="Fall") Fall (September - December)
             h4 Offering Year
             select(name="offering-year-select" class="upload-form-input upload-form-input-select")
-            p Note that you must include either of the exam or solution files (or both). 
+            h4 Exam Type
+            select(name="exam-type" class="upload-form-input upload-form-input-select")
+                option(value="Final") Final
+                option(value="Midterm") Midterm
+                option(value="Test") Test
             h4 Exam File
-            input(type="file" name="exam-file-input")
+            input(name="exam-file" type="file" class="exam-file-input")
             h4 Solution File
-            input(type="file" name="solution-file-input")
-            button(type="button" class="upload-btn") Upload Exam
+            input(name="solution-file" type="file" class="solution-file-input")
+            p Note that you must include either of the exam or solution files (or both). 
+
+            button(type="button" class="upload-btn" id="upload-btn") Upload Exam

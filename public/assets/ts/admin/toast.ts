@@ -1,4 +1,7 @@
-export function showToast(message: string, intent: "success" | "fail") {
+export function showToast(
+  message: string | string[],
+  intent: "success" | "fail"
+) {
   const toast = document.getElementById("toast");
 
   const toastHeader = document.querySelector(".toast-header");
@@ -6,7 +9,15 @@ export function showToast(message: string, intent: "success" | "fail") {
   const toastBody = document.querySelector(".toast-body");
 
   toastHeader.innerHTML = intent === "success" ? "Success" : "Failure";
-  toastMessage.innerHTML = message;
+  if (typeof message == "string") {
+    toastMessage.innerHTML = message;
+  } else if (Array.isArray(message)) {
+    const html = `<ul>${message
+      .map((item) => `<li>${item}</li>`)
+      .join("")}</ul>`;
+    console.log(html);
+    toastMessage.innerHTML = html;
+  }
 
   if (toast.classList.contains("visible")) {
     return;
