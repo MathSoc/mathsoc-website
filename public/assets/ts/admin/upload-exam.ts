@@ -31,8 +31,8 @@ class UploadExamBankFrontend {
         method: "POST",
         body: formData,
       });
-      const data = await response.json();
-      console.log(data);
+      await response.json();
+      showToast("Exam uploaded successfully.", "success");
     }
 
     return validated;

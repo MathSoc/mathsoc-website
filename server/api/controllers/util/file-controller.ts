@@ -68,8 +68,9 @@ export abstract class AbstractFileController<
     return `${this.publicLink}/${fileName}`;
   }
 
-  rewriteFileJson(): void {
+  async rewriteFileJson(): Promise<any> {
     const fullPath = `server/data/${this.dataUrl}.json`;
+    const newData = await this.generateJson();
 
     if (!existsSync(fullPath)) {
       writeFileSync(fullPath, "");
@@ -91,14 +92,18 @@ export abstract class AbstractFileController<
           default:
             if (statusCode.toString()[0] === "2") {
               // 2XX success codes
-              this.logger.info("Document file rewritten");
+              this.logger.info(fullPath + " file rewritten");
               break;
             } else {
-              this.logger.warn("Unexpected document file rewrite result");
+              this.logger.warn(
+                "Unexpected " + fullPath + " file rewrite result"
+              );
             }
         }
       },
-      this.generateJson()
+      newData
     );
+
+    return newData;
   }
 }

@@ -59,7 +59,6 @@ router.post("/exams/rebuild", (_req: Request, res: Response) => {
 
 router.post("/exams/upload", (req: Request, res: Response) => {
   new ExamBankController().uploadFiles(req, res);
-  res.status(200).json({ ok: "ok" });
 });
 
 router.post("/image/upload", async (req: Request, res: Response) => {

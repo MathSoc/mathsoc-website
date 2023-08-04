@@ -5,13 +5,13 @@ import { Request, Response } from "express";
 import { AbstractFileController } from "./util/file-controller";
 import { UploadedFile } from "express-fileupload";
 
-// interface UploadExamBody {
-//   department: string;
-//   courseCode: string;
-//   offeringTerm: string;
-//   offeringYear: string;
-//   type: string;
-// }
+interface UploadExamBody {
+  department: string;
+  courseCode: string;
+  offeringTerm: string;
+  offeringYear: string;
+  type: string;
+}
 
 type ExamUploadRequest = {
   exam: ExamWithFiles;
@@ -28,7 +28,7 @@ export class ExamBankController extends AbstractFileController<
   ExamDeleteRequest
 > {
   constructor() {
-    const dataUrl = "_hidden/exam-list";
+    const dataUrl = "_hidden/exams-list";
     const publicLink = "/exams";
     const publicPath = "public/exams";
 
@@ -44,17 +44,38 @@ export class ExamBankController extends AbstractFileController<
         | UploadedFile
         | undefined;
 
-      // const {
-      //   department,
-      //   courseCode,
-      //   offeringTerm,
-      //   offeringYear,
-      //   type,
-      // }: UploadExamBody = req.body;
+      const {
+        department,
+        courseCode,
+        offeringTerm,
+        offeringYear,
+        type,
+      }: UploadExamBody = req.body;
 
-      console.log(examFile);
-      console.log(solutionFile);
-      console.log(req.body);
+      const termCode = TermNameController.getTermCodeFromTermAndYear(
+        offeringTerm,
+        Number(offeringYear)
+      );
+
+      const examWithFiles: ExamWithFiles = {
+        department,
+        courseCode,
+        term: termCode.toString(),
+        type,
+        examFile: examFile ? this.examFileName(false, req.body) : undefined,
+        solutionFile: solutionFile
+          ? this.examFileName(true, req.body)
+          : undefined,
+        examFileObject: examFile,
+        solutionFileObject: solutionFile,
+      };
+
+      // add to upload queue
+      this.uploadQueue.push({
+        exam: examWithFiles,
+        errors: [],
+        res,
+      });
     } catch (err) {
       this.logger.error(err.message);
       res.send(400).redirect("/admin/upload-exam");
@@ -66,9 +87,30 @@ export class ExamBankController extends AbstractFileController<
     console.log(req, res);
   }
 
-  processFileUpload(request: ExamUploadRequest): void {
-    console.log("TODO: implement process exam file upload");
-    console.log(request);
+  async processFileUpload(request: ExamUploadRequest): Promise<void> {
+    const { exam, res } = request;
+
+    try {
+      if (exam.examFile && exam.examFileObject) {
+        const examFilePath = this.getFilePath(exam.examFile);
+        await exam.examFileObject.mv(examFilePath);
+        this.logger.info(`${exam.examFile} uploaded to ${examFilePath}`);
+      }
+
+      if (exam.solutionFile && exam.solutionFileObject) {
+        const solutionFilePath = this.getFilePath(exam.solutionFile);
+        await exam.solutionFileObject.mv(solutionFilePath);
+        this.logger.info(
+          `${exam.solutionFile} uploaded to ${solutionFilePath}`
+        );
+      }
+    } catch (err) {
+      this.logger.error(err);
+    }
+
+    await this.rewriteFileJson()
+
+    res.send({ status: "success", errors: [] });
   }
 
   async hideExamFile(examName: string): Promise<void> {
@@ -193,11 +235,21 @@ export class ExamBankController extends AbstractFileController<
     }
   }
 
-  // private examFileName(
-  //   isSolutionFile: boolean,
-  //   department: string,
-  //   courseCode,
-  //   offeringTerm: string,
-  //   offeringYear: string
-  // ) {}
+  private examFileName(isSolutionFile: boolean, exam: UploadExamBody): string {
+    const term = TermNameController.getTermCodeFromTermAndYear(
+      exam.offeringTerm,
+      Number(exam.offeringYear)
+    );
+
+    let str = `${exam.department.toUpperCase()}-${exam.courseCode}-${term}-${
+      exam.type
+    }`;
+    if (isSolutionFile) {
+      str += "-sol";
+    }
+
+    str += ".pdf";
+
+    return str;
+  }
 }
