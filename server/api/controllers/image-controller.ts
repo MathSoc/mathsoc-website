@@ -28,6 +28,13 @@ export class ImageController extends AbstractFileController<
   ImageUploadRequest,
   ImageDeleteRequest
 > {
+  constructor() {
+    const IMAGES_PATH = "public/assets/img/uploads";
+    const IMAGES_PUBLIC_LINK = "/assets/img/uploads";
+    const IMAGES_URL = "_hidden/image-list";
+
+    super(IMAGES_PATH, IMAGES_PUBLIC_LINK, IMAGES_URL);
+  }
   /*
   Handles the /api/image/upload endpoint 
   - handles all possible errors with the file upload (no file, no fileype, not recognized filetype)

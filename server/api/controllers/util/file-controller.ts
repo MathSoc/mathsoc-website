@@ -58,7 +58,7 @@ export abstract class AbstractFileController<
 
   abstract deleteFile(req: Request, res: Response): void;
 
-  abstract generateJson(): FileType[];
+  abstract generateJson(): FileType[] | Promise<FileType[]>;
 
   getFilePath(fileName: string) {
     return `${this.publicPath}/${fileName}`;
@@ -68,7 +68,7 @@ export abstract class AbstractFileController<
     return `${this.publicLink}/${fileName}`;
   }
 
-  protected rewriteFileJson(): void {
+  rewriteFileJson(): void {
     const fullPath = `server/data/${this.dataUrl}.json`;
 
     if (!existsSync(fullPath)) {

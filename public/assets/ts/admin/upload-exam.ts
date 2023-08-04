@@ -1,10 +1,11 @@
 import { showToast } from "./toast";
 
 interface UploadFormData {
-  courseName: string;
+  department: string;
   courseCode: string;
   offeringTerm: string;
   offeringYear: number;
+  type: string;
   examFile: File | null;
   solutionFile: File | null;
 }
@@ -16,9 +17,23 @@ class UploadExamBankFrontend {
     this.populateOfferingYear();
   }
 
-  private submitForm() {
+  private async submitForm() {
     const formValues = this.getForm();
     const validated = this.validateForm(formValues);
+
+    if (validated) {
+      const formData = new FormData();
+      Object.keys(formValues).forEach((key) =>
+        formData.append(key, formValues[key])
+      );
+
+      const response = await fetch("/api/exams/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      console.log(data);
+    }
 
     return validated;
   }
@@ -36,6 +51,9 @@ class UploadExamBankFrontend {
     const offeringYearSelect = document.getElementsByName(
       "offering-year-select"
     )[0] as HTMLSelectElement;
+    const examTypeSelect = document.getElementsByName(
+      "exam-type"
+    )[0] as HTMLSelectElement;
     const examFile = document.getElementsByName(
       "exam-file"
     )[0] as HTMLInputElement;
@@ -44,10 +62,11 @@ class UploadExamBankFrontend {
     )[0] as HTMLInputElement;
 
     const formData: UploadFormData = {
-      courseName: courseName.value,
+      department: courseName.value,
       courseCode: courseCode.value,
       offeringTerm: offeringTermSelect.value,
       offeringYear: Number(offeringYearSelect.value),
+      type: examTypeSelect.value,
       examFile: examFile.files?.length ? examFile.files.item(0) : null,
       solutionFile: solutionFile.files?.length
         ? solutionFile.files.item(0)
@@ -59,14 +78,14 @@ class UploadExamBankFrontend {
   private validateForm(formData: UploadFormData): boolean {
     const errors = [];
     const {
-      courseName,
+      department,
       courseCode,
       offeringTerm,
       offeringYear,
       examFile,
       solutionFile,
     } = formData;
-    if (courseName.trim() == "") {
+    if (department.trim() == "") {
       errors.push("Course name cannot be empty.");
     }
     if (courseCode.trim() == "") {

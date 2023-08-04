@@ -9,7 +9,7 @@ import adminApi from "./admin";
 
 const router = express.Router();
 
-ExamBankController.rewriteFile();
+new ExamBankController().rewriteFileJson();
 CartoonsController.rewriteFile();
 
 router.get("/data", (req: Request, res: Response) => {

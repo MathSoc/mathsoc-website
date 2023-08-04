@@ -11,26 +11,19 @@ import fs from "fs";
 
 const router = express.Router();
 
-const IMAGES_PATH = "public/assets/img/uploads";
-const IMAGES_PUBLIC_LINK = "/assets/img/uploads";
 const IMAGES_URL = "_hidden/image-list";
-
-const DOCUMENT_PATH = "public/assets/documents";
-const DOCUMENT_PUBLIC_LINK = "/assets/documents";
 const DOCUMENT_URL = "_hidden/document-list";
 
 router.use(AdminMiddleware);
 
-ExamBankController.rewriteFile();
-
-router.post("/exams/rebuild", (_req: Request, res: Response) => {
-  ExamBankController.rewriteFile();
-  res.status(201).send();
-});
+// router.post("/exams/rebuild", (_req: Request, res: Response) => {
+// new ExamBankController().rewriteFileJson();
+//   res.status(201).send();
+// });
 
 router.patch("/exams/:examName/hide", (req: Request, res: Response) => {
   try {
-    ExamBankController.hideExamFile(req.params.examName);
+    new ExamBankController().hideExamFile(req.params.examName);
     res.status(200).end();
   } catch (e) {
     res.status(404).end();
@@ -39,7 +32,7 @@ router.patch("/exams/:examName/hide", (req: Request, res: Response) => {
 
 router.patch("/exams/:examName/show", (req: Request, res: Response) => {
   try {
-    ExamBankController.showExamFile(req.params.examName);
+    new ExamBankController().showExamFile(req.params.examName);
     res.status(200).end();
   } catch (e) {
     res.status(404).end();
@@ -60,22 +53,21 @@ router.post("/data", validate, (req: Request, res: Response) => {
 });
 
 router.post("/exams/rebuild", (_req: Request, res: Response) => {
-  ExamBankController.rewriteFile();
+  new ExamBankController().rewriteFileJson();
   res.status(201).send();
 });
 
+router.post("/exams/upload", (req: Request, res: Response) => {
+  new ExamBankController().uploadFiles(req, res);
+  res.status(200).json({ ok: "ok" });
+});
+
 router.post("/image/upload", async (req: Request, res: Response) => {
-  new ImageController(IMAGES_PATH, IMAGES_PUBLIC_LINK, IMAGES_URL).uploadFiles(
-    req, 
-    res
-  );
+  new ImageController().uploadFiles(req, res);
 });
 
 router.delete("/image/delete", async (req: Request, res: Response) => {
-  new ImageController(IMAGES_PATH, IMAGES_PUBLIC_LINK, IMAGES_URL).deleteFile(
-    req,
-    res
-  );
+  new ImageController().deleteFile(req, res);
 });
 
 router.get("/images", (_req: Request, res: Response) => {
@@ -87,19 +79,11 @@ router.get("/images", (_req: Request, res: Response) => {
 });
 
 router.post("/document/upload", async (req: Request, res: Response) => {
-  new DocumentController(
-    DOCUMENT_PATH,
-    DOCUMENT_PUBLIC_LINK,
-    DOCUMENT_URL
-  ).uploadFiles(req, res);
+  new DocumentController().uploadFiles(req, res);
 });
 
 router.delete("/document/delete", async (req: Request, res: Response) => {
-  new DocumentController(
-    DOCUMENT_PATH,
-    DOCUMENT_PUBLIC_LINK,
-    DOCUMENT_URL
-  ).deleteFile(req, res);
+  new DocumentController().deleteFile(req, res);
 });
 
 router.get("/documents", (req: Request, res: Response) => {

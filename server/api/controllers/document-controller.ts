@@ -21,6 +21,14 @@ export class DocumentController extends AbstractFileController<
   DocumentUploadRequest,
   DocumentDeleteRequest
 > {
+  constructor() {
+    const DOCUMENT_PATH = "public/assets/documents";
+    const DOCUMENT_PUBLIC_LINK = "/assets/documents";
+    const DOCUMENT_URL = "_hidden/document-list";
+
+    super(DOCUMENT_PATH, DOCUMENT_PUBLIC_LINK, DOCUMENT_URL);
+  }
+  
   uploadFiles(req: Request, res: Response): void {
     try {
       const docs = Array.isArray(req.files?.documents)
