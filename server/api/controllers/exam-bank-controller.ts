@@ -20,7 +20,11 @@ type ExamUploadRequest = {
 };
 
 // TODO: figure out how to delete exams / solutions
-type ExamDeleteRequest = Exam;
+type ExamDeleteRequest = {
+  fileName: string;
+  path: string;
+  res: Response;
+};
 
 export class ExamBankController extends AbstractFileController<
   Exam,
@@ -83,8 +87,29 @@ export class ExamBankController extends AbstractFileController<
   }
 
   deleteFile(req: Request, res: Response): void {
-    console.log("TODO: implement delete exam file");
-    console.log(req, res);
+    try {
+      const { fileName }: { fileName: string } = req.body;
+
+      if (!fileName) {
+        throw new Error("File name not provided with delete request");
+      }
+
+      const fullPath = `public/exams/${fileName}`;
+      if (!existsSync(fullPath)) {
+        throw new Error("File provdided does not exist.");
+      }
+
+      const deleteRequest: ExamDeleteRequest = {
+        fileName,
+        path: fullPath,
+        res,
+      };
+
+      this.deleteQueue.push(deleteRequest);
+    } catch (err) {
+      this.logger.error(err.message);
+      res.status(400).send(err.message);
+    }
   }
 
   async processFileUpload(request: ExamUploadRequest): Promise<void> {
@@ -108,7 +133,7 @@ export class ExamBankController extends AbstractFileController<
       this.logger.error(err);
     }
 
-    await this.rewriteFileJson()
+    await this.rewriteFileJson();
 
     res.send({ status: "success", errors: [] });
   }

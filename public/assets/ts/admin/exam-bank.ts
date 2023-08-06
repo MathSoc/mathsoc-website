@@ -135,6 +135,12 @@ class ExamBankFrontend {
         "solution-actions"
       )[0].children[1] as HTMLButtonElement;
 
+      const deleteExamButton = newRow.getElementsByClassName("exam-actions")[0]
+        .children[0] as HTMLButtonElement;
+      const deleteExamSolutionButton = newRow.getElementsByClassName(
+        "solution-actions"
+      )[0].children[0] as HTMLButtonElement;
+
       const examName: string | null = exam.examFile
         ? exam.examFile.replace(".pdf", "")
         : null;
@@ -149,6 +155,12 @@ class ExamBankFrontend {
           examSolutionName,
           examSolutionName?.includes("-hidden")
         );
+      deleteExamButton.onclick = exam.examFile
+        ? () => this.deleteExam(exam.examFile)
+        : null;
+      deleteExamSolutionButton.onclick = exam.solutionFile
+        ? () => this.deleteExam(exam.solutionFile)
+        : null;
 
       if (exam.examFile) {
         newRow.querySelector(".exam-download").classList.add("active");
@@ -179,6 +191,24 @@ class ExamBankFrontend {
       } else {
         showToast("Unable to toggle exam visibility.", "fail");
       }
+    }
+  }
+
+  private static async deleteExam(fileName: string) {
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fileName }),
+    };
+
+    const response = await fetch("/api/exams/delete", options);
+    if (response.status == 200) {
+      await this.populateTable();
+    } else {
+      showToast("Unknown error. Could not delete document", "fail");
+      return;
     }
   }
 }

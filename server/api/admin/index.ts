@@ -16,10 +16,10 @@ const DOCUMENT_URL = "_hidden/document-list";
 
 router.use(AdminMiddleware);
 
-// router.post("/exams/rebuild", (_req: Request, res: Response) => {
-// new ExamBankController().rewriteFileJson();
-//   res.status(201).send();
-// });
+router.post("/exams/rebuild", (_req: Request, res: Response) => {
+  new ExamBankController().rewriteFileJson();
+  res.status(201).send();
+});
 
 router.patch("/exams/:examName/hide", (req: Request, res: Response) => {
   try {
@@ -59,6 +59,10 @@ router.post("/exams/rebuild", (_req: Request, res: Response) => {
 
 router.post("/exams/upload", (req: Request, res: Response) => {
   new ExamBankController().uploadFiles(req, res);
+});
+
+router.delete("/exams/delete", (req: Request, res: Response) => {
+  new ExamBankController().deleteFile(req, res);
 });
 
 router.post("/image/upload", async (req: Request, res: Response) => {
