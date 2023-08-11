@@ -10,20 +10,21 @@ import { DataPaths } from "./data-paths";
 // MAPPING OF FILEPATH TO FILE SCHEMA
 // 'get-involved/volunteer' refers to /data/get-involved/volunteer.json
 export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
-  [DataPaths.GET_INVOLVED_VOLUNTEER]: schemas.VolunteerDataSchema,
-  [DataPaths.HOME]: schemas.HomeDataSchema,
   [DataPaths.CARTOONS_ABOUT_US]: schemas.CartoonsAboutUsDataSchema,
-  [DataPaths.RESOUCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
-  [DataPaths.RESOURCES_CHEQUE_REQUESTS]: schemas.ChequeRequestSchema,
-  [DataPaths.RESOURCES_DISCORD_ACCESS]: schemas.DiscordAccessSchema,
-  [DataPaths.ELECTIONS]: schemas.ElectionsDataSchema,
-  [DataPaths.STUDENT_SERVICES]: schemas.StudentServicesSchema,
-  [DataPaths.COUNCIL_DATA]: schemas.CouncilDataSchema,
   [DataPaths.CLUBS_DATA]: schemas.ClubsSchema,
   [DataPaths.COMMUNITY_DATA]: schemas.CommunitySchema,
   [DataPaths.CONTACT_US]: schemas.ContactUsDataSchema,
+  [DataPaths.COUNCIL_DATA]: schemas.CouncilDataSchema,
+  [DataPaths.DOCUMENTS_BUDGETS]: schemas.DocumentsBudgetsSchema,
+  [DataPaths.ELECTIONS]: schemas.ElectionsDataSchema,
+  [DataPaths.GET_INVOLVED_VOLUNTEER]: schemas.VolunteerDataSchema,
+  [DataPaths.HOME]: schemas.HomeDataSchema,
+  [DataPaths.RESOUCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
+  [DataPaths.RESOURCES_CHEQUE_REQUESTS]: schemas.ChequeRequestSchema,
+  [DataPaths.RESOURCES_DISCORD_ACCESS]: schemas.DiscordAccessSchema,
   [DataPaths.SHARED_FOOTER]: schemas.SharedFooterSchema,
   [DataPaths.SHARED_EXECS]: schemas.SharedExecsSchema,
+  [DataPaths.STUDENT_SERVICES]: schemas.StudentServicesSchema,
 };
 
 export const validate = (req: Request, res: Response, next: NextFunction) => {
