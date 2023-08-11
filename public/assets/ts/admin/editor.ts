@@ -196,19 +196,18 @@ export class Editor {
   }
 
   /*
-  - stops users from modifying field and value for markdown fields
-  - stops users from modifying field names for the rest of the fields
+  - stops users from modifying value directly for markdown fields
   */
   private onEditorEditable(node: { field?: string }) {
     if (node && node.field && node.field.includes("Markdown")) {
       return {
-        field: false,
+        field: true,
         value: false
       };
     }
 
     return {
-      field: false,
+      field: true,
       value: true
     };
   }
