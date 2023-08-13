@@ -43,6 +43,14 @@ export class TermNameController {
     return target?.name ?? termCode;
   }
 
+  static getTermCodeFromTermAndYear(term: string, year: number): number {
+    const fullName = `${term} ${year}`;
+    const terms = this.getTermsFile();
+
+    const target = terms.find((item) => item.name === fullName);
+    return target ? Number(target.termCode) : -1;
+  }
+
   static async overwriteTermsFile() {
     try {
       const terms = await this.getTermNames();

@@ -22,16 +22,20 @@ export abstract class AbstractFileController<
   protected dataUrl;
 
   protected logger = new Logger();
-  protected uploadQueue;
-  protected deleteQueue;
+  protected uploadQueue: ProcessQueue<UploadRequestType>;
+  protected deleteQueue: ProcessQueue<DeleteRequestType>;
 
   constructor(publicPath: string, publicLink: string, dataUrl: string) {
     this.publicPath = publicPath;
     this.publicLink = publicLink;
     this.dataUrl = dataUrl;
 
-    this.uploadQueue = new ProcessQueue(this.processFileUpload.bind(this));
-    this.deleteQueue = new ProcessQueue(this.processFileDelete.bind(this));
+    this.uploadQueue = new ProcessQueue<UploadRequestType>(
+      this.processFileUpload.bind(this)
+    );
+    this.deleteQueue = new ProcessQueue<DeleteRequestType>(
+      this.processFileDelete.bind(this)
+    );
   }
 
   abstract uploadFiles(req: Request, res: Response): void;
@@ -48,17 +52,18 @@ export abstract class AbstractFileController<
     try {
       unlinkSync(path);
       this.logger.info(`${fileName} deleted from ${path}`);
-      this.rewriteFileJson();
       res.status(200).json({ status: "success" });
     } catch (err) {
       this.logger.error(err);
       res.status(400).json({ status: "fail" });
     }
+
+    this.rewriteFileJson();
   }
 
   abstract deleteFile(req: Request, res: Response): void;
 
-  abstract generateJson(): FileType[];
+  abstract generateJson(): FileType[] | Promise<FileType[]>;
 
   getFilePath(fileName: string) {
     return `${this.publicPath}/${fileName}`;
@@ -68,8 +73,9 @@ export abstract class AbstractFileController<
     return `${this.publicLink}/${fileName}`;
   }
 
-  protected rewriteFileJson(): void {
+  async rewriteFileJson(): Promise<any> {
     const fullPath = `server/data/${this.dataUrl}.json`;
+    const newData = await this.generateJson();
 
     if (!existsSync(fullPath)) {
       writeFileSync(fullPath, "");
@@ -91,14 +97,18 @@ export abstract class AbstractFileController<
           default:
             if (statusCode.toString()[0] === "2") {
               // 2XX success codes
-              this.logger.info("Document file rewritten");
+              this.logger.info(fullPath + " file rewritten");
               break;
             } else {
-              this.logger.warn("Unexpected document file rewrite result");
+              this.logger.warn(
+                "Unexpected " + fullPath + " file rewrite result"
+              );
             }
         }
       },
-      this.generateJson()
+      newData
     );
+
+    return newData;
   }
 }

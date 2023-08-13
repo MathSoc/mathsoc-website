@@ -113,20 +113,42 @@ class ExamBankFrontend {
         .replace("$COURSE-DEPT$", exam.department)
         .replace("$COURSE-CODE$", exam.courseCode)
         .replace("$OFFERING$", exam.termName)
-        .replace("$TYPE$", exam.type)
+        .replace("$TYPE$", exam.type.replace("hidden", ""))
         .replace("$EXAM-FILE$", `/exams/${exam.examFile}`)
-        .replace("$SOLUTION-FILE$", `/exams/${exam.solutionFile}`)
-        .replace("$EXAM_HIDDEN$", "False")
-        .replace("$SOLUTION_HIDDEN$", "False");
+        .replace("$SOLUTION-FILE$", `/exams/${exam.solutionFile}`);
 
       newRow.setAttribute("data-course-dept", exam.department);
       newRow.setAttribute("data-course-code", exam.courseCode);
 
-      if (exam.examFile) {
+      if (exam.examFile && !exam.examFile.includes("-hidden")) {
         newRow.querySelector(".exam-download").classList.add("active");
       }
-      if (exam.solutionFile) {
+      if (exam.solutionFile && !exam.solutionFile.includes("-hidden")) {
         newRow.querySelector(".solution-download").classList.add("active");
+      }
+
+      // check if both exam and solution exist AND if they are both empty
+      if (
+        exam.examFile &&
+        exam.examFile.includes("-hidden") &&
+        exam.solutionFile &&
+        exam.solutionFile.includes("-hidden")
+      ) {
+        continue;
+        // check if only exam file exists and it is hidden
+      } else if (
+        exam.examFile &&
+        exam.examFile.includes("-hidden") &&
+        !exam.solutionFile
+      ) {
+        continue;
+        // check if only solution file exists and it is hidden
+      } else if (
+        exam.solutionFile &&
+        exam.solutionFile.includes("-hidden") &&
+        !exam.examFile
+      ) {
+        continue;
       }
 
       tableBody.appendChild(newRow);

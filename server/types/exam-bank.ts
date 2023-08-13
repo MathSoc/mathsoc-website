@@ -1,3 +1,5 @@
+import { UploadedFile } from "express-fileupload";
+
 export type Exam = {
   department: string;
   courseCode: string;
@@ -6,6 +8,11 @@ export type Exam = {
   examFile?: string;
   solutionFile?: string;
   termName?: string;
+};
+
+export type ExamWithFiles = Exam & {
+  examFileObject?: UploadedFile;
+  solutionFileObject?: UploadedFile;
 };
 
 export type Term = {
