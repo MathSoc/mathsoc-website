@@ -95,6 +95,11 @@
         "title": "Policies and Bylaws",
         "ref": "/documents/policies-and-bylaws",
         "view": "/documents/policies-and-bylaws"
+      },
+      {
+        "title": "Budgets",
+        "ref": "/documents/budgets",
+        "view": "/documents/budgets"
       }
     ]
   },

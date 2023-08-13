@@ -1,0 +1,25 @@
+@import "../../mixins/section";
+
+#budgets-table {
+  width: 100%;
+  table-layout: fixed;
+
+  th {
+    padding: 4px;
+    background-color: var(--mathsoc-pink);
+    color: white;
+  }
+
+  tr.body-row {
+    background-color: var(--background-colour-2);
+  }
+  
+  td.budget-year {
+    text-align: center;
+  }
+
+  td a {
+    text-align: center;
+    display: block;
+  }
+}
