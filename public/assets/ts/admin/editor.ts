@@ -1,5 +1,7 @@
 import { showToast } from "./toast";
 import Quill from "quill";
+import { zodToJsonSchema } from "zod-to-json-schema";
+import { mapping } from "../../../../server/validation/endpoint-schema-map";
 import JSONEditor, { JSONEditorOptions } from "jsoneditor";
 
 enum MarkdownFieldHighlightClasses {
@@ -29,12 +31,21 @@ export class Editor {
     this.richTextEditor = new Quill("#quill-editor", {
       theme: "snow"
     });
+
+    const path = new URLSearchParams(sourceDataURL.split("?")[1]).get("path");
+    const schema = mapping[path];
+
+    if (!schema) {
+      console.warn(`No schema found for ${path}`);
+    }
+
     this.options = {
-      onEditable: this.onEditorEditable,
-      onEvent: this.onEditorEvent.bind(this),
       enableSort: false,
       enableTransform: false,
-      navigationBar: false
+      onEditable: this.onEditorEditable,
+      onEvent: this.onEditorEvent.bind(this),
+      navigationBar: false,
+      schema: zodToJsonSchema(schema)
     };
 
     this.sourceDataURL = sourceDataURL;
