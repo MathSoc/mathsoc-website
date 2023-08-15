@@ -2,6 +2,7 @@ import { Dirent, readdirSync } from "fs";
 import { Exam } from "../../types/exam-bank";
 import { Logger } from "../../util/logger";
 import { ReadWriteController } from "./read-write-controller";
+import fs from "fs";
 import { TermNameController } from "./term-name-controller";
 
 /**
