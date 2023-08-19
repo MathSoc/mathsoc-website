@@ -336,6 +336,26 @@ const DocumentsBudgetsSchema = z.object({
   )
 }).strict();
 
+const DocumentsMeetingsSchema = z.object({
+  descriptionMarkdown: z.string(),
+  meetingGroups: z.array(
+    z.object({
+      type: z.string(),
+      meetings: z.array(
+        z.object({
+          term: z.number(),
+          date: z.string(),
+          agendaLink: z.string(),
+          minutesLink: z.string(),
+        })
+        .strict()
+      ),
+    })
+    .strict()
+  ),
+})
+.strict();
+
 export {
   CartoonsAboutUsDataSchema,
   ChequeRequestSchema,
@@ -345,6 +365,7 @@ export {
   CouncilDataSchema,
   DiscordAccessSchema,
   DocumentsBudgetsSchema,
+  DocumentsMeetingsSchema,
   ElectionsDataSchema,
   HomeDataSchema,
   MentalWellnessDataSchema,
