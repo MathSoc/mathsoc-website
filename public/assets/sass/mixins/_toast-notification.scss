@@ -9,6 +9,8 @@
   transform: translateY(100%);
   opacity: 0;
 
+  z-index: 100;
+
   transition: opacity 500ms, transform 500ms;
 
   &.visible {

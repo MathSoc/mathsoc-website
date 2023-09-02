@@ -1,0 +1,46 @@
+@import "../../util/variables";
+@import "../../mixins/section";
+
+section.section-mixin {
+  padding-top: 0;
+}
+
+button {
+  background-color: var(--mathsoc-pink);
+  color: #fff;
+  padding: 1em;
+  cursor: pointer;
+}
+
+#document-list {
+  .document-button {
+    margin-top: 20px;
+    width: 100%;
+    color: white;
+    background-color: var(--text-color);
+
+    &:hover {
+      background-color: var(--mathsoc-pink);
+      color: white;
+      transition-duration: 150ms;
+    }
+  }
+
+  .delete-button {
+    margin-top: 20px;
+
+    &:hover {
+      background-color: var(--text-color);
+      transition-duration: 150ms;
+    }
+  }
+
+  .copy-button {
+    margin-top: 20px;
+
+    &:hover {
+      background-color: var(--text-color);
+      transition-duration: 150ms;
+    }
+  }
+}

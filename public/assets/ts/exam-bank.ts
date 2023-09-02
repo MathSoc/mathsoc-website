@@ -110,6 +110,8 @@ class ExamBankFrontend {
       newRow.id = "";
       newRow.innerHTML = newRow.innerHTML
         .replace("$COURSE-NAME$", `${exam.department} ${exam.courseCode}`)
+        .replace("$COURSE-DEPT$", exam.department)
+        .replace("$COURSE-CODE$", exam.courseCode)
         .replace("$OFFERING$", exam.termName)
         .replace("$TYPE$", exam.type)
         .replace("$EXAM-FILE$", `/exams/${exam.examFile}`)

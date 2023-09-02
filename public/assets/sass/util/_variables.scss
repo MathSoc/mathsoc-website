@@ -1,7 +1,8 @@
 // Colours
 :root {
   --background-colour: #fff;
-  --background-hover: #f1f1f1;
+  --background-colour-2: #f8f8f8;
+  --background-hover: var(--background-colour-2);
   --mathsoc-pink: #c60078;
   --mathsoc-pink-2: #df2498;
   --mathsoc-pink-3: #ff63aa;
