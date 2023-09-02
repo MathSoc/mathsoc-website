@@ -3,11 +3,13 @@
 /public/assets/css
 /public/assets/js
 /public/assets/img/uploads
+/public/assets/documents
 /public/assets/img/cartoons/uploads
 /public/exams
-/server/data/_hidden/cartoons-list.json
-/server/data/_hidden/exams-list.json
-/server/data/_hidden/term-list.json
+
+# ensure that any files under _hidden are added to DirectoryPrebuilder
+/server/data/_hidden/*
+
 .env
 *.tsbuildinfo
 backups/

@@ -12,16 +12,6 @@ export class CartoonsController {
 
   static async rewriteFile(): Promise<void> {
     const url = "_hidden/cartoons-list";
-    const fullPath = `server/data/${url}.json`;
-
-    if (!fs.existsSync(fullPath)) {
-      fs.writeFileSync(fullPath, "");
-    }
-
-    const cartoonsUploadPath = "public/assets/img/cartoons/uploads";
-    if (!fs.existsSync(cartoonsUploadPath)) {
-      fs.mkdirSync(cartoonsUploadPath);
-    }
 
     const cartoonsList = await this.readCartoonsFromDirectory();
 
@@ -42,10 +32,12 @@ export class CartoonsController {
             if (statusCode.toString()[0] === "2") {
               // 2XX success codes
               this.logger.info("Cartoons file rewritten");
-              break;
             } else {
-              this.logger.warn("Unexpected cartoons file rewrite result");
+              this.logger.warn(
+                `Unexpected cartoons file rewrite result: ${statusCode}`
+              );
             }
+            break;
         }
       },
       cartoonsList

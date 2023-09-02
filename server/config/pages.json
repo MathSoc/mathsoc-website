@@ -59,11 +59,6 @@
     ]
   },
   {
-    "title": "Elections",
-    "ref": "/elections",
-    "view": "/elections/elections"
-  },
-  {
     "title": "Resources",
     "children": [
       {
@@ -89,14 +84,7 @@
     "view": "/contact-us/contact-us",
     "dataSources": {
       "execs": "/shared/execs"
-    },
-    "children": [
-      {
-        "title": "Success!",
-        "ref": "/contact-us/success",
-        "view": "/contact-us/contact-us-success"
-      }
-    ]
+    }
   },
   {
     "title": "Documents",
@@ -105,6 +93,11 @@
         "title": "Policies and Bylaws",
         "ref": "/documents/policies-and-bylaws",
         "view": "/documents/policies-and-bylaws"
+      },
+      {
+        "title": "Budgets",
+        "ref": "/documents/budgets",
+        "view": "/documents/budgets"
       }
     ]
   },
@@ -130,5 +123,10 @@
     "title": "Page Not Found",
     "ref": "/error",
     "view": "/error"
+  },
+  {
+    "title": "Success!",
+    "ref": "/form-success",
+    "view": "/form-success"
   }
 ]

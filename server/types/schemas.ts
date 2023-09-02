@@ -330,20 +330,33 @@ const CommunitySchema = z.object({
   )
 }).strict();
 
+const DocumentsBudgetsSchema = z.object({
+  descriptionMarkdown: z.string(),
+  budgets: z.array(
+    z.object({
+      year: z.number(),
+      fall: z.string(),
+      winter: z.string(),
+      spring: z.string(),
+    }).strict()
+  )
+}).strict();
+
 export {
-  VolunteerDataSchema,
-  VolunteerApplicationSchema,
-  HomeDataSchema,
-  ElectionsDataSchema,
-  MentalWellnessDataSchema,
-  ChequeRequestSchema,
-  DiscordAccessSchema,
-  StudentServicesSchema,
   CartoonsAboutUsDataSchema,
-  CouncilDataSchema,
-  ContactUsDataSchema,
-  SharedFooterSchema,
-  SharedExecsSchema,
+  ChequeRequestSchema,
   ClubsSchema,
   CommunitySchema,
+  ContactUsDataSchema,
+  CouncilDataSchema,
+  DiscordAccessSchema,
+  DocumentsBudgetsSchema,
+  ElectionsDataSchema,
+  HomeDataSchema,
+  MentalWellnessDataSchema,
+  StudentServicesSchema,
+  SharedFooterSchema,
+  SharedExecsSchema,
+  VolunteerApplicationSchema,
+  VolunteerDataSchema,
 };

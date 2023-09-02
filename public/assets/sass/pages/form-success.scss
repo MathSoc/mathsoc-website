@@ -1,0 +1,12 @@
+@import "../mixins/_banner-image";
+@import "../mixins/_pink-button";
+@import "../util/sass-mixins";
+
+section {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.button-container {
+  text-align: center;
+}

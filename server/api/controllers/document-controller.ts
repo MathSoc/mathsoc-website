@@ -1,120 +1,66 @@
 import { Request, Response } from "express";
 import { UploadedFile } from "express-fileupload";
-import {
-  Dirent,
-  readdirSync,
-  unlinkSync,
-  existsSync,
-  writeFileSync,
-  mkdirSync,
-} from "fs";
 import { Document, DocumentWithFile } from "../../types/document";
-import { Logger } from "../../util/logger";
-import { ReadWriteAPIController } from "./read-write-api-controller";
-import { ReadWriteController } from "./read-write-controller";
-import { ProcessQueue } from "./util/process-queue";
-
-type DocumentUploadRequest = Document & {
-  documents: DocumentWithFile[];
-  documentJSONPathEndPoint: string;
-  errors: string[];
-  res: Response;
-  path: string;
-};
-
-type DocumentDeleteRequest = Document & {
-  fileName: string;
-  documentJSONPathEndPoint: string;
-  errors: string[];
-  res: Response;
-};
+import { Dirent, existsSync, readdirSync } from "fs";
+import { AbstractFileController } from "./util/file-controller";
 
 const AllowedDocumentMimeTypes = ["application/pdf"];
 
-export class DocumentController {
-  static logger = new Logger();
-  private static uploadQueue = new ProcessQueue(
-    this.processDocumentUpload.bind(this)
-  );
-  private static deleteQueue = new ProcessQueue(
-    this.processDocumentDelete.bind(this)
-  );
+type DocumentUploadRequest = {
+  docs: DocumentWithFile[];
+  errors: string[];
+  res: Response;
+};
 
-  /*
-      Handles the GET /api/documents endpoint
-    */
-  static getDocument(req: Request, res: Response) {
-    try{
-      if( !(req.headers.documentgroup && req.headers.documentname) ){
-        throw new Error("Incorrect request headers");
-      }
+type DocumentDeleteRequest = Document & {
+  res: Response;
+};
 
-      ReadWriteAPIController.getJSONDataPath(
-        `_hidden/document-list/${req.headers.documentgroup}/${req.headers.documentname}`,
-        res
-      );
-    } catch (err) {
-      this.logger.error(err.message);
-      res.status(400).redirect("/admin/documents");
-      return;
-    }
-  }
-
-  /*
-    Handles the POST /api/document/upload endpoint 
-    - handles all possible errors with the file upload (no file, no fileype, not recognized filetype)
-    - if validation passes, adds the request with all uploaded files to the ImageRequestQueue
-    */
-  static uploadDocument(req: Request, res: Response) {
+export class DocumentController extends AbstractFileController<
+  Document,
+  DocumentUploadRequest,
+  DocumentDeleteRequest
+> {
+  uploadFiles(req: Request, res: Response): void {
     try {
-      if( !(req.body.documentGroup && req.body.documentName) ){
-        throw new Error("Incorrect request body keys");
-      }
-
-      const { documentGroup, documentName } = req.body;
-
-      const documentFiles = Array.isArray(req.files?.documents)
+      const docs = Array.isArray(req.files?.documents)
         ? (req.files?.documents as UploadedFile[])
         : [req.files?.documents as UploadedFile];
 
-      if (!documentFiles.length) {
-        throw new Error("No documents were uploaded");
-      }
-
       const errors: string[] = [];
-      const documentsWithSupportedFileData: DocumentWithFile[] = [];
-      const documentJSONPathEndPoint = `${documentGroup}/${documentName}`;
+      const documentsWithFileData: DocumentWithFile[] = [];
 
-      for (const documentFile of documentFiles) {
-        if (!documentFile.mimetype) {
+      for (const docFile of docs) {
+        if (!docFile.mimetype) {
           errors.push(
-            `No mimetype/filetype provided with file ${documentFile[0].name}`
+            `No mimetype/filetype provided with file ${docFile.name}`
           );
+          continue;
         }
 
-        if (!AllowedDocumentMimeTypes.includes(documentFile.mimetype)) {
+        if (!AllowedDocumentMimeTypes.includes(docFile.mimetype)) {
           errors.push(
-            `Unsupported filetype for ${documentFile.name}. We only support pdf file types.`
+            `Unsupposed file type for ${docFile.name}. We only support pdfs.`
           );
+          continue;
         }
 
-        const transformedDocument: DocumentWithFile = {
-          fileName: documentFile.name,
-          fileType: documentFile.name.split(".")[1],
-          path: this.getDocumentPath(`${documentJSONPathEndPoint}`),
-          file: documentFile,
-          date: new Date().toJSON().slice(0, 10).replace(/-/g, "/"),
+        const transformedDoc: DocumentWithFile = {
+          fileName: docFile.name,
+          fileType: docFile.name.split(".").slice(1).join("."),
+          path: this.getFilePath(docFile.name),
+          publicLink: this.getPublicLink(docFile.name),
+          file: docFile,
         };
 
-        documentsWithSupportedFileData.push(transformedDocument);
+        documentsWithFileData.push(transformedDoc);
       }
 
+      // add to upload queue
       this.uploadQueue.push({
-        documents: documentsWithSupportedFileData,
-        documentJSONPathEndPoint: documentJSONPathEndPoint,
+        docs: documentsWithFileData,
         errors,
         res,
-        path: this.getDocumentPath(documentJSONPathEndPoint),
       });
     } catch (err) {
       this.logger.error(err.message);
@@ -123,165 +69,71 @@ export class DocumentController {
     }
   }
 
-  /*
-    Handles the DELETE /api/document/delete endpoint
-    - checks that file was passed
-    - checks that file exists
-    - if validations pass, adds the delete request to the ImageRequestQueue
-    */
-  static deleteDocument(req: Request, res: Response, update: boolean = false) {
+  deleteFile(req: Request, res: Response): void {
     try {
-      if( !(req.body.fileName && req.body.fileType && req.body.date) ){
-        throw new Error("Incorrect request body keys");
-      }
-
-      const { fileName, fileType, path, date } = req.body;
+      const { fileName, fileType, path, publicLink } = req.body;
 
       if (!path) {
         throw new Error("File path not provided with delete request");
       }
+
       if (!existsSync(path)) {
         throw new Error("Faulty file path provided with delete request");
       }
 
-      const transformedDocument: Document = {
+      const transformedDoc: Document = {
         fileName,
         fileType,
         path,
-        date,
+        publicLink,
       };
 
-      const splitPath = path.split("/");
-      const documentJSONPathEndPoint = `${splitPath[splitPath.length - 3]}/${
-        splitPath[splitPath.length - 2]
-      }`;
-
-      this.deleteQueue.push({
-        ...transformedDocument,
-        res,
-        documentJSONPathEndPoint: documentJSONPathEndPoint,
-        update: update,
-      });
+      // add to delete queue
+      this.deleteQueue.push({ ...transformedDoc, res });
     } catch (err) {
       this.logger.error(err.message);
-      res.status(400).redirect("/admin/documents");
+      res.status(400).redirect("/admin/image-store");
       return;
     }
   }
 
-  /*
-      First checks if the path /public/assets/documents/{documentGroup}/documentName exists.
-      If doesn't then it creates it.
-      Then it uploads the file to the path and rewrites the json file.
-    */
-  static async processDocumentUpload(request: DocumentUploadRequest) {
-    const { documents, errors, res, path, documentJSONPathEndPoint } = request;
+  async processFileUpload(request: DocumentUploadRequest): Promise<void> {
+    const { docs, errors, res } = request;
 
     try {
-      for (const document of documents) {
-        if (!existsSync(path)) {
-          mkdirSync(path, { recursive: true });
-        }
-        await document.file?.mv(`${path}/${document.fileName}`);
-        this.logger.info(`${document.fileName} uploaded to ${path}`);
+      for (const doc of docs) {
+        await doc.file?.mv(doc.path);
+        this.logger.info(`${doc.fileName} uploaded to ${doc.path}`);
       }
 
-      this.rewriteDocumentJson(documentJSONPathEndPoint);
+      this.rewriteFileJson();
     } catch (err) {
       this.logger.error(err);
     }
+
     const urlSearchParams = new URLSearchParams();
     errors.forEach((item) => urlSearchParams.append("errors", item));
     res.send({ status: "success", errors: errors });
   }
 
-  /*
-      Delete the image from the given path and updates the json file.
-    */
-  static async processDocumentDelete(request: DocumentDeleteRequest) {
-    const { fileName, path, res, documentJSONPathEndPoint } = request;
-    try {
-      unlinkSync(path);
-      this.logger.info(`${fileName} deleted from ${path}`);
-      this.rewriteDocumentJson(documentJSONPathEndPoint);
-      res.status(200).json({ status: "success" });
-    } catch (err) {
-      this.logger.error(err);
-      res.status(400).json({ status: "fail" });
-    }
-  }
-
-  private static generateJSON(jsonEndPath): Document[] {
-    const splitPath = jsonEndPath.split("/");
-    const url = "_hidden/document-list/" + jsonEndPath;
-    const fullPath = `server/data/${url}.json`;
-
-    if (!existsSync(fullPath)) {
-      mkdirSync(`server/data/_hidden/document-list/${splitPath[0]}`, {
-        recursive: true,
-      });
-      writeFileSync(fullPath, "[]");
-    }
-
-    const uploadedFiles: Dirent[] = readdirSync(
-      this.getDocumentPath(jsonEndPath),
-      {
-        withFileTypes: true,
-      }
-    );
-
-    let jsonStructure: Document[] = [];
-
-    ReadWriteController.getJSONDataPath(
-      url,
-      (responseCode: number, responseBody: any) => {
-        jsonStructure = responseBody;
-      }
-    );
+  generateJson(): Document[] {
+    const uploadedFiles: Dirent[] = readdirSync(this.getFilePath(""), {
+      withFileTypes: true,
+    });
 
     const documents: Document[] = [];
 
-    for (const document of uploadedFiles) {
-      if (document.isFile()) {
+    for (const doc of uploadedFiles) {
+      if (doc.isFile()) {
         documents.push({
-          fileName: document.name,
-          fileType: document.name.split(".")[1],
-          path: this.getDocumentPath(`${jsonEndPath}/${document.name}`),
-          date: this.findByDate(jsonStructure, document.name),
+          fileName: doc.name,
+          fileType: doc.name.split(".").slice(1).join("."),
+          path: this.getFilePath(doc.name),
+          publicLink: this.getPublicLink(doc.name),
         });
       }
     }
+
     return documents;
-  }
-
-  private static findByDate(jsonStructure, fileName): string {
-    let fileDate;
-
-    for (const doc of jsonStructure) {
-      if (doc.fileName == fileName) {
-        fileDate = doc.date;
-        return fileDate;
-      }
-    }
-    return new Date().toJSON().slice(0, 10).replace(/-/g, "/");
-  }
-
-  /*
-      Updates the json file with the changes made.
-    */
-  private static rewriteDocumentJson(path): void {
-    const url = "_hidden/document-list/" + path;
-    ReadWriteController.overwriteJSONDataPath(
-      url,
-      () => {
-        return;
-      },
-      this.generateJSON(path)
-    );
-    this.logger.info("Document list regenerated.");
-  }
-
-  private static getDocumentPath(documentJSONPathEndPoint: string) {
-    return `public/assets/documents/${documentJSONPathEndPoint}`;
   }
 }

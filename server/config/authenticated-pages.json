@@ -3,5 +3,10 @@
     "title": "Exam Bank",
     "ref": "/resources/exam-bank",
     "view": "/resources/exam-bank"
+  },
+  {
+    "title": "Elections",
+    "ref": "/elections",
+    "view": "/elections/elections"
   }
 ]

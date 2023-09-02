@@ -1,0 +1,16 @@
+extends /views/templates/frontend-base.pug
+
+block title
+  title Success! &#8211; MathSoc
+
+append styles    
+  link(href="/assets/css/pages/form-success.css" rel="stylesheet")
+
+block body 
+  +banner-image("/assets/img/banners/pinktie-mc.jpeg", ['pink'], 'Success')
+  div(class="content")
+    section(class="white")
+      p Your form has been successfully submitted. We will get back to you shortly!
+
+      div(class="button-container")
+        +pink-button("Return to homepage", "", "/")

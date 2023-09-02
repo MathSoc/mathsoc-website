@@ -5,6 +5,7 @@ import express from "express";
 import { ExamBankController } from "./controllers/exam-bank-controller";
 import { StudentMiddleware } from "../auth/adfs";
 import { CartoonsController } from "./controllers/cartoons-controller";
+import adminApi from "./admin";
 
 const router = express.Router();
 
@@ -27,25 +28,18 @@ router.get("/cartoons", (_req: Request, res: Response) => {
   ReadWriteAPIController.getJSONDataPath("_hidden/cartoons-list", res);
 });
 
-router.post("/exams/rebuild", (_req: Request, res: Response) => {
-  ExamBankController.rewriteFile();
-  res.status(201).send();
-});
-
-router.post("/cartoons/rebuild", (_req: Request, res: Response) => {
-  CartoonsController.rewriteFile();
-  res.status(201).send();
-});
-
 router.post("/general-inquiries", (req: Request, res: Response) => {
   const success = ContactUsController.handleRequest(req, res);
   // If the res hasn't been closed by bad input, then redirect to success page
   if (success) {
-    res.redirect("/contact-us/success");
+    res.redirect("/form-success");
   }
 });
 
 router.post("/volunteer-application", (req: Request, _res: Response) => {
   console.log(req.headers);
 })
+
+router.use("/", adminApi);
+
 export default router;
