@@ -7,23 +7,33 @@
       "roles": [
         {
           "title": "Office Worker",
-          "descriptionMarkdown": "As an office worker, you would be working in the MathSoc Office (MC 3038) to help students sign-out rental items, sell novelties and supplies, and aid students looking for help within the office. Office shifts are flexible and are low in required time commitment, and there will be an office manager to guide you. You are free to work on personal tasks when there is no one looking for assistance, and will get access to our stash of free office worker snacks. Please note this is an in-person position.",
-          "link": "/"
+          "descriptionMarkdown": "As an Office Worker, you would be working in the MathSoc Office (MC 3038) to help students sign-out rental items, sell novelties and supplies, and aid students looking for help within the office. Office shifts are flexible and are low in required time commitment, and there will be an office manager to guide you. You are free to work on personal tasks when there is no one looking for assistance, and will get access to our stash of office worker snacks. We ask for a time commitment of 2 hour a week minimum. Please note this is an <b>in-person position</b>.",
+          "link": "/get-involved"
         },
         {
           "title": "Office Manager",
-          "descriptionMarkdown": "As an office manager, you would be working in the MathSoc Office (MC 3038) to help students sign-out rental items, sell novelties and supplies, and aid students looking for help within the office, similar to an office worker. Additional responsibilities might include opening and closing the office, helping with locker issues and assisting office workers. Manager shifts are flexible and managers get access to exclusive office manager snacks and drinks. Please note this is an in-person position.",
-          "link": "/"
+          "descriptionMarkdown": "As an office manager, you would be working in the MathSoc Office (MC 3038) to help students sign-out rental items, sell novelties and supplies, and aid students looking for help within the office, similar to an office worker. Additional responsibilities might include opening and closing the office, helping with locker issues and assisting office workers. Manager shifts are flexible and managers get access to exclusive office manager snacks and drinks. We ask for a time commitment of 2 hours a week minimum. Please note this is an <b>in-person position</b>.",
+          "link": "/get-involved/volunteer-application?role=office-manager&exec=vpo"
         },
         {
           "title": "Novelties Director",
-          "descriptionMarkdown": "The Novelties Director will have the opportunity to design Math novelties. In the past, directors have designed shirts, socks, hats, hoodies, and pins among other things. If you would like to flex your creativity and create new Math related things, please apply!",
-          "link": "/"
+          "descriptionMarkdown": "The Novelties Director will have the opportunity to design Math novelties. In the past, directors have designed shirts, socks, hats, hoodies, and pins among other things. If you would like to flex your creativity and create new Math related things, please apply! Some tasks of this role may require in-person capabilities.",
+          "link": "/get-involved/volunteer-application?role=nolvelties-director&exec=vpo"
         },
         {
-          "title": "Games Director",
-          "descriptionMarkdown": "Games Director duties include maintaining the board game collection. They also help out with buying new games for our collection, based on suggestions from the community, and help with maintaining a full games inventory that is usually done once a year.",
-          "link": "/"
+          "title": "Board Games Director",
+          "descriptionMarkdown": "Board Games Director duties include maintaining the board game collection. They also help out with buying new games for our collection, based on suggestions from the community, and help with maintaining a full games inventory that is usually done once a year. Some tasks of this role may require in-person capabilities.",
+          "link": "/get-involved/volunteer-application?role=board-games-director&exec=vpo"
+        },
+        {
+          "title": "Web Developer",
+          "descriptionMarkdown": "Web Developers help with improving and redesigning the MathSoc website! Prior experience with HTML or web design is an asset, but not mandatory! This position can be done remotely.",
+          "link": "/get-involved/volunteer-application?role=web-developer&exec=vpo"
+        },
+        {
+          "title": "Web Designer",
+          "descriptionMarkdown": "Web Designers help with the design of the new MathSoc website! We are looking for someone with graphic design and/or web development experience for this position. This position can be done remotely.",
+          "link": "/get-involved/volunteer-application?role=web-designer&exec=vpo"
         }
       ]
     },
@@ -32,8 +42,8 @@
       "roles": [
         {
           "title": "Finance Directors",
-          "descriptionMarkdown": "Finance directors will work alongside the VP Finance to assist with processing cheque requests, and any other ad hoc duties given to them. Please note that this is an in-person position.",
-          "link": "/"
+          "descriptionMarkdown": "Finance directors will work alongside the VP Finance to regularly assist with processing cheque requests, and any other ad-hoc duties given to them. Please note that this is an <b>in-person position</b>.",
+          "link": "/get-involved/volunteer-application?role=finance-director&exec=vpf"
         }
       ]
     },
@@ -42,23 +52,23 @@
       "roles": [
         {
           "title": "Game Night Directors",
-          "descriptionMarkdown": "As a games night director, you will be in charge of planning the weekly games night as well as the Party with Profs event alongside the VP Internal. Please note that this is an in-person position.",
-          "link": "/"
-        },
-        {
-          "title": "Clubs Director",
-          "descriptionMarkdown": "As the clubs director, you will be responsible for all communication between MathSoc clubs on a regular basis. You will also be in charge of raising any of their concerns or questions with the VP Internal. Applications are currently closed.",
-          "link": "/"
+          "descriptionMarkdown": "As a Games Night Director, you will be in charge of planning the weekly games night as well as the Party with Profs event alongside the VP Internal. You will be responsible for running the weekly events and supplying food, snacks, or beverages to your discretion. Please note that this is an <b>in-person position</b>.",
+          "link": "/get-involved/volunteer-application?role=game-night-director&exec=vpi"
         },
         {
           "title": "Event Coordinators",
-          "descriptionMarkdown": "Event Coordinators work alongside the VP Internal to plan faculty-wide events such as Pi Day, Halloween, and more to come! Please note that this is an in-person position.",
-          "link": "/"
+          "descriptionMarkdown": "Event Coordinators work alongside the VP Internal to plan faculty-wide events such as Pi Day, Valentine’s Day, Halloween, Destress Events, and more to come! You will gain event management Please note that this is an <b>in-person position</b>.",
+          "link": "/get-involved/volunteer-application?role=event-coordinator&exec=vpi"
         },
         {
-          "title": "Volunteers",
-          "descriptionMarkdown": "General Volunteers work with the VP Internal help out and set-up events during the day. Volunteers will be needed on an on-call basis, and will be notified one week before the event to indicate your time shift. Please note that this is an in-person position.",
-          "link": "/"
+          "title": "Event Volunteers",
+          "descriptionMarkdown": "Event Volunteers work with the VP Internal help out and set-up events during the day. Volunteers will be needed on an on-call basis, and will be notified one week before the event to indicate your time shift. Please note that this is an <b>in-person position</b>.",
+          "link": "/get-involved/volunteer-application?role=event-volunteer&exec=vpi"
+        },
+        {
+          "title": "Semi Formal Planning Committee",
+          "descriptionMarkdown": "The Semi Formal Planning Committee works with the VPI to plan and execute the MathSoc Semi Formal in July. Please note that this is an <b>in-person position</b>.",
+          "link": "/get-involved/volunteer-application?role=semi-formal-planning-committee&exec=vpi"
         }
       ]
     },
@@ -67,23 +77,28 @@
       "roles": [
         {
           "title": "Marketing Directors",
-          "descriptionMarkdown": "As a marketing director, you will be expected to create graphics using Canva, for both our social media pages and our poster boards! Prior experience with this tool is an asset!",
-          "link": "/"
+          "descriptionMarkdown": "Marketing Directors are responsible for creating digital graphics for our Social Media pages, or physical poster designs for the society-managed posting boards. Prior experience with visual software, such as Canva, would be considered an asset but is not required. This position can be done remotely.",
+          "link": "/get-involved/volunteer-application?role=marketing-director&exec=vpc"
+        },
+        {
+          "title": "Content Creator",
+          "descriptionMarkdown": "Content Creators are responsible for creating and editing together short videos for the MathSoc Instagram account in the form of reels, stories, and video posts. Prior video editing experience would be considered an asset but is not required. This position can be done remotely.",
+          "link": "/get-involved/volunteer-application?role=content-creator&exec=vpc"
         },
         {
           "title": "Postings Director",
-          "descriptionMarkdown": "As the postings director, you will be responsible for managing MathSoc’s poster boards on (MC & DC). Please note this is an in-person position.",
-          "link": "/"
+          "descriptionMarkdown": "Posting Directors are responsible for regularly organizing and updating the MathSoc postings boards. Please note that this is an <b>in-person position</b>.",
+          "link": "/get-involved/volunteer-application?role=postings-director&exec=vpc"
         },
         {
           "title": "Photographer",
-          "descriptionMarkdown": "Photographers help out with taking pictures of our events, the student body, and our society as a whole! While prior experience is an asset, it is not required and we do own a camera so equipment is not mandatory!",
-          "link": "/"
+          "descriptionMarkdown": "Photographers help out with taking pictures of MathSoc events, our clubs or volunteers, and the student body as a whole! Prior photography experience or the possession of a camera would be considered an asset but is not required. Please note that this is an <b>in-person position</b>.",
+          "link": "/get-involved/volunteer-application?role=photographer&exec=vpc"
         },
         {
-          "title": "Web Developers",
-          "descriptionMarkdown": "Web Developers help with maintaining, improving, and monitoring the MathSoc website! Prior experience with HTML and web design is an asset, but not mandatory!",
-          "link": "/"
+          "title": "Website Manager",
+          "descriptionMarkdown": "Website Managers are responsible for the upkeep of the current MathSoc website, making updates and changes when needed. Prior experience with WordPress or HTML is an asset, but not mandatory. This position can be done remotely.",
+          "link": "/get-involved/volunteer-application?role=website-manager&exec=vpc"
         }
       ]
     },
@@ -93,22 +108,22 @@
         {
           "title": "Deputy Vice President, Academic",
           "descriptionMarkdown": "The <em>Deputy Vice President, Academic</em> will assist the <em>Vice President, Academic</em> and advocate on special topics as the need arises. This role will involve some secretarial work but will generally be an advocacy role.<br></br><strong>Responsibilities</strong><ul><li>Assist the Vice President, Academic as needed.</li><li>Help the Vice President, Academic respond to any issues impacting undergraduate Math students.</li></ul><strong>Requirements</strong><ul><li>Be an undergraduate math student.</li><li>Be in Waterloo.</li><li>Good at writing and communication</li></ul><strong>Expected commitment</strong><ul><li>About 1 - 5 hours per week, with opportunities to take on additional work if desired.</li></ul>",
-          "link": ""
+          "link": "/get-involved/volunteer-application?role=deputy-vice-president&exec=vpa"
         },
         {
           "title": "Academic Events Director",
           "descriptionMarkdown": "<p>The&nbsp;<em>Academic Events Director</em>&nbsp;will work with the&nbsp;<em>Vice President, Academic</em>, and is responsible for running two academic events in the spring term.</p> <p><strong>Responsibilities</strong></p> <ul> <li>Encourage students to volunteer for academic events.</li> <li>Organizing and facilitating the events.</li> <li>Working with the Vice President, Communications to market the events.</li> </ul> <p><strong>Requirements</strong></p> <ul> <li>Be an undergraduate math student.</li> <li>Be in Waterloo.</li> <li>Have experience in organizing events.</li> </ul> <p><strong>Expected commitment</strong></p> <ul> <li>About 10 hours per week during the preparation of academic events.</li> <li>Little to no work after events are run.</li> </ul> ",
-          "link": "/"
+          "link": "/get-involved/volunteer-application?role=academic-events-director&exec=vpa"
         },
         {
           "title": "Exam Bank Director",
           "descriptionMarkdown": "<p>The&nbsp;<em>Exam Bank Director</em>&nbsp;will work with the&nbsp;<em>Vice President, Academic,</em>&nbsp;and is responsible for maintaining the Exam Bank and facilitating the submission and approval of new exams.</p> <p><strong>Responsibilities</strong></p> <ul> <li>Managing the Exam Bank system.</li> <li>Finding courses that MathSoc does not have any exams in its Exam Bank for.</li> <li>Reaching out to current and past instructors of courses to add their exams to the Exam Bank.</li> </ul> <p><strong>Requirements</strong></p> <ul> <li>Be an undergraduate math student.</li> <li>Be in Waterloo.</li> <li>Good at communication.</li> </ul> <p><strong>Expected commitment</strong></p> <ul> <li>0&ndash;2 hours per week.</li> </ul>",
-          "link": "/"
+          "link": "/get-involved/volunteer-application?role=exam-bank-director&exec=vpa"
         },
         {
           "title": "Textbook Library Directory",
           "descriptionMarkdown": "<p>The&nbsp;<em>Textbook Library Director</em>&nbsp;will work with the&nbsp;<em>Vice President, Academic,</em>&nbsp;and is responsible for maintaining MathSoc&rsquo;s Textbook Library.</p> <p><strong>Responsibilities</strong></p> <ul> <li>Ensure that MathSoc has sufficient and up-to-date textbooks for core Math Faculty courses.</li> </ul> <p><strong>Requirements</strong></p> <ul> <li>Be an undergraduate math student.</li> <li>Be in Waterloo.</li> </ul> <p><strong>Expected commitment</strong></p> <ul> <li>0&ndash;2 hours per week.</li> </ul> ",
-          "link": "/"
+          "link": "/get-involved/volunteer-application?role=textook-library-director&exec=vpa"
         }
       ]
     },
@@ -118,17 +133,17 @@
         {
           "title": "Presidential Assistant",
           "descriptionMarkdown": "<p>The Presidential Assistant will work closely with the president and understand what the day-to-day of the President looks like. They will also assist and suggest solutions to Society&rsquo;s ongoing or previous problems and issues. We are looking for an undergraduate student with excellent writing and communication skills. We believe this position can offer the volunteer training, support, and immense experience. Preference will be given to those who can work&nbsp;<strong>in-person</strong>.</p>",
-          "link": ""
+          "link": "/get-involved/volunteer-application?role=presidential-assistant&exec=president"
         },
         {
           "title": "Director of First Year Affairs",
           "descriptionMarkdown": "<p>The Director of First Year Affairs is responsible for chairing the Committee of First Year Affairs (CFYA). The CFYA is to encourage greater participation by first year students in the Society, to ensure that the concerns of first year students are adequately represented within the Society and the Faculty, and to provide a structure promoting greater communication between first-year and upper-year students. The Director reports to and is responsible to the President; have the power to appoint committee members to administer the various aspects of the Committee. More information about this role can be found in&nbsp;<a href='https://services.mathsoc.uwaterloo.ca/media/documents/Policies/MathSoc_Policies_-_2019-05-14.pdf#section.17'>Policy 17</a>.</p> ",
-          "link": ""
+          "link": "/get-involved/volunteer-application?role=first-year-affairs&exec=president"
         },
         {
           "title": "Mental Health Director",
           "descriptionMarkdown": "The Mental Health Director(s) will primarily work on the mental health blog, creating posts and gathering posts from students who submit blogs. They will ensure MathSoc Office is stocked with proper campus wellness and mental health resources. The Mental Health Director(s) will also organize and implement the delivery of care packages for the fall term as well as ensuring campus resources regarding mental health and wellness are communicated to all Math students.",
-          "link": ""
+          "link": "/get-involved/volunteer-application?role=mental-health-director&exec=president"
         }
       ]
     },

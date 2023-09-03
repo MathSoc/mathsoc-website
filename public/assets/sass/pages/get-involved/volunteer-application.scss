@@ -1,0 +1,67 @@
+@import "../../mixins/_banner-image";
+@import "../../mixins/_person-card";
+@import "../../mixins/_pink-button";
+@import "../../mixins/_section";
+@import "../../util/sass-mixins";
+
+section {
+  max-width: var(--content-width);
+}
+
+form {
+  .radio-select {
+    display: block;
+    margin-bottom: .25em;
+
+    label {
+      display: inline;
+      margin: 0 .5em;
+    }
+  }
+
+  .checkbox {
+    display: block;
+    margin: 1em 0;
+
+    label {
+      display: inline;
+      margin: .5em;
+    }
+  }
+
+  label {
+    display: block;
+    margin: 1em 0;
+  }
+
+  $input-padding: 8px;
+
+  input.text-input,
+  textarea {
+    display: block;
+    padding: $input-padding;
+    width: calc(100% - 2 * $input-padding);
+  }
+
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  select {
+    display: block;
+    padding: .5em;
+    font: inherit;
+    color: var(--mathsoc-grey-2);
+    border-color: var(--mathsoc-grey-2);
+  }
+
+  #submit-container {
+    text-align: left;
+  }
+
+  .required:after {
+    content:" *";
+    color: red;
+  }
+}

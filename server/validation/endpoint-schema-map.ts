@@ -18,6 +18,7 @@ export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
   [DataPaths.DOCUMENTS_BUDGETS]: schemas.DocumentsBudgetsSchema,
   [DataPaths.ELECTIONS]: schemas.ElectionsDataSchema,
   [DataPaths.GET_INVOLVED_VOLUNTEER]: schemas.VolunteerDataSchema,
+  [DataPaths.GET_INVOLVED_VOLUNTEER_APPLICATION]: schemas.VolunteerApplicationSchema,
   [DataPaths.HOME]: schemas.HomeDataSchema,
   [DataPaths.RESOUCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
   [DataPaths.RESOURCES_CHEQUE_REQUESTS]: schemas.ChequeRequestSchema,

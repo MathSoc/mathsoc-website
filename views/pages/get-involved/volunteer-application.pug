@@ -1,0 +1,52 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+  link(href="/assets/css/pages/get-involved/volunteer-application.css" rel="stylesheet")
+
+block body 
+  div(class="content")
+    +section("white")
+      form(action="/api/volunteer-application" method="post")
+        label(for="first-name" class="required") First Name
+        input(id="first-name" class="text-input" name="first-name" required maxlength="100")
+        
+        label(for="preferred-name") Preferred Name
+        input(id="preferred-name" class="text-input" name="preferred-name" maxlength="100")
+        
+        label(for="Last-name" class="required") Last Name
+        input(id="Last-name" class="text-input" name="last-name" required maxlength="100")
+        
+        label(for="email" class="required") Email
+        input(id="email" type="email" pattern=".+@.+\..+" class="text-input" name="email" placeholder="you@uwaterloo.ca" required maxlength="100")
+        
+        label(for="program" class="required") Program
+        select(id="program" name="program" required)
+          option(value="" selected disabled hidden) - Select Program -
+          each program in data.programs
+            option(value=program) #{program}
+
+        label(for="term" class="required") Please select your term. If on co-op select the last term that you have completed.
+        select(id="term" name="term" required)
+          option(value="" selected disabled hidden) - Select Term -
+          each term in data.terms
+            option(value=term) #{term}
+
+        p(class="required") For the term that you are looking to volunteer are you on co-op?
+        div(class="radio-select")
+          input(id="coop-true" type="radio" name="coop" required)
+          label(for="coop-true") Yes
+        div(class="radio-select")
+          input(id="coop-false" type="radio" name="coop" required)
+          label(for="coop-false") No
+        
+        label(for="interest" class="required") Please explain why you are interested in this volunteer role.
+        textarea(id="interest" class="text-input" name="interest" required maxlength="6000")
+
+        label(for="qualifications" class="required") How are you qualified for this position? What ideas and skills can you bring with you?
+        textarea(id="qualifications" class="text-input" name="qualifications" required maxlength="6000")
+        
+        label(for="more-info") Is there any other relevant information we should know while considering your application?
+        textarea(id="more-info" class="text-input" name="more-info" maxlength="6000")
+        
+        div(id="submit-container")
+          input(type="submit" id="submit-button" class="pink-button" value="Submit Form" method="post") 

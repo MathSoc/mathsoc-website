@@ -26,6 +26,12 @@ const VolunteerDataSchema = z
   })
   .strict();
 
+const VolunteerApplicationSchema = z
+  .object({
+    programs: z.array(z.string()),
+    terms: z.array(z.string())
+  }).strict()
+
 const HomeDataSchema = z
   .object({
     socialText: z.string(),
@@ -351,5 +357,6 @@ export {
   StudentServicesSchema,
   SharedFooterSchema,
   SharedExecsSchema,
+  VolunteerApplicationSchema,
   VolunteerDataSchema,
 };
