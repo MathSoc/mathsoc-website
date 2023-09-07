@@ -6,6 +6,7 @@ import { ExamBankController } from "./controllers/exam-bank-controller";
 import { StudentMiddleware } from "../auth/adfs";
 import { CartoonsController } from "./controllers/cartoons-controller";
 import adminApi from "./admin";
+import { VolunteerApplicationController } from "./controllers/volunteer-application-controller";
 
 const router = express.Router();
 
@@ -36,8 +37,12 @@ router.post("/general-inquiries", (req: Request, res: Response) => {
   }
 });
 
-router.post("/volunteer-application", (req: Request, _res: Response) => {
+router.post("/volunteer-application", (req: Request, res: Response) => {
   console.log(req.headers);
+  const success = VolunteerApplicationController.handleRequest(req, res);
+  if (success) {
+    res.redirect("/form-success");
+  }
 })
 
 router.use("/", adminApi);
