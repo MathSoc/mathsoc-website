@@ -127,8 +127,6 @@ export class VolunteerApplicationController {
     return true;
   }
 
-
-  // pass split on ?
   static getRoleFromQueryParams(query: string | undefined): string {
     if (!query) {
       return "";
@@ -138,8 +136,6 @@ export class VolunteerApplicationController {
       .split('=')[1]
       .replace(/-/g, " ")
       .replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-    // role = role.replace(/-/g, " ");
-    // role.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
     return role;
   }
 
