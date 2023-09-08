@@ -10,17 +10,20 @@ export class VolunteerApplicationController {
   static logger = new Logger();
 
   static handleRequest(req: Request, res: Response) {
-    if (!req.body || !req.headers || !req.headers.referer) res.status(400).end();
+    if (!req.body || !req.headers.referer) {
+      res.status(400).end();
+      return false;
+    }
 
     if (
       !this.validateText(req.body["first-name"], 100) ||
-      !this.validateText(req.body["preferred-name"], 100) ||
+      !(req.body["preferred-name"].length > 100) ||
       !this.validateText(req.body["last-name"], 100) ||
       !this.validateText(req.body.email, 100) ||
       !validator.isEmail(req.body.email) ||
       !this.validateText(req.body.interest, 6000) ||
       !this.validateText(req.body.qualifications, 6000) ||
-      !this.validateText(req.body["more-info"], 6000)
+      !(req.body["more-info"].length > 6000)
     ) {
       res.status(400).end();
       this.logger.info(
@@ -29,10 +32,7 @@ export class VolunteerApplicationController {
       return false;
     }
 
-    const queryParams = req.headers.referer ?
-      req.headers.referer.split("?")[1]
-      : "";
-
+    const queryParams = req.headers.referer.split("?")[1];
     const formBody = {
       firstName: validator.escape(req.body["first-name"]),
       preferredName: validator.escape(req.body["preferred-name"]),
@@ -47,7 +47,7 @@ export class VolunteerApplicationController {
       role: VolunteerApplicationController.getRoleFromQueryParams(queryParams),
       execAddress: VolunteerApplicationController.getExecFromQueryParams(queryParams) + "@mathsoc.uwaterloo.ca",
     };
-    console.log(formBody);
+
     return this.sendMessage(formBody);
   }
 
@@ -103,7 +103,6 @@ export class VolunteerApplicationController {
       Is there any other relevant information we should know while considering your application?\n\n
       ${formBody.moreInfo}`
     };
-    console.log(email);
 
     let success = true;
     transporter.sendMail(email, function (error, info) {

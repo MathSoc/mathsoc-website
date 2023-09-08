@@ -8,7 +8,7 @@
         {
           "title": "Office Worker",
           "descriptionMarkdown": "As an Office Worker, you would be working in the MathSoc Office (MC 3038) to help students sign-out rental items, sell novelties and supplies, and aid students looking for help within the office. Office shifts are flexible and are low in required time commitment, and there will be an office manager to guide you. You are free to work on personal tasks when there is no one looking for assistance, and will get access to our stash of office worker snacks. We ask for a time commitment of 2 hour a week minimum. Please note this is an <b>in-person position</b>.",
-          "link": "/get-involved"
+          "link": "/get-involved/volunteer-application?role=office-worker&exec=vpo"
         },
         {
           "title": "Office Manager",
@@ -18,7 +18,7 @@
         {
           "title": "Novelties Director",
           "descriptionMarkdown": "The Novelties Director will have the opportunity to design Math novelties. In the past, directors have designed shirts, socks, hats, hoodies, and pins among other things. If you would like to flex your creativity and create new Math related things, please apply! Some tasks of this role may require in-person capabilities.",
-          "link": "/get-involved/volunteer-application?role=nolvelties-director&exec=vpo"
+          "link": "/get-involved/volunteer-application?role=novelties-director&exec=vpo"
         },
         {
           "title": "Board Games Director",
@@ -123,7 +123,7 @@
         {
           "title": "Textbook Library Directory",
           "descriptionMarkdown": "<p>The&nbsp;<em>Textbook Library Director</em>&nbsp;will work with the&nbsp;<em>Vice President, Academic,</em>&nbsp;and is responsible for maintaining MathSoc&rsquo;s Textbook Library.</p> <p><strong>Responsibilities</strong></p> <ul> <li>Ensure that MathSoc has sufficient and up-to-date textbooks for core Math Faculty courses.</li> </ul> <p><strong>Requirements</strong></p> <ul> <li>Be an undergraduate math student.</li> <li>Be in Waterloo.</li> </ul> <p><strong>Expected commitment</strong></p> <ul> <li>0&ndash;2 hours per week.</li> </ul> ",
-          "link": "/get-involved/volunteer-application?role=textook-library-director&exec=vpa"
+          "link": "/get-involved/volunteer-application?role=textbook-library-director&exec=vpa"
         }
       ]
     },
