@@ -190,6 +190,32 @@ const StudentServicesSchema= z.object({
   )
 });
 
+const ServicesMathsocOffice = z
+  .object({
+    title: z.string(),
+    descriptionMarkdown: z.string(),
+    services: z
+      .object({
+        rentals: z.object({
+          title: z.string(),
+          description: z.string()
+        }),
+        printing: z.object({
+          title: z.string(),
+          description: z.string()
+        }),
+        novelties: z.object({
+          title: z.string(),
+          description: z.string()
+        })
+      })
+      .strict(),
+    novelties: z.unknown({}), // intentionally not strict
+    serviceMarkdown: z.string()
+  })
+  .strict();
+
+
 const CartoonsAboutUsDataSchema = z.object({
   pageTitle: z.string(),
   heading: z.string(),
@@ -355,6 +381,7 @@ export {
   HomeDataSchema,
   MentalWellnessDataSchema,
   StudentServicesSchema,
+  ServicesMathsocOffice,
   SharedFooterSchema,
   SharedExecsSchema,
   VolunteerApplicationSchema,

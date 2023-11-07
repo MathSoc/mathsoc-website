@@ -13,6 +13,7 @@ export enum DataPaths {
   RESOURCES_CHEQUE_REQUESTS = "resources/cheque-requests",
   RESOURCES_DISCORD_ACCESS = "resources/discord-access",
   STUDENT_SERVICES = "services/student-services",
+  SERVICES_MATHSOC_OFFICE = "services/mathsoc-office",
   SHARED_FOOTER = "shared/footer",
   SHARED_EXECS = "shared/execs",
 }
