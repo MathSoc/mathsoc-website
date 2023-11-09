@@ -17,13 +17,13 @@ export class VolunteerApplicationController {
 
     if (
       !this.validateText(req.body["first-name"], 100) ||
-      !(req.body["preferred-name"].length > 100) ||
+      req.body["preferred-name"].length > 100 ||
       !this.validateText(req.body["last-name"], 100) ||
       !this.validateText(req.body.email, 100) ||
       !validator.isEmail(req.body.email) ||
       !this.validateText(req.body.interest, 6000) ||
       !this.validateText(req.body.qualifications, 6000) ||
-      !(req.body["more-info"].length > 6000)
+      req.body["more-info"].length > 6000
     ) {
       res.status(400).end();
       this.logger.info(
@@ -44,8 +44,8 @@ export class VolunteerApplicationController {
       interest: validator.escape(req.body.interest),
       qualifications: validator.escape(req.body.qualifications),
       moreInfo: validator.escape(req.body["more-info"]),
-      role: VolunteerApplicationController.getRoleFromQueryParams(queryParams),
-      execAddress: VolunteerApplicationController.getExecFromQueryParams(queryParams) + "@mathsoc.uwaterloo.ca",
+      role: validator.escape(VolunteerApplicationController.getRoleFromQueryParams(queryParams)),
+      execAddress: validator.escape(VolunteerApplicationController.getExecFromQueryParams(queryParams)) + "@mathsoc.uwaterloo.ca",
     };
 
     return this.sendMessage(formBody);
@@ -62,7 +62,7 @@ export class VolunteerApplicationController {
     }
     if (!process.env.forms_gmail_sender_password) {
       this.logger.error(
-        `No email username set in .env; application by ${formBody.firstName}${formBody.preferredName ? ` "${formBody.preferredName}" ` : " "}${formBody.lastName} <${formBody.address}> could not be sent`
+        `No email password set in .env; application by ${formBody.firstName}${formBody.preferredName ? ` "${formBody.preferredName}" ` : " "}${formBody.lastName} <${formBody.address}> could not be sent`
       );
       return false;
     }
@@ -126,6 +126,8 @@ export class VolunteerApplicationController {
     return true;
   }
 
+  // Parses role from query string
+  // e.g. "role=board-games-director&exec=vpo" > "Board Games Director"
   static getRoleFromQueryParams(query: string | undefined): string {
     if (!query) {
       return "";
