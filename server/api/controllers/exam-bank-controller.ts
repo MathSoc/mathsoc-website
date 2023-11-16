@@ -94,7 +94,13 @@ export class ExamBankController {
         type = parts.slice(3).join(" ").split(".")[0].replace(" sol", ""); // strip file extension and solutions marker
 
       const isSolution = file.name.includes("-sol");
+      const isHidden = file.name.includes("-sol");
       const dictionaryKey = [department, course, term].join("-");
+
+      // do not include hidden exams in the list
+      if (isHidden) {
+        continue;
+      }
 
       if (unfilteredExams[dictionaryKey]) {
         // If this exam is already in the dictionary, add this file (e.g. the exam) to it.
