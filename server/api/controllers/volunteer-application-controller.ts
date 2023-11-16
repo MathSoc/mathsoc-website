@@ -3,6 +3,7 @@ import validator from "validator";
 import { Request, Response } from "express";
 
 import { Logger } from "../../util/logger";
+import volunteerAppData from "../../data/get-involved/volunteer-application.json";
 
 export const emailDomain = "@mathsoc.uwaterloo.ca";
 
@@ -15,6 +16,10 @@ export class VolunteerApplicationController {
       return false;
     }
 
+    const queryParams = req.headers.referer.split("?")[1];
+    const role = VolunteerApplicationController.getRoleFromQueryParams(queryParams);
+    const exec = VolunteerApplicationController.getExecFromQueryParams(queryParams);
+
     if (
       !this.validateText(req.body["first-name"], 100) ||
       req.body["preferred-name"].length > 100 ||
@@ -23,7 +28,9 @@ export class VolunteerApplicationController {
       !validator.isEmail(req.body.email) ||
       !this.validateText(req.body.interest, 6000) ||
       !this.validateText(req.body.qualifications, 6000) ||
-      req.body["more-info"].length > 6000
+      req.body["more-info"].length > 6000 ||
+      !volunteerAppData.roles.includes(role) ||
+      !volunteerAppData.execs.includes(exec)
     ) {
       res.status(400).end();
       this.logger.info(
@@ -31,21 +38,20 @@ export class VolunteerApplicationController {
       );
       return false;
     }
-
-    const queryParams = req.headers.referer.split("?")[1];
+    
     const formBody = {
-      firstName: validator.escape(req.body["first-name"]),
-      preferredName: validator.escape(req.body["preferred-name"]),
-      lastName: validator.escape(req.body["last-name"]),
+      firstName: validator.escape(req.body["first-name"]).trim(),
+      preferredName: validator.escape(req.body["preferred-name"]).trim(),
+      lastName: validator.escape(req.body["last-name"]).trim(),
       program: validator.escape(req.body.program),
       term: validator.escape(req.body.term),
       coop: validator.escape(req.body.coop),
       address: validator.escape(req.body.email),
-      interest: validator.escape(req.body.interest),
-      qualifications: validator.escape(req.body.qualifications),
-      moreInfo: validator.escape(req.body["more-info"]),
-      role: validator.escape(VolunteerApplicationController.getRoleFromQueryParams(queryParams)),
-      execAddress: validator.escape(VolunteerApplicationController.getExecFromQueryParams(queryParams)) + "@mathsoc.uwaterloo.ca",
+      interest: validator.escape(req.body.interest).trim(),
+      qualifications: validator.escape(req.body.qualifications).trim(),
+      moreInfo: validator.escape(req.body["more-info"]).trim(),
+      role: validator.escape(role),
+      execAddress: validator.escape(exec) + "@mathsoc.uwaterloo.ca",
     };
 
     return this.sendMessage(formBody);

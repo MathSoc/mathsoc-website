@@ -32,5 +32,38 @@
     "5A",
     "5B",
     "Other"
+  ],
+  "roles": [
+    "Office Worker",
+    "Office Manager",
+    "Novelties Director",
+    "Board Games Director",
+    "Web Developer",
+    "Web Designer",
+    "Finance Director",
+    "Game Night Director",
+    "Event Coordinator",
+    "Event Volunteer",
+    "Semi Formal Planning Committee",
+    "Marketing Director",
+    "Content Creator",
+    "Postings Director",
+    "Photographer",
+    "Website Manager",
+    "Deputy Vice President",
+    "Academic Events Director",
+    "Exam Bank Director",
+    "Textbook Library Director",
+    "Presidential Assistant",
+    "First Year Affairs",
+    "Mental Health Director"
+  ],
+  "execs": [
+    "president",
+    "vpa",
+    "vpi",
+    "vpf",
+    "vpo",
+    "vpc"
   ]
 }
