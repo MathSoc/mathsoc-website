@@ -12,7 +12,6 @@ class MeetingsPage {
     const termsToConvert = Array.from(
       document.getElementsByClassName("convert-term")
     );
-    console.log(termsList);
 
     for (const termElement of termsToConvert) {
       const termData = termsList.find(
