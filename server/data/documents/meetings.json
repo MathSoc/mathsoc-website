@@ -1,0 +1,24 @@
+{
+  "descriptionMarkdown": "Here is where you will find public agendas and minutes from past MathSoc meetings.",
+  "meetingGroups": [
+    {
+      "type": "General meeting",
+      "meetings": [
+        {
+          "term": 1235,
+          "date": "July 19, 2023",
+          "agendaLink": "https://mathsoc.uwaterloo.ca/general-meetings/",
+          "minutesLink": "https://mathsoc.uwaterloo.ca/general-meetings/"
+        }
+      ]
+    },
+    {
+      "type": "Council meeting",
+      "meetings": []
+    },
+    {
+      "type": "Board meeting",
+      "meetings": []
+    }
+  ]
+}

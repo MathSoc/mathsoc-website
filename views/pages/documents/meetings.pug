@@ -1,0 +1,45 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+  link(href='/assets/css/pages/documents/meetings.css' rel="stylesheet")
+
+append scripts
+  script(src='/assets/js/meetings.js' defer)
+
+block body
+  +section(null, "white")
+    h1 Meetings
+    p!=data.descriptionMarkdown
+    - const meetingsByTerm = data.meetingGroups.reduce((prev, current) => {
+    -   for(const meeting of current.meetings) {
+    -     meeting.type = current.type;
+    -     if(prev[meeting.term]) {
+    -       prev[meeting.term].push(meeting);
+    -     } else {
+    -       prev[meeting.term] = [meeting];
+    -     }
+    -   };
+    -   return prev;
+    - }, {});
+
+    - 
+      const sortedMeetings = Object.entries(meetingsByTerm)
+                                   .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
+                                   .map(entry => entry[1]);
+
+    each meetingsInTerm in sortedMeetings
+      table(class="meetings-table")
+        tr
+          th(data-term-code=meetingsInTerm[0].term colspan="3" class="convert-term") Term
+        each meeting in meetingsInTerm
+          tr 
+            td
+              div(class="meeting-name-container")
+                span(class="meeting-type")=meeting.type
+                span(class="meeting-date")=meeting.date
+            td 
+              if meeting.agendaLink 
+                a(href=meeting.agendaLink) Agenda
+            td 
+              if meeting.minutesLink 
+                a(href=meeting.minutesLink) Minutes

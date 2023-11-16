@@ -29,6 +29,10 @@ router.get("/cartoons", (_req: Request, res: Response) => {
   ReadWriteAPIController.getJSONDataPath("_hidden/cartoons-list", res);
 });
 
+router.get("/terms", (_req: Request, res: Response) => {
+  ReadWriteAPIController.getJSONDataPath("_hidden/term-list", res);
+});
+
 router.post("/general-inquiries", (req: Request, res: Response) => {
   const success = ContactUsController.handleRequest(req, res);
   // If the res hasn't been closed by bad input, then redirect to success page
