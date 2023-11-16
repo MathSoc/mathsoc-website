@@ -1,0 +1,74 @@
+@import "../../mixins/banner-image";
+@import "../../mixins/section";
+
+.description {
+  max-width: 880px;
+  margin: auto;
+  padding: 4px 24px;
+}
+
+#services-list {
+  text-align: center;
+
+  display: flex;
+  gap: 24px;
+
+  .service {
+    flex: 1;
+  }
+
+  @include tablet-down {
+    flex-direction: column;
+  }
+
+  .icon {
+    font-size: 24px;
+  }
+
+  p {
+    color: white;
+  }
+}
+
+#halves {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+
+  #left {
+    padding: 0 32px;
+  }
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+#novelties-table {
+  width: 100%;
+
+  th {
+    background-color: var(--mathsoc-pink);
+    color: white;
+  }
+
+  th,
+  td {
+    padding: 0.5em;
+  }
+
+  tr:nth-child(odd) td {
+    background-color: var(--background-colour-3);
+  }
+
+  .price {
+    text-align: center;
+  }
+}
+
+#right {
+  h3 {
+    text-align: center;
+  }
+}

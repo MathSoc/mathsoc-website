@@ -26,6 +26,7 @@ export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
   [DataPaths.SHARED_FOOTER]: schemas.SharedFooterSchema,
   [DataPaths.SHARED_EXECS]: schemas.SharedExecsSchema,
   [DataPaths.STUDENT_SERVICES]: schemas.StudentServicesSchema,
+  [DataPaths.SERVICES_MATHSOC_OFFICE]: schemas.ServicesMathsocOffice,
 };
 
 export const validate = (req: Request, res: Response, next: NextFunction) => {

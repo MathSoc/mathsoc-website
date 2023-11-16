@@ -1,0 +1,44 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+    link(href="/assets/css/pages/services/mathsoc-office.css" rel="stylesheet")  
+
+append scripts 
+    script(src="https://kit.fontawesome.com/c02fb43ad1.js" crossorigin="anonymous")
+
+block body 
+    +banner-image("/assets/img/banners/mathsoc-wall.jpeg", ["grey"], data.title)
+    div(class="description")
+        p=data.descriptionMarkdown
+    +section("pink")
+        div(id="services-list")
+            div(class="service")
+                i(class="icon fa-solid fa-book-open")
+                h3=data.services.rentals.title
+                p=data.services.rentals.description
+            div(class="service")
+                i(class="icon fa-solid fa-sticky-note")
+                h3=data.services.printing.title
+                p=data.services.printing.description
+            div(class="service")
+                i(class="icon fa-solid fa-pen")
+                h3=data.services.novelties.title
+                p=data.services.novelties.description
+    +section("white")
+        div(id="halves")
+            div(id="left")
+                h2 Novelties
+                - const items = Object.entries(data.novelties).map((entry) => ({item: entry[0], price: entry[1]}));
+                table(id="novelties-table")
+                    thead
+                        tr
+                            th Item
+                            th Price ($)
+                    tbody 
+                        each item in items
+                            tr 
+                                td=item.item 
+                                td(class="price")=item.price
+            div(id="right")
+                h3 Poster requests 
+                div!=data.serviceMarkdown
