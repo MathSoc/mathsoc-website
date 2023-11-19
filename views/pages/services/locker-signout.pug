@@ -15,21 +15,30 @@ block body
                 +pink-button("Sign out a locker", "lockerSignoutBtn", "/locker-signout")
             img(src=data.img)
 
-    // Modal
-    div(id="confirmationModal" class="modal")
-        div(class="modal-content")
-            h2 Are you sure you want to sign out a locker?
-            button(id="confirmBtn") Confirm
-            button(id="cancelBtn") Cancel
+        // Modal for confirmation
+        div(id="confirmationModal" class="modal")
+            div(class="modal-content")
+                h2 Are you sure you want to sign out a locker?
+                button(id="confirmBtn") Confirm
+                button(id="cancelBtn") Cancel
 
-    // JavaScript
+        // Hidden form for locker signout
+        form(id="lockerSignoutForm" action="/api/locker-signout/request" method="post" style="display: none;")
+            input(type="hidden" name="userId" value="m3tan") 
+
+        // Display assigned locker number or error message
+        div(id="lockerNumberDisplay")
+
+    // JavaScript for handling confirmation and AJAX request
     script.
         document.addEventListener('DOMContentLoaded', function() {
             var modal = document.getElementById('confirmationModal');
             modal.style.display = "none";
             var confirmBtn = document.getElementById('confirmBtn');
             var cancelBtn = document.getElementById('cancelBtn');
+            var lockerNumberDisplay = document.getElementById('lockerNumberDisplay');
 
+            // Show modal on click
             document.addEventListener('click', function(event) {
                 if (event.target.matches('.pink-button')) {
                     event.preventDefault();
@@ -37,18 +46,35 @@ block body
                 }
             });
 
+            // Handle confirmation
             confirmBtn.onclick = function() {
                 modal.style.display = "none";
-                // perform your action here...
-            }
+                var userId = document.getElementById('lockerSignoutForm').elements['userId'].value;
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/api/locker-signout/request", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 201) {
+                            var response = JSON.parse(xhr.responseText);
+                            lockerNumberDisplay.textContent = "Your assigned locker number is: " + response.lockerNumber;
+                        } else if (xhr.status === 404) {
+                            var response = JSON.parse(xhr.responseText);
+                            console.log(response.lockerNumber);
+                            lockerNumberDisplay.textContent = "You already have a locker assigned. Locker Number: " + response.lockerNumber;
+                        } 
+                        else {
+                            alert("Error: " + xhr.statusText);
+                        }
+                    }
+                };
+                var data = JSON.stringify({"userId": userId});
+                xhr.send(data);
+            };
 
-            cancelBtn.onclick = function() {
-                modal.style.display = "none";
-            }
-
+            // Close modal on cancel or outside click
+            cancelBtn.onclick = function() { modal.style.display = "none"; }
             window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
+                if (event.target == modal) { modal.style.display = "none"; }
             }
         });
