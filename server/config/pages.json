@@ -96,6 +96,11 @@
         "view": "/documents/policies-and-bylaws"
       },
       {
+        "title": "Meetings",
+        "ref": "/documents/meetings",
+        "view": "/documents/meetings"
+      },
+      {
         "title": "Budgets",
         "ref": "/documents/budgets",
         "view": "/documents/budgets"
