@@ -1,5 +1,4 @@
-import { Editor } from "./editor";
-import { EditorLoader } from "./editor-loader";
+
 import { createRoot } from "react-dom/client";
 import React from "react";
 import { EditorV2 } from "./page-editor/EditorV2";
@@ -7,14 +6,8 @@ import { EditorV2 } from "./page-editor/EditorV2";
 class GenericEditorPage {
   static init() {
     const editor = document.getElementById("jsoneditor");
-    if (editor) {
-      new Editor(editor, editor.getAttribute("data-source") as string);
-    }
-
     const root = createRoot(editor);
     root.render(<EditorV2 source={editor?.getAttribute("data-source")} />);
-
-    EditorLoader.init();
 
     this.addNavigationListeners();
   }

@@ -50,7 +50,7 @@ class AdminRoutesConstructor {
         ...genericEditorPageOutflow,
 
         editors: editorNavigationStructure,
-        editorSource: `/api/data?path=${filename}`,
+        editorSource: filename,
         editorName: getFormattedURL(filename),
       };
       res.render(`pages/admin/generic-editor.pug`, editorOutflow);

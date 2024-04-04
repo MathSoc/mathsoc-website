@@ -159,6 +159,27 @@
   }
 }
 
+.editorv2 {
+  width: 100%;
+
+  .editor-node-container {
+    margin: 1em 0;
+    border-left: 2px solid var(--mathsoc-pink);
+    padding-left: 12px;
+  }
+
+  .editor-label {
+    font-weight: bold;
+    color: var(--mathsoc-pink);
+    padding-bottom: 4px;
+    display: block;
+  }
+  
+  .editor-input {
+    width: 100%;
+  }
+}
+
 .editor-name {
   font-weight: bold;
 }

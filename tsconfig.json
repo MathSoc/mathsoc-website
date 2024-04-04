@@ -9,9 +9,13 @@
     "moduleResolution": "node",
     "removeComments": true,
     "resolveJsonModule": true,
-    "sourceMap": false
+    "sourceMap": true
   },
-  "include": ["public/assets/ts/**/*.ts", "public/assets/ts/admin/editor-loader.ts", "public/assets/ts/admin/generic-editor.tsx"],
+  "include": [
+    "public/assets/ts/**/*.ts",
+    "public/assets/ts/**/*.tsx",
+    "public/assets/ts/admin/generic-editor.tsx"
+  ],
   "ts-node": {
     "swc": true
   }

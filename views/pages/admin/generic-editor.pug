@@ -4,12 +4,12 @@ mixin menuLayer(items, name)
   ul
     each page of items 
       if page.type === 'page'
-        - const pageIsActive = editorSource.split('path=')[1].includes(page.ref.replace('.json', ''));
+        - const pageIsActive = editorSource.includes(page.ref.replace('.json', ''));
         - const activeClass = pageIsActive ? 'active-page' : '';
         li(class=activeClass)
           a(href="/admin/editor?page=" + page.ref.replace('.json', ''))=page.name
       else 
-        - const dropdownIsActive = editorSource.split('path=')[1].includes(page.ref);
+        - const dropdownIsActive = editorSource.includes(page.ref);
         - const activeClass = dropdownIsActive ? " active" : "";
         li(class="dropdown" + activeClass)
           div(class="dropdown-name")=page.name
@@ -19,7 +19,7 @@ append styles
   link(href="/assets/css/admin/generic-editor.css" rel="stylesheet")
 
 append scripts
-  script(src="/assets/js/admin/generic-editor.js" defer)
+  script(src="/assets/js/admin/generic-editor.tsx.js" defer)
 
 block body
   div(id="editor-menu-and-body")
@@ -32,12 +32,3 @@ block body
       div(id="jsoneditor" data-source=editorSource)
       div(class="open-editor-container")
         button(class="pink-button disabled" id="open-editor-btn" disabled="true") Open Markdown Editor
-      div(class="save-button-container")
-        button(class="save pink-button" id="save-editor-btn") Save 
-          span(class="editor-name")
-      div(id="modal" class="modal")
-        div(class="modal-content")
-          div(id="quill-editor")
-          div(class="save-rich-text")
-            +pink-button("Save Rich Text", "save-rich-text-btn")
-            +pink-button("Cancel", "cancel-rich-text-btn")
