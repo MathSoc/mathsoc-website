@@ -1,14 +1,7 @@
 import React, { createContext } from "react";
 import { usePageSources } from "./usePageSources";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { EditorObjectNode } from "./EditorNodes";
 import { showToast } from "../toast";
-
-const queryClient = new QueryClient();
-
-interface EditorV2Props {
-  source: string;
-}
+import { EditorObjectNode } from "./editor-nodes/EditorObjectNode";
 
 export const EditorContext = createContext<{
   getDataValue: (path: string[]) => any;
@@ -24,15 +17,10 @@ const onAttemptedPageExit = (e: BeforeUnloadEvent) => {
     "Are you sure you want to leave?  Your changes may not be saved.");
 };
 
-export const EditorV2: React.FC<EditorV2Props> = (props: EditorV2Props) => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <EditorV2WithQueryClient {...props} />
-    </QueryClientProvider>
-  );
-};
-
-const EditorV2WithQueryClient: React.FC<EditorV2Props> = ({ source }) => {
+export const EditorV2: React.FC<{ source: string; name: string }> = ({
+  name,
+  source,
+}) => {
   const data = React.useRef({});
   const setData = (newData: object) => {
     data.current = newData;
@@ -100,7 +88,7 @@ const EditorV2WithQueryClient: React.FC<EditorV2Props> = ({ source }) => {
   };
 
   const saveData = () => {
-    fetch(`/api/data?path=${source}`, {
+    fetch(`/api/data?path=${source.replace(".json", "")}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -133,6 +121,7 @@ const EditorV2WithQueryClient: React.FC<EditorV2Props> = ({ source }) => {
     <EditorContext.Provider value={{ getDataValue, setDataValue }}>
       <div className="editorv2">
         <div className="editor-content">
+          <h2>Edit: {name}</h2>
           <EditorObjectNode name={source} path={[]} />
         </div>
         <div className="save-button-container">

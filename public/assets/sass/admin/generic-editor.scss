@@ -1,164 +1,5 @@
 @import "../util/sass-mixins";
 
-#editor-nav-menu {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-
-  padding-left: 16px;
-  background-color: var(--background-colour);
-  box-shadow: 0px 0px 2px 2px #8888;
-  z-index: 5;
-  padding: 8px 12px;
-  border-top-right-radius: 4px;
-
-  h2 {
-    font-size: 1.2em;
-  }
-
-  #open-side-menu-button {
-    cursor: pointer;
-  }
-
-  #close-side-menu-button {
-    padding: 4px 0 4px 6px;
-
-    width: 100%;
-    text-align: left;
-
-    cursor: pointer;
-    color: var(--mathsoc-pink);
-
-    display: none;
-  }
-
-  ul {
-    padding-left: 6px;
-    display: none;
-  }
-
-  &.open {
-    ul {
-      display: block;
-    }
-
-    #close-side-menu-button {
-      display: block;
-    }
-  }
-
-  > ul {
-    ul {
-      padding-left: 16px;
-      border-left: 2px solid var(--mathsoc-pink);
-    }
-  }
-
-  a {
-    text-decoration: none;
-
-    color: var(--text-color);
-
-    &:hover {
-      color: var(--mathsoc-pink);
-    }
-  }
-
-  li {
-    list-style-type: none;
-    line-height: 2em;
-
-    &.active-page a {
-      color: var(--mathsoc-pink);
-    }
-  }
-
-  .dropdown {
-    .dropdown-name {
-      cursor: pointer;
-    }
-
-    > ul {
-      display: none;
-    }
-
-    &:hover {
-      color: var(--mathsoc-grey);
-    }
-
-    &.active {
-      > ul {
-        display: block;
-      }
-    }
-  }
-}
-
-#jsoneditor > .jsoneditor {
-  border: thin solid var(--mathsoc-pink);
-
-  .jsoneditor-menu {
-    border-color: var(--mathsoc-pink);
-    background-color: var(--mathsoc-pink);
-  }
-
-  // contextmenu recolouring
-  .jsoneditor-contextmenu .jsoneditor-menu button:focus,
-  .jsoneditor-contextmenu .jsoneditor-menu button:hover,
-  .jsoneditor-contextmenu .jsoneditor-menu li ul li button:focus,
-  .jsoneditor-contextmenu .jsoneditor-menu li ul li button:hover,
-  .jsoneditor-contextmenu .jsoneditor-menu li button.jsoneditor-selected,
-  .jsoneditor-contextmenu .jsoneditor-menu li button.jsoneditor-selected:focus,
-  .jsoneditor-contextmenu .jsoneditor-menu li button.jsoneditor-selected:hover {
-    background-color: white;
-
-    .jsoneditor-text {
-      color: var(--mathsoc-pink);
-    }
-  }
-
-  .jsoneditor-text {
-    color: white;
-  }
-
-  .jsoneditor-field,
-  .jsoneditor-value,
-  .jsoneditor-readonly {
-    font-family: var(--primary-font);
-  }
-
-  .jsoneditor-highlight {
-    background-color: #ddd;
-  }
-
-  .jsoneditor-busy span,
-  div.jsoneditor-value[contenteditable="true"]:hover,
-  div.jsoneditor-value[contenteditable="true"]:focus,
-  div.jsoneditor-value[contenteditable="true"]:active {
-    background-color: var(--background-colour);
-    border: 1px var(--mathsoc-pink-2) dashed;
-  }
-
-  div.jsoneditor-value.jsoneditor-object {
-    display: none;
-  }
-
-  .jsoneditor-value.jsoneditor-string {
-    color: var(--mathsoc-pink-2);
-
-    &.highlighted-markdown-field,
-    &.hoverable-markdown-field:hover {
-      background: #df249829;
-      border: 1px dashed var(--mathsoc-pink);
-    }
-  }
-
-  // for boolean values, hide "true" text but leave checkbox
-  .jsoneditor-value.jsoneditor-boolean {
-    display: none;
-  }
-}
-
 .editorv2 {
   width: 100%;
 
@@ -174,7 +15,7 @@
     padding-bottom: 4px;
     display: block;
   }
-  
+
   .editor-input {
     width: 100%;
   }
@@ -184,39 +25,44 @@
   font-weight: bold;
 }
 
-@include tablet-down {
-  #editor-menu-and-body {
-    display: flex;
-    flex-direction: column-reverse;
+.editor-page-container {
+  gap: 32px;
+  display: flex;
 
-    #editor-nav-menu {
-      position: relative;
-      padding-left: 0;
-      text-align: center;
-
-      > ul {
-        ul {
-          padding-left: 0;
-          border: none;
-        }
-      }
-
-      .dropdown.active {
-        box-shadow: 0 0 4px 4px inset #8888;
-
-        .dropdown-name {
-          font-weight: bold;
-        }
-      }
-    }
-
-    #body {
-      min-height: unset;
-    }
+  a {
+    cursor: pointer;
+    text-decoration: none;
   }
 
-  .jsoneditor {
-    min-width: 70vw;
+  h2 {
+    font-size: 1.4em;
+  }
+
+  .editor-side-menu {
+    min-width: 180px;
+    padding: 0 16px;
+
+    background-color: var(--background-colour-2);
+    border-right: 1px solid var(--mathsoc-grey-2);
+
+    button {
+      padding: 0;
+      cursor: pointer;
+    }
+
+    ul {
+      padding-left: 20px;
+      padding-bottom: 4px;
+    }
+
+    > ul {
+      padding-left: 0;
+    }
+
+    li {
+      list-style-type: none;
+      padding: 6px 0;
+    }
   }
 }
 

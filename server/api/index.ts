@@ -15,7 +15,10 @@ CartoonsController.rewriteFile();
 
 router.get("/data", (req: Request, res: Response) => {
   if (typeof req.query.path === "string") {
-    ReadWriteAPIController.getJSONDataPath(req.query.path, res);
+    ReadWriteAPIController.getJSONDataPath(
+      req.query.path.replace(".json", ""),
+      res
+    );
   } else {
     res.status(400).end();
   }
@@ -46,7 +49,7 @@ router.post("/volunteer-application", (req: Request, res: Response) => {
   if (success) {
     res.redirect("/form-success");
   }
-})
+});
 
 router.use("/", adminApi);
 

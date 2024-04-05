@@ -1,20 +1,5 @@
 extends /views/templates/admin-base.pug
 
-mixin menuLayer(items, name)
-  ul
-    each page of items 
-      if page.type === 'page'
-        - const pageIsActive = editorSource.includes(page.ref.replace('.json', ''));
-        - const activeClass = pageIsActive ? 'active-page' : '';
-        li(class=activeClass)
-          a(href="/admin/editor?page=" + page.ref.replace('.json', ''))=page.name
-      else 
-        - const dropdownIsActive = editorSource.includes(page.ref);
-        - const activeClass = dropdownIsActive ? " active" : "";
-        li(class="dropdown" + activeClass)
-          div(class="dropdown-name")=page.name
-          +menuLayer(page.subdirectory)
-
 append styles 
   link(href="/assets/css/admin/generic-editor.css" rel="stylesheet")
 
@@ -22,13 +7,4 @@ append scripts
   script(src="/assets/js/admin/generic-editor.tsx.js" defer)
 
 block body
-  div(id="editor-menu-and-body")
-    nav(id="editor-nav-menu")
-      button(id="open-side-menu-button")
-        h2 Editor Select
-      +menuLayer(editors)
-      button(id="close-side-menu-button") Hide
-    div(id="body")
-      div(id="jsoneditor" data-source=editorSource)
-      div(class="open-editor-container")
-        button(class="pink-button disabled" id="open-editor-btn" disabled="true") Open Markdown Editor
+  div(id="jsoneditor" data-source=editorSource data-name=editorName)

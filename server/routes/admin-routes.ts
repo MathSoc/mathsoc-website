@@ -1,17 +1,11 @@
 import express, { Request, Response } from "express";
 import adminPages from "../config/admin/admin-pages.json";
-import { EditorDirectoryStructureConstructor } from "./controllers/editor-directory-structure-constructor";
 import { PageLoader } from "./controllers/page-loader";
 import { getFormattedURL } from "../util/util";
-import {
-  AdminPageOutflow,
-  DirectoryEntry,
-  PageOutflow,
-} from "../types/routing";
+import { AdminPageOutflow, PageOutflow } from "../types/routing";
 import { AdminMiddleware } from "../auth/google";
 
 interface EditorPageOutflow extends PageOutflow {
-  editors: DirectoryEntry[];
   editorSource: string;
   editorName: string;
 }
@@ -38,9 +32,6 @@ class AdminRoutesConstructor {
       this.addAdminSpecificOutflowToPage
     );
 
-    const editorNavigationStructure =
-      EditorDirectoryStructureConstructor.getDataDirectoryStructure();
-
     router.get("/admin/editor", async (req: Request, res: Response) => {
       const file = req.query["page"] ?? "home";
       const filename: string =
@@ -49,7 +40,6 @@ class AdminRoutesConstructor {
       const editorOutflow: EditorPageOutflow = {
         ...genericEditorPageOutflow,
 
-        editors: editorNavigationStructure,
         editorSource: filename,
         editorName: getFormattedURL(filename),
       };
