@@ -74,6 +74,10 @@ const router = express.Router();
 
 router.use(AdminMiddleware);
 
+router.get("/admin/", (_req: Request, res: Response) => {
+  res.redirect("/admin/editor");
+});
+
 AdminRoutesConstructor.buildRoutes();
 
 export default router;
