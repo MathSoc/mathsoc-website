@@ -1,32 +1,18 @@
 import React from "react";
+import { EditorObjectNode } from "./EditorObjectNode";
+import { EditorMarkdownNode } from "./EditorMarkdownNode";
+import { EditorLabelNode } from "./EditorLabelNode";
 
 export const EditorNode: React.FC<{
   name: string;
-  children: React.ReactNode;
-  labelId?: string;
-}> = ({ name, children, labelId }) => {
-  const getFormattedName = (name: string) => {
-    return name
-      ?.replace(/([A-Z])/g, " $1")
-      .split(" ")
-      .map((word) => {
-        if (!word) return "";
-        if (word.includes("Markdown")) return "";
-        return word[0].toUpperCase() + word.slice(1);
-      })
-      .join(" ");
-  };
-
-  return (
-    <div className="editor-node-container">
-      {labelId ? (
-        <label className="editor-label" id={labelId}>
-          {getFormattedName(name)}
-        </label>
-      ) : (
-        <span className="editor-label">{getFormattedName(name)}</span>
-      )}
-      {children}
-    </div>
-  );
+  path: string[];
+  value: any;
+}> = ({ name, path, value }) => {
+  if (typeof value === "object") {
+    return <EditorObjectNode name={name} path={path} />;
+  } else if (name.includes("Markdown")) {
+    return <EditorMarkdownNode name={name} path={path} />;
+  } else {
+    return <EditorLabelNode name={name} path={path} />;
+  }
 };

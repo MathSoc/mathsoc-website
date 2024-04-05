@@ -1,5 +1,5 @@
 import React from "react";
-import { EditorNode } from "./EditorNode";
+import { EditorNodeTemplate } from "./EditorNodeTemplate";
 import { EditorContext } from "../EditorV2";
 
 export const EditorLabelNode: React.FC<{
@@ -10,7 +10,7 @@ export const EditorLabelNode: React.FC<{
   const { getDataValue, setDataValue } = React.useContext(EditorContext);
 
   return (
-    <EditorNode key={path.join("-")} name={name} labelId={labelId}>
+    <EditorNodeTemplate key={path.join("-")} name={name} labelId={labelId}>
       <input
         aria-labelledby={labelId}
         className="editor-input"
@@ -19,6 +19,6 @@ export const EditorLabelNode: React.FC<{
           setDataValue(path, event.target.value);
         }}
       />
-    </EditorNode>
+    </EditorNodeTemplate>
   );
 };

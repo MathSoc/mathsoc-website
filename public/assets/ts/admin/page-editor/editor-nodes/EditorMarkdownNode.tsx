@@ -1,7 +1,7 @@
 import React from "react";
 import ReactQuill from "react-quill";
 import { EditorContext } from "../EditorV2";
-import { EditorNode } from "./EditorNode";
+import { EditorNodeTemplate } from "./EditorNodeTemplate";
 
 export const EditorMarkdownNode: React.FC<{
   name: string;
@@ -10,7 +10,7 @@ export const EditorMarkdownNode: React.FC<{
   const { getDataValue, setDataValue } = React.useContext(EditorContext);
 
   return (
-    <EditorNode name={name}>
+    <EditorNodeTemplate name={name}>
       <ReactQuill
         theme="snow"
         value={getDataValue(path)}
@@ -18,6 +18,6 @@ export const EditorMarkdownNode: React.FC<{
           setDataValue(path, newValue);
         }}
       />
-    </EditorNode>
+    </EditorNodeTemplate>
   );
 };

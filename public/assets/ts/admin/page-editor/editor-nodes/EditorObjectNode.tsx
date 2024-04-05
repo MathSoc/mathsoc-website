@@ -1,8 +1,7 @@
 import React from "react";
-import { EditorMarkdownNode } from "./EditorMarkdownNode";
-import { EditorNode } from "./EditorNode";
+import { EditorNodeTemplate } from "./EditorNodeTemplate";
 import { EditorContext } from "../EditorV2";
-import { EditorLabelNode } from "./EditorLabelNode";
+import { EditorNode } from "./EditorNode";
 
 export const EditorObjectNode: React.FC<{
   name: string;
@@ -19,27 +18,18 @@ export const EditorObjectNode: React.FC<{
   const entries = Object.entries(data);
 
   return (
-    <EditorNode name={name}>
+    <EditorNodeTemplate name={name}>
       {entries.map((entry) => {
         const nextPath = path.concat(entry[0]);
-        if (typeof entry[1] === "object") {
-          return (
-            <EditorObjectNode name={entry[0]} key={entry[0]} path={nextPath} />
-          );
-        } else if (entry[0].includes("Markdown")) {
-          return (
-            <EditorMarkdownNode
-              path={nextPath}
-              name={entry[0]}
-              key={entry[0]}
-            />
-          );
-        } else {
-          return (
-            <EditorLabelNode name={entry[0]} key={entry[0]} path={nextPath} />
-          );
-        }
+        return (
+          <EditorNode
+            name={entry[0]}
+            key={entry[0]}
+            path={nextPath}
+            value={entry[1]}
+          />
+        );
       })}
-    </EditorNode>
+    </EditorNodeTemplate>
   );
 };
