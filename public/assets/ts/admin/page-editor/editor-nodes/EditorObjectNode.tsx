@@ -11,6 +11,7 @@ export const EditorObjectNode: React.FC<{
   const { getDataValue } = React.useContext(EditorContext);
 
   const data = getDataValue(path);
+
   if (typeof data !== "object") {
     throw new Error(`Bad object node: ${path}`);
   }

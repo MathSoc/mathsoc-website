@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 import { usePageSources } from "./usePageSources";
 import { showToast } from "../toast";
 import { EditorObjectNode } from "./editor-nodes/EditorObjectNode";
@@ -8,25 +8,30 @@ export const EditorContext = createContext<{
   setDataValue: (path: string[], value: string) => void;
 }>(null);
 
-const onAttemptedPageExit = (e: BeforeUnloadEvent) => {
-  e.preventDefault();
-
-  // this message won't display on most browsers except possibly for Edge; on other browsers
-  //  any truthy value will trigger the exit message
-  return (e.returnValue =
-    "Are you sure you want to leave?  Your changes may not be saved.");
-};
-
 export const EditorV2: React.FC<{ source: string; name: string }> = ({
   name,
   source,
 }) => {
-  const data = React.useRef({});
-  const setData = (newData: object) => {
-    data.current = newData;
-  };
+  const [, setIsLoaded] = useState(false); // used to trigger a necessary re-render that loads the editor with data.
 
-  const query = usePageSources(source, setData);
+  const originalDataString = React.useRef<string>();
+  const data = React.useRef({});
+  const queryData = usePageSources(source).data;
+
+  console.log(queryData);
+
+  const onAttemptedPageExit = useCallback((e: BeforeUnloadEvent) => {
+    if (originalDataString.current === JSON.stringify(data.current)) {
+      return; // skip
+    }
+
+    e.preventDefault();
+
+    // this message won't display on most browsers except possibly for Edge; on other browsers
+    //  any truthy value will trigger the exit message
+    return (e.returnValue =
+      "Are you sure you want to leave?  Your changes may not be saved.");
+  }, []);
 
   const getDataValue = (path: string[]) => {
     return getDataValueRecursive(path, data.current);
@@ -44,8 +49,6 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
   };
 
   const setDataValue = (path: string[], value: string) => {
-    window.addEventListener("beforeunload", onAttemptedPageExit);
-
     data.current = setDataValueRecursive(path, data.current, value);
   };
 
@@ -113,7 +116,19 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
     });
   };
 
-  if (!query.data) {
+  useEffect(() => {
+    window.addEventListener("beforeunload", onAttemptedPageExit);
+  }, [onAttemptedPageExit]);
+
+  useEffect(() => {
+    if (queryData != null) {
+      data.current = queryData;
+      originalDataString.current = JSON.stringify(queryData);
+      setIsLoaded(true);
+    }
+  }, [queryData]);
+
+  if (!queryData) {
     return <span>Loading...</span>;
   }
 
