@@ -54,6 +54,10 @@ export const useEditorData = (source: string) => {
       .every((key) => !isNaN(key));
   };
 
+  const arrayLiketoArray = (arrayLike: object | any[]) => {
+    return Object.keys(arrayLike).map((key) => arrayLike[key]);
+  };
+
   const removeDataArrayElement = (path: string[], index: number) => {
     setData(removeDataArrayElementRecursive(path, data, index));
   };
@@ -63,16 +67,16 @@ export const useEditorData = (source: string) => {
     remainingData: object,
     index: number
   ): object => {
-    if (path.length === 1) {
-      if (!Array.isArray(remainingData[path[0]])) {
+    if (path.length === 0) {
+      if (!couldBeArray(remainingData)) {
         throw new Error(
           `No array found at ${path} with ${JSON.stringify(remainingData)}`
         );
       }
 
-      const array = remainingData[path[0]] as any[];
+      const array = arrayLiketoArray(remainingData);
       array.splice(index, 1);
-      remainingData[path[0]] = array;
+      remainingData = array;
     } else {
       remainingData[path[0]] = removeDataArrayElementRecursive(
         path.slice(1),
