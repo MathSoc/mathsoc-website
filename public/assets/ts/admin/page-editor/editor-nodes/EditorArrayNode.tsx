@@ -35,13 +35,15 @@ export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
     >
       {transformedData.map((entry, index) => {
         const nextPath = path.concat(index.toString());
+        console.log(index, entry);
         return (
           <EditorNode
             name={`Item ${index + 1}`}
             headerButtons={[
               { name: "Remove", onClick: () => removeItem(index) },
             ]}
-            key={index}
+            // need both the entry and index for a unique key that maintains uniqueness after array reordering
+            key={`${JSON.stringify(entry)}-${index}`}
             path={nextPath}
             value={entry}
             theme={"grey"}
