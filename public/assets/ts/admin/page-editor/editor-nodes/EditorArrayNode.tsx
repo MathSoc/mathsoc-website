@@ -35,7 +35,6 @@ export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
     >
       {transformedData.map((entry, index) => {
         const nextPath = path.concat(index.toString());
-        console.log(index, entry);
         return (
           <EditorNode
             name={`Item ${index + 1}`}

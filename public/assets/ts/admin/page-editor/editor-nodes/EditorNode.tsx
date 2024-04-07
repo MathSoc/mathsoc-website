@@ -12,6 +12,7 @@ export const EditorNode: React.FC<EditorNodeProps & { value: any }> = (
   const { value } = props;
   const { couldBeArray } = useContext(EditorContext);
 
+  // @todo recognize booleans, numbers
   if (typeof value === "object") {
     if (couldBeArray(value)) {
       return <EditorArrayNode {...props} />;

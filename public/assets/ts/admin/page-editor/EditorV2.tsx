@@ -173,8 +173,6 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
     return <span>Loading...</span>;
   }
 
-  console.log(data);
-
   return (
     <EditorContext.Provider
       value={{
