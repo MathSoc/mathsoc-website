@@ -1,40 +1,45 @@
 import React, { createContext, useCallback, useEffect, useState } from "react";
 import { usePageSources } from "./usePageSources";
 import { showToast } from "../toast";
-import { EditorObjectNode } from "./editor-nodes/EditorObjectNode";
+import { EditorNode } from "./editor-nodes/EditorNode";
 
 export const EditorContext = createContext<{
   getDataValue: (path: string[]) => any;
   setDataValue: (path: string[], value: string) => void;
+
+  couldBeArray: (array: object) => boolean;
+  removeDataArrayElement: (path: string[], index: number) => void;
 }>(null);
 
 export const EditorV2: React.FC<{ source: string; name: string }> = ({
   name,
   source,
 }) => {
+  const [data, setData] = React.useState<object>();
   const [, setIsLoaded] = useState(false); // used to trigger a necessary re-render that loads the editor with data.
 
   const originalDataString = React.useRef<string>();
-  const data = React.useRef({});
+  // const data = React.useRef({});
   const queryData = usePageSources(source).data;
 
-  console.log(queryData);
+  const onAttemptedPageExit = useCallback(
+    (e: BeforeUnloadEvent) => {
+      if (originalDataString.current === JSON.stringify(data)) {
+        return; // skip
+      }
 
-  const onAttemptedPageExit = useCallback((e: BeforeUnloadEvent) => {
-    if (originalDataString.current === JSON.stringify(data.current)) {
-      return; // skip
-    }
+      e.preventDefault();
 
-    e.preventDefault();
-
-    // this message won't display on most browsers except possibly for Edge; on other browsers
-    //  any truthy value will trigger the exit message
-    return (e.returnValue =
-      "Are you sure you want to leave?  Your changes may not be saved.");
-  }, []);
+      // this message won't display on most browsers except possibly for Edge; on other browsers
+      //  any truthy value will trigger the exit message
+      return (e.returnValue =
+        "Are you sure you want to leave?  Your changes may not be saved.");
+    },
+    [data]
+  );
 
   const getDataValue = (path: string[]) => {
-    return getDataValueRecursive(path, data.current);
+    return getDataValueRecursive(path, data);
   };
 
   const getDataValueRecursive = (path: string[], remainingData: object) => {
@@ -49,7 +54,7 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
   };
 
   const setDataValue = (path: string[], value: string) => {
-    data.current = setDataValueRecursive(path, data.current, value);
+    setData({ ...setDataValueRecursive(path, data, value) });
   };
 
   const setDataValueRecursive = (
@@ -70,13 +75,49 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
     return remainingData;
   };
 
+  const couldBeArray = (array: object) => {
+    return Object.keys(array)
+      .map((key) => parseInt(key))
+      .every((key) => !isNaN(key));
+  };
+
+  const removeDataArrayElement = (path: string[], index: number) => {
+    setData(removeDataArrayElementRecursive(path, data, index));
+  };
+
+  const removeDataArrayElementRecursive = (
+    path: string[],
+    remainingData: object,
+    index: number
+  ): object => {
+    if (path.length === 1) {
+      if (!Array.isArray(remainingData[path[0]])) {
+        throw new Error(
+          `No array found at ${path} with ${JSON.stringify(remainingData)}`
+        );
+      }
+
+      const array = remainingData[path[0]] as any[];
+      array.splice(index, 1);
+      remainingData[path[0]] = array;
+    } else {
+      remainingData[path[0]] = removeDataArrayElementRecursive(
+        path.slice(1),
+        remainingData[path[0]],
+        index
+      );
+    }
+
+    return remainingData;
+  };
+
   const getErrorMessage = (response: Response) => {
     switch (response.status) {
       case 400: {
         return `Bad POST request to ${source}.`;
       }
       case 401: {
-        return `Unauthorized POST request to ${source}.`;
+        return `Unauthorized POST request to ${source}`;
       }
       case 403: {
         return `Forbidden POST request to ${source}`;
@@ -96,7 +137,7 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data.current),
+      body: JSON.stringify(data),
     }).then((response) => {
       const responseCodeClass = Math.floor(response.status / 100) * 100;
 
@@ -122,22 +163,31 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
 
   useEffect(() => {
     if (queryData != null) {
-      data.current = queryData;
+      setData(queryData);
       originalDataString.current = JSON.stringify(queryData);
       setIsLoaded(true);
     }
   }, [queryData]);
 
-  if (!queryData) {
+  if (!data) {
     return <span>Loading...</span>;
   }
 
+  console.log(data);
+
   return (
-    <EditorContext.Provider value={{ getDataValue, setDataValue }}>
+    <EditorContext.Provider
+      value={{
+        getDataValue,
+        setDataValue,
+        couldBeArray,
+        removeDataArrayElement,
+      }}
+    >
       <div className="editorv2">
         <div className="editor-content">
           <h2>Edit: {name}</h2>
-          <EditorObjectNode name={source} path={[]} />
+          <EditorNode name={source} path={[]} value={getDataValue([])} />
         </div>
         <div className="save-button-container">
           <button className="save pink-button" onClick={saveData}>

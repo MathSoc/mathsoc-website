@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { EditorObjectNode } from "./EditorObjectNode";
 import { EditorMarkdownNode } from "./EditorMarkdownNode";
 import { EditorLabelNode } from "./EditorLabelNode";
+import { EditorArrayNode } from "./EditorArrayNode";
+import { EditorNodeProps } from "./EditorNodeTemplate";
+import { EditorContext } from "../EditorV2";
 
-export const EditorNode: React.FC<{
-  name: string;
-  path: string[];
-  value: any;
-}> = ({ name, path, value }) => {
+export const EditorNode: React.FC<EditorNodeProps & { value: any }> = (
+  props
+) => {
+  const { value } = props;
+  const { couldBeArray } = useContext(EditorContext);
+
   if (typeof value === "object") {
-    return <EditorObjectNode name={name} path={path} />;
-  } else if (name.includes("Markdown")) {
-    return <EditorMarkdownNode name={name} path={path} />;
+    if (couldBeArray(value)) {
+      return <EditorArrayNode {...props} />;
+    } else {
+      return <EditorObjectNode {...props} />;
+    }
+  } else if (props.name.includes("Markdown")) {
+    return <EditorMarkdownNode {...props} />;
   } else {
-    return <EditorLabelNode name={name} path={path} />;
+    return <EditorLabelNode {...props} />;
   }
 };

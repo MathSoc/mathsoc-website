@@ -2,22 +2,62 @@
 
 .editorv2 {
   width: 100%;
+  padding: 0 32px;
 
   .editor-node-container {
     margin: 1em 0;
     border-left: 2px solid var(--mathsoc-pink);
-    padding-left: 12px;
+    padding: 0 12px;
+    color: var(--mathsoc-pink);
+
+    &.editor-node-grey {
+      background-color: var(--background-colour-2);
+      $vpadding: 16px;
+      padding-top: $vpadding;
+      padding-bottom: $vpadding;
+      border-color: var(--mathsoc-grey-2);
+      color: var(--mathsoc-grey-2);
+
+      .editor-node-label-bar {
+        padding-bottom: 8px;
+      }
+
+        > .editor-node-content-container {
+        background-color: var(--background-colour);
+        padding: 4px 16px;
+      }
+    }
+  }
+
+  .editor-node-label-bar {
+    display: inline-flex;
+    width: 100%;
+
+    .editor-node-buttons {
+      flex: 1;
+      display: flex;
+      flex-direction: row-reverse;
+
+      button {
+        background-color: var(--mathsoc-pink);
+        color: var(--inverted-text-color);
+
+        font-size: 0.8em;
+        cursor: pointer;
+      }
+    }
   }
 
   .editor-label {
     font-weight: bold;
-    color: var(--mathsoc-pink);
     padding-bottom: 4px;
     display: block;
   }
 
   .editor-input {
-    width: 100%;
+    $padding: 8px;
+    padding: $padding;
+    width: calc(100% - 2 * $padding);
   }
 }
 
@@ -26,7 +66,6 @@
 }
 
 .editor-page-container {
-  gap: 32px;
   display: flex;
 
   a {
