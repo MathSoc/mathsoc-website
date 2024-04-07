@@ -1,7 +1,7 @@
-import React, { createContext, useCallback, useEffect, useState } from "react";
-import { usePageSources } from "./usePageSources";
+import React, { createContext, useCallback, useEffect } from "react";
 import { showToast } from "../toast";
 import { EditorNode } from "./editor-nodes/EditorNode";
+import { useEditorData } from "./useEditorData";
 
 export const EditorContext = createContext<{
   getDataValue: (path: string[]) => any;
@@ -15,17 +15,22 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
   name,
   source,
 }) => {
-  const [data, setData] = React.useState<object>();
-  const [, setIsLoaded] = useState(false); // used to trigger a necessary re-render that loads the editor with data.
+  const {
+    data,
+    isModified,
 
-  const originalDataString = React.useRef<string>();
-  // const data = React.useRef({});
-  const queryData = usePageSources(source).data;
+    getDataValue,
+    setDataValue,
+    couldBeArray,
+    removeDataArrayElement,
+  } = useEditorData(source);
+
+  // const [, setIsLoaded] = useState(false); // used to trigger a necessary re-render that loads the editor with data.
 
   const onAttemptedPageExit = useCallback(
     (e: BeforeUnloadEvent) => {
-      if (originalDataString.current === JSON.stringify(data)) {
-        return; // skip
+      if (!isModified) {
+        return;
       }
 
       e.preventDefault();
@@ -35,81 +40,8 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
       return (e.returnValue =
         "Are you sure you want to leave?  Your changes may not be saved.");
     },
-    [data]
+    [isModified]
   );
-
-  const getDataValue = (path: string[]) => {
-    return getDataValueRecursive(path, data);
-  };
-
-  const getDataValueRecursive = (path: string[], remainingData: object) => {
-    if (path.length === 0) {
-      return remainingData;
-    }
-
-    const smallerValue = remainingData[path[0]];
-    const remainingPath = path.slice(1);
-
-    return getDataValueRecursive(remainingPath, smallerValue);
-  };
-
-  const setDataValue = (path: string[], value: string) => {
-    setData({ ...setDataValueRecursive(path, data, value) });
-  };
-
-  const setDataValueRecursive = (
-    path: string[],
-    remainingData: object,
-    value: string
-  ): object => {
-    if (path.length === 1) {
-      remainingData[path[0]] = value;
-    } else {
-      remainingData[path[0]] = setDataValueRecursive(
-        path.slice(1),
-        remainingData[path[0]],
-        value
-      );
-    }
-
-    return remainingData;
-  };
-
-  const couldBeArray = (array: object) => {
-    return Object.keys(array)
-      .map((key) => parseInt(key))
-      .every((key) => !isNaN(key));
-  };
-
-  const removeDataArrayElement = (path: string[], index: number) => {
-    setData(removeDataArrayElementRecursive(path, data, index));
-  };
-
-  const removeDataArrayElementRecursive = (
-    path: string[],
-    remainingData: object,
-    index: number
-  ): object => {
-    if (path.length === 1) {
-      if (!Array.isArray(remainingData[path[0]])) {
-        throw new Error(
-          `No array found at ${path} with ${JSON.stringify(remainingData)}`
-        );
-      }
-
-      const array = remainingData[path[0]] as any[];
-      array.splice(index, 1);
-      remainingData[path[0]] = array;
-    } else {
-      remainingData[path[0]] = removeDataArrayElementRecursive(
-        path.slice(1),
-        remainingData[path[0]],
-        index
-      );
-    }
-
-    return remainingData;
-  };
 
   const getErrorMessage = (response: Response) => {
     switch (response.status) {
@@ -160,14 +92,6 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
   useEffect(() => {
     window.addEventListener("beforeunload", onAttemptedPageExit);
   }, [onAttemptedPageExit]);
-
-  useEffect(() => {
-    if (queryData != null) {
-      setData(queryData);
-      originalDataString.current = JSON.stringify(queryData);
-      setIsLoaded(true);
-    }
-  }, [queryData]);
 
   if (!data) {
     return <span>Loading...</span>;
