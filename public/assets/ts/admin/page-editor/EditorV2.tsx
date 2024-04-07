@@ -7,6 +7,9 @@ export const EditorContext = createContext<{
   getDataValue: (path: string[]) => any;
   setDataValue: (path: string[], value: string) => void;
 
+  /**
+   * Necessary to mimic Array.isArray, where it accepts both real arrays and objects of the form `{0: ..., 1: ..., 2: ...}`
+   */
   couldBeArray: (array: object) => boolean;
   removeDataArrayElement: (path: string[], index: number) => void;
 }>(null);
@@ -24,8 +27,6 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
     couldBeArray,
     removeDataArrayElement,
   } = useEditorData(source);
-
-  // const [, setIsLoaded] = useState(false); // used to trigger a necessary re-render that loads the editor with data.
 
   const onAttemptedPageExit = useCallback(
     (e: BeforeUnloadEvent) => {
