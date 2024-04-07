@@ -6,6 +6,7 @@ import {
 } from "./validators";
 import * as schemas from "../types/schemas";
 import { DataPaths } from "./data-paths";
+import Zod from "zod";
 
 // MAPPING OF FILEPATH TO FILE SCHEMA
 // 'get-involved/volunteer' refers to /data/get-involved/volunteer.json
@@ -19,7 +20,8 @@ export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
   [DataPaths.DOCUMENTS_MEETINGS]: schemas.DocumentsMeetingsSchema,
   [DataPaths.ELECTIONS]: schemas.ElectionsDataSchema,
   [DataPaths.GET_INVOLVED_VOLUNTEER]: schemas.VolunteerDataSchema,
-  [DataPaths.GET_INVOLVED_VOLUNTEER_APPLICATION]: schemas.VolunteerApplicationSchema,
+  [DataPaths.GET_INVOLVED_VOLUNTEER_APPLICATION]:
+    schemas.VolunteerApplicationSchema,
   [DataPaths.HOME]: schemas.HomeDataSchema,
   [DataPaths.RESOUCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
   [DataPaths.RESOURCES_CHEQUE_REQUESTS]: schemas.ChequeRequestSchema,
@@ -30,6 +32,35 @@ export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
   [DataPaths.SERVICES_MATHSOC_OFFICE]: schemas.ServicesMathsocOffice,
 };
 
+const buildShapeFromZodSchema = (schema: Zod.ZodTypeAny) => {
+  if (schema === null || schema === undefined)
+    throw new Error("Unexpected state: undefined schema");
+
+  // check if schema is nullable or optional
+  if (schema instanceof Zod.ZodNullable || schema instanceof Zod.ZodOptional)
+    return null;
+
+  // check if schema is an array
+  if (schema instanceof Zod.ZodArray) {
+    return [buildShapeFromZodSchema(schema.element)];
+  }
+
+  // check if schema is an object
+  if (schema instanceof Zod.ZodObject) {
+    const entries = Object.keys(schema.shape);
+    const constructed = {};
+
+    entries.forEach((key) => {
+      constructed[key] = buildShapeFromZodSchema(schema.shape[key]);
+    });
+
+    return constructed;
+  }
+
+  // base case: no keys
+  return "";
+};
+
 export const validate = (req: Request, res: Response, next: NextFunction) => {
   const filePath = req.query.path;
   const validator: ExpressValidator =
@@ -38,4 +69,8 @@ export const validate = (req: Request, res: Response, next: NextFunction) => {
       : defaultValidator;
 
   validator(req, res, next);
+};
+
+export const getSchema = (filePath: string) => {
+  return buildShapeFromZodSchema(mapping[filePath as string]);
 };
