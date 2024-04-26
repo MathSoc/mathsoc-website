@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ReadWriteAPIController } from "../controllers/read-write-api-controller";
-import { validate } from "../../validation/endpoint-schema-map";
+import { getSchema, validate } from "../../validation/endpoint-schema-map";
 import express from "express";
 import { ExamBankController } from "../controllers/exam-bank-controller";
 import { ImageController } from "../controllers/image-controller";
@@ -49,6 +49,17 @@ router.patch("/exams/:examName/show", (req: Request, res: Response) => {
 router.post("/cartoons/rebuild", (_req: Request, res: Response) => {
   CartoonsController.rewriteFile();
   res.status(201).send();
+});
+
+router.get("/data/schema", (req: Request, res: Response) => {
+  if (typeof req.query.path === "string") {
+    res
+      .json(getSchema(req.query.path.replace(".json", "")))
+      .status(200)
+      .end();
+  } else {
+    res.status(400).end();
+  }
 });
 
 router.post("/data", validate, (req: Request, res: Response) => {
