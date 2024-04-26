@@ -11,29 +11,21 @@ append scripts
     script(src="https://kit.fontawesome.com/c02fb43ad1.js" crossorigin="anonymous")
 
 block body
-    +carousel(["/assets/img/banners/mathsoc-wall.jpeg", "/assets/img/banners/exec-office.jpeg", "/assets/img/banners/pinktie-mc.jpeg", "/assets/img/banners/board-games.jpeg"])
-    +section("top")
-        h1(id="mathsoc-title") The Mathematics Society of the University of Waterloo
-        p The Mathematics Society of the University of Waterloo, or MathSoc, is a student-run organization that looks out for all students enrolled in the faculty of Mathematics.
-        div(class="cards") 
-            include ../mixins/components.pug
-            +flipCard("Rentals", "/assets/img/flipcards/msoc-22-scaled.jpeg")
-                img(src="/assets/img/icons/tie-icon.svg")
-                p We provide Textbook Rentals, Board Game Rentals, Calculator Rentals, and equipment for our clubs and members!
-            +flipCard("Services", "/assets/img/flipcards/msoc-27-scaled.jpeg")
-                img(src="/assets/img/icons/tie-icon.svg")
-                p We provide a printing service at a low price and we have a microwave and free snacks available for all members!
-            +flipCard("Store", "/assets/img/flipcards/msoc-32-scaled.jpeg")
-                img(src="/assets/img/icons/tie-icon.svg")
-                p We sell novelties like MathSoc swag, stationary items, faculty approved calculators, and more at affordable prices.
-    +section("instagram")
-        div(id="instagram-grid")
-            div(class="col")
-                +instagramEmbed()
-            div(class="col")
-                - const homepageData = sources.home;
-                h2(id="social-callout") #{homepageData.socialText}
-                div(id="social-buttons")
-                    +pink-button(homepageData.socialButtons.instagramMarkdown, "instagram", footer.socialLinks.instagram)
-                    +pink-button(homepageData.socialButtons.discordMarkdown, "discord", footer.socialLinks.discord)
-                    +pink-button(homepageData.socialButtons.youtubeMarkdown, "youtube", footer.socialLinks.youtube)
+    div(id="home-container")
+        div(id="banner-container")
+            img(src="/assets/img/banners/mathsoc-wall.jpeg" alt="" id="banner")
+            div(id="banner-gradient")
+        div(id="home-content")
+            img(src="/assets/img/icons/horizontal-logo-white.svg" alt="Mathsoc Logo" id="logo")
+            div(class="homepage-buttons")
+                a(class="homepage-button" href="/get-involved/volunteer") Get Involved
+                a(class="homepage-button" href="/resources/exam-bank") Exam Bank
+            h1(class="section-head") Hear about our upcoming events!
+            div(class="social-buttons")
+                a(class="social-button" href="/resources/discord-access")
+                    i(class="fa-brands fa-discord social-icon fa-3x") 
+                    span Discord
+                a(class="social-button" href="https://www.instagram.com/uwmathsoc/")
+                    i(class="fa fa-instagram social-icon fa-3x") 
+                    span Instagram
+
