@@ -1,18 +1,29 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { usePageSources } from "./usePageSources";
 
 export const useEditorData = (source: string) => {
   const [data, setData] = React.useState<object>();
   const [originalDataString, setOriginalDataString] = React.useState<string>();
+
+  /**
+   * The schema for this editor is stored as a JSON.stringify()ed object. This resolves
+   * a bug where certain elements of the schema would aribtrarily be set to `undefined`.
+   */
+  const [schema, setSchema] = React.useState<string>(null);
+
   const queryData = usePageSources(source).data;
 
   const isModified = useMemo(() => {
-    console.log(originalDataString, JSON.stringify(data));
     return !(originalDataString === JSON.stringify(data));
   }, [data, originalDataString]);
 
   const getDataValue = (path: string[]) => {
     return getDataValueRecursive(path, data);
+  };
+
+  const getSchemaValue = (path: string[]) => {
+    const parsedSchema = JSON.parse(schema);
+    return getSchemaValueRecursive(path, parsedSchema);
   };
 
   const getDataValueRecursive = (path: string[], remainingData: object) => {
@@ -26,14 +37,33 @@ export const useEditorData = (source: string) => {
     return getDataValueRecursive(remainingPath, smallerValue);
   };
 
-  const setDataValue = (path: string[], value: string) => {
+  const getSchemaValueRecursive = (path: string[], remainingSchema: object) => {
+    if (path.length === 0) {
+      return remainingSchema;
+    }
+
+    // whereas data has several entries per array, a schema only ever has one. this allows us to use the same
+    //  path regardless
+    let smallerValue: object;
+    if (!isNaN(parseInt(path[0]))) {
+      smallerValue = remainingSchema[0];
+    } else {
+      smallerValue = remainingSchema[path[0]];
+    }
+
+    const remainingPath = path.slice(1);
+
+    return getSchemaValueRecursive(remainingPath, smallerValue);
+  };
+
+  const setDataValue = (path: string[], value: any) => {
     setData({ ...setDataValueRecursive(path, data, value) });
   };
 
   const setDataValueRecursive = (
     path: string[],
     remainingData: object,
-    value: string
+    value: any
   ): object => {
     if (path.length === 1) {
       remainingData[path[0]] = value;
@@ -88,6 +118,14 @@ export const useEditorData = (source: string) => {
     return remainingData;
   };
 
+  const resetSchema = useCallback(() => {
+    fetch(`/api/data/schema/?path=${source}`).then(async (response) => {
+      const parsedResponse = JSON.stringify(await response.json());
+      setSchema(parsedResponse);
+      console.log("schema fetched", parsedResponse);
+    });
+  }, [source, setSchema]);
+
   useEffect(() => {
     if (queryData != null) {
       setData(queryData);
@@ -95,12 +133,16 @@ export const useEditorData = (source: string) => {
     }
   }, [queryData]);
 
+  useEffect(resetSchema, [resetSchema]);
+
   return {
     data,
     isModified,
 
     getDataValue,
     setDataValue,
+
+    getSchemaValue,
 
     couldBeArray,
     removeDataArrayElement,

@@ -5,7 +5,9 @@ import { useEditorData } from "./useEditorData";
 
 export const EditorContext = createContext<{
   getDataValue: (path: string[]) => any;
-  setDataValue: (path: string[], value: string) => void;
+  setDataValue: (path: string[], value: any) => void;
+
+  getSchemaValue: (path: string[]) => any;
 
   /**
    * Necessary to mimic Array.isArray, where it accepts both real arrays and objects of the form `{0: ..., 1: ..., 2: ...}`
@@ -24,6 +26,7 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
 
     getDataValue,
     setDataValue,
+    getSchemaValue,
     couldBeArray,
     removeDataArrayElement,
   } = useEditorData(source);
@@ -103,6 +106,7 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
       value={{
         getDataValue,
         setDataValue,
+        getSchemaValue,
         couldBeArray,
         removeDataArrayElement,
       }}

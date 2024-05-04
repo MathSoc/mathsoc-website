@@ -5,8 +5,13 @@ import { EditorNode } from "./EditorNode";
 
 export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
   const { path } = props;
-  const { getDataValue, couldBeArray, removeDataArrayElement } =
-    React.useContext(EditorContext);
+  const {
+    getDataValue,
+    getSchemaValue,
+    setDataValue,
+    couldBeArray,
+    removeDataArrayElement,
+  } = React.useContext(EditorContext);
   const [version, setVersion] = useState(0);
 
   const data = getDataValue(path);
@@ -28,10 +33,19 @@ export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
     setVersion(version + 1);
   };
 
+  const addItem = () => {
+    const newItemPath = path.concat(transformedData.length.toString());
+    const newItemSchema = getSchemaValue(path)[0];
+
+    // console.log(newItemPath, newItemSchema);
+
+    setDataValue(newItemPath, newItemSchema);
+  };
+
   return (
     <EditorNodeTemplate
       {...props}
-      headerButtons={[{ name: "Add", onClick: () => null }]}
+      headerButtons={[{ name: "Add", onClick: addItem }]}
     >
       {transformedData.map((entry, index) => {
         const nextPath = path.concat(index.toString());

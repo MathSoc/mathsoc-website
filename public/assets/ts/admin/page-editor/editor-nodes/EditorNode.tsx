@@ -5,6 +5,7 @@ import { EditorLabelNode } from "./EditorLabelNode";
 import { EditorArrayNode } from "./EditorArrayNode";
 import { EditorNodeProps } from "./EditorNodeTemplate";
 import { EditorContext } from "../EditorV2";
+import { EditorOptionalNode } from "./EditorOptionalLabelNode";
 
 export const EditorNode: React.FC<EditorNodeProps & { value: any }> = (
   props
@@ -13,7 +14,9 @@ export const EditorNode: React.FC<EditorNodeProps & { value: any }> = (
   const { couldBeArray } = useContext(EditorContext);
 
   // @todo recognize booleans, numbers
-  if (typeof value === "object") {
+  if (value === null) {
+    return <EditorOptionalNode {...props} />;
+  } else if (typeof value === "object") {
     if (couldBeArray(value)) {
       return <EditorArrayNode {...props} />;
     } else {
