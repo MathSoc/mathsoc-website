@@ -72,7 +72,5 @@ export const validate = (req: Request, res: Response, next: NextFunction) => {
 };
 
 export const getSchema = (filePath: string): object => {
-  const schema = buildShapeFromZodSchema(mapping[filePath as string]);
-  console.log(schema);
-  return schema;
+  return buildShapeFromZodSchema(mapping[filePath as string]);
 };

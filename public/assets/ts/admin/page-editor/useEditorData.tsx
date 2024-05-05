@@ -154,10 +154,13 @@ export const useEditorData = (source: string) => {
     fetch(`/api/data/schema/?path=${source}`).then(async (response) => {
       const parsedResponse = JSON.stringify(await response.json());
       setSchema(parsedResponse);
-      console.log("schema fetched", parsedResponse);
     });
   }, [source]);
 
+  /**
+   * Updates the local copy of `data` with the response from the server once it arrives.
+   * This should only trigger once.
+   */
   useEffect(() => {
     if (queryData != null) {
       setData(queryData);
@@ -165,6 +168,9 @@ export const useEditorData = (source: string) => {
     }
   }, [queryData]);
 
+  /**
+   * Fetches the schema for this page. Should only trigger once.
+   */
   useEffect(() => resetSchema(), [resetSchema]);
 
   return {

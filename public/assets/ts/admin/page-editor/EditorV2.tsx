@@ -60,6 +60,12 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
       case 404: {
         return `File not found in POST request to ${source}.`;
       }
+      case 406: {
+        return `Data sent to ${source} doesn't match what server expects to receive. Contact a web dev.`;
+      }
+      case 415: {
+        return `No validator has been set up for ${source}. Contact a web dev to fix.`;
+      }
       default: {
         return `Unexpected ${response.status} error from GET request to ${source}`;
       }
