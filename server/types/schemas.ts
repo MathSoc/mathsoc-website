@@ -29,8 +29,9 @@ const VolunteerDataSchema = z
 const VolunteerApplicationSchema = z
   .object({
     programs: z.array(z.string()),
-    terms: z.array(z.string())
-  }).strict()
+    terms: z.array(z.string()),
+  })
+  .strict();
 
 const HomeDataSchema = z
   .object({
@@ -104,53 +105,71 @@ const MentalWellnessDataSchema = z.object({
 const ChequeRequestSchema = z.object({
   title: z.string(),
   formLinks: z.array(
-    z.object({
-      title: z.string(),
-      link: z.string()
-    }).strict()
-  ),
-  process: z.object({
-    header: z.string(),
-    description: z.string(),
-    requirementsSubheader: z.string(),
-    requirements: z.array(
-      z.object({
-        descriptionMarkdown: z.string()
-      }).strict()
-    )
-  }).strict(),
-  additionalDocumentationItems: z.object({
-    header: z.string(),
-    items: z.array(
-      z.object({
+    z
+      .object({
         title: z.string(),
-        description: z.string()
+        link: z.string(),
       })
-    )
-  }).strict(),
-  frequentlyAskedQuestions: z.object({
-    header: z.string(),
-    questions: z.array(
-      z.object({
-        question: z.string(),
-        questionMarkdown: z.string()
-      }).strict()
-    )
-  }).strict(),
-  otherForms: z.object({
-    header: z.string(),
-    footnote: z.string(),
-    forms: z.array(
-      z.object({
-        title:z.string(),
-        link: z.string()
-      }).strict()
-    )
-  }).strict(),
-  mathSocFees: z.object({
-    header: z.string(),
-    description: z.string()
-  }).strict()
+      .strict()
+  ),
+  process: z
+    .object({
+      header: z.string(),
+      description: z.string(),
+      requirementsSubheader: z.string(),
+      requirements: z.array(
+        z
+          .object({
+            descriptionMarkdown: z.string(),
+          })
+          .strict()
+      ),
+    })
+    .strict(),
+  additionalDocumentationItems: z
+    .object({
+      header: z.string(),
+      items: z.array(
+        z.object({
+          title: z.string(),
+          description: z.string(),
+        })
+      ),
+    })
+    .strict(),
+  frequentlyAskedQuestions: z
+    .object({
+      header: z.string(),
+      questions: z.array(
+        z
+          .object({
+            question: z.string(),
+            questionMarkdown: z.string(),
+          })
+          .strict()
+      ),
+    })
+    .strict(),
+  otherForms: z
+    .object({
+      header: z.string(),
+      footnote: z.string(),
+      forms: z.array(
+        z
+          .object({
+            title: z.string(),
+            link: z.string(),
+          })
+          .strict()
+      ),
+    })
+    .strict(),
+  mathSocFees: z
+    .object({
+      header: z.string(),
+      description: z.string(),
+    })
+    .strict(),
 });
 
 const DiscordAccessSchema = z.object({
@@ -158,36 +177,34 @@ const DiscordAccessSchema = z.object({
   subheader: z.string(),
   steps: z.array(
     z
-    .object({
-      title: z.string(),
-      text: z.string(),
-      img: z.string(),
-    }).strict()
+      .object({
+        title: z.string(),
+        text: z.string(),
+        img: z.string(),
+      })
+      .strict()
   ),
 });
 
-const StudentServicesSchema= z.object({
+const StudentServicesSchema = z.object({
   sections: z.array(
-    z
-    .object({
+    z.object({
       title: z.string(),
       description: z.string(),
       subdescription: z.string(),
       items: z.array(
-        z
-        .object({
-          item: z.string()
+        z.object({
+          item: z.string(),
         })
       ),
       contacts: z.array(
-        z
-        .object({
-          contact: z.string()
+        z.object({
+          contact: z.string(),
         })
       ),
-      img: z.string()
+      img: z.string(),
     })
-  )
+  ),
 });
 
 const ServicesMathsocOffice = z
@@ -198,23 +215,22 @@ const ServicesMathsocOffice = z
       .object({
         rentals: z.object({
           title: z.string(),
-          description: z.string()
+          description: z.string(),
         }),
         printing: z.object({
           title: z.string(),
-          description: z.string()
+          description: z.string(),
         }),
         novelties: z.object({
           title: z.string(),
-          description: z.string()
-        })
+          description: z.string(),
+        }),
       })
       .strict(),
     novelties: z.unknown({}), // intentionally not strict
-    serviceMarkdown: z.string()
+    serviceMarkdown: z.string(),
   })
   .strict();
-
 
 const CartoonsAboutUsDataSchema = z.object({
   pageTitle: z.string(),
@@ -342,51 +358,63 @@ const ClubsSchema = z.object({
       link: z.string(),
       icon: z.string(),
     })
-  )
+  ),
 });
 
-const CommunitySchema = z.object({
-  communityHeader: z.string(),
-  communities: z.array(
-    z.object({
-      title: z.string(),
-      descriptionMarkdown: z.string(),
-      link: z.string(),
-    }).strict()
-  )
-}).strict();
-
-const DocumentsBudgetsSchema = z.object({
-  descriptionMarkdown: z.string(),
-  budgets: z.array(
-    z.object({
-      year: z.number(),
-      fall: z.string(),
-      winter: z.string(),
-      spring: z.string(),
-    }).strict()
-  )
-}).strict();
-
-const DocumentsMeetingsSchema = z.object({
-  descriptionMarkdown: z.string(),
-  meetingGroups: z.array(
-    z.object({
-      type: z.string(),
-      meetings: z.array(
-        z.object({
-          term: z.number(),
-          date: z.string(),
-          agendaLink: z.string(),
-          minutesLink: z.string(),
+const CommunitySchema = z
+  .object({
+    communityHeader: z.string(),
+    communities: z.array(
+      z
+        .object({
+          title: z.string(),
+          descriptionMarkdown: z.string(),
+          link: z.string(),
+          icon: z.string(),
         })
         .strict()
-      ),
-    })
-    .strict()
-  ),
-})
-.strict();
+    ),
+  })
+  .strict();
+
+const DocumentsBudgetsSchema = z
+  .object({
+    descriptionMarkdown: z.string(),
+    budgets: z.array(
+      z
+        .object({
+          year: z.number(),
+          fall: z.string(),
+          winter: z.string(),
+          spring: z.string(),
+        })
+        .strict()
+    ),
+  })
+  .strict();
+
+const DocumentsMeetingsSchema = z
+  .object({
+    descriptionMarkdown: z.string(),
+    meetingGroups: z.array(
+      z
+        .object({
+          type: z.string(),
+          meetings: z.array(
+            z
+              .object({
+                term: z.number(),
+                date: z.string(),
+                agendaLink: z.string(),
+                minutesLink: z.string(),
+              })
+              .strict()
+          ),
+        })
+        .strict()
+    ),
+  })
+  .strict();
 
 export {
   CartoonsAboutUsDataSchema,
