@@ -5,15 +5,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
-export const EditorPageV2: React.FC<{ source: string; name: string }> = ({
-  source,
-  name,
-}) => {
+export const EditorPageV2: React.FC<{ source: string }> = ({ source }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="editor-page-container">
         <EditorSideMenu />
-        <EditorV2 source={source} name={name} />
+        <EditorV2 source={source} />
       </div>
     </QueryClientProvider>
   );

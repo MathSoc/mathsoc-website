@@ -15,10 +15,7 @@ export const EditorContext = createContext<{
   couldBeArray: (array: object) => boolean;
 }>(null);
 
-export const EditorV2: React.FC<{ source: string; name: string }> = ({
-  name,
-  source,
-}) => {
+export const EditorV2: React.FC<{ source: string }> = ({ source }) => {
   const {
     data,
     isModified,
@@ -117,8 +114,11 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
     >
       <div className="editorv2">
         <div className="editor-content">
-          <h2>Edit: {name}</h2>
-          <EditorNode name={source} path={[]} value={getDataValue([])} />
+          <EditorNode
+            name={source.replace(".json", "")}
+            path={[]}
+            value={getDataValue([])}
+          />
         </div>
         <div className="save-button-container">
           <button className="save pink-button" onClick={saveData}>

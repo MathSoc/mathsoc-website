@@ -1,13 +1,11 @@
 import express, { Request, Response } from "express";
 import adminPages from "../config/admin/admin-pages.json";
 import { PageLoader } from "./controllers/page-loader";
-import { getFormattedURL } from "../util/util";
 import { AdminPageOutflow, PageOutflow } from "../types/routing";
 import { AdminMiddleware } from "../auth/google";
 
 interface EditorPageOutflow extends PageOutflow {
   editorSource: string;
-  editorName: string;
 }
 
 class AdminRoutesConstructor {
@@ -41,7 +39,6 @@ class AdminRoutesConstructor {
         ...genericEditorPageOutflow,
 
         editorSource: filename,
-        editorName: getFormattedURL(filename),
       };
       res.render(`pages/admin/generic-editor.pug`, editorOutflow);
     });
