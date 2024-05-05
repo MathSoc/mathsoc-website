@@ -37,8 +37,6 @@ export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
     const newItemPath = path.concat(transformedData.length.toString());
     const newItemSchema = getSchemaValue(path)[0];
 
-    // console.log(newItemPath, newItemSchema);
-
     setDataValue(newItemPath, newItemSchema);
   };
 
@@ -48,15 +46,21 @@ export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
       headerButtons={[{ name: "Add", onClick: addItem }]}
     >
       {transformedData.map((entry, index) => {
+        if (entry === null) {
+          return null;
+        }
+
         const nextPath = path.concat(index.toString());
         return (
           <EditorNode
-            name={`Item ${index + 1}`}
+            name={`${props.name} item ${index + 1}`}
             headerButtons={[
               { name: "Remove", onClick: () => removeItem(index) },
             ]}
-            // need both the entry and index for a unique key that maintains uniqueness after array reordering
-            key={`${JSON.stringify(entry)}-${index}`}
+            /**
+             * The data index is persistent across re-renders
+             */
+            key={index}
             path={nextPath}
             value={entry}
             theme={"grey"}

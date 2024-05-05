@@ -13,6 +13,10 @@ export const EditorObjectNode: React.FC<EditorNodeProps> = (props) => {
     throw new Error(`Bad object node at ${path}: ${JSON.stringify(data)}`);
   }
 
+  if (data === null) {
+    return null;
+  }
+
   const entries = Object.entries(data);
 
   return (

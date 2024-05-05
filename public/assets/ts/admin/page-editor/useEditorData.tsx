@@ -17,106 +17,116 @@ export const useEditorData = (source: string) => {
     return !(originalDataString === JSON.stringify(data));
   }, [data, originalDataString]);
 
-  const getDataValue = (path: string[]) => {
-    return getDataValueRecursive(path, data);
-  };
+  const getDataValueRecursive = useCallback(
+    (path: string[], remainingData: object) => {
+      if (path.length === 0) {
+        return remainingData;
+      }
 
-  const getSchemaValue = (path: string[]) => {
-    const parsedSchema = JSON.parse(schema);
-    return getSchemaValueRecursive(path, parsedSchema);
-  };
+      const smallerValue = remainingData[path[0]];
+      const remainingPath = path.slice(1);
 
-  const getDataValueRecursive = (path: string[], remainingData: object) => {
-    if (path.length === 0) {
-      return remainingData;
-    }
+      return getDataValueRecursive(remainingPath, smallerValue);
+    },
+    []
+  );
 
-    const smallerValue = remainingData[path[0]];
-    const remainingPath = path.slice(1);
+  const getDataValue = useCallback(
+    (path: string[]) => {
+      return getDataValueRecursive(path, data);
+    },
+    [data, getDataValueRecursive]
+  );
 
-    return getDataValueRecursive(remainingPath, smallerValue);
-  };
+  const getSchemaValueRecursive = useCallback(
+    (path: string[], remainingSchema: object) => {
+      if (path.length === 0) {
+        return remainingSchema;
+      }
 
-  const getSchemaValueRecursive = (path: string[], remainingSchema: object) => {
-    if (path.length === 0) {
-      return remainingSchema;
-    }
+      // whereas data has several entries per array, a schema only ever has one. this allows us to use the same
+      //  path regardless
+      let smallerValue: object;
+      if (!isNaN(parseInt(path[0]))) {
+        smallerValue = remainingSchema[0];
+      } else {
+        smallerValue = remainingSchema[path[0]];
+      }
 
-    // whereas data has several entries per array, a schema only ever has one. this allows us to use the same
-    //  path regardless
-    let smallerValue: object;
-    if (!isNaN(parseInt(path[0]))) {
-      smallerValue = remainingSchema[0];
-    } else {
-      smallerValue = remainingSchema[path[0]];
-    }
+      const remainingPath = path.slice(1);
 
-    const remainingPath = path.slice(1);
+      return getSchemaValueRecursive(remainingPath, smallerValue);
+    },
+    []
+  );
 
-    return getSchemaValueRecursive(remainingPath, smallerValue);
-  };
+  const getSchemaValue = useCallback(
+    (path: string[]) => {
+      const parsedSchema = JSON.parse(schema);
+      return getSchemaValueRecursive(path, parsedSchema);
+    },
+    [schema, getSchemaValueRecursive]
+  );
 
-  const setDataValue = (path: string[], value: any) => {
-    setData({ ...setDataValueRecursive(path, data, value) });
-  };
-
-  const setDataValueRecursive = (
-    path: string[],
-    remainingData: object,
-    value: any
-  ): object => {
-    if (path.length === 1) {
-      remainingData[path[0]] = value;
-    } else {
-      remainingData[path[0]] = setDataValueRecursive(
-        path.slice(1),
-        remainingData[path[0]],
-        value
-      );
-    }
-
-    return remainingData;
-  };
-
-  const couldBeArray = (array: object) => {
-    return Object.keys(array)
-      .map((key) => parseInt(key))
-      .every((key) => !isNaN(key));
-  };
-
-  const arrayLiketoArray = (arrayLike: object | any[]) => {
-    return Object.keys(arrayLike).map((key) => arrayLike[key]);
-  };
-
-  const removeDataArrayElement = (path: string[], index: number) => {
-    setData(removeDataArrayElementRecursive(path, data, index));
-  };
-
-  const removeDataArrayElementRecursive = (
-    path: string[],
-    remainingData: object,
-    index: number
-  ): object => {
-    if (path.length === 0) {
-      if (!couldBeArray(remainingData)) {
-        throw new Error(
-          `No array found at ${path} with ${JSON.stringify(remainingData)}`
+  const setDataValueRecursive = useCallback(
+    (path: string[], remainingData: object, value: any): object => {
+      if (path.length === 1) {
+        remainingData[path[0]] = value;
+      } else {
+        remainingData[path[0]] = setDataValueRecursive(
+          path.slice(1),
+          remainingData[path[0]],
+          value
         );
       }
 
-      const array = arrayLiketoArray(remainingData);
-      array.splice(index, 1);
-      remainingData = array;
-    } else {
-      remainingData[path[0]] = removeDataArrayElementRecursive(
-        path.slice(1),
-        remainingData[path[0]],
-        index
-      );
-    }
+      return remainingData;
+    },
+    []
+  );
 
-    return remainingData;
-  };
+  const setDataValue = useCallback(
+    (path: string[], value: any) => {
+      setData({ ...setDataValueRecursive(path, data, value) });
+    },
+    [data, setDataValueRecursive]
+  );
+
+  const couldBeArray = useCallback((array: object) => {
+    return Object.keys(array)
+      .map((key) => parseInt(key))
+      .every((key) => !isNaN(key));
+  }, []);
+
+  const removeDataArrayElementRecursive = useCallback(
+    (path: string[], remainingData: object, index: number): object => {
+      if (path.length === 0) {
+        if (!couldBeArray(remainingData)) {
+          throw new Error(
+            `No array found at ${path} with ${JSON.stringify(remainingData)}`
+          );
+        }
+
+        remainingData[index] = null;
+      } else {
+        remainingData[path[0]] = removeDataArrayElementRecursive(
+          path.slice(1),
+          remainingData[path[0]],
+          index
+        );
+      }
+
+      return remainingData;
+    },
+    [couldBeArray]
+  );
+
+  const removeDataArrayElement = useCallback(
+    (path: string[], index: number) => {
+      setData(removeDataArrayElementRecursive(path, data, index));
+    },
+    [data, removeDataArrayElementRecursive]
+  );
 
   const resetSchema = useCallback(() => {
     fetch(`/api/data/schema/?path=${source}`).then(async (response) => {
@@ -124,7 +134,7 @@ export const useEditorData = (source: string) => {
       setSchema(parsedResponse);
       console.log("schema fetched", parsedResponse);
     });
-  }, [source, setSchema]);
+  }, [source]);
 
   useEffect(() => {
     if (queryData != null) {
@@ -133,7 +143,7 @@ export const useEditorData = (source: string) => {
     }
   }, [queryData]);
 
-  useEffect(resetSchema, [resetSchema]);
+  useEffect(() => resetSchema(), [resetSchema]);
 
   return {
     data,
