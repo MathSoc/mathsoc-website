@@ -27,7 +27,7 @@ const dataValidator: (schema: z.ZodTypeAny) => ExpressValidator = (
     const data = req.body;
     const parsed = schema.safeParse(data);
 
-    return parsed.success ? next() : res.status(401).send(parsed).end();
+    return parsed.success ? next() : res.status(406).send(parsed).end();
   };
 };
 

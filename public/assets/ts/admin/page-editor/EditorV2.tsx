@@ -13,7 +13,6 @@ export const EditorContext = createContext<{
    * Necessary to mimic Array.isArray, where it accepts both real arrays and objects of the form `{0: ..., 1: ..., 2: ...}`
    */
   couldBeArray: (array: object) => boolean;
-  removeDataArrayElement: (path: string[], index: number) => void;
 }>(null);
 
 export const EditorV2: React.FC<{ source: string; name: string }> = ({
@@ -27,8 +26,8 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
     getDataValue,
     setDataValue,
     getSchemaValue,
+    getSaveableData,
     couldBeArray,
-    removeDataArrayElement,
   } = useEditorData(source);
 
   const onAttemptedPageExit = useCallback(
@@ -73,7 +72,7 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(getSaveableData()),
     }).then((response) => {
       const responseCodeClass = Math.floor(response.status / 100) * 100;
 
@@ -108,7 +107,6 @@ export const EditorV2: React.FC<{ source: string; name: string }> = ({
         setDataValue,
         getSchemaValue,
         couldBeArray,
-        removeDataArrayElement,
       }}
     >
       <div className="editorv2">

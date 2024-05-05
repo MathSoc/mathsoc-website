@@ -31,12 +31,61 @@ export const useEditorData = (source: string) => {
     []
   );
 
+  /**
+   * Returns data[path]. This can be used to obtain nested values.
+   */
   const getDataValue = useCallback(
     (path: string[]) => {
       return getDataValueRecursive(path, data);
     },
     [data, getDataValueRecursive]
   );
+
+  /**
+   * Returns whether an object is arraylike; that is, whether it is of the shape {0: ..., 1: ..., ...}
+   */
+  const couldBeArray = useCallback((array: object) => {
+    return Object.keys(array)
+      .map((key) => parseInt(key))
+      .every((key) => !isNaN(key));
+  }, []);
+
+  const getSaveableDataRecursive = useCallback(
+    (subData: object) => {
+      if (typeof subData === "object") {
+        if (Array.isArray(subData)) {
+          subData = subData
+            .filter((entry) => !!entry) // filter out null data
+            .map((entry) => {
+              return getSaveableDataRecursive(entry);
+            });
+        } else {
+          if (couldBeArray(subData)) {
+            return getSaveableDataRecursive(
+              Object.entries(subData)
+                .sort((a, b) => (a[0] < b[0] ? -1 : 1))
+                .map((a) => a[1])
+            );
+          } else {
+            for (const key in subData) {
+              subData[key] = getSaveableDataRecursive(subData[key]);
+            }
+            return subData;
+          }
+        }
+      }
+
+      return subData;
+    },
+    [couldBeArray]
+  );
+
+  /**
+   * Returns `data` with all arraylike objects turned into arrays
+   */
+  const getSaveableData = useCallback(() => {
+    return getSaveableDataRecursive(data);
+  }, [data, getSaveableDataRecursive]);
 
   const getSchemaValueRecursive = useCallback(
     (path: string[], remainingSchema: object) => {
@@ -60,6 +109,9 @@ export const useEditorData = (source: string) => {
     []
   );
 
+  /**
+   * Returns schema[path]. This can be used to obtain nested values.
+   */
   const getSchemaValue = useCallback(
     (path: string[]) => {
       const parsedSchema = JSON.parse(schema);
@@ -85,6 +137,9 @@ export const useEditorData = (source: string) => {
     []
   );
 
+  /**
+   * Sets `data[path] = value`. This can be used to set nested values.
+   */
   const setDataValue = useCallback(
     (path: string[], value: any) => {
       setData({ ...setDataValueRecursive(path, data, value) });
@@ -92,42 +147,9 @@ export const useEditorData = (source: string) => {
     [data, setDataValueRecursive]
   );
 
-  const couldBeArray = useCallback((array: object) => {
-    return Object.keys(array)
-      .map((key) => parseInt(key))
-      .every((key) => !isNaN(key));
-  }, []);
-
-  const removeDataArrayElementRecursive = useCallback(
-    (path: string[], remainingData: object, index: number): object => {
-      if (path.length === 0) {
-        if (!couldBeArray(remainingData)) {
-          throw new Error(
-            `No array found at ${path} with ${JSON.stringify(remainingData)}`
-          );
-        }
-
-        remainingData[index] = null;
-      } else {
-        remainingData[path[0]] = removeDataArrayElementRecursive(
-          path.slice(1),
-          remainingData[path[0]],
-          index
-        );
-      }
-
-      return remainingData;
-    },
-    [couldBeArray]
-  );
-
-  const removeDataArrayElement = useCallback(
-    (path: string[], index: number) => {
-      setData(removeDataArrayElementRecursive(path, data, index));
-    },
-    [data, removeDataArrayElementRecursive]
-  );
-
+  /**
+   * Fetches the data schema from the server
+   */
   const resetSchema = useCallback(() => {
     fetch(`/api/data/schema/?path=${source}`).then(async (response) => {
       const parsedResponse = JSON.stringify(await response.json());
@@ -152,9 +174,9 @@ export const useEditorData = (source: string) => {
     getDataValue,
     setDataValue,
 
+    getSaveableData,
     getSchemaValue,
 
     couldBeArray,
-    removeDataArrayElement,
   };
 };

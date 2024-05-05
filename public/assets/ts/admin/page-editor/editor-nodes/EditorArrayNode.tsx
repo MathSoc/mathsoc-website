@@ -5,13 +5,8 @@ import { EditorNode } from "./EditorNode";
 
 export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
   const { path } = props;
-  const {
-    getDataValue,
-    getSchemaValue,
-    setDataValue,
-    couldBeArray,
-    removeDataArrayElement,
-  } = React.useContext(EditorContext);
+  const { getDataValue, getSchemaValue, setDataValue, couldBeArray } =
+    React.useContext(EditorContext);
   const [version, setVersion] = useState(0);
 
   const data = getDataValue(path);
@@ -29,7 +24,7 @@ export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
   }, [data]);
 
   const removeItem = (index: number) => {
-    removeDataArrayElement(path, index);
+    setDataValue(path.concat(index.toString()), null);
     setVersion(version + 1);
   };
 
