@@ -7,7 +7,9 @@ function findEntrypoints(subdirectory) {
   let results = [];
 
   for (const entryname of entrynames) {
-    if (entryname.includes(".ts")) {
+    if (entryname.includes(".md")) {
+      continue;
+    } else if (entryname.includes(".ts")) {
       results.push(`${subdirectory}${entryname}`.replace(/\.ts$/, ""));
     } else {
       results = results.concat(findEntrypoints(`${subdirectory}${entryname}/`));
