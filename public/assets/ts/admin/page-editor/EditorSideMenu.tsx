@@ -70,7 +70,7 @@ const EditorSideMenuSubdirectoryLayer: React.FC<{
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   return (
-    <li key={name}>
+    <li>
       <button onClick={() => setIsOpen(!isOpen)}>{name}</button>
       {isOpen ? <EditorSideMenuLayer layer={subdirectory} /> : null}
     </li>
