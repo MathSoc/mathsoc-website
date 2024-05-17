@@ -25,8 +25,7 @@ export const EditorNodeTemplate: React.FC<
       ?.replace(/([A-Z])/g, " $1")
       .split(" ")
       .map((word) => {
-        if (!word) return "";
-        if (word.includes("Markdown")) return "";
+        if (!word || word.includes("Markdown")) return "";
         return word[0].toUpperCase() + word.slice(1);
       })
       .join(" ");
