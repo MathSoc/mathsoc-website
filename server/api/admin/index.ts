@@ -8,6 +8,7 @@ import { DocumentController } from "../controllers/document-controller";
 import { AdminMiddleware } from "../../auth/google";
 import { CartoonsController } from "../controllers/cartoons-controller";
 import fs from "fs";
+import { EditorDirectoryStructureConstructor } from "../../routes/controllers/editor-directory-structure-constructor";
 
 const router = express.Router();
 
@@ -22,6 +23,13 @@ const DOCUMENT_URL = "_hidden/document-list";
 router.use(AdminMiddleware);
 
 ExamBankController.rewriteFile();
+
+router.get("/editor/structure", (_req: Request, res: Response) => {
+  res
+    .status(200)
+    .json(EditorDirectoryStructureConstructor.getDataDirectoryStructure())
+    .end();
+});
 
 router.post("/exams/rebuild", (_req: Request, res: Response) => {
   ExamBankController.rewriteFile();
@@ -64,7 +72,11 @@ router.get("/data/schema", (req: Request, res: Response) => {
 
 router.post("/data", validate, (req: Request, res: Response) => {
   if (typeof req.query.path === "string") {
-    ReadWriteAPIController.overwriteJSONDataPath(req.query.path, res, req.body);
+    ReadWriteAPIController.overwriteJSONDataPath(
+      req.query.path.replace(".json", ""),
+      res,
+      req.body
+    );
   } else {
     res.status(400).end();
   }

@@ -7,7 +7,9 @@ function findEntrypoints(subdirectory) {
   let results = [];
 
   for (const entryname of entrynames) {
-    if (entryname.includes(".ts")) {
+    if (entryname.includes(".md")) {
+      continue;
+    } else if (entryname.includes(".ts")) {
       results.push(`${subdirectory}${entryname}`.replace(/\.ts$/, ""));
     } else {
       results = results.concat(findEntrypoints(`${subdirectory}${entryname}/`));
@@ -26,6 +28,7 @@ const entrypoints = findEntrypoints("").reduce((map, currentPath) => {
 }, {});
 
 module.exports = {
+  devtool: "source-map",
   entry: entrypoints,
   output: {
     filename: "[name].js",
@@ -38,12 +41,13 @@ module.exports = {
         test: /\.[jt]sx?$/,
         use: [
           {
-            loader: "babel-loader",
+            loader: "ts-loader",
             options: {
-              presets: [["@babel/preset-env", { targets: "defaults" }]],
+              compilerOptions: {
+                sourceMap: true,
+              },
             },
           },
-          "ts-loader",
         ],
         exclude: /node_modules/,
       },

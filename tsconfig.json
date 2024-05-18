@@ -3,14 +3,19 @@
     "declaration": false,
     "esModuleInterop": true,
     "incremental": true,
+    "jsx": "react",
     "module": "CommonJS",
     "outDir": "public/assets/js",
     "moduleResolution": "node",
     "removeComments": true,
     "resolveJsonModule": true,
-    "sourceMap": false
+    "sourceMap": true
   },
-  "include": ["public/assets/ts/**/*.ts"],
+  "include": [
+    "public/assets/ts/**/*.ts",
+    "public/assets/ts/**/*.tsx",
+    "public/assets/ts/admin/generic-editor.tsx"
+  ],
   "ts-node": {
     "swc": true
   }

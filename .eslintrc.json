@@ -1,11 +1,8 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true
-  },
   "extends": [
     "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
@@ -15,12 +12,14 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "root": true,
+  "plugins": ["@typescript-eslint", "react"],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-inferrable-types": "off",
     "no-unused-expressions": "error",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "error"
-  }
+  },
+  "settings": { "react": { "version": "detect" } }
 }

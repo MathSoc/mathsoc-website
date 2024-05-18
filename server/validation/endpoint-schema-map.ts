@@ -36,10 +36,6 @@ const buildShapeFromZodSchema = (schema: Zod.ZodTypeAny) => {
   if (schema === null || schema === undefined)
     throw new Error("Unexpected state: undefined schema");
 
-  // check if schema is nullable or optional
-  if (schema instanceof Zod.ZodNullable || schema instanceof Zod.ZodOptional)
-    return null;
-
   // check if schema is an array
   if (schema instanceof Zod.ZodArray) {
     return [buildShapeFromZodSchema(schema.element)];
@@ -71,6 +67,6 @@ export const validate = (req: Request, res: Response, next: NextFunction) => {
   validator(req, res, next);
 };
 
-export const getSchema = (filePath: string) => {
+export const getSchema = (filePath: string): object => {
   return buildShapeFromZodSchema(mapping[filePath as string]);
 };
