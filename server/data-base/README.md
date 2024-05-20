@@ -6,5 +6,6 @@ This is the data server in this directory. All the page data is stored here, as 
 - Once the above step is done, create a schema for your new file in `server/types/schemas.ts`. This schema ensures that the data sent back from the CMS is valid and exactly how we expect it. Take a look at the other schemas in the file to figure out how we want this done.
 - Next, go to `server/validation/data-paths.ts` and add your new file and its path to the enum. This should be doable just by looking at the file.
 - Next, go to `server/validation/endpoint-schema-map.ts` and add your addition to the enum into to endpoint mapping. This should also be doable just by looking at the file.
+- Finally, put an original copy of the data file in `/server/data-base`. This is what will be loaded when this environment is initially loaded, such as when we pull a new version of the website or set it up on a machine for the first time.
 
-If you have any questions, feel free to reach out to Aryaman or River on Discord.
+If you have any questions, feel free to reach out to a web dev lead on Discord.

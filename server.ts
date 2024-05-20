@@ -15,7 +15,6 @@ import GoogleAuthRoutes from "./server/auth/google";
 import adminRoutes from "./server/routes/admin-routes";
 import api from "./server/api";
 import { Logger, loggerMiddleware } from "./server/util/logger";
-import { DirectoryPrebuilder } from "./server/util/directory-prebuilder";
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import session from "express-session";
@@ -29,8 +28,6 @@ const port = process.env.PORT || 3000;
 app.set("view engine", "pug");
 
 app.locals.basedir = path.join(__dirname, "");
-
-DirectoryPrebuilder.prebuild();
 setUpPassport();
 
 app
