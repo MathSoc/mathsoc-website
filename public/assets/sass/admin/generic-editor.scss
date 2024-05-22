@@ -59,6 +59,83 @@
     padding: $padding;
     width: calc(100% - 2 * $padding);
   }
+
+  .editor-image-node-inner {
+    img {
+      max-height: 150px;
+      max-width: 150px;
+      cursor: pointer;
+    }
+
+    .editor-image-node-buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      font-size: 12px;
+
+      button {
+        cursor: pointer;
+        
+        &:focus-visible {
+          outline: auto;
+        }
+
+        &:hover {
+          background-color: var(--background-hover);
+        }
+      }
+      
+      .image-node-item {
+        flex: 1;
+        display: block;
+
+        background-color: var(--background-colour-3);
+      }
+    }
+
+
+    .hidden-file-uploader {
+      display: none;
+    }
+  }
+
+  #editor-image-upload-modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #8888;
+
+    #editor-image-upload-modal-container {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      translate: -50% 0;
+      width: 80%;
+      background-color: var(--background-colour);
+      border: 2px solid var(--mathsoc-pink);
+      padding: 16px;
+
+      #image-list {
+        display: flex;
+        gap: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .image-button {
+          max-width: 250px;
+          max-height: 250px;
+          cursor: pointer;
+
+          img {
+            max-width: 100%;
+            max-height: 100%;
+          }
+        }
+      }
+    }
+  }
 }
 
 .editor-name {

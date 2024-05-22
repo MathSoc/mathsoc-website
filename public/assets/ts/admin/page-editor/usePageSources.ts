@@ -10,5 +10,8 @@ export const usePageSources = (source: string) => {
       const result = await res.json();
       return result;
     },
+    // this prevents image edits from being reset
+    //   every time you leave the window.
+    refetchOnWindowFocus: false,
   });
 };
