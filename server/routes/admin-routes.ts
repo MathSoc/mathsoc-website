@@ -31,7 +31,7 @@ class AdminRoutesConstructor {
     );
 
     router.get("/admin/editor", async (req: Request, res: Response) => {
-      const file = req.query["page"] ?? "home";
+      const file = req.query["page"] ?? "contact-us";
       const filename: string =
         typeof file === "string" ? file : file.toString();
 
