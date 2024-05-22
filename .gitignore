@@ -6,6 +6,7 @@
 /public/assets/documents
 /public/assets/img/cartoons/uploads
 /public/exams
+/server/data
 
 # ensure that any files under _hidden are added to DirectoryPrebuilder
 /server/data/_hidden/*
