@@ -1,4 +1,5 @@
 import "dotenv/config";
+import fs from "fs";
 
 // Will always prevent server initialization if this token is absent
 const requiredTokens = {
@@ -35,18 +36,34 @@ const catchEmptyVariables = (tokenMap: Record<string, any>) => {
   }
 };
 
-catchEmptyVariables(requiredTokens);
-if (requiredTokens.IS_DEVELOPMENT !== "true") {
-  catchEmptyVariables(authTokens);
-  catchEmptyVariables(requiredForProdTokens);
-}
+const logEmptyVariablesAndMaybeExit = () => {
+  if (missingTokens.length) {
+    missingTokens.forEach((item) =>
+      console.error(`${item} is missing from .env`)
+    );
 
-if (missingTokens.length) {
-  missingTokens.forEach((item) =>
-    console.error(`${item} is missing from .env`)
+    console.error(
+      "Add the environment variables listed above to your .env file. See .env.example for an example"
+    );
+    process.exit(1);
+  }
+};
+
+if (!fs.existsSync(".env")) {
+  console.error(
+    ".env file not found. Create a .env file in the root directory."
   );
 
   process.exit(1);
 }
+
+catchEmptyVariables(requiredTokens);
+logEmptyVariablesAndMaybeExit();
+
+if (requiredTokens.IS_DEVELOPMENT !== "true") {
+  catchEmptyVariables(authTokens);
+  catchEmptyVariables(requiredForProdTokens);
+}
+logEmptyVariablesAndMaybeExit();
 
 export default { ...requiredTokens, ...requiredForProdTokens, ...authTokens };
