@@ -1,13 +1,14 @@
 import "dotenv/config";
+import fs from "fs";
 
 // Will always prevent server initialization if this token is absent
 const requiredTokens = {
   IS_DEVELOPMENT: process.env.IS_DEVELOPMENT,
+  EXPRESS_SESSION_SECRET: process.env.EXPRESS_SESSION_SECRET,
 };
 
 // Will only prevent server initialization on prod/staging
 const requiredForProdTokens = {
-  EXPRESS_SESSION_SECRET: process.env.EXPRESS_SESSION_SECRET,
   WATERLOO_OPEN_API_BASE_URL: process.env.WATERLOO_OPEN_API_BASE_URL,
   WATERLOO_OPEN_API_KEY: process.env.WATERLOO_OPEN_API_KEY,
 };
@@ -35,18 +36,34 @@ const catchEmptyVariables = (tokenMap: Record<string, any>) => {
   }
 };
 
-catchEmptyVariables(requiredTokens);
-if (requiredTokens.IS_DEVELOPMENT !== "true") {
-  catchEmptyVariables(authTokens);
-  catchEmptyVariables(requiredForProdTokens);
-}
+const logEmptyVariablesAndMaybeExit = () => {
+  if (missingTokens.length) {
+    missingTokens.forEach((item) =>
+      console.error(`${item} is missing from .env`)
+    );
 
-if (missingTokens.length) {
-  missingTokens.forEach((item) =>
-    console.error(`${item} is missing from .env`)
+    console.error(
+      "Add the environment variables listed above to your .env file. See .env.example for an example"
+    );
+    process.exit(1);
+  }
+};
+
+if (!fs.existsSync(".env")) {
+  console.error(
+    ".env file not found. Create a .env file in the root directory."
   );
 
   process.exit(1);
 }
+
+catchEmptyVariables(requiredTokens);
+logEmptyVariablesAndMaybeExit();
+
+if (requiredTokens.IS_DEVELOPMENT !== "true") {
+  catchEmptyVariables(authTokens);
+  catchEmptyVariables(requiredForProdTokens);
+}
+logEmptyVariablesAndMaybeExit();
 
 export default { ...requiredTokens, ...requiredForProdTokens, ...authTokens };
