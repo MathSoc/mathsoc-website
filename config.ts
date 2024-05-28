@@ -4,11 +4,11 @@ import fs from "fs";
 // Will always prevent server initialization if this token is absent
 const requiredTokens = {
   IS_DEVELOPMENT: process.env.IS_DEVELOPMENT,
+  EXPRESS_SESSION_SECRET: process.env.EXPRESS_SESSION_SECRET,
 };
 
 // Will only prevent server initialization on prod/staging
 const requiredForProdTokens = {
-  EXPRESS_SESSION_SECRET: process.env.EXPRESS_SESSION_SECRET,
   WATERLOO_OPEN_API_BASE_URL: process.env.WATERLOO_OPEN_API_BASE_URL,
   WATERLOO_OPEN_API_KEY: process.env.WATERLOO_OPEN_API_KEY,
 };
