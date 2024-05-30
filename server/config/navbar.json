@@ -90,6 +90,10 @@
         "title": "Elections",
         "ref": "/elections",
         "children": []
+      },
+      {
+        "title": "Important links",
+        "ref": "/resources/important-links"
       }
     ]
   },
