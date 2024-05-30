@@ -1,3 +1,33 @@
 {
-    "title": "Important Links"
+    "title": "Important Links",
+    "links": [
+        {
+            "title": "Volunteer with MathSoc",
+            "link": "https://mathsoc.uwaterloo.ca/volunteer-at-mathsoc/"
+        },
+        {
+            "title": "Trivia Night Teams Form",
+            "link": "https://docs.google.com/forms/d/e/1FAIpQLSedX8s3dxTJB4Yz18-9dVmpwvJmttaAzddgmeqQM3WpHFWb8A/viewform"
+        },
+        {
+            "title": "TSA Exec Application",
+            "link": "https://docs.google.com/forms/d/e/1FAIpQLScY-1MOG4Ra3nbOI_XKftKXfY1Qk1vl3dzsUJ8QWBnq_vp6sQ/viewform"
+        },
+        {
+            "title": "Charity Ball Photos",
+            "link": "https://drive.google.com/drive/folders/1J5UGDWfJ4cAMtTzhxVinSKsWa7kL2Ett"
+        },
+        {
+            "title": "MathSoc Council",
+            "link": "https://mathsoc.uwaterloo.ca/council/"
+        },
+        {
+            "title": "Exam Bank",
+            "link": "https://services.mathsoc.uwaterloo.ca/university/exambank"
+        },
+        {
+            "title": "Math CnD Feedback",
+            "link": "https://docs.google.com/forms/d/e/1FAIpQLSfInLEWnidUVs35HOs2-4nHoMfoo50lUuIH4rHsoeqXUKL6sg/viewform"
+        }
+    ]
 }
