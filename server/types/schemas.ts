@@ -416,6 +416,12 @@ const DocumentsMeetingsSchema = z
   })
   .strict();
 
+const ImportantLinksSchema = z
+  .object({
+    title: z.string(),
+  })
+  .strict();
+
 export {
   CartoonsAboutUsDataSchema,
   ChequeRequestSchema,
@@ -428,6 +434,7 @@ export {
   DocumentsMeetingsSchema,
   ElectionsDataSchema,
   HomeDataSchema,
+  ImportantLinksSchema,
   MentalWellnessDataSchema,
   StudentServicesSchema,
   ServicesMathsocOffice,
