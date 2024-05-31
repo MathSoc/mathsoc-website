@@ -1,3 +1,4 @@
+import { isConditionalExpression } from "typescript";
 import { z } from "zod";
 
 const VolunteerDataSchema = z
@@ -427,6 +428,7 @@ const ImportantLinksSchema = z
        })
        .strict()
      ),
+     icon: z.string()
   })
   .strict();
 
