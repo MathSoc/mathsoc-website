@@ -10,4 +10,6 @@ block body
     div(class="content")
         section 
             h1 #{data.title}
-            
+            each link in data.links
+                a(href=link.link target="_blank")
+                    h2 #{link.title}
