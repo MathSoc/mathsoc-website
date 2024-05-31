@@ -419,6 +419,14 @@ const DocumentsMeetingsSchema = z
 const ImportantLinksSchema = z
   .object({
     title: z.string(),
+    links: z.array(
+      z
+        .object({
+          title: z.string(),
+          link: z.string()
+       })
+       .strict()
+     ),
   })
   .strict();
 
