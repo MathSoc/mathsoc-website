@@ -1,2 +1,9 @@
 @import "../../util/_sass-mixins";
 @import "../../util/variables";
+
+section {
+    max-width: var(--content-width);
+    margin: 30px auto;
+    position: relative;
+    padding-top: 0;
+}
