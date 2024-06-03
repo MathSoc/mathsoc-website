@@ -8,7 +8,7 @@ block body
     +section("white")
       form(action="/api/volunteer-application" method="post")
         label(for="first-name" class="required") First Name
-        input(id="first-name" class="text-input" name="first-name" required maxlength="100")
+        input(id="first-name" class="text-input" name="first-name" required maxlength="100" pattern=".*[^ ].*" oninvalid="this.setCustomValidity('Please enter your first name')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')")
         
         label(for="preferred-name") Preferred Name
         input(id="preferred-name" class="text-input" name="preferred-name" maxlength="100")
@@ -42,7 +42,7 @@ block body
         textarea(id="interest" class="text-input" name="interest" required maxlength="6000" pattern=".*[^ ].*" oninvalid="this.setCustomValidity('Please enter your answer')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')")
 
         label(for="qualifications" class="required") How are you qualified for this position? What ideas and skills can you bring with you?
-        textarea(id="qualifications" class="text-input" name="qualifications" required maxlength="6000")
+        textarea(id="qualifications" class="text-input" name="qualifications" required maxlength="6000" pattern=".*[^ ].*" oninvalid="this.setCustomValidity('Please enter your answer')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')")
         
         label(for="more-info") Is there any other relevant information we should know while considering your application?
         textarea(id="more-info" class="text-input" name="more-info" maxlength="6000")
