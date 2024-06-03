@@ -57,7 +57,7 @@ export class VolunteerApplicationController {
     return this.sendMessage(formBody);
   }
 
-  static async sendMessage(
+  private static sendMessage(
     formBody: { firstName: any; preferredName?: any; lastName: any; program: string; term: string; coop: string; address: any; interest: string; qualifications: string; moreInfo?: string; role: string; execAddress: string; }
   ) {
     if (!process.env.forms_gmail_sender_username) {
