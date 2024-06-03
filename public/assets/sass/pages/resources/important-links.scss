@@ -3,72 +3,52 @@
 
 section {
     max-width: var(--content-width);
-    margin: 30px auto;
-    padding-left: 0;
-    position: relative;
-  
-    .stepper {
-      margin-top: 50px;
-      --size: 3.5rem;
-  
-      .stepper_item {
-        margin: 0;
-        position: relative;
-        display: flex;
-        gap: 1rem;
-        padding-bottom: 2rem;
-        pointer-events: none;
-      }
-      .stepper_item::before {
-        content: "";
-        position: relative;
-        z-index: 1;
-        flex: 0 0 var(--size);
-        height: var(--size);
-        border-radius: 50%;
-        background-color: var(--mathsoc-grey-2);
-        pointer-events: all;
-        transition: all .25s ease-out;
-        background-image: var(--icon);
-        background-size: 2rem;
-        background-repeat: no-repeat;
-        background-position: bottom 12px right 12px;
-      }
-      .stepper_item:hover::before {
-        pointer-events: all;
-        background-color: var(--mathsoc-pink-2);
-        transition: all .25s ease-in;
-      }
-      .stepper_item:not(:last-child):after {
-        content: "";
-        position: absolute;
-        width: .5px;
-        background-color: var(--mathsoc-pink-2);
-        transform: translateX(calc(var(--size) / 2));
-        top: calc(var(--size));
-        bottom: 0;
-      }
-  
-      .stepper_content {
-        display: flex;
-        align-items: center;
-      }
-  
-      .stepper_title {
-        margin: 0;
-        display: block;
-        color: var(--mathsoc-grey-2);
-        pointer-events: all;
-        transition: all .25s ease-out;
-      }
-  
-      .stepper_title:hover {
-        color: var(--mathsoc-pink-2);
-        transition: all .25s ease-in;
-      }
+    margin: auto;
+    text-align: center;
+
+    .list {
+        list-style-type: none;
+        padding-left: 0;
     }
-  
-    .link_link{
-      text-decoration: none;
-    }
-  }
+
+        .list-item-content {
+            border: 2px solid var(--mathsoc-pink-2);
+            border-radius: 3em;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        .list-item-content:hover {
+            background-color: var(--mathsoc-pink-2);
+            color: white;
+            transition: all .25s ease-in;
+        }
+
+        .list-item-content:hover .list-item-title {
+            color: white;
+            transition: .25s ease-in;
+        }
+
+        .list-item-content:hover .list-item-icon {
+            filter: invert(100%);
+            transition: .25s ease-in;
+        }
+    
+            .list-item-link {
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+                .list-item-icon {
+                    height: 100%;
+                    width: auto;
+                    padding-right: 1em;
+                }
+                
+                .list-item-title {
+                    margin: 0;
+                    font-weight: 400;
+                }
+}
