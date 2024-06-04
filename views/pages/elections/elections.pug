@@ -1,8 +1,8 @@
 extends /views/templates/frontend-base.pug
 
 block title
-  if data.length != 0
-    title #{data[0].term} Election &#8211; MathSoc
+  if data.electionsData.length != 0
+    title #{data.electionsData[0].term} Election &#8211; MathSoc
   else 
     title Election &#8211; MathSoc
 
@@ -10,8 +10,8 @@ append styles
   link(href="/assets/css/pages/elections.css" rel="stylesheet")
 
 block body
-  if data.length != 0
-    - const currentElection = data[0];
+  if data.electionsData.length != 0
+    - const currentElection = data.electionsData[0];
     - const openPositions = currentElection.candidates.map((c) => c.position).filter((position, index, array) => index === array.indexOf(position));
     +banner-image("/assets/img/banners/mathsoc-wall.jpeg", ["dark-grey"], `${currentElection.term} Election`)
     div(class="content")
@@ -79,4 +79,4 @@ block body
     div(class="content")
       +section(null,"white")
         div(class="elections-unavailable")
-          p Election information is currently unavailable. Please check back later.
+          p #{data.noElectionsMessage}
