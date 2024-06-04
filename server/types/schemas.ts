@@ -44,37 +44,40 @@ const HomeDataSchema = z
   })
   .strict();
 
-const ElectionsDataSchema = z.array(
-  z.object({
-    term: z.string(),
-    electionState: z.string(),
-    candidates: z.array(
-      z
-        .object({
-          name: z.string(),
-          position: z.string(),
-          elected: z.boolean(),
-          platformMarkdown: z.string(),
-        })
-        .strict()
-    ),
-    decisions: z.array(
-      z
-        .object({
-          candidate: z.string(),
-          date: z.string(),
-          allegationMarkdown: z.string().optional(),
-          defenseMarkdown: z.string().optional(),
-          decisionMarkdown: z.string().optional(),
-          penalties: z.array(z.string()).optional(),
-          penaltyDescriptionMarkdown: z.string().optional(),
-          appealMarkdown: z.string().optional(),
-          appealDecisionMarkdown: z.string().optional(),
-        })
-        .strict()
-    ),
-  })
-);
+const ElectionsDataSchema = z.object({
+  noElectionsMessage: z.string(),
+  electionsData: z.array(
+    z.object({
+      term: z.string(),
+      electionState: z.string(),
+      candidates: z.array(
+        z
+          .object({
+            name: z.string(),
+            position: z.string(),
+            elected: z.boolean(),
+            platformMarkdown: z.string(),
+          })
+          .strict()
+      ),
+      decisions: z.array(
+        z
+          .object({
+            candidate: z.string(),
+            date: z.string(),
+            allegationMarkdown: z.string().optional(),
+            defenseMarkdown: z.string().optional(),
+            decisionMarkdown: z.string().optional(),
+            penalties: z.array(z.string()).optional(),
+            penaltyDescriptionMarkdown: z.string().optional(),
+            appealMarkdown: z.string().optional(),
+            appealDecisionMarkdown: z.string().optional(),
+          })
+          .strict()
+      ),
+    })
+  ),
+});
 
 const MentalWellnessDataSchema = z.object({
   title: z.string(),

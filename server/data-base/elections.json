@@ -1,1 +1,5 @@
-[]
+{
+    "noElectionsMessage": "Election information is currently unavailable. Please check back later.",
+    "electionsData": []
+}
+
