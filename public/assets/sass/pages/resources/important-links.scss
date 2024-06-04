@@ -2,7 +2,7 @@
 @import "../../util/variables";
 
 section {
-    max-width: var(--content-width);
+    max-width: 600px;
     margin: auto;
     text-align: center;
 
@@ -13,14 +13,14 @@ section {
         .list-item-content {
             border: 2px solid var(--mathsoc-pink-2);
             border-radius: 3em;
-            padding: 1em;
             margin: 1em;
 
             .list-item-link {
                 text-decoration: none;
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                justify-content: space-between;
+                padding: 1em;
 
                 .list-item-icon {
                     height: 100%;
@@ -31,6 +31,8 @@ section {
                 .list-item-title {
                     margin: 0;
                     font-weight: 400;
+                    color: var(--mathsoc-pink-2);
+                    padding-left: 1em;
                 }
             }
         }
