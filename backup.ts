@@ -90,7 +90,7 @@ const runJobs = () => {
   job.start();
 };
 
-console.log("Initializing backup job...");
+console.info("Initializing backup job...");
 runJobs();
-console.log("Backup job initialized!");
+console.info("Backup job initialized!");
 process.exit();
