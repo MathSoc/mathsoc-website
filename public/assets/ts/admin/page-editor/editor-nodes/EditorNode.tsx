@@ -24,6 +24,9 @@ export const EditorNode: React.FC<EditorNodeProps & { value: any }> = (
     return <EditorImageNode {...props} />;
   } else if (props.name.includes("Markdown")) {
     return <EditorMarkdownNode {...props} />;
+  } else if(props.name === "version") {
+    // @todo make a non-editable EditorNode child to display the file version. That or display it by some other means. 
+    return null;
   } else {
     return <EditorLabelNode {...props} />;
   }
