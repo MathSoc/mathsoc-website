@@ -1,72 +1,82 @@
 extends /views/templates/frontend-base.pug
 
-block title 
-  title #{data[0].term} Election &#8211; MathSoc
+block title
+  if data.electionsData.length != 0
+    title #{data.electionsData[0].term} Election &#8211; MathSoc
+  else 
+    title Election &#8211; MathSoc
 
 append styles 
   link(href="/assets/css/pages/elections.css" rel="stylesheet")
 
-block body 
-  - const currentElection = data[0];
-  - const openPositions = currentElection.candidates.map((c) => c.position).filter((position, index, array) => index === array.indexOf(position));
-  +banner-image("/assets/img/banners/mathsoc-wall.jpeg", ["dark-grey"], `${currentElection.term} Election`)
-  div(class="content")
-    +section(null,"white")
-      div(class="title")
-      if currentElection.electionState === "complete"
-        h1 Election Complete
-        - const victors = openPositions.map((position) => currentElection.candidates.filter((candidate) => candidate.elected && candidate.position === position)[0]).filter(c => !!c);
-        div(class="results")
-          p The election has concluded.
-          ul  
-            each victor in victors
-              li #[strong #{victor.position}-elect]: #{victor.name}
-          p We thank all candidates for their efforts.
-
-    +banner-image("/assets/img/banners/exec-office.jpeg", ['pink', 'small'], 'Candidate Platforms')
-    +section(null,"white")
-      each position in openPositions 
-        div(class="position" id=position.toLowerCase().replaceAll(/\s/g, '-').replaceAll(/,/g, ''))
-          h2 Candidates for #{position}
-          - const candidates = currentElection.candidates.filter((c) => c.position == position); 
-          each candidate in candidates 
-            div(class="candidate " + [candidate.elected ? "elected" : ""])
-              h3=candidate.name
-              p!=candidate.platformMarkdown
-
-    if currentElection.decisions.length > 0
-      +banner-image("/assets/img/banners/pinktie-mc.jpeg", ['pink'], 'Allegations and Appeals')
+block body
+  if data.electionsData.length != 0
+    - const currentElection = data.electionsData[0];
+    - const openPositions = currentElection.candidates.map((c) => c.position).filter((position, index, array) => index === array.indexOf(position));
+    +banner-image("/assets/img/banners/mathsoc-wall.jpeg", ["dark-grey"], `${currentElection.term} Election`)
+    div(class="content")
       +section(null,"white")
-        h2 Decisions 
-        - 
-          const decisions = currentElection.decisions.map((decision, index) => {
-            decision.index = index;
-            return decision;
-          })
-        ul 
+        div(class="title")
+        if currentElection.electionState === "complete"
+          h1 Election Complete
+          - const victors = openPositions.map((position) => currentElection.candidates.filter((candidate) => candidate.elected && candidate.position === position)[0]).filter(c => !!c);
+          div(class="results")
+            p The election has concluded.
+            ul  
+              each victor in victors
+                li #[strong #{victor.position}-elect]: #{victor.name}
+            p We thank all candidates for their efforts.
+
+      +banner-image("/assets/img/banners/exec-office.jpeg", ['pink', 'small'], 'Candidate Platforms')
+      +section(null,"white")
+        each position in openPositions 
+          div(class="position" id=position.toLowerCase().replaceAll(/\s/g, '-').replaceAll(/,/g, ''))
+            h2 Candidates for #{position}
+            - const candidates = currentElection.candidates.filter((c) => c.position == position); 
+            each candidate in candidates 
+              div(class="candidate " + [candidate.elected ? "elected" : ""])
+                h3=candidate.name
+                p!=candidate.platformMarkdown
+
+      if currentElection.decisions.length > 0
+        +banner-image("/assets/img/banners/pinktie-mc.jpeg", ['pink'], 'Allegations and Appeals')
+        +section(null,"white")
+          h2 Decisions 
+          - 
+            const decisions = currentElection.decisions.map((decision, index) => {
+              decision.index = index;
+              return decision;
+            })
+          ul 
+            each decision of decisions 
+              a(href="#decision-" + decision.index)
+                li #{decision.candidate}
           each decision of decisions 
-            a(href="#decision-" + decision.index)
-              li #{decision.candidate}
-        each decision of decisions 
-          div(class="elections-decision" id="decision-" + decision.index)
-            h2 Against #{decision.candidate}
-            span #[strong Submitted:] #{decision.date}
-            div(class="decision-body")
-              h3 Summary of allegation:
-              p!=decision.allegationMarkdown
-              h4 Counterevidence and defence:
-              p!=decision.defenseMarkdown
-              h4 Decision: 
-              p!=decision.decisionMarkdown
-              if(decision.penalties)
-                h3 Penalty: 
-                ul(class="penalties")
-                  for penalty of decision.penalties
-                    li=penalty
-                if(decision.penaltyDescription) 
-                  p!=decision.penaltyDescriptionMarkdown
-                if(decision.appeal)
-                  h4 Appeal 
-                  p!=decision.appealMarkdown
-                  h4 Decision:
-                  p!=decision.appealDecisionMarkdown
+            div(class="elections-decision" id="decision-" + decision.index)
+              h2 Against #{decision.candidate}
+              span #[strong Submitted:] #{decision.date}
+              div(class="decision-body")
+                h3 Summary of allegation:
+                p!=decision.allegationMarkdown
+                h4 Counterevidence and defence:
+                p!=decision.defenseMarkdown
+                h4 Decision: 
+                p!=decision.decisionMarkdown
+                if(decision.penalties)
+                  h3 Penalty: 
+                  ul(class="penalties")
+                    for penalty of decision.penalties
+                      li=penalty
+                  if(decision.penaltyDescription) 
+                    p!=decision.penaltyDescriptionMarkdown
+                  if(decision.appeal)
+                    h4 Appeal 
+                    p!=decision.appealMarkdown
+                    h4 Decision:
+                    p!=decision.appealDecisionMarkdown
+  else
+    +banner-image("/assets/img/banners/mathsoc-wall.jpeg", ["dark-grey"], `Elections`)
+    div(class="content")
+      +section(null,"white")
+        div(class="elections-unavailable")
+          p #{data.noElectionsMessage}
