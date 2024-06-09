@@ -10,7 +10,7 @@ import { EditorNumberNode } from "./EditorNumberNode";
 export const EditorNode: React.FC<EditorNodeProps & { value: any }> = (
   props
 ) => {
-  const { value, name, path } = props;
+  const { value, path } = props;
   const { couldBeArray } = useContext(EditorContext);
   const isTermNumber = path.includes("term");
 
