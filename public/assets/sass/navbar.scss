@@ -235,3 +235,17 @@
     }
   }
 }
+
+.skip-to-main-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s ease;
+
+  &:focus {
+    top: 0;
+  }
+}
