@@ -2,52 +2,48 @@
 @import "../../util/variables";
 
 section {
-    max-width: 600px;
-    margin: auto;
-    text-align: center;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
 
-    .list {
-        list-style-type: none;
-        padding-left: 0;
+  .list {
+    list-style-type: none;
+    padding-left: 0;
 
-        .list-item-content {
-            border: 2px solid var(--mathsoc-pink-2);
-            border-radius: 3em;
-            margin: 1em;
-            transition: all .25s ease-out; 
+    .list-item-link {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 2px solid var(--mathsoc-pink-2);
+      border-radius: 3em;
+      margin: 1em;
+      padding: 1em;
+      transition: all 0.25s ease-out;
 
-            .list-item-link {
-                text-decoration: none;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 1em;
+      .list-item-icon {
+        height: 100%;
+        width: auto;
+        padding-right: 1em;
+      }
 
-                .list-item-icon {
-                    height: 100%;
-                    width: auto;
-                    padding-right: 1em;
-                }
-                
-                .list-item-title {
-                    margin: 0;
-                    font-weight: 400;
-                    color: var(--mathsoc-pink-2);
-                    padding-left: 1em;
-                }
-            }
+      .list-item-title {
+        margin: 0;
+        font-weight: 400;
+        color: var(--mathsoc-pink-2);
+        padding-left: 1em;
+      }
 
-            &:hover, 
-            &:focus-visible {
-              background-color: var(--mathsoc-pink-2);
-              
-              .list-item-title {
-                color: white;
-              }
-              .list-item-icon {
-                filter: invert(100%);
-              }     
-            }    
+      &:hover,
+      &:focus {
+        background-color: var(--mathsoc-pink-2);
+        .list-item-title {
+          color: white;
         }
+        .list-item-icon {
+          filter: invert(100%);
+        }
+      }
     }
+  }
 }
