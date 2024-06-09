@@ -227,7 +227,12 @@ const ServicesMathsocOffice = z
         }),
       })
       .strict(),
-    novelties: z.unknown({}), // intentionally not strict
+    novelties: z.array(
+      z.object({
+        item: z.string(),
+        price: z.string(),
+      }),
+    ),
     serviceMarkdown: z.string(),
   })
   .strict();
