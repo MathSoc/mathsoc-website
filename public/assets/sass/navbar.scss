@@ -42,18 +42,21 @@
       height: 100%;
 
       $vertical-padding: 28px;
+
       .dropdown-button {
         padding: $vertical-padding 6px;
       }
 
-      > a {
+      >a {
         text-decoration: none;
         color: var(--text-color);
       }
 
       .dropdown-content {
+
         &:hover,
-        &:focus, // :focus triggered by keyboard navigation of navbar
+        &:focus,
+        // :focus triggered by keyboard navigation of navbar
         &:focus-within,
         &:active {
           display: block;
@@ -218,6 +221,7 @@
     &.active {
       .items {
         visibility: visible;
+
         .dropdown.active {
           .dropdown-button {
             color: var(--background-colour);
