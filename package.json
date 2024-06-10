@@ -15,7 +15,7 @@
     "ts-watch": "webpack --config webpack.config.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
-    "dockerize": "docker build . -t mathsoc-website && docker run --env-file ./.env -p 9000:9000 -d mathsoc-website"
+    "dockerize": "docker build . -t mathsoc-website && docker run --env-file ./.env -p 9000:9000 mathsoc-website"
   },
   "repository": {
     "type": "git",

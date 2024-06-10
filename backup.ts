@@ -11,6 +11,7 @@ const createDirectory = (directory: string) => {
   const exists = fs.existsSync(directory);
   if (!exists) {
     try {
+      console.info(`Making backup directory: ${directory}`);
       fs.mkdirSync(directory);
     } catch (err) {
       console.error(
@@ -29,6 +30,7 @@ const numBackups = (directory: string): number => {
 
 const deleteOldestBackup = (directory: string): void => {
   try {
+    console.info(`Finding oldest backup...`);
     const directories = fs
       .readdirSync(directory, { withFileTypes: true })
       .filter((dir) => dir.isDirectory())
@@ -43,10 +45,12 @@ const deleteOldestBackup = (directory: string): void => {
 
     const oldestDirectoryName = directories[0].name;
 
+    console.info(`Deleting the oldest backup: ${oldestDirectoryName}`);
+
     fs.rmSync(path.join(directory, oldestDirectoryName), {
       recursive: true,
     });
-    console.log("Oldest backup deleted: " + oldestDirectoryName);
+    console.info("Oldest backup deleted: " + oldestDirectoryName);
   } catch (err) {
     console.error("Unable to delete oldest backup with error: " + err);
   }
@@ -69,11 +73,11 @@ const runJobs = () => {
         }
 
         if (code == 0) {
-          console.log("Backup completed successfully: " + newDate);
+          console.info("Backup completed successfully: " + newDate);
           const numberOfBackups = numBackups(directoryName);
           if (numberOfBackups == 7) deleteOldestBackup(directoryName);
         } else {
-          console.log("Backup failed with code " + code);
+          console.error("Backup failed with code " + code);
         }
       });
     },
@@ -86,4 +90,7 @@ const runJobs = () => {
   job.start();
 };
 
+console.info("Initializing backup job...");
 runJobs();
+console.info("Backup job initialized!");
+process.exit();
