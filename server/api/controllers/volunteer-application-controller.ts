@@ -61,13 +61,13 @@ export class VolunteerApplicationController {
   ) {
     if (!process.env.forms_gmail_sender_username) {
       this.logger.error(
-        `No email username set in .env; application by ${formBody.firstName}${formBody.preferredName ? ` "${formBody.preferredName}" ` : " "}${formBody.lastName} <${formBody.address}> could not be sent`
+        `No email username set in .env; application by ${formBody.preferredName ? formBody.preferredName : formBody.firstName} ${formBody.lastName} <${formBody.address}> could not be sent`
       );
       return false;
     }
     if (!process.env.forms_gmail_sender_password) {
       this.logger.error(
-        `No email password set in .env; application by ${formBody.firstName}${formBody.preferredName ? ` "${formBody.preferredName}" ` : " "}${formBody.lastName} <${formBody.address}> could not be sent`
+        `No email password set in .env; application by ${formBody.preferredName ? formBody.preferredName : formBody.firstName} ${formBody.lastName} <${formBody.address}> could not be sent`
       );
       return false;
     }
@@ -76,7 +76,7 @@ export class VolunteerApplicationController {
       formBody.execAddress.includes("@mathsoc.uwaterloo.ca")
     ) {
       this.logger.error(
-        `Application by ${formBody.firstName}${formBody.preferredName ? ` "${formBody.preferredName}" ` : " "}${formBody.lastName} <${formBody.address}> was not sent to MathSoc email address to avoid cluttering real inboxes with test inquiries.`
+        `Application by ${formBody.preferredName ? formBody.preferredName : formBody.firstName} ${formBody.lastName} <${formBody.address}> was not sent to MathSoc email address to avoid cluttering real inboxes with test inquiries.`
       );
       return false;
     }
@@ -96,7 +96,7 @@ export class VolunteerApplicationController {
         "reply-to": formBody.address,
       },
       subject: "Volunteer Application - " + formBody.role,
-      text: `From: ${formBody.firstName}${formBody.preferredName ? ` (${formBody.preferredName}) ` : " "}${formBody.lastName} <${formBody.address}>\n
+      text: `From: ${formBody.preferredName ? formBody.preferredName : formBody.firstName} ${formBody.lastName} <${formBody.address}>\n
       Role: ${formBody.role}\n
       Program: ${formBody.program}\n
       Term: ${formBody.term}\n 
