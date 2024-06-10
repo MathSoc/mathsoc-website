@@ -28,11 +28,24 @@ export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
     setVersion(version + 1);
   };
 
+  // Deletes all elements of any array anywhere in an object(?) v
+  const clearArrays = (v: any) => {
+    if (Array.isArray(v)) {
+      return [];
+    } else if (typeof v == "object") {
+      for (const key in v) {
+        v[key] = clearArrays(v[key]);
+      }
+    }
+
+    return v;
+  };
+
   const addItem = () => {
     const newItemPath = path.concat(transformedData.length.toString());
     const newItemSchema = getSchemaValue(path)[0];
 
-    setDataValue(newItemPath, newItemSchema);
+    setDataValue(newItemPath, clearArrays(newItemSchema));
   };
 
   return (
