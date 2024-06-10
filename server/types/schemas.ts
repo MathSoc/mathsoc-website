@@ -26,6 +26,7 @@ const VolunteerDataSchema = z
                 title: z.string(),
                 descriptionMarkdown: z.string(),
                 link: z.string(),
+                active: z.boolean(),
               })
               .strict()
           ),
