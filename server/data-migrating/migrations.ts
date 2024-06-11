@@ -3,7 +3,7 @@ import { validateDataPath } from "../validation/endpoint-schema-map";
 
 type VersionedData = {
   [key: string]: any;
-  lastMigration?: string;
+  lastMigrationId?: string;
 };
 
 /**
@@ -97,25 +97,25 @@ export class DataMigrator {
       fs.readFileSync(`server/data${migration.path}`, "utf-8")
     ) as OldSchema;
 
-    if (oldData.lastMigration === undefined) {
+    if (oldData.lastMigrationId === undefined) {
       throw new Error(
         `No last migration attribute found in existing data file for ${migration.path}`
       );
     }
 
-    if (oldData.lastMigration >= migration.dateAdded.toISOString()) {
+    if (oldData.lastMigrationId >= migration.dateAdded.toISOString()) {
       // escape characters are for yellow text
       console.warn(
         `\x1b[32m Migration ${migration.dateAdded.toISOString()} skipped for file ${
           migration.path
         }.` +
-          ` ${migration.path} was last updated at ${oldData.lastMigration}. This is probably intentional.\x1b[0m`
+          ` ${migration.path} was last updated at ${oldData.lastMigrationId}. This is probably intentional.\x1b[0m`
       );
 
       // a totally arbitrary amount of time. this message is likely to only display if some other migration has occurred on this file since this one.
       const ONE_DAY = 1000 * 60 * 60 * 24;
       if (
-        new Date(oldData.lastMigration).getTime() >
+        new Date(oldData.lastMigrationId).getTime() >
         migration.dateAdded.getTime() + ONE_DAY
       ) {
         console.info(
@@ -133,7 +133,7 @@ export class DataMigrator {
       );
     }
 
-    newData.lastMigration = new Date().toISOString(); // now
+    newData.lastMigrationId = migration.dateAdded.toISOString(); // now
 
     console.info(`Validating new state of the data: ${migration.path}`);
     try {

@@ -24,7 +24,7 @@ export const EditorNode: React.FC<EditorNodeProps & { value: any }> = (
     return <EditorImageNode {...props} />;
   } else if (props.name.includes("Markdown")) {
     return <EditorMarkdownNode {...props} />;
-  } else if(props.name === "lastMigration") {
+  } else if(props.name === "lastMigrationId") {
     // @todo make a non-editable EditorNode child to display the time of last migration. That or display it by some other means. 
     return null;
   } else {
