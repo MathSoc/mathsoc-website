@@ -26,6 +26,7 @@ export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
   [DataPaths.RESOUCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
   [DataPaths.RESOURCES_CHEQUE_REQUESTS]: schemas.ChequeRequestSchema,
   [DataPaths.RESOURCES_DISCORD_ACCESS]: schemas.DiscordAccessSchema,
+  [DataPaths.RESOURCES_IMPORTANT_LINKS]: schemas.ImportantLinksSchema,
   [DataPaths.SHARED_FOOTER]: schemas.SharedFooterSchema,
   [DataPaths.SHARED_EXECS]: schemas.SharedExecsSchema,
   [DataPaths.STUDENT_SERVICES]: schemas.StudentServicesSchema,
