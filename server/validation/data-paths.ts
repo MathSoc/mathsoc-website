@@ -1,8 +1,8 @@
 export enum DataPaths {
   CARTOONS_ABOUT_US = "cartoons/about-us",
   CONTACT_US = "contact-us",
-  DOCUMENTS_BUDGETS = "documents/budgets",
-  DOCUMENTS_MEETINGS = "documents/meetings",
+  RESOURCES_BUDGETS = "resources/budgets",
+  RESOURCES_MEETINGS = "resources/meetings",
   ELECTIONS = "elections",
   HOME = "home",
   GET_INVOLVED_VOLUNTEER = "get-involved/volunteer",
