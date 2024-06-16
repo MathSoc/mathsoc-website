@@ -406,7 +406,7 @@ const CommunitySchema = z
   })
   .strict();
 
-const DocumentsBudgetsSchema = z
+const BudgetsSchema = z
   .object({
     version: z.number(),
     descriptionMarkdown: z.string(),
@@ -423,7 +423,7 @@ const DocumentsBudgetsSchema = z
   })
   .strict();
 
-const DocumentsMeetingsSchema = z
+const MeetingsSchema = z
   .object({
     version: z.number(),
     descriptionMarkdown: z.string(),
@@ -470,8 +470,8 @@ export {
   ContactUsDataSchema,
   CouncilDataSchema,
   DiscordAccessSchema,
-  DocumentsBudgetsSchema,
-  DocumentsMeetingsSchema,
+  BudgetsSchema,
+  MeetingsSchema,
   ElectionsDataSchema,
   HomeDataSchema,
   ImportantLinksSchema,
