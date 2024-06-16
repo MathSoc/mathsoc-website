@@ -89,6 +89,10 @@
     ]
   },
   {
+    "title": "Inventory",
+    "ref": "/inventory"
+  },
+  {
     "title": "Contact us",
     "ref": "/contact-us"
   }
