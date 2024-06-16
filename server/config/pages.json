@@ -99,7 +99,7 @@
   {
     "title": "Inventory",
     "ref": "/inventory",
-    "view": "/inventory"
+    "view": "/inventory/inventory"
   },
   {
     "title": "Contact Us",
