@@ -462,6 +462,11 @@ const ImportantLinksSchema = z
   })
   .strict();
 
+const InventorySchema = z
+  .object({
+  })
+  .strict();
+
 export {
   CartoonsAboutUsDataSchema,
   ChequeRequestSchema,
@@ -475,6 +480,7 @@ export {
   ElectionsDataSchema,
   HomeDataSchema,
   ImportantLinksSchema,
+  InventorySchema,
   MentalWellnessDataSchema,
   StudentServicesSchema,
   ServicesMathsocOffice,
