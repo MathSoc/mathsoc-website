@@ -58,7 +58,11 @@ const buildShapeFromZodSchema = (schema: Zod.ZodTypeAny) => {
   return "";
 };
 
-export const validate = (req: Request, res: Response, next: NextFunction) => {
+export const validateRequest = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const filePath = req.query.path;
   const validator: ExpressValidator =
     filePath && mapping[filePath as string]
@@ -66,6 +70,26 @@ export const validate = (req: Request, res: Response, next: NextFunction) => {
       : defaultValidator;
 
   validator(req, res, next);
+};
+
+export const validateDataPath = (path: string, data: any) => {
+  if (path[0] === "/") path = path.slice(1);
+  path = path.replace(".json", "");
+
+  if (!mapping[path]) {
+    throw new Error(`No schema found for path: ${path}`);
+  }
+
+  const schema: Zod.ZodTypeAny = mapping[path];
+  const parsed = schema.safeParse(data);
+
+  if (!parsed.success) {
+    throw new Error(
+      `Data validation failed for path: ${path}. Errors: ${parsed.error.toString()}`
+    );
+  }
+
+  return parsed.data;
 };
 
 export const getSchema = (filePath: string): object => {
