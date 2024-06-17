@@ -20,6 +20,8 @@ import passport from "passport";
 import session from "express-session";
 import { setUpPassport } from "./server/auth/auth";
 
+console.info("Starting server...");
+
 const logger = new Logger();
 
 const app = express();

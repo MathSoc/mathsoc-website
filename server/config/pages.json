@@ -73,6 +73,11 @@
         "title": "Cheque Request Information and Other Forms",
         "ref": "/resources/cheque-requests",
         "view": "/resources/cheque-requests"
+      },
+      {
+        "title": "Important Links",
+        "ref": "/resources/important-links",
+        "view": "/resources/important-links"
       }
     ]
   },

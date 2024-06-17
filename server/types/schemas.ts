@@ -1,7 +1,18 @@
 import { z } from "zod";
 
+/**
+ * It looks like you're modifying a schema!
+ *
+ * If you're editing an existing schema or deleting a schema, please write a simple migration
+ * from the old version of data on our dev environments and live site to your new version.
+ * You can do this in /server/data-migrating/migrations.ts.
+ *
+ * If you're adding a new schema, disregard this message :)
+ */
+
 const VolunteerDataSchema = z
   .object({
+    version: z.number(),
     title: z.string(),
     subtext: z.string(),
     teams: z.array(
@@ -28,6 +39,7 @@ const VolunteerDataSchema = z
 
 const VolunteerApplicationSchema = z
   .object({
+    version: z.number(),
     programs: z.array(z.string()),
     terms: z.array(z.string()),
   })
@@ -35,6 +47,7 @@ const VolunteerApplicationSchema = z
 
 const HomeDataSchema = z
   .object({
+    version: z.number(),
     socialText: z.string(),
     socialButtons: z.object({
       instagramMarkdown: z.string(),
@@ -44,39 +57,44 @@ const HomeDataSchema = z
   })
   .strict();
 
-const ElectionsDataSchema = z.array(
-  z.object({
-    term: z.string(),
-    electionState: z.string(),
-    candidates: z.array(
-      z
-        .object({
-          name: z.string(),
-          position: z.string(),
-          elected: z.boolean(),
-          platformMarkdown: z.string(),
-        })
-        .strict()
-    ),
-    decisions: z.array(
-      z
-        .object({
-          candidate: z.string(),
-          date: z.string(),
-          allegationMarkdown: z.string().optional(),
-          defenseMarkdown: z.string().optional(),
-          decisionMarkdown: z.string().optional(),
-          penalties: z.array(z.string()).optional(),
-          penaltyDescriptionMarkdown: z.string().optional(),
-          appealMarkdown: z.string().optional(),
-          appealDecisionMarkdown: z.string().optional(),
-        })
-        .strict()
-    ),
-  })
-);
+const ElectionsDataSchema = z.object({
+  version: z.number(),
+  noElectionsMessage: z.string(),
+  electionsData: z.array(
+    z.object({
+      term: z.string(),
+      electionState: z.string(),
+      candidates: z.array(
+        z
+          .object({
+            name: z.string(),
+            position: z.string(),
+            elected: z.boolean(),
+            platformMarkdown: z.string(),
+          })
+          .strict()
+      ),
+      decisions: z.array(
+        z
+          .object({
+            candidate: z.string(),
+            date: z.string(),
+            allegationMarkdown: z.string().optional(),
+            defenseMarkdown: z.string().optional(),
+            decisionMarkdown: z.string().optional(),
+            penalties: z.array(z.string()).optional(),
+            penaltyDescriptionMarkdown: z.string().optional(),
+            appealMarkdown: z.string().optional(),
+            appealDecisionMarkdown: z.string().optional(),
+          })
+          .strict()
+      ),
+    })
+  ),
+});
 
 const MentalWellnessDataSchema = z.object({
+  version: z.number(),
   title: z.string(),
   subheader: z.string(),
   onCampus: z.string(),
@@ -103,6 +121,7 @@ const MentalWellnessDataSchema = z.object({
 });
 
 const ChequeRequestSchema = z.object({
+  version: z.number(),
   title: z.string(),
   formLinks: z.array(
     z
@@ -173,6 +192,7 @@ const ChequeRequestSchema = z.object({
 });
 
 const DiscordAccessSchema = z.object({
+  version: z.number(),
   title: z.string(),
   subheader: z.string(),
   steps: z.array(
@@ -187,6 +207,7 @@ const DiscordAccessSchema = z.object({
 });
 
 const StudentServicesSchema = z.object({
+  version: z.number(),
   sections: z.array(
     z.object({
       title: z.string(),
@@ -209,6 +230,7 @@ const StudentServicesSchema = z.object({
 
 const ServicesMathsocOffice = z
   .object({
+    version: z.number(),
     title: z.string(),
     descriptionMarkdown: z.string(),
     services: z
@@ -233,6 +255,7 @@ const ServicesMathsocOffice = z
   .strict();
 
 const CartoonsAboutUsDataSchema = z.object({
+  version: z.number(),
   pageTitle: z.string(),
   heading: z.string(),
   coverPicSrc: z.string(),
@@ -279,6 +302,7 @@ const CartoonsAboutUsDataSchema = z.object({
 
 const CouncilDataSchema = z
   .object({
+    version: z.number(),
     councilHeader: z.string(),
     councilResponse: z.string(),
     compositionOfCouncilHeader: z.string(),
@@ -299,6 +323,7 @@ const CouncilDataSchema = z
   .strict();
 
 const ContactUsDataSchema = z.object({
+  version: z.number(),
   staff: z.object({
     businessManager: z
       .object({
@@ -321,6 +346,7 @@ const ContactUsDataSchema = z.object({
 
 const SharedFooterSchema = z
   .object({
+    version: z.number(),
     phoneNumber: z.string(),
     addressLine1: z.string(),
     addressLine2: z.string(),
@@ -339,6 +365,7 @@ const SharedFooterSchema = z
   .strict();
 
 const SharedExecsSchema = z.object({
+  version: z.number(),
   execs: z.array(
     z.object({
       name: z.string(),
@@ -350,6 +377,7 @@ const SharedExecsSchema = z.object({
 });
 
 const ClubsSchema = z.object({
+  version: z.number(),
   clubsHeader: z.string(),
   clubs: z.array(
     z.object({
@@ -363,6 +391,7 @@ const ClubsSchema = z.object({
 
 const CommunitySchema = z
   .object({
+    version: z.number(),
     communityHeader: z.string(),
     communities: z.array(
       z
@@ -379,6 +408,7 @@ const CommunitySchema = z
 
 const DocumentsBudgetsSchema = z
   .object({
+    version: z.number(),
     descriptionMarkdown: z.string(),
     budgets: z.array(
       z
@@ -395,6 +425,7 @@ const DocumentsBudgetsSchema = z
 
 const DocumentsMeetingsSchema = z
   .object({
+    version: z.number(),
     descriptionMarkdown: z.string(),
     meetingGroups: z.array(
       z
@@ -416,6 +447,21 @@ const DocumentsMeetingsSchema = z
   })
   .strict();
 
+const ImportantLinksSchema = z
+  .object({
+    title: z.string(),
+    links: z.array(
+      z
+        .object({
+          title: z.string(),
+          link: z.string()
+       })
+       .strict()
+     ),
+     icon: z.string()
+  })
+  .strict();
+
 export {
   CartoonsAboutUsDataSchema,
   ChequeRequestSchema,
@@ -428,6 +474,7 @@ export {
   DocumentsMeetingsSchema,
   ElectionsDataSchema,
   HomeDataSchema,
+  ImportantLinksSchema,
   MentalWellnessDataSchema,
   StudentServicesSchema,
   ServicesMathsocOffice,
