@@ -53,18 +53,6 @@ export class DataMigrator {
         },
       },
      */
-    {
-      type: "UPDATE",
-      dateAdded: new Date("2024-06-17"),
-      path: "/cartoons/about-us.json",
-      migrator: (old) => {
-        return {
-          ...old,
-          desktopCoverPicImage: old.coverPicSrc,
-          mobileCoverPicImage: old.coverPicSrcMobile,
-        };
-      },
-    },
   ];
 
   static async migrate() {
