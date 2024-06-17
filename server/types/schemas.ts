@@ -342,6 +342,7 @@ const ContactUsDataSchema = z.object({
       })
       .strict()
   ),
+  websiteRequestFormMarkdown: z.string()
 });
 
 const SharedFooterSchema = z
@@ -455,10 +456,10 @@ const ImportantLinksSchema = z
         .object({
           title: z.string(),
           link: z.string()
-       })
-       .strict()
-     ),
-     icon: z.string()
+        })
+        .strict()
+    ),
+    icon: z.string()
   })
   .strict();
 
