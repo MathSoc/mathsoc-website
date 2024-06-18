@@ -20,7 +20,7 @@
     "lint": "npx eslint server/ public/assets/ts *.ts",
     "precommit": "lint-staged",
     "preload": "ts-node preload.ts",
-    "ts-build": "webpack --config webpack.config.js",
+    "ts-build": "webpack --config webpack.config.js --no-stats",
     "ts-watch": "webpack --config webpack.config.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
