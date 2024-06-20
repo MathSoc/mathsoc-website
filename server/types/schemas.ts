@@ -12,7 +12,7 @@ import { z } from "zod";
 
 const VolunteerDataSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     title: z.string(),
     subtext: z.string(),
     teams: z.array(
@@ -39,7 +39,7 @@ const VolunteerDataSchema = z
 
 const VolunteerApplicationSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     programs: z.array(z.string()),
     terms: z.array(z.string()),
   })
@@ -47,7 +47,7 @@ const VolunteerApplicationSchema = z
 
 const HomeDataSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     socialText: z.string(),
     socialButtons: z.object({
       instagramMarkdown: z.string(),
@@ -58,7 +58,7 @@ const HomeDataSchema = z
   .strict();
 
 const ElectionsDataSchema = z.object({
-  version: z.number(),
+  lastMigrationId: z.string().datetime(),
   noElectionsMessage: z.string(),
   electionsData: z.array(
     z.object({
@@ -94,7 +94,7 @@ const ElectionsDataSchema = z.object({
 });
 
 const MentalWellnessDataSchema = z.object({
-  version: z.number(),
+  lastMigrationId: z.string().datetime(),
   title: z.string(),
   subheader: z.string(),
   onCampus: z.string(),
@@ -121,7 +121,7 @@ const MentalWellnessDataSchema = z.object({
 });
 
 const ChequeRequestSchema = z.object({
-  version: z.number(),
+  lastMigrationId: z.string().datetime(),
   title: z.string(),
   formLinks: z.array(
     z
@@ -192,7 +192,7 @@ const ChequeRequestSchema = z.object({
 });
 
 const DiscordAccessSchema = z.object({
-  version: z.number(),
+  lastMigrationId: z.string().datetime(),
   title: z.string(),
   subheader: z.string(),
   steps: z.array(
@@ -207,7 +207,7 @@ const DiscordAccessSchema = z.object({
 });
 
 const StudentServicesSchema = z.object({
-  version: z.number(),
+  lastMigrationId: z.string().datetime(),
   sections: z.array(
     z.object({
       title: z.string(),
@@ -230,7 +230,7 @@ const StudentServicesSchema = z.object({
 
 const ServicesMathsocOffice = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     title: z.string(),
     descriptionMarkdown: z.string(),
     services: z
@@ -255,7 +255,7 @@ const ServicesMathsocOffice = z
   .strict();
 
 const CartoonsAboutUsDataSchema = z.object({
-  version: z.number(),
+  lastMigrationId: z.string().datetime(),
   pageTitle: z.string(),
   heading: z.string(),
   coverPicSrc: z.string(),
@@ -302,7 +302,7 @@ const CartoonsAboutUsDataSchema = z.object({
 
 const CouncilDataSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     councilHeader: z.string(),
     councilResponse: z.string(),
     compositionOfCouncilHeader: z.string(),
@@ -323,7 +323,7 @@ const CouncilDataSchema = z
   .strict();
 
 const ContactUsDataSchema = z.object({
-  version: z.number(),
+  lastMigrationId: z.string().datetime(),
   staff: z.object({
     businessManager: z
       .object({
@@ -347,7 +347,7 @@ const ContactUsDataSchema = z.object({
 
 const SharedFooterSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     phoneNumber: z.string(),
     addressLine1: z.string(),
     addressLine2: z.string(),
@@ -366,7 +366,7 @@ const SharedFooterSchema = z
   .strict();
 
 const SharedExecsSchema = z.object({
-  version: z.number(),
+  lastMigrationId: z.string().datetime(),
   execs: z.array(
     z.object({
       name: z.string(),
@@ -378,7 +378,7 @@ const SharedExecsSchema = z.object({
 });
 
 const ClubsSchema = z.object({
-  version: z.number(),
+  lastMigrationId: z.string().datetime(),
   clubsHeader: z.string(),
   clubs: z.array(
     z.object({
@@ -392,7 +392,7 @@ const ClubsSchema = z.object({
 
 const CommunitySchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     communityHeader: z.string(),
     communities: z.array(
       z
@@ -409,7 +409,7 @@ const CommunitySchema = z
 
 const DocumentsBudgetsSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
     budgets: z.array(
       z
@@ -426,7 +426,7 @@ const DocumentsBudgetsSchema = z
 
 const DocumentsMeetingsSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
     meetingGroups: z.array(
       z
@@ -455,11 +455,12 @@ const ImportantLinksSchema = z
       z
         .object({
           title: z.string(),
-          link: z.string()
+
+          link: z.string(),
         })
         .strict()
     ),
-    icon: z.string()
+    icon: z.string(),
   })
   .strict();
 
