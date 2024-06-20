@@ -1,3 +1,329 @@
 {
-    
+  "lastMigrationId": "n/a",
+  "title": "Inventory",
+  "description": "Check out MathSoc's board game, novelty, and stationary invetory below!",
+  "novelties": [
+    {
+      "category": "Shirts and Sweaters",
+      "items": [
+        {
+          "item": "Cheat Sheet Tee",
+          "price": "$20.00",
+          "description": "Available in S/M/L/XL"
+        },
+        {
+          "item": "I Wanna Pass Tee",
+          "price": "$25.00",
+          "description": "Available in S/M/L/XL"
+        },
+        {
+          "item": "Calcu-Lator Gator Tee",
+          "price": "$21.00",
+          "description": "Available in S/M/L/XL"
+        },
+        {
+          "item": "Sigma Goose Sweater",
+          "price": "$35.00",
+          "description": "Available in S/M/L/XL"
+        },
+        {
+          "item": "I Can't Even Tee",
+          "price": "$10.00",
+          "description": "Available in Womens XS or Unisex S"
+        },
+        {
+          "item": "Take Me To The Limit Tee",
+          "price": "$10.00",
+          "description": "Available in Womens L/XL and Unisex S"
+        },
+        {
+          "item": "I Heart Math Tee",
+          "price": "$10.00",
+          "description": "Available in Unisex S"
+        }
+      ]
+    },
+    {
+      "category": "Stickers",
+      "items": [
+        {
+          "item": "Calculator Sticker",
+          "price": "$0.25",
+          "description": null
+        },
+        {
+          "item": "Sleeping Goose Sticker",
+          "price": "$0.25",
+          "description": null
+        },
+        {
+          "item": "Laptop Fire Cat Sticker",
+          "price": "$0.25",
+          "description": null
+        },
+        {
+          "item": "Skateboard Goose Sticker",
+          "price": "$0.25",
+          "description": null
+        },
+        {
+          "item": "Thanks Baybe Pug Sticker",
+          "price": "$0.25",
+          "description": null
+        },
+        {
+          "item": "Melting Cat Sticker",
+          "price": "$0.25",
+          "description": null
+        },
+        {
+          "item": "Coo Coo Bonkers Sticker",
+          "price": "$0.25",
+          "description": null
+        }
+      ]
+    },
+    {
+      "category": "Ties",
+      "items": [
+        {
+          "item": "2022 Pink Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2022 Black Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2021 Pink Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2019 Pink Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2019 Black Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2018 Pink Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2018 Black Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2017 Pink Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2017 Black Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2016 Pink Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2015 Pink Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2015 Black Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2014 Pink Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2013 Pink Tie",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "2011 Pink Tie",
+          "price": "$2.00",
+          "description": null
+        }
+      ]
+    },
+    {
+      "category": "Other Novelties",
+      "items": [
+        {
+          "item": "Pink Tie Pin",
+          "price": "$0.99",
+          "description": "Comes in both salmon pink and dark pink!"
+        },
+        {
+          "item": "Mathematics Lanyard",
+          "price": "$2.00",
+          "description": null
+        },
+        {
+          "item": "MathSoc Mask",
+          "price": "$4.00",
+          "description": null
+        },
+        {
+          "item": "MathSoc Mug",
+          "price": "$2.99",
+          "description": null
+        },
+        {
+          "item": "Champagne Flute",
+          "price": "$0.99",
+          "description": null
+        },
+        {
+          "item": "Black Carabiner",
+          "price": "$2.99",
+          "description": null
+        }
+      ]
+    }
+  ],
+  "boardGames": [
+    {
+      "category": "Live Rental Sheet",
+      "items": []
+    }
+  ],
+  "stationary": [
+    {
+      "category": "Calculators",
+      "items": [
+        {
+          "item": "Texas Instrument TI30XIIS",
+          "price": "$17.00",
+          "description": "This faculty-approved calculator features a two-line display. Shows entries on the top line and results on the bottom line. Features one- and two-variable statistics, recognizes p as a symbol in radian mode and provides menus that allow you to select settings appropriate for your calculation needs. Adds, subtracts, multiplies and divides fractions entered in traditional numerator/denominator format. Faculty-approved."
+        },
+        {
+          "item": "Sharp EL-531XG03",
+          "price": "$23.00",
+          "description": "The Sharp EL531XTB is a fully-functional, high quality scientific calculator that performs over 270 advanced scientific and mathematical functions. It features a Direct Algebraic Logic function that allows you to enter the elements of an expression in the exact order they appear in the textbook. It also utilizes a large, easy to read 2-line display and Multi-Line Playback to make difficult scientific equations easier to solve. It is ideal for students studying general math, algebra, geometry, and trigonometry. It can also be used for statistics, biology, chemistry and general science. Faculty-approved."
+        },
+        {
+          "item": "CASIO fx-300MS",
+          "price": "$24.85",
+          "description": "This faculty-approved scientific calculator has 240 built-in functions, a 10-digit – 10 + 2 display. Advanced V.P.A.M function. Solar plus power. Two-line digit display. Faculty-approved."
+        }
+      ]
+    },
+    {
+      "category": "Pens and Pencils",
+      "items": [
+        {
+          "item": "MUJI Pens",
+          "price": "$2.00",
+          "description": "Comes in a variety of types and colours! Subject to availability.",
+          "image": ""
+        },
+        {
+          "item": "Wood Pencil",
+          "price": "$0.25",
+          "description": null,
+          "image": ""
+        },
+        {
+          "item": "Mechanical Lead Refills",
+          "price": "$0.99",
+          "description": "Comes in 0.5mm or 0.7mm! One container per purchase price.",
+          "image": ""
+        },
+        {
+          "item": "Mechanical Pencil",
+          "price": "$0.50",
+          "description": "Comes in 0.5mm or 0.7mm! Extra lead not included.",
+          "image": ""
+        },
+        {
+          "item": "Standard Ball Point Pen",
+          "price": "$0.25",
+          "description": "Comes in black, blue, and red!",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "category": "Paper",
+      "items": [
+        {
+          "item": "Cue Cards",
+          "price": "$0.29",
+          "description": "Comes in packs of 10 per purchase.",
+          "image": ""
+        },
+        {
+          "item": "Lined Paper",
+          "price": "$0.10",
+          "description": "Comes in packs of 10 per purchase.",
+          "image": ""
+        },
+        {
+          "item": "Graph Paper",
+          "price": "$0.10",
+          "description": "Comes in packs of 10 per purchase.",
+          "image": ""
+        },
+        {
+          "item": "Printer Paper",
+          "price": "$0.10",
+          "description": "Comes in packs of 10 per purchase.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "category": "General Stationary",
+      "items": [
+        {
+          "item": "Ruler",
+          "price": "$0.50",
+          "description": null,
+          "image": ""
+        },
+        {
+          "item": "Notebook",
+          "price": "$4.50",
+          "description": "Comes in various colours and page count depending on availability.",
+          "image": ""
+        },
+        {
+          "item": "Correction Tape",
+          "price": "$0.99",
+          "description": null,
+          "image": ""
+        },
+        {
+          "item": "Highlighters",
+          "price": "$0.50",
+          "description": "Comes in neon yellow colour!",
+          "image": ""
+        },
+        {
+          "item": "Rubber Eraser",
+          "price": "$0.50",
+          "description": null,
+          "image": ""
+        }
+      ]
+    }
+  ]
 }
