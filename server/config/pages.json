@@ -75,11 +75,31 @@
         "view": "/resources/cheque-requests"
       },
       {
+        "title": "Policies and Bylaws",
+        "ref": "/resources/policies-and-bylaws",
+        "view": "/resources/policies-and-bylaws"
+      },
+      {
+        "title": "Meetings",
+        "ref": "/resources/meetings",
+        "view": "/resources/meetings"
+      },
+      {
+        "title": "Budgets",
+        "ref": "/resources/budgets",
+        "view": "/resources/budgets"
+      },
+      {
         "title": "Important Links",
         "ref": "/resources/important-links",
         "view": "/resources/important-links"
       }
     ]
+  },
+  {
+    "title": "Inventory",
+    "ref": "/inventory",
+    "view": "/inventory/inventory"
   },
   {
     "title": "Contact Us",
@@ -88,26 +108,6 @@
     "dataSources": {
       "execs": "/shared/execs"
     }
-  },
-  {
-    "title": "Documents",
-    "children": [
-      {
-        "title": "Policies and Bylaws",
-        "ref": "/documents/policies-and-bylaws",
-        "view": "/documents/policies-and-bylaws"
-      },
-      {
-        "title": "Meetings",
-        "ref": "/documents/meetings",
-        "view": "/documents/meetings"
-      },
-      {
-        "title": "Budgets",
-        "ref": "/documents/budgets",
-        "view": "/documents/budgets"
-      }
-    ]
   },
   {
     "title": "Cartoons",

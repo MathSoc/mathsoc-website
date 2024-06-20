@@ -406,7 +406,7 @@ const CommunitySchema = z
   })
   .strict();
 
-const DocumentsBudgetsSchema = z
+const BudgetsSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
@@ -423,7 +423,7 @@ const DocumentsBudgetsSchema = z
   })
   .strict();
 
-const DocumentsMeetingsSchema = z
+const MeetingsSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
@@ -462,6 +462,11 @@ const ImportantLinksSchema = z
   })
   .strict();
 
+const InventorySchema = z
+  .object({
+  })
+  .strict();
+
 export {
   CartoonsAboutUsDataSchema,
   ChequeRequestSchema,
@@ -470,11 +475,12 @@ export {
   ContactUsDataSchema,
   CouncilDataSchema,
   DiscordAccessSchema,
-  DocumentsBudgetsSchema,
-  DocumentsMeetingsSchema,
+  BudgetsSchema,
+  MeetingsSchema,
   ElectionsDataSchema,
   HomeDataSchema,
   ImportantLinksSchema,
+  InventorySchema,
   MentalWellnessDataSchema,
   StudentServicesSchema,
   ServicesMathsocOffice,
