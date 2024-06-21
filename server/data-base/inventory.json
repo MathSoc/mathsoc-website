@@ -306,25 +306,25 @@
           "item": "Cue Cards",
           "price": "$0.29",
           "description": "Comes in packs of 10 per purchase.",
-          "image": ""
+          "image": "/assets/img/inventory/stationary/paper/cuecards.webp"
         },
         {
           "item": "Lined Paper",
           "price": "$0.10",
           "description": "Comes in packs of 10 per purchase.",
-          "image": ""
+          "image": "/assets/img/inventory/stationary/paper/linedpaper.webp"
         },
         {
           "item": "Graph Paper",
           "price": "$0.10",
           "description": "Comes in packs of 10 per purchase.",
-          "image": ""
+          "image": "/assets/img/inventory/stationary/paper/graphpaper.webp"
         },
         {
           "item": "Printer Paper",
           "price": "$0.10",
           "description": "Comes in packs of 10 per purchase.",
-          "image": ""
+          "image": "/assets/img/inventory/stationary/paper/printerpaper.jpg"
         }
       ]
     },
@@ -335,31 +335,31 @@
           "item": "Ruler",
           "price": "$0.50",
           "description": null,
-          "image": ""
+          "image": "/assets/img/inventory/stationary/general/ruler.jpg"
         },
         {
           "item": "Notebook",
           "price": "$4.50",
           "description": "Comes in various colours and page count depending on availability.",
-          "image": ""
+          "image": "/assets/img/inventory/stationary/general/notebook.jpg"
         },
         {
           "item": "Correction Tape",
           "price": "$0.99",
           "description": null,
-          "image": ""
+          "image": "/assets/img/inventory/stationary/general/correctiontape.webp"
         },
         {
           "item": "Highlighters",
           "price": "$0.50",
           "description": "Comes in neon yellow colour!",
-          "image": ""
+          "image": "/assets/img/inventory/stationary/general/highlighters.webp"
         },
         {
           "item": "Rubber Eraser",
           "price": "$0.50",
           "description": null,
-          "image": ""
+          "image": "/assets/img/inventory/stationary/general/eraser.webp"
         }
       ]
     }
