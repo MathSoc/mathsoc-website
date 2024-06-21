@@ -1,15 +1,15 @@
-@import "../../util/_sass-mixins";
 @import "../../util/variables";
+@import "../../mixins/collapsible";
 
 section {
   max-width: var(--content-width);
   margin: 30px auto;
   position: relative;
 
-  .expand-img-box {
+  .item {
     width: 100px;
 
-    .expand-img {
+    .item-img {
       width: 100%;
     }
   }
