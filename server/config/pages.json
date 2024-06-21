@@ -98,7 +98,7 @@
   },
   {
     "title": "Inventory",
-    "ref": "/inventory/inventory",
+    "ref": "/inventory",
     "view": "/inventory/inventory"
   },
   {
