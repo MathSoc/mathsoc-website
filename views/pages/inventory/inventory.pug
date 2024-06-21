@@ -6,4 +6,16 @@ append styles
 block body
     section 
         h1 #{data.title}
-        
+        p #{data.description}
+            h2 Novelties
+                ol(class="expand")
+                    each category in data.novelties
+                        li(class="expand-item")
+                            p(class="expand-item-title") #{category.category}
+                            each item in category.items
+                                a
+                                    div(class="expand-img-box")
+                                        img(class="expand-img" src=item.image)
+            h2 Board Games
+            h2 Stationary
+

@@ -1,0 +1,16 @@
+@import "../../util/_sass-mixins";
+@import "../../util/variables";
+
+section {
+  max-width: var(--content-width);
+  margin: 30px auto;
+  position: relative;
+
+  .expand-img-box {
+    width: 100px;
+
+    .expand-img {
+      width: 100%;
+    }
+  }
+}
