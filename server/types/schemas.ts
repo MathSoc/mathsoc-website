@@ -449,6 +449,7 @@ const MeetingsSchema = z
 
 const ImportantLinksSchema = z
   .object({
+    lastMigrationId: z.string().datetime(),
     title: z.string(),
     links: z.array(
       z
@@ -464,6 +465,51 @@ const ImportantLinksSchema = z
 
 const InventorySchema = z
   .object({
+    lastMigrationId: z.string().datetime(),
+    title: z.string(),
+    description: z.string(),
+    novelties: z.array(
+      z
+        .object({
+          category: z.string(),
+          items: z.array(
+            z
+              .object({
+                item: z.string(),
+                price: z.string(),
+                description: z.string(),
+                image: z.string(),
+              })
+              .strict()
+          ),
+        })
+        .strict()
+    ),
+    boardgames: z.array(
+      z
+        .object({
+          category: z.string(),
+          items: z.string(),
+        })
+        .strict()
+    ),
+    stationary: z.array(
+      z
+        .object({
+          category: z.string(),
+          items: z.array(
+            z
+              .object({
+                item: z.string(),
+                price: z.string(),
+                description: z.string(),
+                image: z.string(),
+              })
+              .strict()
+          ),
+        })
+        .strict()
+    ),
   })
   .strict();
 
