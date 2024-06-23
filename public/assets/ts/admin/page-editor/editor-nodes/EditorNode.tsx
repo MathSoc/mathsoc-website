@@ -10,9 +10,8 @@ import { EditorNumberNode } from "./EditorNumberNode";
 export const EditorNode: React.FC<EditorNodeProps & { value: any }> = (
   props
 ) => {
-  const { value, path } = props;
+  const { value } = props;
   const { couldBeArray } = useContext(EditorContext);
-  const isTermNumber = path.includes("term");
 
   // @todo recognize booleans, numbers, optional data
   if (typeof value === "object") {
@@ -23,7 +22,7 @@ export const EditorNode: React.FC<EditorNodeProps & { value: any }> = (
     }
   } else if (props.name.includes("Markdown")) {
     return <EditorMarkdownNode {...props} />;
-  } else if (isTermNumber) {
+  } else if (!isNaN(parseInt(value))) {
     return <EditorNumberNode {...props}/>
   } else {
     return <EditorLabelNode {...props} />;
