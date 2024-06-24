@@ -15,6 +15,7 @@ const VolunteerDataSchema = z
     lastMigrationId: z.string().datetime(),
     title: z.string(),
     subtext: z.string(),
+    path: z.string(),
     teams: z.array(
       z
         .object({
