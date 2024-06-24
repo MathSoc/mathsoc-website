@@ -140,13 +140,13 @@ export class DataMigrator {
       validateDataPath(migration.path, newData);
     } catch (e) {
       console.error(
-        `Migration for ${
+        `\x1b[31mMIGRATION ERROR:\x1b[0m Migration for ${
           migration.path
         } failed validation. Attempted new state of the file:\n ${JSON.stringify(
           newData,
           null,
           2
-        )}`
+        )}\n\n\x1b[31mProblems with this new state listed below:\x1b[0m\n`
       );
 
       throw e;
