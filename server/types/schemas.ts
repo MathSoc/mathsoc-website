@@ -12,9 +12,10 @@ import { z } from "zod";
 
 const VolunteerDataSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     title: z.string(),
     subtext: z.string(),
+    path: z.string(),
     teams: z.array(
       z
         .object({
@@ -26,6 +27,7 @@ const VolunteerDataSchema = z
                 title: z.string(),
                 descriptionMarkdown: z.string(),
                 link: z.string(),
+                active: z.boolean(),
               })
               .strict()
           ),
@@ -39,7 +41,7 @@ const VolunteerDataSchema = z
 
 const VolunteerApplicationSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     programs: z.array(z.string()),
     terms: z.array(z.string()),
   })
@@ -47,7 +49,7 @@ const VolunteerApplicationSchema = z
 
 const HomeDataSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     socialText: z.string(),
     socialButtons: z.object({
       instagramMarkdown: z.string(),
@@ -57,44 +59,46 @@ const HomeDataSchema = z
   })
   .strict();
 
-const ElectionsDataSchema = z.object({
-  version: z.number(),
-  noElectionsMessage: z.string(),
-  electionsData: z.array(
-    z.object({
-      term: z.string(),
-      electionState: z.string(),
-      candidates: z.array(
-        z
-          .object({
-            name: z.string(),
-            position: z.string(),
-            elected: z.boolean(),
-            platformMarkdown: z.string(),
-          })
-          .strict()
-      ),
-      decisions: z.array(
-        z
-          .object({
-            candidate: z.string(),
-            date: z.string(),
-            allegationMarkdown: z.string().optional(),
-            defenseMarkdown: z.string().optional(),
-            decisionMarkdown: z.string().optional(),
-            penalties: z.array(z.string()).optional(),
-            penaltyDescriptionMarkdown: z.string().optional(),
-            appealMarkdown: z.string().optional(),
-            appealDecisionMarkdown: z.string().optional(),
-          })
-          .strict()
-      ),
-    })
-  ),
-});
+const ElectionsDataSchema = z
+  .object({
+    lastMigrationId: z.string().datetime(),
+    noElectionsMessage: z.string(),
+    electionsData: z.array(
+      z.object({
+        term: z.string(),
+        electionState: z.string(),
+        candidates: z.array(
+          z
+            .object({
+              name: z.string(),
+              position: z.string(),
+              elected: z.boolean(),
+              platformMarkdown: z.string(),
+            })
+            .strict()
+        ),
+        decisions: z.array(
+          z
+            .object({
+              candidate: z.string(),
+              date: z.string(),
+              allegationMarkdown: z.string().optional(),
+              defenseMarkdown: z.string().optional(),
+              decisionMarkdown: z.string().optional(),
+              penalties: z.array(z.string()).optional(),
+              penaltyDescriptionMarkdown: z.string().optional(),
+              appealMarkdown: z.string().optional(),
+              appealDecisionMarkdown: z.string().optional(),
+            })
+            .strict()
+        ),
+      })
+    ),
+  })
+  .strict();
 
 const MentalWellnessDataSchema = z.object({
-  version: z.number(),
+  lastMigrationId: z.string().datetime(),
   title: z.string(),
   subheader: z.string(),
   onCampus: z.string(),
@@ -120,117 +124,123 @@ const MentalWellnessDataSchema = z.object({
   ),
 });
 
-const ChequeRequestSchema = z.object({
-  version: z.number(),
-  title: z.string(),
-  formLinks: z.array(
-    z
-      .object({
-        title: z.string(),
-        link: z.string(),
-      })
-      .strict()
-  ),
-  process: z
-    .object({
-      header: z.string(),
-      description: z.string(),
-      requirementsSubheader: z.string(),
-      requirements: z.array(
-        z
-          .object({
-            descriptionMarkdown: z.string(),
-          })
-          .strict()
-      ),
-    })
-    .strict(),
-  additionalDocumentationItems: z
-    .object({
-      header: z.string(),
-      items: z.array(
-        z.object({
+const FormsSchema = z
+  .object({
+    lastMigrationId: z.string().datetime(),
+    title: z.string(),
+    formLinks: z.array(
+      z
+        .object({
           title: z.string(),
-          description: z.string(),
+          link: z.string(),
         })
-      ),
-    })
-    .strict(),
-  frequentlyAskedQuestions: z
-    .object({
-      header: z.string(),
-      questions: z.array(
-        z
-          .object({
-            question: z.string(),
-            questionMarkdown: z.string(),
-          })
-          .strict()
-      ),
-    })
-    .strict(),
-  otherForms: z
-    .object({
-      header: z.string(),
-      footnote: z.string(),
-      forms: z.array(
-        z
-          .object({
-            title: z.string(),
-            link: z.string(),
-          })
-          .strict()
-      ),
-    })
-    .strict(),
-  mathSocFees: z
-    .object({
-      header: z.string(),
-      description: z.string(),
-    })
-    .strict(),
-});
-
-const DiscordAccessSchema = z.object({
-  version: z.number(),
-  title: z.string(),
-  subheader: z.string(),
-  steps: z.array(
-    z
+        .strict()
+    ),
+    process: z
       .object({
+        header: z.string(),
+        description: z.string(),
+        requirementsSubheader: z.string(),
+        requirements: z.array(
+          z
+            .object({
+              descriptionMarkdown: z.string(),
+            })
+            .strict()
+        ),
+      })
+      .strict(),
+    additionalDocumentationItems: z
+      .object({
+        header: z.string(),
+        items: z.array(
+          z.object({
+            title: z.string(),
+            description: z.string(),
+          })
+        ),
+      })
+      .strict(),
+    frequentlyAskedQuestions: z
+      .object({
+        header: z.string(),
+        questions: z.array(
+          z
+            .object({
+              question: z.string(),
+              questionMarkdown: z.string(),
+            })
+            .strict()
+        ),
+      })
+      .strict(),
+    otherForms: z
+      .object({
+        header: z.string(),
+        footnote: z.string(),
+        forms: z.array(
+          z
+            .object({
+              title: z.string(),
+              link: z.string(),
+            })
+            .strict()
+        ),
+      })
+      .strict(),
+    mathSocFees: z
+      .object({
+        header: z.string(),
+        description: z.string(),
+      })
+      .strict(),
+  })
+  .strict();
+
+const DiscordAccessSchema = z
+  .object({
+    lastMigrationId: z.string().datetime(),
+    title: z.string(),
+    subheader: z.string(),
+    steps: z.array(
+      z
+        .object({
+          title: z.string(),
+          text: z.string(),
+          img: z.string(),
+        })
+        .strict()
+    ),
+  })
+  .strict();
+
+const StudentServicesSchema = z
+  .object({
+    lastMigrationId: z.string().datetime(),
+    sections: z.array(
+      z.object({
         title: z.string(),
-        text: z.string(),
+        description: z.string(),
+        subdescription: z.string(),
+        items: z.array(
+          z.object({
+            item: z.string(),
+          })
+        ),
+        contacts: z.array(
+          z.object({
+            contact: z.string(),
+          })
+        ),
         img: z.string(),
       })
-      .strict()
-  ),
-});
-
-const StudentServicesSchema = z.object({
-  version: z.number(),
-  sections: z.array(
-    z.object({
-      title: z.string(),
-      description: z.string(),
-      subdescription: z.string(),
-      items: z.array(
-        z.object({
-          item: z.string(),
-        })
-      ),
-      contacts: z.array(
-        z.object({
-          contact: z.string(),
-        })
-      ),
-      img: z.string(),
-    })
-  ),
-});
+    ),
+  })
+  .strict();
 
 const ServicesMathsocOffice = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     title: z.string(),
     descriptionMarkdown: z.string(),
     services: z
@@ -254,51 +264,53 @@ const ServicesMathsocOffice = z
   })
   .strict();
 
-const CartoonsAboutUsDataSchema = z.object({
-  version: z.number(),
-  pageTitle: z.string(),
-  heading: z.string(),
-  coverPicSrc: z.string(),
-  coverPicSrcMobile: z.string(),
-  comicExample: z.string(),
-  subheading: z.string(),
-  subheadingCaptionMarkdown: z.string(),
-  joinUs: z.string(),
-  applicationsCaption: z.string(),
-  signupMarkdown: z.string(),
-  buttons: z.object({
-    team: z
+const CartoonsAboutUsDataSchema = z
+  .object({
+    lastMigrationId: z.string().datetime(),
+    pageTitle: z.string(),
+    heading: z.string(),
+    coverPicSrc: z.string(),
+    coverPicSrcMobile: z.string(),
+    comicExample: z.string(),
+    subheading: z.string(),
+    subheadingCaptionMarkdown: z.string(),
+    joinUs: z.string(),
+    applicationsCaption: z.string(),
+    signupMarkdown: z.string(),
+    buttons: z.object({
+      team: z
+        .object({
+          text: z.string(),
+          link: z.string(),
+        })
+        .strict(),
+      archive: z
+        .object({
+          text: z.string(),
+          link: z.string(),
+        })
+        .strict(),
+    }),
+    carouselImages: z.array(z.string()),
+    getInTouch: z.string(),
+    socialButtons: z
       .object({
-        text: z.string(),
-        link: z.string(),
+        instagramMarkdown: z.string(),
+        facebookMarkdown: z.string(),
+        feedbackMarkdown: z.string(),
+        emailMarkdown: z.string(),
       })
       .strict(),
-    archive: z
+    socialLinks: z
       .object({
-        text: z.string(),
-        link: z.string(),
+        instagram: z.string(),
+        facebook: z.string(),
+        feedback: z.string(),
+        email: z.string(),
       })
       .strict(),
-  }),
-  carouselImages: z.array(z.string()),
-  getInTouch: z.string(),
-  socialButtons: z
-    .object({
-      instagramMarkdown: z.string(),
-      facebookMarkdown: z.string(),
-      feedbackMarkdown: z.string(),
-      emailMarkdown: z.string(),
-    })
-    .strict(),
-  socialLinks: z
-    .object({
-      instagram: z.string(),
-      facebook: z.string(),
-      feedback: z.string(),
-      email: z.string(),
-    })
-    .strict(),
-});
+  })
+  .strict();
 
 const CartoonsTeamDataSchema = z.object({
   version: z.number(),
@@ -315,7 +327,7 @@ const CartoonsTeamDataSchema = z.object({
 
 const CouncilDataSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     councilHeader: z.string(),
     councilResponse: z.string(),
     compositionOfCouncilHeader: z.string(),
@@ -335,31 +347,33 @@ const CouncilDataSchema = z
   })
   .strict();
 
-const ContactUsDataSchema = z.object({
-  version: z.number(),
-  staff: z.object({
-    businessManager: z
-      .object({
-        name: z.string(),
-        role: z.string(),
-        email: z.string(),
-      })
-      .strict(),
-  }),
-  locations: z.array(
-    z
-      .object({
-        name: z.string(),
-        room: z.string(),
-        img: z.string(),
-      })
-      .strict()
-  ),
-});
+const ContactUsDataSchema = z
+  .object({
+    lastMigrationId: z.string().datetime(),
+    staff: z.object({
+      businessManager: z
+        .object({
+          name: z.string(),
+          role: z.string(),
+          email: z.string(),
+        })
+        .strict(),
+    }),
+    locations: z.array(
+      z
+        .object({
+          name: z.string(),
+          room: z.string(),
+          img: z.string(),
+        })
+        .strict()
+    ),
+  })
+  .strict();
 
 const SharedFooterSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     phoneNumber: z.string(),
     addressLine1: z.string(),
     addressLine2: z.string(),
@@ -377,34 +391,38 @@ const SharedFooterSchema = z
   })
   .strict();
 
-const SharedExecsSchema = z.object({
-  version: z.number(),
-  execs: z.array(
-    z.object({
-      name: z.string(),
-      role: z.string(),
-      email: z.string(),
-      image: z.string(),
-    })
-  ),
-});
+const SharedExecsSchema = z
+  .object({
+    lastMigrationId: z.string().datetime(),
+    execs: z.array(
+      z.object({
+        name: z.string(),
+        role: z.string(),
+        email: z.string(),
+        image: z.string(),
+      })
+    ),
+  })
+  .strict();
 
-const ClubsSchema = z.object({
-  version: z.number(),
-  clubsHeader: z.string(),
-  clubs: z.array(
-    z.object({
-      title: z.string(),
-      descriptionMarkdown: z.string(),
-      link: z.string(),
-      icon: z.string(),
-    })
-  ),
-});
+const ClubsSchema = z
+  .object({
+    lastMigrationId: z.string().datetime(),
+    clubsHeader: z.string(),
+    clubs: z.array(
+      z.object({
+        title: z.string(),
+        descriptionMarkdown: z.string(),
+        link: z.string(),
+        icon: z.string(),
+      })
+    ),
+  })
+  .strict();
 
 const CommunitySchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     communityHeader: z.string(),
     communities: z.array(
       z
@@ -421,7 +439,7 @@ const CommunitySchema = z
 
 const DocumentsBudgetsSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
     budgets: z.array(
       z
@@ -438,7 +456,7 @@ const DocumentsBudgetsSchema = z
 
 const DocumentsMeetingsSchema = z
   .object({
-    version: z.number(),
+    lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
     meetingGroups: z.array(
       z
@@ -467,11 +485,11 @@ const ImportantLinksSchema = z
       z
         .object({
           title: z.string(),
-          link: z.string()
+          link: z.string(),
         })
         .strict()
     ),
-    icon: z.string()
+    icon: z.string(),
   })
   .strict();
 
@@ -479,6 +497,7 @@ export {
   CartoonsAboutUsDataSchema,
   CartoonsTeamDataSchema,
   ChequeRequestSchema,
+  FormsSchema,
   ClubsSchema,
   CommunitySchema,
   ContactUsDataSchema,

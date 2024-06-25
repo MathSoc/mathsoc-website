@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { ReadWriteAPIController } from "../controllers/read-write-api-controller";
-import { getSchema, validate } from "../../validation/endpoint-schema-map";
+import {
+  getSchema,
+  validateRequest,
+} from "../../validation/endpoint-schema-map";
 import express from "express";
 import { ExamBankController } from "../controllers/exam-bank-controller";
 import { ImageController } from "../controllers/image-controller";
@@ -22,18 +25,11 @@ const DOCUMENT_URL = "_hidden/document-list";
 
 router.use(AdminMiddleware);
 
-ExamBankController.rewriteFile();
-
 router.get("/editor/structure", (_req: Request, res: Response) => {
   res
     .status(200)
     .json(EditorDirectoryStructureConstructor.getDataDirectoryStructure())
     .end();
-});
-
-router.post("/exams/rebuild", (_req: Request, res: Response) => {
-  ExamBankController.rewriteFile();
-  res.status(201).send();
 });
 
 router.patch("/exams/:examName/hide", (req: Request, res: Response) => {
@@ -70,7 +66,7 @@ router.get("/data/schema", (req: Request, res: Response) => {
   }
 });
 
-router.post("/data", validate, (req: Request, res: Response) => {
+router.post("/data", validateRequest, (req: Request, res: Response) => {
   if (typeof req.query.path === "string") {
     ReadWriteAPIController.overwriteJSONDataPath(
       req.query.path.replace(".json", ""),
