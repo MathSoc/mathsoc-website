@@ -118,6 +118,11 @@
         "view": "/cartoons/about-us"
       },
       {
+        "title": "Our Team",
+        "ref": "/cartoons/team",
+        "view": "/cartoons/team"
+      },
+      {
         "title": "Archive",
         "ref": "/cartoons/archive",
         "view": "/cartoons/archive",
