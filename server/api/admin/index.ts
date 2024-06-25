@@ -25,18 +25,11 @@ const DOCUMENT_URL = "_hidden/document-list";
 
 router.use(AdminMiddleware);
 
-ExamBankController.rewriteFile();
-
 router.get("/editor/structure", (_req: Request, res: Response) => {
   res
     .status(200)
     .json(EditorDirectoryStructureConstructor.getDataDirectoryStructure())
     .end();
-});
-
-router.post("/exams/rebuild", (_req: Request, res: Response) => {
-  ExamBankController.rewriteFile();
-  res.status(201).send();
 });
 
 router.patch("/exams/:examName/hide", (req: Request, res: Response) => {

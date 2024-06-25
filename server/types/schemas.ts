@@ -97,36 +97,34 @@ const ElectionsDataSchema = z
   })
   .strict();
 
-const MentalWellnessDataSchema = z
-  .object({
-    lastMigrationId: z.string().datetime(),
-    title: z.string(),
-    subheader: z.string(),
-    onCampus: z.string(),
-    offCampus: z.string(),
-    bottomText: z.string(),
-    onCampusChildren: z.array(
-      z
-        .object({
-          title: z.string(),
-          text: z.array(z.string()),
-          link: z.string(),
-        })
-        .strict()
-    ),
-    offCampusChildren: z.array(
-      z
-        .object({
-          title: z.string(),
-          text: z.array(z.string()),
-          link: z.string(),
-        })
-        .strict()
-    ),
-  })
-  .strict();
+const MentalWellnessDataSchema = z.object({
+  lastMigrationId: z.string().datetime(),
+  title: z.string(),
+  subheader: z.string(),
+  onCampus: z.string(),
+  offCampus: z.string(),
+  bottomText: z.string(),
+  onCampusChildren: z.array(
+    z
+      .object({
+        title: z.string(),
+        text: z.array(z.string()),
+        link: z.string(),
+      })
+      .strict()
+  ),
+  offCampusChildren: z.array(
+    z
+      .object({
+        title: z.string(),
+        text: z.array(z.string()),
+        link: z.string(),
+      })
+      .strict()
+  ),
+});
 
-const ChequeRequestSchema = z
+const FormsSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     title: z.string(),
@@ -484,7 +482,7 @@ const ImportantLinksSchema = z
 
 export {
   CartoonsAboutUsDataSchema,
-  ChequeRequestSchema,
+  FormsSchema,
   ClubsSchema,
   CommunitySchema,
   ContactUsDataSchema,
