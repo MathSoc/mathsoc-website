@@ -56,6 +56,14 @@ export class DataMigrator {
     {
       type: "UPDATE",
       dateAdded: new Date("2024-06-24"),
+      path: "/volunteer.json",
+      migrator: (old) => {
+        return { ...old, path: "get-involved/volunteer-application" };
+      },
+    },
+    {
+      type: "UPDATE",
+      dateAdded: new Date("2024-06-24"),
       path: "/volunteer-application.json",
       migrator: (old) => {
         return { ...old, roles: [], execs: [] };
@@ -148,13 +156,13 @@ export class DataMigrator {
       validateDataPath(migration.path, newData);
     } catch (e) {
       console.error(
-        `Migration for ${
+        `\x1b[31mMIGRATION ERROR:\x1b[0m Migration for ${
           migration.path
         } failed validation. Attempted new state of the file:\n ${JSON.stringify(
           newData,
           null,
           2
-        )}`
+        )}\n\n\x1b[31mProblems with this new state listed below:\x1b[0m\n`
       );
 
       throw e;

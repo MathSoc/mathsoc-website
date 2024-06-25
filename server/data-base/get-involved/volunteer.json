@@ -2,6 +2,7 @@
   "lastMigrationId": "2024-06-11T21:00:00.000Z",
   "title": "Volunteer with MathSoc!",
   "subtext": "Volunteering with MathSoc is a great way to meet other people in your faculty. While some positions are time sensitive we welcome applications at anytime. If you have questions about a role we recommend sending the corresponding VP or club an email. If a position that you are interested in is not currently open and you wish to receive a notification when it opens please email the VPC at vpc@mathsoc.uwaterloo.ca about what positions you are interested in and ensure to check this page regularly. We look forward to meeting you!",
+  "path": "get-involved/volunteer-application",
   "teams": [
     {
       "name": "VP Operations Directors",
@@ -9,32 +10,38 @@
         {
           "title": "Office Worker",
           "descriptionMarkdown": "As an Office Worker, you would be working in the MathSoc Office (MC 3038) to help students sign-out rental items, sell novelties and supplies, and aid students looking for help within the office. Office shifts are flexible and are low in required time commitment, and there will be an office manager to guide you. You are free to work on personal tasks when there is no one looking for assistance, and will get access to our stash of office worker snacks. We ask for a time commitment of 2 hour a week minimum. Please note this is an <b>in-person position</b>.",
-          "link": "/get-involved/volunteer-application?role=office-worker&exec=vpo"
+          "link": "?role=office-worker&exec=vpo",
+          "active": true
         },
         {
           "title": "Office Manager",
           "descriptionMarkdown": "As an office manager, you would be working in the MathSoc Office (MC 3038) to help students sign-out rental items, sell novelties and supplies, and aid students looking for help within the office, similar to an office worker. Additional responsibilities might include opening and closing the office, helping with locker issues and assisting office workers. Manager shifts are flexible and managers get access to exclusive office manager snacks and drinks. We ask for a time commitment of 2 hours a week minimum. Please note this is an <b>in-person position</b>.",
-          "link": "/get-involved/volunteer-application?role=office-manager&exec=vpo"
+          "link": "?role=office-manager&exec=vpo",
+          "active": true
         },
         {
           "title": "Novelties Director",
           "descriptionMarkdown": "The Novelties Director will have the opportunity to design Math novelties. In the past, directors have designed shirts, socks, hats, hoodies, and pins among other things. If you would like to flex your creativity and create new Math related things, please apply! Some tasks of this role may require in-person capabilities.",
-          "link": "/get-involved/volunteer-application?role=novelties-director&exec=vpo"
+          "link": "?role=novelties-director&exec=vpo",
+          "active": true
         },
         {
           "title": "Board Games Director",
           "descriptionMarkdown": "Board Games Director duties include maintaining the board game collection. They also help out with buying new games for our collection, based on suggestions from the community, and help with maintaining a full games inventory that is usually done once a year. Some tasks of this role may require in-person capabilities.",
-          "link": "/get-involved/volunteer-application?role=board-games-director&exec=vpo"
+          "link": "?role=board-games-director&exec=vpo",
+          "active": true
         },
         {
           "title": "Web Developer",
           "descriptionMarkdown": "Web Developers help with improving and redesigning the MathSoc website! Prior experience with HTML or web design is an asset, but not mandatory! This position can be done remotely.",
-          "link": "/get-involved/volunteer-application?role=web-developer&exec=vpo"
+          "link": "?role=web-developer&exec=vpo",
+          "active": true
         },
         {
           "title": "Web Designer",
           "descriptionMarkdown": "Web Designers help with the design of the new MathSoc website! We are looking for someone with graphic design and/or web development experience for this position. This position can be done remotely.",
-          "link": "/get-involved/volunteer-application?role=web-designer&exec=vpo"
+          "link": "?role=web-designer&exec=vpo",
+          "active": true
         }
       ]
     },
@@ -44,7 +51,8 @@
         {
           "title": "Finance Directors",
           "descriptionMarkdown": "Finance directors will work alongside the VP Finance to regularly assist with processing cheque requests, and any other ad-hoc duties given to them. Please note that this is an <b>in-person position</b>.",
-          "link": "/get-involved/volunteer-application?role=finance-director&exec=vpf"
+          "link": "?role=finance-director&exec=vpf",
+          "active": true
         }
       ]
     },
@@ -54,22 +62,26 @@
         {
           "title": "Game Night Directors",
           "descriptionMarkdown": "As a Games Night Director, you will be in charge of planning the weekly games night as well as the Party with Profs event alongside the VP Internal. You will be responsible for running the weekly events and supplying food, snacks, or beverages to your discretion. Please note that this is an <b>in-person position</b>.",
-          "link": "/get-involved/volunteer-application?role=game-night-director&exec=vpi"
+          "link": "?role=game-night-director&exec=vpi",
+          "active": true
         },
         {
           "title": "Event Coordinators",
           "descriptionMarkdown": "Event Coordinators work alongside the VP Internal to plan faculty-wide events such as Pi Day, Valentine’s Day, Halloween, Destress Events, and more to come! You will gain event management Please note that this is an <b>in-person position</b>.",
-          "link": "/get-involved/volunteer-application?role=event-coordinator&exec=vpi"
+          "link": "?role=event-coordinator&exec=vpi",
+          "active": true
         },
         {
           "title": "Event Volunteers",
           "descriptionMarkdown": "Event Volunteers work with the VP Internal help out and set-up events during the day. Volunteers will be needed on an on-call basis, and will be notified one week before the event to indicate your time shift. Please note that this is an <b>in-person position</b>.",
-          "link": "/get-involved/volunteer-application?role=event-volunteer&exec=vpi"
+          "link": "?role=event-volunteer&exec=vpi",
+          "active": true
         },
         {
           "title": "Semi Formal Planning Committee",
           "descriptionMarkdown": "The Semi Formal Planning Committee works with the VPI to plan and execute the MathSoc Semi Formal in July. Please note that this is an <b>in-person position</b>.",
-          "link": "/get-involved/volunteer-application?role=semi-formal-planning-committee&exec=vpi"
+          "link": "?role=semi-formal-planning-committee&exec=vpi",
+          "active": true
         }
       ]
     },
@@ -79,27 +91,32 @@
         {
           "title": "Marketing Directors",
           "descriptionMarkdown": "Marketing Directors are responsible for creating digital graphics for our Social Media pages, or physical poster designs for the society-managed posting boards. Prior experience with visual software, such as Canva, would be considered an asset but is not required. This position can be done remotely.",
-          "link": "/get-involved/volunteer-application?role=marketing-director&exec=vpc"
+          "link": "?role=marketing-director&exec=vpc",
+          "active": true
         },
         {
           "title": "Content Creator",
           "descriptionMarkdown": "Content Creators are responsible for creating and editing together short videos for the MathSoc Instagram account in the form of reels, stories, and video posts. Prior video editing experience would be considered an asset but is not required. This position can be done remotely.",
-          "link": "/get-involved/volunteer-application?role=content-creator&exec=vpc"
+          "link": "?role=content-creator&exec=vpc",
+          "active": true
         },
         {
           "title": "Postings Director",
           "descriptionMarkdown": "Posting Directors are responsible for regularly organizing and updating the MathSoc postings boards. Please note that this is an <b>in-person position</b>.",
-          "link": "/get-involved/volunteer-application?role=postings-director&exec=vpc"
+          "link": "?role=postings-director&exec=vpc",
+          "active": true
         },
         {
           "title": "Photographer",
           "descriptionMarkdown": "Photographers help out with taking pictures of MathSoc events, our clubs or volunteers, and the student body as a whole! Prior photography experience or the possession of a camera would be considered an asset but is not required. Please note that this is an <b>in-person position</b>.",
-          "link": "/get-involved/volunteer-application?role=photographer&exec=vpc"
+          "link": "?role=photographer&exec=vpc",
+          "active": true
         },
         {
           "title": "Website Manager",
           "descriptionMarkdown": "Website Managers are responsible for the upkeep of the current MathSoc website, making updates and changes when needed. Prior experience with WordPress or HTML is an asset, but not mandatory. This position can be done remotely.",
-          "link": "/get-involved/volunteer-application?role=website-manager&exec=vpc"
+          "link": "?role=website-manager&exec=vpc",
+          "active": true
         }
       ]
     },
@@ -109,22 +126,26 @@
         {
           "title": "Deputy Vice President, Academic",
           "descriptionMarkdown": "The <em>Deputy Vice President, Academic</em> will assist the <em>Vice President, Academic</em> and advocate on special topics as the need arises. This role will involve some secretarial work but will generally be an advocacy role.<br></br><strong>Responsibilities</strong><ul><li>Assist the Vice President, Academic as needed.</li><li>Help the Vice President, Academic respond to any issues impacting undergraduate Math students.</li></ul><strong>Requirements</strong><ul><li>Be an undergraduate math student.</li><li>Be in Waterloo.</li><li>Good at writing and communication</li></ul><strong>Expected commitment</strong><ul><li>About 1 - 5 hours per week, with opportunities to take on additional work if desired.</li></ul>",
-          "link": "/get-involved/volunteer-application?role=deputy-vice-president&exec=vpa"
+          "link": "?role=deputy-vice-president&exec=vpa",
+          "active": true
         },
         {
           "title": "Academic Events Director",
           "descriptionMarkdown": "<p>The&nbsp;<em>Academic Events Director</em>&nbsp;will work with the&nbsp;<em>Vice President, Academic</em>, and is responsible for running two academic events in the spring term.</p> <p><strong>Responsibilities</strong></p> <ul> <li>Encourage students to volunteer for academic events.</li> <li>Organizing and facilitating the events.</li> <li>Working with the Vice President, Communications to market the events.</li> </ul> <p><strong>Requirements</strong></p> <ul> <li>Be an undergraduate math student.</li> <li>Be in Waterloo.</li> <li>Have experience in organizing events.</li> </ul> <p><strong>Expected commitment</strong></p> <ul> <li>About 10 hours per week during the preparation of academic events.</li> <li>Little to no work after events are run.</li> </ul> ",
-          "link": "/get-involved/volunteer-application?role=academic-events-director&exec=vpa"
+          "link": "?role=academic-events-director&exec=vpa",
+          "active": true
         },
         {
           "title": "Exam Bank Director",
           "descriptionMarkdown": "<p>The&nbsp;<em>Exam Bank Director</em>&nbsp;will work with the&nbsp;<em>Vice President, Academic,</em>&nbsp;and is responsible for maintaining the Exam Bank and facilitating the submission and approval of new exams.</p> <p><strong>Responsibilities</strong></p> <ul> <li>Managing the Exam Bank system.</li> <li>Finding courses that MathSoc does not have any exams in its Exam Bank for.</li> <li>Reaching out to current and past instructors of courses to add their exams to the Exam Bank.</li> </ul> <p><strong>Requirements</strong></p> <ul> <li>Be an undergraduate math student.</li> <li>Be in Waterloo.</li> <li>Good at communication.</li> </ul> <p><strong>Expected commitment</strong></p> <ul> <li>0&ndash;2 hours per week.</li> </ul>",
-          "link": "/get-involved/volunteer-application?role=exam-bank-director&exec=vpa"
+          "link": "?role=exam-bank-director&exec=vpa",
+          "active": true
         },
         {
           "title": "Textbook Library Directory",
           "descriptionMarkdown": "<p>The&nbsp;<em>Textbook Library Director</em>&nbsp;will work with the&nbsp;<em>Vice President, Academic,</em>&nbsp;and is responsible for maintaining MathSoc&rsquo;s Textbook Library.</p> <p><strong>Responsibilities</strong></p> <ul> <li>Ensure that MathSoc has sufficient and up-to-date textbooks for core Math Faculty courses.</li> </ul> <p><strong>Requirements</strong></p> <ul> <li>Be an undergraduate math student.</li> <li>Be in Waterloo.</li> </ul> <p><strong>Expected commitment</strong></p> <ul> <li>0&ndash;2 hours per week.</li> </ul> ",
-          "link": "/get-involved/volunteer-application?role=textbook-library-director&exec=vpa"
+          "link": "?role=textbook-library-director&exec=vpa",
+          "active": true
         }
       ]
     },
@@ -134,17 +155,20 @@
         {
           "title": "Presidential Assistant",
           "descriptionMarkdown": "<p>The Presidential Assistant will work closely with the president and understand what the day-to-day of the President looks like. They will also assist and suggest solutions to Society&rsquo;s ongoing or previous problems and issues. We are looking for an undergraduate student with excellent writing and communication skills. We believe this position can offer the volunteer training, support, and immense experience. Preference will be given to those who can work&nbsp;<strong>in-person</strong>.</p>",
-          "link": "/get-involved/volunteer-application?role=presidential-assistant&exec=president"
+          "link": "?role=presidential-assistant&exec=president",
+          "active": true
         },
         {
           "title": "Director of First Year Affairs",
           "descriptionMarkdown": "<p>The Director of First Year Affairs is responsible for chairing the Committee of First Year Affairs (CFYA). The CFYA is to encourage greater participation by first year students in the Society, to ensure that the concerns of first year students are adequately represented within the Society and the Faculty, and to provide a structure promoting greater communication between first-year and upper-year students. The Director reports to and is responsible to the President; have the power to appoint committee members to administer the various aspects of the Committee. More information about this role can be found in&nbsp;<a href='https://services.mathsoc.uwaterloo.ca/media/documents/Policies/MathSoc_Policies_-_2019-05-14.pdf#section.17'>Policy 17</a>.</p> ",
-          "link": "/get-involved/volunteer-application?role=first-year-affairs&exec=president"
+          "link": "?role=first-year-affairs&exec=president",
+          "active": true
         },
         {
           "title": "Mental Health Director",
           "descriptionMarkdown": "The Mental Health Director(s) will primarily work on the mental health blog, creating posts and gathering posts from students who submit blogs. They will ensure MathSoc Office is stocked with proper campus wellness and mental health resources. The Mental Health Director(s) will also organize and implement the delivery of care packages for the fall term as well as ensuring campus resources regarding mental health and wellness are communicated to all Math students.",
-          "link": "/get-involved/volunteer-application?role=mental-health-director&exec=president"
+          "link": "?role=mental-health-director&exec=president",
+          "active": true
         }
       ]
     },
@@ -155,32 +179,38 @@
         {
           "title": "President",
           "descriptionMarkdown": "<p>The President is the chief executive of the Society. They organize and run the general meeting, coordinate meetings between the Executive team and various other parties. The President is expected to present at most MathSoc events and to meet with each Club and Service at least once a term. More information about this role can be found in&nbsp;<a href=\"https://mathsoc.uwaterloo.ca/wp-content/uploads/bylaws-public.pdf\">Bylaw 8.3</a>&nbsp;and&nbsp;<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Policies/MathSoc_Policies_-_2019-05-14.pdf#section.25\">Policy 25&nbsp;</a>.</p> <p>The current President can be reached at&nbsp;<a href=\"mailto:president@mathsoc.uwaterloo.ca\">president@mathsoc.uwaterloo.ca</a></p> ",
-          "link": ""
+          "link": "",
+          "active": true
         },
         {
           "title": "Vice President, Finance",
           "descriptionMarkdown": "<p>The Vice President, Finance (VPF), is responsible for the financial affairs of the society. They work closely with the WUSA Accountant to ensure that MathSoc is following proper procedures. They are also responsible for ensuring that clubs and services receive reimbursements in a timely manner. More information about this role can be found in&nbsp;<a href=\"https://mathsoc.uwaterloo.ca/wp-content/uploads/bylaws-public.pdf\">Bylaw 8.4</a>&nbsp;and&nbsp;<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Policies/MathSoc_Policies_-_2019-05-14.pdf#section.25\">Policy 25&nbsp;</a>.<br /> <br /> The current VPF can be reached at&nbsp;<a href=\"mailto:vpf@mathsoc.uwaterloo.ca\">vpf@mathsoc.uwaterloo.ca</a></p> ",
-          "link": ""
+          "link": "",
+          "active": true
         },
         {
           "title": "Vice President, Operations",
           "descriptionMarkdown": "<p>The Vice President Operations (VPO), is responsible for the MathSoc office, equipment and room bookings as well as the MathSoc website. More information about this role can be found in&nbsp;<a href=\"https://mathsoc.uwaterloo.ca/wp-content/uploads/bylaws-public.pdf\">Bylaw 8.5</a>&nbsp;and&nbsp;<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Policies/MathSoc_Policies_-_2019-05-14.pdf#section.25\">Policy 25&nbsp;</a>.<br /> <br /> The current VPO can be reached at&nbsp;<a href=\"mailto:vpo@mathsoc.uwaterloo.ca\">vpo@mathsoc.uwaterloo.ca</a></p> ",
-          "link": ""
+          "link": "",
+          "active": true
         },
         {
           "title": "Vice President, Internal",
           "descriptionMarkdown": "<p>The Vice President, Internal (VPI), is responsible for filling out event forms for all MathSoc Events as well as helping others fill out the required forms properly. They are expected to be present at most MathSoc events and to provide advertising for all MathSoc events as well as run important events like Clubs Day at the start of term, and Pi Day. More information about this role can be found in&nbsp;<a href=\"https://mathsoc.uwaterloo.ca/wp-content/uploads/bylaws-public.pdf\">Bylaw 8.6</a>&nbsp;and&nbsp;<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Policies/MathSoc_Policies_-_2019-05-14.pdf#section.25\">Policy 25</a>.<br /> <br /> The current VPI can be reached at&nbsp;<a href=\"mailto:vpi@mathsoc.uwaterloo.ca\">vpi@mathsoc.uwaterloo.ca</a></p>",
-          "link": ""
+          "link": "",
+          "active": true
         },
         {
           "title": "Vice President, Academic",
           "descriptionMarkdown": "<p>The Vice President, Academics (VPA), is responsible for running at least two academic events of some sort over the term. They are also expected to attend all required meeting and solicit student feedback about upcoming academic changes. More information about this role can be found in&nbsp;<a href=\"https://mathsoc.uwaterloo.ca/wp-content/uploads/bylaws-public.pdf\">Bylaw 8.7</a>&nbsp;and&nbsp;<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Policies/MathSoc_Policies_-_2019-05-14.pdf#section.25\">Policy 25</a>.</p> <p>The current VPA can be reached at&nbsp;<a href=\"mailto:vpa@mathsoc.uwaterloo.ca\">vpa@mathsoc.uwaterloo.ca</a></p> ",
-          "link": ""
+          "link": "",
+          "active": true
         },
         {
           "title": "Vice President, Communications",
           "descriptionMarkdown": "<p>The Vice President, Communications (VPC), is responsible for providing advertising for all MathSoc events through social media and poster advertisement. They are also in charge of sending out communication to students via mass emails and the MathSoc website. More information about this role can be found in&nbsp;<a href=\"https://mathsoc.uwaterloo.ca/wp-content/uploads/bylaws-public.pdf\">Bylaw 8.8</a>&nbsp;and&nbsp;<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Policies/MathSoc_Policies_-_2019-05-14.pdf#section.25\">Policy 25</a>.</p> <p>The current VPC can be reached at&nbsp;<a href=\"mailto:vpc@mathsoc.uwaterloo.ca\">vpc@mathsoc.uwaterloo.ca</a></p> ",
-          "link": ""
+          "link": "",
+          "active": true
         }
       ]
     },
@@ -190,22 +220,26 @@
         {
           "title": "Program Representative",
           "descriptionMarkdown": "<p>The Council is comprised of up to 35 voting members. Council represents the members of the Society by setting advocacy priorities, approving the budgets of clubs and executives as well as providing a voice for students (<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Bylaws/MathSoc_Bylaws_-_2019-04-18.pdf#subsection.7.1\">Bylaw 7.1</a>). Please note that first years are generally not eligible to be Program Representatives (<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Bylaws/MathSoc_Bylaws_-_2019-04-18.pdf#subsection.7.3\">Bylaw 7.3</a>).</p> <p>See&nbsp;<a href=\"https://mathsoc.uwaterloo.ca/elections/\">https://mathsoc.uwaterloo.ca/elections/</a>&nbsp;to see the Fall 2021 representatives. Please visit our&nbsp;<a href=\"https://mathsoc.uwaterloo.ca/elections/\">Election</a>&nbsp;page for more information about the by-election!</p> ",
-          "link": ""
+          "link": "",
+          "active": true
         },
         {
           "title": "First Year Representative",
           "descriptionMarkdown": "<p>While also representing first year students on Council, First Year Representatives are all part of the Committee of First Year Affairs (CFYA) (<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Policies/MathSoc_Policies_-_2019-05-14.pdf#section.17\">Policy 17</a>). CFYA is tasked with encouraging greater participation by first year students in MathSoc, that concerns of first year students are heard and to provide communication between first year and upper year students. In previous years this Committee has run events like &ldquo;Board Games and Bubble Tea&rdquo;. First year representatives hold the position of First Year Representative until they either finish first year or until the end of the following Spring term (<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Bylaws/MathSoc_Bylaws_-_2019-04-18.pdf#subsubsection.7.3.2\">Bylaw 7.3.2</a>).</p> ",
-          "link": ""
+          "link": "",
+          "active": true
         },
         {
           "title": "Secretary",
           "descriptionMarkdown": "<p>The Secretary has the following duties:</p> <ol> <li>Record attendance of Council meetings, including when a member is more than one half-hour late for a meeting and if they sent notice of their absence;</li> <li>Distribute minutes of each Council or General meeting in a timely manner after that meeting;</li> <li>Report to Council when a Councillor is failing to meet the requirements of office.</li> </ol> <p>Refer to (<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Bylaws/MathSoc_Bylaws_-_2019-04-18.pdf#subsection.7.12.2\">Bylaw 7.12.2</a>) for more information.&nbsp;</p> ",
-          "link": ""
+          "link": "",
+          "active": true
         },
         {
           "title": "Speaker",
           "descriptionMarkdown": "<p>The Speaker has the following duties:</p> <ol> <li>Serve as the presiding officer of Council;</li> <li>Work with the Chair of the Board of Directors to interpret this and any other governing documents of the Society, subject to appeal to Council, the Board of Directors, or a general meeting;</li> <li>Arrange for and advertise meetings of Council;</li> <li>Ensure that all Council members have access to the official notice forum if any; and</li> <li>Ensure that Council meetings are called regularly.</li> </ol> <p>Refer to (<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Bylaws/MathSoc_Bylaws_-_2019-04-18.pdf#subsection.7.12.1\">Bylaw 7.12.1</a>) for more information.&nbsp;</p> ",
-          "link": ""
+          "link": "",
+          "active": true
         }
       ]
     },
@@ -215,12 +249,14 @@
         {
           "title": "At-large Director",
           "descriptionMarkdown": "<p>The Board of Directors is comprised of up to 14 voting members and is responsible for the management of the legal, financial, and human resource concerns of the organization as well as long term planning (<a href=\"https://services.mathsoc.uwaterloo.ca/media/documents/Bylaws/MathSoc_Bylaws_-_2019-04-18.pdf#subsection.6.1\">Bylaw 6.1</a>). If interested in this position we recommend checking out Bylaw 6 to learn more about the Board of Directors.</p> <p>Each term there are 2 at-large representatives elected for the following year as well as potentially shorter terms depending on availability. Applications will open in the second month of term. If you would like an email reminder when applications open please email vpo@mathsoc.uwaterloo.ca.</p> ",
-          "link": ""
+          "link": "",
+          "active": true
         },
         {
           "title": "Pro-tempore Board Directory",
           "descriptionMarkdown": "A 4-month At-large position to sit on MathSoc’s Board of Directors. MathSoc is looking for experienced individuals who are passionate about the Society and interested in providing their perspective to help the Society’s long-term planning.",
-          "link": ""
+          "link": "",
+          "active": true
         }
       ]
     }
