@@ -356,10 +356,11 @@ const ContactUsDataSchema = z
         .object({
           name: z.string(),
           room: z.string(),
-          img: z.string(),
+          image: z.string(),
         })
         .strict()
     ),
+    inquiriesReceiver: z.string(),
   })
   .strict();
 
