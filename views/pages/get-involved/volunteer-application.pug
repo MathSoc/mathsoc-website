@@ -8,6 +8,7 @@ block body
     +section("white")
       form(action="/api/volunteer-application" method="post")
         label(for="first-name" class="required") First Name
+        //- Pattern indicates input cannot consist only of whitespace
         input(id="first-name" class="text-input" name="first-name" required maxlength="100" pattern=".*[^ ].*" oninvalid="this.setCustomValidity('Please enter your first name')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')")
         
         label(for="preferred-name") Preferred Name
