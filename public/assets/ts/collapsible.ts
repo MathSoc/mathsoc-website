@@ -4,7 +4,6 @@ for (let i = 0; i < collapsible.length; i++) {
   collapsible[i].addEventListener("click", function () {
     this.classList.toggle("active");
     const content = this.nextElementSibling;
-    console.log(content.style.maxHeight);
     if (content.style.maxHeight) {
       content.style.maxHeight = null;
       content.style.paddingBottom = null;
