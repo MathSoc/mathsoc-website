@@ -2,7 +2,8 @@ mixin collapsible-sales(category)
     button(type="button" class="collapsible-button") #{category.category}
     div(class="collapsible-content")
         each item in category.items
-            div(class="item")
-                img(class="item-img" src=item.image)
-                p(class="item-name") #{item.item}
-                p(class="item-price") #{item.price}
+            a(href="/fewafewa")
+                div(class="item")
+                    img(class="item-img" src=item.image)
+                    p(class="item-name") #{item.item}
+                    p(class="item-price") #{item.price}
