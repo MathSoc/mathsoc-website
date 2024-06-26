@@ -22,7 +22,7 @@
         padding-bottom: 8px;
       }
 
-        > .editor-node-content-container {
+      > .editor-node-content-container {
         background-color: var(--background-colour);
         padding: 4px 16px;
       }
@@ -32,6 +32,11 @@
   .editor-node-label-bar {
     display: inline-flex;
     width: 100%;
+
+    .editor-node-toggle {
+      padding: 0 4px;
+      cursor: pointer;
+    }
 
     .editor-node-buttons {
       flex: 1;
@@ -75,7 +80,7 @@
 
       button {
         cursor: pointer;
-        
+
         &:focus-visible {
           outline: auto;
         }
@@ -84,7 +89,7 @@
           background-color: var(--background-hover);
         }
       }
-      
+
       .image-node-item {
         flex: 1;
         display: block;
@@ -92,7 +97,6 @@
         background-color: var(--background-colour-3);
       }
     }
-
 
     .hidden-file-uploader {
       display: none;

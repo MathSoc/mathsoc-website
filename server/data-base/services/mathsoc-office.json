@@ -16,20 +16,20 @@
       "description": "Available in black and white ($0.10/page) as well as colour ($0.30/side)."
     }
   },
-  "novelties": {
-    "Pen": "0.25",
-    "Muji Pen": "2.00",
-    "Pencil": "0.25",
-    "Mechanical Pencil": "0.50",
-    "Pencil Lead": "1.00",
-    "Eraser": "0.50",
-    "Highlighter": "0.50",
-    "Ruler": "0.50",
-    "Correction Tape": "1.00",
-    "Notebook": "2.00",
-    "Paper (10 pack)": "0.10",
-    "Mug": "3.00",
-    "Champagne Flute": "1.00"
-  },
+  "novelties": [
+    { "item": "Pen", "price": "0.25" },
+    { "item": "Muji Pen", "price": "2.00" },
+    { "item": "Pencil", "price": "0.25" },
+    { "item": "Mechanical Pencil", "price": "0.50" },
+    { "item": "Pencil Lead", "price": "1.00" },
+    { "item": "Eraser", "price": "0.50" },
+    { "item": "Highlighter", "price": "0.50" },
+    { "item": "Ruler", "price": "0.50" },
+    { "item": "Correction Tape", "price": "1.00" },
+    { "item": "Notebook", "price": "2.00" },
+    { "item": "Paper (10 pack)", "price": "0.10" },
+    { "item": "Mug", "price": "3.00" },
+    { "item": "Champagne Flute", "price": "1.00" }
+  ],
   "serviceMarkdown": "<p>In order to put up posters on MathSoc boards, clubs must gain our approval. The approval process is as follows:</p><ol><li>Ensure that your request is either 4 standard A4 sized posters OR 2 large sized posters</li><li>Submit posters in the slot behind the desk labeled&nbsp;<strong>Postings</strong></li></ol><p>Upon approval, MathSoc will put your posters up for you.</p><h2>Contacts</h2><p>For clubs that need rental exceptions:&nbsp;<strong>vpo@mathsoc.uwaterloo.ca</strong></p><p>General questions or inquiries about the office:&nbsp;<strong>info@mathsoc.uwaterloo.ca</strong></p>"
 }

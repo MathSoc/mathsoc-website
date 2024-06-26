@@ -3,6 +3,10 @@
     "title": "Get involved",
     "children": [
       {
+        "title": "Volunteer at MathSoc",
+        "ref": "/get-involved/volunteer"
+      },
+      {
         "title": "Math community",
         "ref": "/get-involved/community"
       },
@@ -13,10 +17,6 @@
       {
         "title": "MathSoc council",
         "ref": "/get-involved/council"
-      },
-      {
-        "title": "Volunteer at MathSoc",
-        "ref": "/get-involved/volunteer"
       }
     ]
   },
@@ -58,8 +58,8 @@
         "ref": "/resources/exam-bank"
       },
       {
-        "title": "Cheque request information and other forms",
-        "ref": "/resources/cheque-requests"
+        "title": "Forms",
+        "ref": "/resources/forms"
       },
       {
         "title": "Meetings",

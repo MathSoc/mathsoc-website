@@ -70,9 +70,9 @@
         "view": "/resources/discord-access"
       },
       {
-        "title": "Cheque Request Information and Other Forms",
-        "ref": "/resources/cheque-requests",
-        "view": "/resources/cheque-requests"
+        "title": "Forms",
+        "ref": "/resources/forms",
+        "view": "/resources/forms"
       },
       {
         "title": "Policies and Bylaws",
