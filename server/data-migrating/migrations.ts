@@ -1,6 +1,10 @@
 import fs from "fs";
+import { validateDataPath } from "../validation/endpoint-schema-map";
 
-type VersionedData = { version?: number };
+type VersionedData = {
+  [key: string]: any;
+  lastMigrationId?: string;
+};
 
 /**
  * When creating an UPDATE migration, ensure you:
@@ -8,7 +12,7 @@ type VersionedData = { version?: number };
  * - update the schema in /server/types/schemas.ts
  */
 interface UpdateMigration {
-  versionToApplyTo: number;
+  dateAdded: Date;
   /** NEW is not an option, since this is handled automatically on startup; see preload.ts  */
   type: "UPDATE";
   /** Starts with a / */
@@ -42,13 +46,21 @@ export class DataMigrator {
       EXAMPLE MIGRATION:
       {
         type: "UPDATE",
-        versionToApplyTo: 1,
+        dateAdded: new Date("2024-01-01"),
         path: "/events.json",
         migrator: (old) => {
           return { ...old, someNewEditableField: "My default value" };
         },
       },
      */
+    {
+      type: "UPDATE",
+      dateAdded: new Date("2024-06-24"),
+      path: "/volunteer.json",
+      migrator: (old) => {
+        return { ...old, path: "get-involved/volunteer-application" };
+      },
+    },
   ];
 
   static async migrate() {
@@ -72,6 +84,7 @@ export class DataMigrator {
     migration: UpdateMigration
   ) {
     if (!fs.existsSync(`server/data${migration.path}`)) {
+      // No error thrown because the file could have been intentionally deleted
       console.error(
         // escape characters are for red text
         `\x1b[31mERROR:\x1b[0m Update migration on ${migration.path} failed; file does not exist.`
@@ -92,40 +105,66 @@ export class DataMigrator {
       fs.readFileSync(`server/data${migration.path}`, "utf-8")
     ) as OldSchema;
 
-    if (oldData.version === undefined) {
+    if (oldData.lastMigrationId === undefined) {
       throw new Error(
-        `No version attribute found in existing data file for ${migration.path}`
+        `No last migration attribute found in existing data file for ${migration.path}`
       );
     }
 
-    if (oldData.version !== migration.versionToApplyTo) {
+    if (oldData.lastMigrationId >= migration.dateAdded.toISOString()) {
+      // escape characters are for yellow text
       console.warn(
-        `Migration skipped from versions ${migration.versionToApplyTo} to ${
-          migration.versionToApplyTo + 1
-        } for file ${migration.path}.` +
-          ` ${migration.path} is at version ${oldData.version}.`
+        `\x1b[32m Migration ${migration.dateAdded.toISOString()} skipped for file ${
+          migration.path
+        }.` +
+          ` ${migration.path} was last updated at ${oldData.lastMigrationId}. This is probably intentional.\x1b[0m`
       );
 
-      if (oldData.version > migration.versionToApplyTo) {
+      // a totally arbitrary amount of time. this message is likely to only display if some other migration has occurred on this file since this one.
+      const ONE_DAY = 1000 * 60 * 60 * 24;
+      if (
+        new Date(oldData.lastMigrationId).getTime() >
+        migration.dateAdded.getTime() + ONE_DAY
+      ) {
         console.info(
-          "Consider deleting this migration once you're certain it has been applied to the staging and prod environments."
+          "\x1b[33m Consider deleting this migration once you're certain it has been applied to the staging and prod environments. \x1b[0m"
         );
       }
+      return;
     }
 
     const newData = migration.migrator(oldData) as VersionedData;
 
     if (Array.isArray(newData)) {
       throw new Error(
-        "Must return object from migrator, otherwise we cannot version it."
+        "Must return object from migrator, otherwise we cannot track its last migration."
       );
     }
 
-    newData.version = migration.versionToApplyTo + 1;
+    newData.lastMigrationId = migration.dateAdded.toISOString(); // now
+
+    console.info(`Validating new state of the data: ${migration.path}`);
+    try {
+      validateDataPath(migration.path, newData);
+    } catch (e) {
+      console.error(
+        `\x1b[31mMIGRATION ERROR:\x1b[0m Migration for ${
+          migration.path
+        } failed validation. Attempted new state of the file:\n ${JSON.stringify(
+          newData,
+          null,
+          2
+        )}\n\n\x1b[31mProblems with this new state listed below:\x1b[0m\n`
+      );
+
+      throw e;
+    }
 
     console.info(`Applying migration to update file: ${migration.path}`);
-
-    fs.writeFileSync(`server/data${migration.path}`, JSON.stringify(newData));
+    fs.writeFileSync(
+      `server/data${migration.path}`,
+      JSON.stringify(newData, null, 2)
+    );
   }
 
   private static async handleDeleteMigration(migration: DeleteMigration) {

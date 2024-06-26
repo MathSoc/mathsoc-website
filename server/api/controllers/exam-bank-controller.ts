@@ -9,6 +9,11 @@ import { TermNameController } from "./term-name-controller";
  * Current invariants (could be changed later with added work)
  * - All exams are PDFs
  * - Exams' "natural names" do not contain the terms "-sol" or "-hidden"
+ *
+ * - Exam names are of the pattern: <department>-<course number>-<term number>-<unique title>[-hidden][-sol].pdf
+ *     CS-136-1245-midterm.pdf
+ *     CS-136-1245-midterm-hidden.pdf
+ *     MATH-239-1219-quiz-2-sol.pdf
  */
 
 export class ExamBankController {
