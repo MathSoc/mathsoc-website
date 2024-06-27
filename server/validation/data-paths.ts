@@ -3,6 +3,7 @@ export enum DataPaths {
   CONTACT_US = "contact-us",
   DOCUMENTS_BUDGETS = "documents/budgets",
   DOCUMENTS_MEETINGS = "documents/meetings",
+  DOCUMENTS_POLICIES_AND_BYLAWS = "documents/policies-and-bylaws",
   ELECTIONS = "elections",
   HOME = "home",
   GET_INVOLVED_VOLUNTEER = "get-involved/volunteer",

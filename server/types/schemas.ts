@@ -370,7 +370,7 @@ const CommunitySchema = z
     communities: z.array(
       z
         .object({
-          title: z.string(),
+          title: z.string(), 
           descriptionMarkdown: z.string(),
           link: z.string(),
           icon: z.string(),
@@ -419,6 +419,21 @@ const DocumentsMeetingsSchema = z
   })
   .strict();
 
+const DocumentsPoliciesBylawsSchema = z.object({
+  policies: z.object({
+    link: z.string(),
+    lastUpdated: z.string(),
+  }),
+  boardProcedures: z.object({
+    link: z.string(),
+    lastUpdated: z.string(),
+  }),
+  bylaws: z.object({
+    link: z.string(),
+    lastUpdated: z.string(),
+  }),
+}).strict()
+
 export {
   CartoonsAboutUsDataSchema,
   ChequeRequestSchema,
@@ -429,6 +444,7 @@ export {
   DiscordAccessSchema,
   DocumentsBudgetsSchema,
   DocumentsMeetingsSchema,
+  DocumentsPoliciesBylawsSchema,
   ElectionsDataSchema,
   HomeDataSchema,
   MentalWellnessDataSchema,
