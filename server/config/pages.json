@@ -70,9 +70,9 @@
         "view": "/resources/discord-access"
       },
       {
-        "title": "Cheque Request Information and Other Forms",
-        "ref": "/resources/cheque-requests",
-        "view": "/resources/cheque-requests"
+        "title": "Forms",
+        "ref": "/resources/forms",
+        "view": "/resources/forms"
       },
       {
         "title": "Important Links",
@@ -116,6 +116,11 @@
         "title": "About us",
         "ref": "/cartoons/about-us",
         "view": "/cartoons/about-us"
+      },
+      {
+        "title": "Our Team",
+        "ref": "/cartoons/team",
+        "view": "/cartoons/team"
       },
       {
         "title": "Archive",

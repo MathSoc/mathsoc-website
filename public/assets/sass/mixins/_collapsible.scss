@@ -1,47 +1,45 @@
-@import '../util/_sass-mixins';
+@import "../util/_sass-mixins";
 
 .collapsible-button {
-    background-color: #fff;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 20px;
-    border-top: 2px solid;
+  background-color: #fff;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  font-size: 20px;
+  border-top: 2px solid;
 
-    ::after {
-        content: '\02795'; /* Unicode character for "plus" sign (+) */
-        font-size: 13px;
-        color: white;
-        float: right;
-        margin-left: 5px;
-    }
-
-    .active:after {
-        content: "\2796"; /* Unicode character for "minus" sign (-) */
-    }
-}
-
-
-.collapsible-content {
-    padding: 0 18px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-}
-  
-.collapsible-button:after {
-    content: '\02795'; /* Unicode character for "plus" sign (+) */
+  ::after {
+    content: "\02795"; /* Unicode character for "plus" sign (+) */
     font-size: 13px;
     color: white;
     float: right;
     margin-left: 5px;
+  }
+
+  .active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+  }
+}
+
+.collapsible-content {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.collapsible-button:after {
+  content: "\02795"; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
 }
 
 .active:after {
-    content: "\2796"; /* Unicode character for "minus" sign (-) */
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
 }

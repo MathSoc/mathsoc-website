@@ -12,6 +12,7 @@ import Zod from "zod";
 // 'get-involved/volunteer' refers to /data/get-involved/volunteer.json
 export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
   [DataPaths.CARTOONS_ABOUT_US]: schemas.CartoonsAboutUsDataSchema,
+  [DataPaths.CARTOONS_TEAM]: schemas.CartoonsTeamDataSchema,
   [DataPaths.CLUBS_DATA]: schemas.ClubsSchema,
   [DataPaths.COMMUNITY_DATA]: schemas.CommunitySchema,
   [DataPaths.CONTACT_US]: schemas.ContactUsDataSchema,
@@ -24,7 +25,7 @@ export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
     schemas.VolunteerApplicationSchema,
   [DataPaths.HOME]: schemas.HomeDataSchema,
   [DataPaths.RESOUCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
-  [DataPaths.RESOURCES_CHEQUE_REQUESTS]: schemas.ChequeRequestSchema,
+  [DataPaths.RESOURCES_FORMS]: schemas.FormsSchema,
   [DataPaths.RESOURCES_DISCORD_ACCESS]: schemas.DiscordAccessSchema,
   [DataPaths.RESOURCES_IMPORTANT_LINKS]: schemas.ImportantLinksSchema,
   [DataPaths.SHARED_FOOTER]: schemas.SharedFooterSchema,

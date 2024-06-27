@@ -28,7 +28,7 @@ block body
         div(id="halves")
             div(id="left")
                 h2 Novelties
-                - const items = Object.entries(data.novelties).map((entry) => ({item: entry[0], price: entry[1]}));
+                - const items = data.novelties;
                 table(id="novelties-table")
                     thead
                         tr
