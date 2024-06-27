@@ -22,6 +22,7 @@
      font-weight: 200;
      text-transform: uppercase;
      color: var(--mathsoc-grey);
+     transition: all 0.5s ease;
  }
 
  .icon-container {
@@ -39,11 +40,13 @@
     border-color:rgba(255,255,255,0);
     border: 2px solid var(--background-colour);
     border-radius: 50%;
+    transition: all 0.5s ease;
 }
 
 .icon {
     font-size: 32px;
     color: var(--mathsoc-pink);
+    transition: all 0.5s ease;
 }
 
 .column-link {
