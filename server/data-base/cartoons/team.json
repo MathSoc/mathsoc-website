@@ -1,0 +1,160 @@
+{
+    "version": 1,
+    "pageTitle": "Cartoons Team",
+    "terms": [
+        {
+            "term": "Fall 2023",
+            "people": [
+                {
+                    "name": "test1 name",
+                    "role": "test1 role"
+                },
+                {
+                    "name": "test2 name",
+                    "role": "test2 role"
+                }
+            ],
+            "cartoon": "https://images.theconversation.com/files/560110/original/file-20231117-29-fv986f.jpg?ixlib=rb-4.1.0&rect=0%2C15%2C5048%2C3340&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip"
+        },
+        {
+            "term": "Spring 2023",
+            "people": [
+                {
+                    "name": "test1",
+                    "role": "test1"
+                },
+                {
+                    "name": "test2",
+                    "role": "test2"
+                }
+            ],
+            "cartoon": ""
+        },
+        {
+            "term": "Winter 2023",
+            "people": [
+                {
+                    "name": "test1",
+                    "role": "test1"
+                },
+                {
+                    "name": "test2",
+                    "role": "test2"
+                }
+            ],
+            "cartoon": ""
+        },
+        {
+            "term": "Fall 2022",
+            "people": [
+                {
+                    "name": "test1",
+                    "role": "test1"
+                },
+                {
+                    "name": "test2",
+                    "role": "test2"
+                }
+            ],
+            "cartoon": ""
+        },
+        {
+            "term": "Spring 2022",
+            "people": [
+                {
+                    "name": "test1",
+                    "role": "test1"
+                },
+                {
+                    "name": "test2",
+                    "role": "test2"
+                }
+            ],
+            "cartoon": ""
+        },
+        {
+            "term": "Winter 2022",
+            "people": [
+                {
+                    "name": "test1",
+                    "role": "test1"
+                },
+                {
+                    "name": "test2",
+                    "role": "test2"
+                }
+            ],
+            "cartoon": ""
+        },
+        {
+            "term": "Fall 2021",
+            "people": [
+                {
+                    "name": "test1",
+                    "role": "test1"
+                },
+                {
+                    "name": "test2",
+                    "role": "test2"
+                }
+            ],
+            "cartoon": ""
+        },
+        {
+            "term": "Spring 2021",
+            "people": [
+                {
+                    "name": "test1",
+                    "role": "test1"
+                },
+                {
+                    "name": "test2",
+                    "role": "test2"
+                }
+            ],
+            "cartoon": ""
+        },
+        {
+            "term": "Winter 2021",
+            "people": [
+                {
+                    "name": "test1",
+                    "role": "test1"
+                },
+                {
+                    "name": "test2",
+                    "role": "test2"
+                }
+            ],
+            "cartoon": ""
+        },
+        {
+            "term": "Fall 2020",
+            "people": [
+                {
+                    "name": "test1",
+                    "role": "test1"
+                },
+                {
+                    "name": "test2",
+                    "role": "test2"
+                }
+            ],
+            "cartoon": ""
+        },
+        {
+            "term": "Spring 2020",
+            "people": [
+                {
+                    "name": "test1",
+                    "role": "test1"
+                },
+                {
+                    "name": "test2",
+                    "role": "test2"
+                }
+            ],
+            "cartoon": ""
+        }
+    ]
+}

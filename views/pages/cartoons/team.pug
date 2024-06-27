@@ -1,0 +1,25 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+  link(href="/assets/css/pages/cartoons/team.css" rel="stylesheet")
+
+append scripts
+  script(src="/assets/js/collapsible.js" defer)
+
+
+block body
+
+    +section("white")
+        h1 Cartoons Team
+
+        each term in data.terms
+            button(type="button" class="collapsible-button" value="" + title + "")= term.term
+            div(class="collapsible-content")
+                div(class="collapsible-cartoon-content")
+                    div(class="team-members")
+                        each person in term.people
+                            b!= person.name 
+                            span!= " - " + person.role
+                            br
+                    div(class="cartoon")
+                        img(src!=term.cartoon)

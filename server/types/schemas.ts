@@ -317,6 +317,19 @@ const CartoonsAboutUsDataSchema = z
   })
   .strict();
 
+const CartoonsTeamDataSchema = z.object({
+  version: z.number(),
+  pageTitle: z.string(),
+  terms: z.object({
+    term: z.string(),
+    people: z.object({
+      name: z.string(),
+      role: z.string()
+    }),
+    cartoon: z.string()
+  })
+});
+
 const CouncilDataSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
@@ -487,6 +500,7 @@ const ImportantLinksSchema = z
 
 export {
   CartoonsAboutUsDataSchema,
+  CartoonsTeamDataSchema,
   FormsSchema,
   ClubsSchema,
   CommunitySchema,

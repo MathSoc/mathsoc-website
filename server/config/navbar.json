@@ -45,6 +45,10 @@
         "ref": "/cartoons/about-us"
       },
       {
+        "title": "Cartoons team",
+        "ref": "/cartoons/team"
+      },
+      {
         "title": "Cartoons archive",
         "ref": "/cartoons/archive"
       }
