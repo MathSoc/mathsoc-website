@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 export interface EditorNodeProps {
   name: string;
@@ -20,6 +20,8 @@ export const EditorNodeTemplate: React.FC<
     labelId?: string;
   }
 > = ({ name, children, labelId, headerButtons, theme }) => {
+  const [isUnfolded, setIsUnfolded] = useState<boolean>(true);
+
   const getFormattedName = (name: string) => {
     return name
       ?.replace(/([A-Z])/g, " $1")
@@ -36,6 +38,12 @@ export const EditorNodeTemplate: React.FC<
       className={`editor-node-container ${theme ? `editor-node-${theme}` : ""}`}
     >
       <div className="editor-node-label-bar">
+        <span
+          className="editor-node-toggle"
+          onClick={() => setIsUnfolded(!isUnfolded)}
+        >
+          {isUnfolded ? "–" : "+"}&nbsp;
+        </span>
         {labelId ? (
           <label className="editor-label" id={labelId}>
             {getFormattedName(name)}
@@ -57,7 +65,9 @@ export const EditorNodeTemplate: React.FC<
           })}
         </div>
       </div>
-      <div className="editor-node-content-container">{children}</div>
+      {isUnfolded ? (
+        <div className="editor-node-content-container">{children}</div>
+      ) : null}
     </div>
   );
 };
