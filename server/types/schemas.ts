@@ -423,15 +423,18 @@ const DocumentsPoliciesBylawsSchema = z.object({
   policies: z.object({
     link: z.string(),
     lastUpdated: z.string(),
-  }),
+  })
+  .strict(),
   boardProcedures: z.object({
     link: z.string(),
     lastUpdated: z.string(),
-  }),
+  })
+  .strict(),
   bylaws: z.object({
     link: z.string(),
     lastUpdated: z.string(),
-  }),
+  })
+  .strict(),
 }).strict()
 
 export {
