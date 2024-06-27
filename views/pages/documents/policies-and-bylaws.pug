@@ -1,1 +1,43 @@
 extends /views/templates/frontend-base.pug
+
+
+append styles
+  link(href='/assets/css/pages/documents/policies-and-bylaws.css' rel="stylesheet")
+
+append scripts
+  script(src="https://kit.fontawesome.com/c02fb43ad1.js" crossorigin="anonymous")
+
+block body
+  div
+    div(class="column-container")
+      div(class="gutter")
+      
+      div(class="column")
+        a(href!=data.policies.link class="column-link")
+          div(class="icon-container")
+            div(class="icon-border")
+              i(class="fa-solid fa-clipboard-list icon")  
+          h2(class="column-header") Policies
+        p Current as of #{data.policies.lastUpdated}
+        a(href!=data.policies.link class="full-link") View Full Document
+
+      div(class="column")
+        a(href!=data.boardProcedures.link class="column-link")
+          div(class="icon-container")
+            div(class="icon-border")
+              i(class="fa-solid fa-file-circle-check icon")   
+          h2(class="column-header") Board Procedures
+        p Current as of #{data.boardProcedures.lastUpdated}
+        a(href!=data.boardProcedures.link class="full-link") View Full Document
+
+      div(class="column")
+        a(href!=data.boardProcedures.link class="column-link")
+          div(class="icon-container")
+            div(class="icon-border")
+              i(class="fa-solid fa-gavel icon")
+          h2(class="column-header") Bylaws
+        p Current as of #{data.bylaws.lastUpdated}
+        a(href!=data.bylaws.link class="full-link") View Full Document
+      
+      div(class="gutter")
+      

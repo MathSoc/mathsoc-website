@@ -431,7 +431,7 @@ const CommunitySchema = z
     communities: z.array(
       z
         .object({
-          title: z.string(),
+          title: z.string(), 
           descriptionMarkdown: z.string(),
           link: z.string(),
           icon: z.string(),
@@ -482,6 +482,24 @@ const DocumentsMeetingsSchema = z
   })
   .strict();
 
+const DocumentsPoliciesBylawsSchema = z.object({
+  policies: z.object({
+    link: z.string(),
+    lastUpdated: z.string(),
+  })
+  .strict(),
+  boardProcedures: z.object({
+    link: z.string(),
+    lastUpdated: z.string(),
+  })
+  .strict(),
+  bylaws: z.object({
+    link: z.string(),
+    lastUpdated: z.string(),
+  })
+  .strict(),
+}).strict()
+
 const ImportantLinksSchema = z
   .object({
     title: z.string(),
@@ -509,6 +527,7 @@ export {
   DiscordAccessSchema,
   DocumentsBudgetsSchema,
   DocumentsMeetingsSchema,
+  DocumentsPoliciesBylawsSchema,
   ElectionsDataSchema,
   HomeDataSchema,
   ImportantLinksSchema,
