@@ -61,6 +61,14 @@ export class DataMigrator {
         return { ...old, path: "get-involved/volunteer-application" };
       },
     },
+    {
+      type: "UPDATE",
+      dateAdded: new Date("2024-06-24"),
+      path: "/volunteer-application.json",
+      migrator: (old) => {
+        return { ...old, roles: [], execs: [] };
+      },
+    },
   ];
 
   static async migrate() {
