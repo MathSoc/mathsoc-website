@@ -1,0 +1,23 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+    link(href="/assets/css/pages/inventory/inventory.css" rel="stylesheet")
+append scripts
+    script(src="/assets/js/collapsible.js" defer)
+
+block body
+    section 
+        h1 #{data.title}
+        p #{data.description}
+        div(class="container")
+            h2 Novelties
+            div(class="collapse-menu")
+                each category in data.novelties
+                    +collapsible-sales(category)
+        div(class="container")
+            h2 Board Games
+        div(class="container")
+            h2 Stationary
+            div(class="collapse-menu")
+                each category in data.stationary
+                    +collapsible-sales(category)
