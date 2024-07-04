@@ -329,7 +329,8 @@ const CartoonsTeamDataSchema = z.object({
     cartoon: z.string(),
   }),
 });
-const CartoonsListSchema = z
+
+const CartoonsArchiveSchema = z
   .object({
     subjects: z.array(
       z
@@ -548,7 +549,7 @@ const ImportantLinksSchema = z
 export {
   CartoonsAboutUsDataSchema,
   CartoonsTeamDataSchema,
-  CartoonsListSchema as CartoonsArchiveSchema,
+  CartoonsArchiveSchema,
   FormsSchema,
   ClubsSchema,
   CommunitySchema,
