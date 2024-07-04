@@ -441,7 +441,7 @@ const CommunitySchema = z
   })
   .strict();
 
-const BudgetsSchema = z
+const DocumentsBudgetsSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
@@ -458,7 +458,7 @@ const BudgetsSchema = z
   })
   .strict();
 
-const MeetingsSchema = z
+const DocumentsMeetingsSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
