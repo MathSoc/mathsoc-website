@@ -55,23 +55,6 @@
     ]
   },
   {
-    "title": "Documents",
-    "children": [
-      {
-        "title": "Meetings",
-        "ref": "/documents/meetings"
-      },
-      {
-        "title": "Policies and bylaws",
-        "ref": "/documents/policies-and-bylaws"
-      },
-      {
-        "title": "Budgets",
-        "ref": "/documents/budgets"
-      }
-    ]
-  },
-  {
     "title": "Resources",
     "children": [
       {
@@ -81,6 +64,18 @@
       {
         "title": "Forms",
         "ref": "/resources/forms"
+      },
+      {
+        "title": "Meetings",
+        "ref": "/resources/meetings"
+      },
+      {
+        "title": "Policies and bylaws",
+        "ref": "/resources/policies-and-bylaws"
+      },
+      {
+        "title": "Budgets",
+        "ref": "/resources/budgets"
       },
       {
         "title": "Discord access",
@@ -96,6 +91,10 @@
         "ref": "/resources/important-links"
       }
     ]
+  },
+  {
+    "title": "Inventory",
+    "ref": "/inventory"
   },
   {
     "title": "Contact us",

@@ -263,7 +263,7 @@ const ServicesMathsocOffice = z
       z.object({
         item: z.string(),
         price: z.string(),
-      }),
+      })
     ),
     serviceMarkdown: z.string(),
   })
@@ -324,10 +324,10 @@ const CartoonsTeamDataSchema = z.object({
     term: z.string(),
     people: z.object({
       name: z.string(),
-      role: z.string()
+      role: z.string(),
     }),
-    cartoon: z.string()
-  })
+    cartoon: z.string(),
+  }),
 });
 
 const CouncilDataSchema = z
@@ -372,7 +372,7 @@ const ContactUsDataSchema = z.object({
       })
       .strict()
   ),
-  websiteRequestFormMarkdown: z.string()
+  websiteRequestFormMarkdown: z.string(),
 });
 
 const SharedFooterSchema = z
@@ -431,7 +431,7 @@ const CommunitySchema = z
     communities: z.array(
       z
         .object({
-          title: z.string(), 
+          title: z.string(),
           descriptionMarkdown: z.string(),
           link: z.string(),
           icon: z.string(),
@@ -441,7 +441,7 @@ const CommunitySchema = z
   })
   .strict();
 
-const DocumentsBudgetsSchema = z
+const BudgetsSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
@@ -458,7 +458,7 @@ const DocumentsBudgetsSchema = z
   })
   .strict();
 
-const DocumentsMeetingsSchema = z
+const MeetingsSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
@@ -482,26 +482,32 @@ const DocumentsMeetingsSchema = z
   })
   .strict();
 
-const DocumentsPoliciesBylawsSchema = z.object({
-  policies: z.object({
-    link: z.string(),
-    lastUpdated: z.string(),
+const DocumentsPoliciesBylawsSchema = z
+  .object({
+    policies: z
+      .object({
+        link: z.string(),
+        lastUpdated: z.string(),
+      })
+      .strict(),
+    boardProcedures: z
+      .object({
+        link: z.string(),
+        lastUpdated: z.string(),
+      })
+      .strict(),
+    bylaws: z
+      .object({
+        link: z.string(),
+        lastUpdated: z.string(),
+      })
+      .strict(),
   })
-  .strict(),
-  boardProcedures: z.object({
-    link: z.string(),
-    lastUpdated: z.string(),
-  })
-  .strict(),
-  bylaws: z.object({
-    link: z.string(),
-    lastUpdated: z.string(),
-  })
-  .strict(),
-}).strict()
+  .strict();
 
 const ImportantLinksSchema = z
   .object({
+    lastMigrationId: z.string().datetime(),
     title: z.string(),
     links: z.array(
       z
@@ -513,6 +519,56 @@ const ImportantLinksSchema = z
         .strict()
     ),
     icon: z.string(),
+  })
+  .strict();
+
+const InventorySchema = z
+  .object({
+    lastMigrationId: z.string().datetime(),
+    title: z.string(),
+    description: z.string(),
+    novelties: z.array(
+      z
+        .object({
+          category: z.string(),
+          items: z.array(
+            z
+              .object({
+                item: z.string(),
+                price: z.string(),
+                description: z.string(),
+                image: z.string(),
+              })
+              .strict()
+          ),
+        })
+        .strict()
+    ),
+    boardgames: z.array(
+      z
+        .object({
+          category: z.string(),
+          items: z.string(),
+        })
+        .strict()
+    ),
+    stationary: z.array(
+      z
+        .object({
+          category: z.string(),
+          items: z.array(
+            z
+              .object({
+                item: z.string(),
+                price: z.string(),
+                description: z.string(),
+                image: z.string(),
+              })
+              .strict()
+          ),
+        })
+        .strict()
+    ),
   })
   .strict();
 
@@ -531,6 +587,7 @@ export {
   ElectionsDataSchema,
   HomeDataSchema,
   ImportantLinksSchema,
+  InventorySchema,
   MentalWellnessDataSchema,
   StudentServicesSchema,
   ServicesMathsocOffice,
