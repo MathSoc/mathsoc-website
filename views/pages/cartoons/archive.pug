@@ -11,29 +11,18 @@ block body
   +section("white")
     h1 Cartoons Archive
 
-  - const subjects = Object.entries(sources.cartoonsList);
-  each subjectPair in subjects
-    - const subject = subjectPair[0];
-    - const courses = Object.entries(subjectPair[1]);
-
+  each subject in data.subjects
     +section("white")
-      h2 #{subject}
-      each coursePair in courses 
-        - const courseCode = coursePair[0];
-        - const cartoons = Object.entries(coursePair[1]);
-
+      h2 #{subject.name}
+      each course in subject.courses 
         div(class="menu-button-grid")
-          each cartoonsPair in cartoons
-            - const cartoonName = cartoonsPair[0].split('_').join(' ');
-            - const cartoonsSources = cartoonsPair[1].join(';');
+          each cartoon in course.cartoons
             button(class="course-button" 
-              data-img-srcs=cartoonsSources 
-              data-course-code=courseCode 
-              data-subject=subject 
-              data-cartoon-dirname=cartoonsPair[0]
+              data-img-srcs=cartoon.images.join(';')
+              data-name=cartoon.name
             )
-              span(class="course-title") #{subject} #{courseCode}
-              span(class="course-name") #{cartoonName}
+              span(class="course-title") #{subject.name} #{course.courseCode}
+              span(class="course-name") #{cartoon.name}
 
   div(id="cartoon-display-bg")
     div(id="cartoon-display-modal")

@@ -1,0 +1,33 @@
+{
+  "subjects": [
+    {
+      "name": "MATH",
+      "courses": [
+        {
+          "courseCode": "135",
+          "cartoons": [
+            {
+              "name": "Complex Numbers",
+              "images": [
+                "/assets/img/cartoons/cartoons-cover-mobile.jpg",
+                "/assets/img/cartoons/cartoons-cover-mobile.jpg"
+              ]
+            },
+            {
+              "name": "Divisibility",
+              "images": ["/assets/img/cartoons/cartoons-cover-mobile.jpg"]
+            },
+            {
+              "name": "Induction",
+              "images": ["/assets/img/cartoons/cartoons-cover-mobile.jpg"]
+            },
+            {
+              "name": "Linear diophantine equations",
+              "images": ["/assets/img/cartoons/cartoons-cover-mobile.jpg"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -263,7 +263,7 @@ const ServicesMathsocOffice = z
       z.object({
         item: z.string(),
         price: z.string(),
-      }),
+      })
     ),
     serviceMarkdown: z.string(),
   })
@@ -324,11 +324,35 @@ const CartoonsTeamDataSchema = z.object({
     term: z.string(),
     people: z.object({
       name: z.string(),
-      role: z.string()
+      role: z.string(),
     }),
-    cartoon: z.string()
-  })
+    cartoon: z.string(),
+  }),
 });
+const CartoonsListSchema = z
+  .object({
+    subjects: z.array(
+      z
+        .object({
+          name: z.string(),
+          courses: z.array(
+            z
+              .object({
+                courseCode: z.string(),
+                cartoons: z.array(
+                  z.object({
+                    name: z.string(),
+                    images: z.array(z.string()),
+                  })
+                ),
+              })
+              .strict()
+          ),
+        })
+        .strict()
+    ),
+  })
+  .strict();
 
 const CouncilDataSchema = z
   .object({
@@ -372,7 +396,7 @@ const ContactUsDataSchema = z.object({
       })
       .strict()
   ),
-  websiteRequestFormMarkdown: z.string()
+  websiteRequestFormMarkdown: z.string(),
 });
 
 const SharedFooterSchema = z
@@ -431,7 +455,7 @@ const CommunitySchema = z
     communities: z.array(
       z
         .object({
-          title: z.string(), 
+          title: z.string(),
           descriptionMarkdown: z.string(),
           link: z.string(),
           icon: z.string(),
@@ -482,23 +506,28 @@ const DocumentsMeetingsSchema = z
   })
   .strict();
 
-const DocumentsPoliciesBylawsSchema = z.object({
-  policies: z.object({
-    link: z.string(),
-    lastUpdated: z.string(),
+const DocumentsPoliciesBylawsSchema = z
+  .object({
+    policies: z
+      .object({
+        link: z.string(),
+        lastUpdated: z.string(),
+      })
+      .strict(),
+    boardProcedures: z
+      .object({
+        link: z.string(),
+        lastUpdated: z.string(),
+      })
+      .strict(),
+    bylaws: z
+      .object({
+        link: z.string(),
+        lastUpdated: z.string(),
+      })
+      .strict(),
   })
-  .strict(),
-  boardProcedures: z.object({
-    link: z.string(),
-    lastUpdated: z.string(),
-  })
-  .strict(),
-  bylaws: z.object({
-    link: z.string(),
-    lastUpdated: z.string(),
-  })
-  .strict(),
-}).strict()
+  .strict();
 
 const ImportantLinksSchema = z
   .object({
@@ -519,6 +548,7 @@ const ImportantLinksSchema = z
 export {
   CartoonsAboutUsDataSchema,
   CartoonsTeamDataSchema,
+  CartoonsListSchema as CartoonsArchiveSchema,
   FormsSchema,
   ClubsSchema,
   CommunitySchema,
