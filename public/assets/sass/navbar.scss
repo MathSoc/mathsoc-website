@@ -42,6 +42,7 @@
       height: 100%;
 
       $vertical-padding: 28px;
+
       .dropdown-button {
         padding: $vertical-padding 6px;
       }
@@ -53,7 +54,8 @@
 
       .dropdown-content {
         &:hover,
-        &:focus, // :focus triggered by keyboard navigation of navbar
+        &:focus,
+        // :focus triggered by keyboard navigation of navbar
         &:focus-within,
         &:active {
           display: block;
@@ -218,6 +220,7 @@
     &.active {
       .items {
         visibility: visible;
+
         .dropdown.active {
           .dropdown-button {
             color: var(--background-colour);
@@ -233,5 +236,19 @@
         }
       }
     }
+  }
+}
+
+.skip-to-main-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s ease;
+
+  &:focus {
+    top: 0;
   }
 }

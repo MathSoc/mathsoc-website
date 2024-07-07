@@ -133,7 +133,11 @@ export class ImageController extends AbstractFileController<
 
     const urlSearchParams = new URLSearchParams();
     errors.forEach((item) => urlSearchParams.append("errors", item));
-    res.send({ status: "success", errors: errors });
+    res.status(201).send({
+      status: "success",
+      errors: errors,
+      files: images.map((im) => im.fileName),
+    });
   }
 
   processFileDelete(request: ImageDeleteRequest): void {

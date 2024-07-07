@@ -32,6 +32,9 @@ export const EditorSideMenu: React.FC = () => {
   return (
     <div className="editor-side-menu">
       <h2>Editor select</h2>
+      <button onClick={() => document.getElementById("body").scrollIntoView()}>
+        Skip Sidebar
+      </button>
       <EditorSideMenuLayer layer={menu} />
     </div>
   );

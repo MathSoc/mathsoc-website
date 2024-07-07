@@ -1,4 +1,5 @@
 {
+  "lastMigrationId": "2024-06-11T21:00:00.000Z",
   "programs": [
     "Honours Mathematics",
     "Actuarial Science",
@@ -20,17 +21,5 @@
     "Statistics",
     "Other"
   ],
-  "terms": [
-    "1A",
-    "1B",
-    "2A",
-    "2B",
-    "3A",
-    "3B",
-    "4A",
-    "4B",
-    "5A",
-    "5B",
-    "Other"
-  ]
+  "terms": ["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B", "Other"]
 }

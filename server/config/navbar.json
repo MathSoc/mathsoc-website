@@ -3,6 +3,10 @@
     "title": "Get involved",
     "children": [
       {
+        "title": "Volunteer at MathSoc",
+        "ref": "/get-involved/volunteer"
+      },
+      {
         "title": "Math community",
         "ref": "/get-involved/community"
       },
@@ -13,10 +17,6 @@
       {
         "title": "MathSoc council",
         "ref": "/get-involved/council"
-      },
-      {
-        "title": "Volunteer at MathSoc",
-        "ref": "/get-involved/volunteer"
       }
     ]
   },
@@ -43,6 +43,10 @@
       {
         "title": "About us",
         "ref": "/cartoons/about-us"
+      },
+      {
+        "title": "Cartoons team",
+        "ref": "/cartoons/team"
       },
       {
         "title": "Cartoons archive",
@@ -75,8 +79,8 @@
         "ref": "/resources/exam-bank"
       },
       {
-        "title": "Cheque request information and other forms",
-        "ref": "/resources/cheque-requests"
+        "title": "Forms",
+        "ref": "/resources/forms"
       },
       {
         "title": "Discord access",
@@ -86,6 +90,10 @@
         "title": "Elections",
         "ref": "/elections",
         "children": []
+      },
+      {
+        "title": "Important links",
+        "ref": "/resources/important-links"
       }
     ]
   },

@@ -1,14 +1,15 @@
 {
-    "phoneNumber": "(519) 888-5467 x32324",
-    "addressLine1": "200 University Avenue W,",
-    "addressLine2": "Waterloo, ON N2L 3G1",
-    "addressLine3": "MC 3038",
-    "socialLinks": {
-        "facebook": "https://www.facebook.com/mathsoc",
-        "twitter": "https://twitter.com/mathsoc",
-        "instagram": "https://www.instagram.com/uwmathsoc/",
-        "mail": "mailto:info@mathsoc.uwaterloo.ca",
-        "discord": "/resources/discord-access",
-        "youtube": "https://www.youtube.com/@uwmathsoc"
-    }
+  "lastMigrationId": "2024-06-11T21:00:00.000Z",
+  "phoneNumber": "(519) 888-5467 x32324",
+  "addressLine1": "200 University Avenue W,",
+  "addressLine2": "Waterloo, ON N2L 3G1",
+  "addressLine3": "MC 3038",
+  "socialLinks": {
+    "facebook": "https://www.facebook.com/mathsoc",
+    "twitter": "https://twitter.com/mathsoc",
+    "instagram": "https://www.instagram.com/uwmathsoc/",
+    "mail": "mailto:info@mathsoc.uwaterloo.ca",
+    "discord": "/resources/discord-access",
+    "youtube": "https://www.youtube.com/@uwmathsoc"
+  }
 }

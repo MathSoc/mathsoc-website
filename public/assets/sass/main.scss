@@ -44,7 +44,6 @@ a:visited {
 // Reset buttons to not use default appearance
 button {
   appearance: none;
-  outline: none;
   height: unset;
   width: unset;
   background: none;
@@ -74,4 +73,5 @@ section:last-child {
 
 #body {
   position: relative;
+  min-height: 70vh;
 }

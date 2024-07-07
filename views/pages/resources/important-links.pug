@@ -1,0 +1,15 @@
+extends /views/templates/frontend-base.pug
+
+append styles
+    link(href="/assets/css/pages/resources/important-links.css" rel="stylesheet")
+
+block body 
+    div(class="content")
+        section 
+            h1 #{data.title}
+            ol(class="list")
+                each link in data.links
+                    li(class="list-item")  
+                        a(href=link.link target="_blank" class="list-item-link")
+                            p(class="list-item-title") #{link.title}
+                            img(class="list-item-icon" src=link.icon)

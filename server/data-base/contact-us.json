@@ -1,4 +1,5 @@
 {
+  "lastMigrationId": "2024-06-11T21:00:00.000Z",
   "staff": {
     "businessManager": {
       "name": "Rose Penner",
@@ -28,5 +29,6 @@
       "img": "/assets/img/icons/tie-icon.svg"
     }
   ],
+  "websiteRequestFormMarkdown": "<p>Please fill out the form below if you have any suggestions for changes we can make to improve the MathSoc website.</p><a href=\"https://docs.google.com/forms/d/e/1FAIpQLSeAGPSLFAV5HhxcUKZERCzefGdID-XXXDJkOqrj6MNDloiqvA/formrestricted\">Website Request Form</a>",
   "inquiriesReceiver": "vpo@mathsoc.uwaterloo.ca"
 }
