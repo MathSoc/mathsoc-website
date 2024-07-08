@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 import { UploadedFile } from "express-fileupload";
 import { Image, ImageWithFile } from "../../types/image";
-import {
+import fs, {
   Dirent,
   existsSync,
   lstatSync,
@@ -122,6 +122,11 @@ export class ImageController extends AbstractFileController<
 
     try {
       for (const image of images) {
+        if (existsSync(image.path)) {
+          errors.push(`File ${image.fileName} already exists`);
+          continue;
+        }
+
         await image.file?.mv(image.path);
         this.logger.info(`${image.fileName} uploaded to ${image.path}`);
       }
