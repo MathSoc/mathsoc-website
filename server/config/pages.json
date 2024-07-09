@@ -125,10 +125,7 @@
       {
         "title": "Archive",
         "ref": "/cartoons/archive",
-        "view": "/cartoons/archive",
-        "dataSources": {
-          "cartoonsList": "/_hidden/cartoons-list"
-        }
+        "view": "/cartoons/archive"
       }
     ]
   },

@@ -13,13 +13,15 @@ import Zod from "zod";
 export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
   [DataPaths.CARTOONS_ABOUT_US]: schemas.CartoonsAboutUsDataSchema,
   [DataPaths.CARTOONS_TEAM]: schemas.CartoonsTeamDataSchema,
+  [DataPaths.CARTOONS_ARCHIVE]: schemas.CartoonsArchiveSchema,
   [DataPaths.CLUBS_DATA]: schemas.ClubsSchema,
   [DataPaths.COMMUNITY_DATA]: schemas.CommunitySchema,
   [DataPaths.CONTACT_US]: schemas.ContactUsDataSchema,
   [DataPaths.COUNCIL_DATA]: schemas.CouncilDataSchema,
   [DataPaths.DOCUMENTS_BUDGETS]: schemas.DocumentsBudgetsSchema,
   [DataPaths.DOCUMENTS_MEETINGS]: schemas.DocumentsMeetingsSchema,
-  [DataPaths.DOCUMENTS_POLICIES_AND_BYLAWS]: schemas.DocumentsPoliciesBylawsSchema,
+  [DataPaths.DOCUMENTS_POLICIES_AND_BYLAWS]:
+    schemas.DocumentsPoliciesBylawsSchema,
   [DataPaths.ELECTIONS]: schemas.ElectionsDataSchema,
   [DataPaths.GET_INVOLVED_VOLUNTEER]: schemas.VolunteerDataSchema,
   [DataPaths.GET_INVOLVED_VOLUNTEER_APPLICATION]:

@@ -11,6 +11,10 @@ export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
 
   const data = getDataValue(path);
 
+  if (data === undefined) {
+    throw new Error(`Data does not exist at ${path}.`);
+  }
+
   if (!couldBeArray(data)) {
     throw new Error(`Bad array node: ${path}`);
   }

@@ -31,12 +31,8 @@ class CartoonsArchive {
    * Handles opening the cartoon display modal when a cartoon button is clicked
    */
   private static openModalForButton(button: HTMLButtonElement) {
-    const subject = button.getAttribute("data-subject");
-    const courseCode = button.getAttribute("data-course-code");
-    const cartoonDirectory = button.getAttribute("data-cartoon-dirname");
     const imageSources = button.getAttribute("data-img-srcs").split(";");
-
-    const cartoonName = cartoonDirectory.split("_").join(" ");
+    const cartoonName = button.getAttribute("data-name");
 
     const modalBackground: HTMLElement =
       document.getElementById("cartoon-display-bg");
@@ -50,7 +46,7 @@ class CartoonsArchive {
 
     for (const source of imageSources) {
       const image = document.createElement("img");
-      image.src = `/assets/img/cartoons/uploads/${subject}/${courseCode}/${cartoonDirectory}/${source}`;
+      image.src = source;
       image.alt = `Cartoon about ${cartoonName}`;
       modalContent.appendChild(image);
     }

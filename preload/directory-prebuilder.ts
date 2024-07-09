@@ -7,7 +7,6 @@ export class DirectoryPrebuilder {
   private static readonly requiredDirectories = [
     "public/assets/documents",
     "public/assets/img/uploads",
-    "public/assets/img/cartoons/uploads",
     "public/exams",
     "server/data",
   ];
