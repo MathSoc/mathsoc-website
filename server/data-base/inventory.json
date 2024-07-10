@@ -5,233 +5,19 @@
   "novelties": [
     {
       "category": "Shirts and Sweaters",
-      "items": [
-        {
-          "item": "Cheat Sheet Tee",
-          "price": "$20.00",
-          "description": "Available in S/M/L/XL",
-          "image": "/assets/img/inventory/novelties/shirts/cheatsheet.jpg"
-        },
-        {
-          "item": "I Wanna Pass Tee",
-          "price": "$25.00",
-          "description": "Available in S/M/L/XL",
-          "image": "/assets/img/inventory/novelties/shirts/iwannapass.jpg"
-        },
-        {
-          "item": "Calcu-Lator Gator Tee",
-          "price": "$21.00",
-          "description": "Available in S/M/L/XL",
-          "image": "/assets/img/inventory/novelties/shirts/calcu-latorgator.jpg"
-        },
-        {
-          "item": "Sigma Goose Sweater",
-          "price": "$35.00",
-          "description": "Available in S/M/L/XL",
-          "image": "/assets/img/inventory/novelties/shirts/sigmagoose.jpg"
-        },
-        {
-          "item": "I Can't Even Tee",
-          "price": "$10.00",
-          "description": "Available in Womens XS or Unisex S",
-          "image": "/assets/img/inventory/novelties/shirts/icanteven.jpg"
-        },
-        {
-          "item": "Take Me To The Limit Tee",
-          "price": "$10.00",
-          "description": "Available in Womens L/XL and Unisex S",
-          "image": "/assets/img/inventory/novelties/shirts/takemetothelimit.jpg"
-        },
-        {
-          "item": "I Heart Math Tee",
-          "price": "$10.00",
-          "description": "Available in Unisex S",
-          "image": "/assets/img/inventory/novelties/shirts/iheartmath.jpg"
-        }
-      ]
+      "items": []
     },
     {
       "category": "Stickers",
-      "items": [
-        {
-          "item": "Calculator Sticker",
-          "price": "$0.25",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/stickers/calculator.jpg"
-        },
-        {
-          "item": "Sleeping Goose Sticker",
-          "price": "$0.25",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/stickers/sleepinggoose.jpg"
-        },
-        {
-          "item": "Laptop Fire Cat Sticker",
-          "price": "$0.25",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/stickers/laptopfirecat.jpg"
-        },
-        {
-          "item": "Skateboard Goose Sticker",
-          "price": "$0.25",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/stickers/skateboardgoose.jpg"
-        },
-        {
-          "item": "Thanks Baybe Pug Sticker",
-          "price": "$0.25",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/stickers/thanksbaybe.jpg"
-        },
-        {
-          "item": "Melting Cat Sticker",
-          "price": "$0.25",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/stickers/meltingcat.jpg"
-        },
-        {
-          "item": "Coo Coo Bonkers Sticker",
-          "price": "$0.25",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/stickers/coocoobonkers.png"
-        }
-      ]
+      "items": []
     },
     {
       "category": "Ties",
-      "items": [
-        {
-          "item": "2022 Pink Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2022pinktie.jpg"
-        },
-        {
-          "item": "2022 Black Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2022blacktie.jpg"
-        },
-        {
-          "item": "2021 Pink Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2021pinktie.jpg"
-        },
-        {
-          "item": "2019 Pink Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2019pinktie.jpg"
-        },
-        {
-          "item": "2019 Black Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2019blacktie.jpg"
-        },
-        {
-          "item": "2018 Pink Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2018pinktie.jpg"
-        },
-        {
-          "item": "2018 Black Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2018blacktie.jpg"
-        },
-        {
-          "item": "2017 Pink Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2017pinktie.jpg"
-        },
-        {
-          "item": "2017 Black Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2017blacktie.jpg"
-        },
-        {
-          "item": "2016 Pink Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2016pinktie.jpg"
-        },
-        {
-          "item": "2015 Pink Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2015pinktie.jpg"
-        },
-        {
-          "item": "2015 Black Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2015blacktie.jpg"
-        },
-        {
-          "item": "2014 Pink Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2014pinktie.jpeg"
-        },
-        {
-          "item": "2013 Pink Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2013pinktie.jpg"
-        },
-        {
-          "item": "2011 Pink Tie",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/ties/2011pinktie.jpg"
-        }
-      ]
+      "items": []
     },
     {
       "category": "Other Novelties",
-      "items": [
-        {
-          "item": "Pink Tie Pin",
-          "price": "$0.99",
-          "description": "Comes in both salmon pink and dark pink!",
-          "image": "/assets/img/inventory/novelties/other/pinktiepins.jpg"
-        },
-        {
-          "item": "Mathematics Lanyard",
-          "price": "$2.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/other/lanyard.jpg"
-        },
-        {
-          "item": "MathSoc Mask",
-          "price": "$4.00",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/other/mask.jpeg"
-        },
-        {
-          "item": "MathSoc Mug",
-          "price": "$2.99",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/other/mug.jpg"
-        },
-        {
-          "item": "Champagne Flute",
-          "price": "$0.99",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/other/flute.jpg"
-        },
-        {
-          "item": "Black Carabiner",
-          "price": "$2.99",
-          "description": null,
-          "image": "/assets/img/inventory/novelties/other/carabeener.jpg"
-        }
-      ]
+      "items": []
     }
   ],
   "boardgames": [
@@ -243,125 +29,19 @@
   "stationary": [
     {
       "category": "Calculators",
-      "items": [
-        {
-          "item": "Texas Instrument TI30XIIS",
-          "price": "$17.00",
-          "description": "This faculty-approved calculator features a two-line display. Shows entries on the top line and results on the bottom line. Features one- and two-variable statistics, recognizes p as a symbol in radian mode and provides menus that allow you to select settings appropriate for your calculation needs. Adds, subtracts, multiplies and divides fractions entered in traditional numerator/denominator format. Faculty-approved.",
-          "image": "/assets/img/inventory/stationary/calculators/TI-calc.jpg"
-        },
-        {
-          "item": "Sharp EL-531XG03",
-          "price": "$23.00",
-          "description": "The Sharp EL531XTB is a fully-functional, high quality scientific calculator that performs over 270 advanced scientific and mathematical functions. It features a Direct Algebraic Logic function that allows you to enter the elements of an expression in the exact order they appear in the textbook. It also utilizes a large, easy to read 2-line display and Multi-Line Playback to make difficult scientific equations easier to solve. It is ideal for students studying general math, algebra, geometry, and trigonometry. It can also be used for statistics, biology, chemistry and general science. Faculty-approved.",
-          "image": "/assets/img/inventory/stationary/calculators/Sharp-calc.jpg"
-        },
-        {
-          "item": "CASIO fx-300MS",
-          "price": "$24.85",
-          "description": "This faculty-approved scientific calculator has 240 built-in functions, a 10-digit – 10 + 2 display. Advanced V.P.A.M function. Solar plus power. Two-line digit display. Faculty-approved.",
-          "image": "/assets/img/inventory/stationary/calculators/casio-1.jpg"
-        }
-      ]
+      "items": []
     },
     {
       "category": "Pens and Pencils",
-      "items": [
-        {
-          "item": "MUJI Pens",
-          "price": "$2.00",
-          "description": "Comes in a variety of types and colours! Subject to availability.",
-          "image": "/assets/img/inventory/stationary/pens/mujipen.jpg"
-        },
-        {
-          "item": "Wood Pencil",
-          "price": "$0.25",
-          "description": null,
-          "image": "/assets/img/inventory/stationary/pens/pencils.jpg"
-        },
-        {
-          "item": "Mechanical Lead Refills",
-          "price": "$0.99",
-          "description": "Comes in 0.5mm or 0.7mm! One container per purchase price.",
-          "image": "/assets/img/inventory/stationary/pens/leadrefill.webp"
-        },
-        {
-          "item": "Mechanical Pencil",
-          "price": "$0.50",
-          "description": "Comes in 0.5mm or 0.7mm! Extra lead not included.",
-          "image": "/assets/img/inventory/stationary/pens/mechanical-pencil.avif"
-        },
-        {
-          "item": "Standard Ball Point Pen",
-          "price": "$0.25",
-          "description": "Comes in black, blue, and red!",
-          "image": "/assets/img/inventory/stationary/pens/pens.jpg"
-        }
-      ]
+      "items": []
     },
     {
       "category": "Paper",
-      "items": [
-        {
-          "item": "Cue Cards",
-          "price": "$0.29",
-          "description": "Comes in packs of 10 per purchase.",
-          "image": "/assets/img/inventory/stationary/paper/cuecards.webp"
-        },
-        {
-          "item": "Lined Paper",
-          "price": "$0.10",
-          "description": "Comes in packs of 10 per purchase.",
-          "image": "/assets/img/inventory/stationary/paper/linedpaper.webp"
-        },
-        {
-          "item": "Graph Paper",
-          "price": "$0.10",
-          "description": "Comes in packs of 10 per purchase.",
-          "image": "/assets/img/inventory/stationary/paper/graphpaper.webp"
-        },
-        {
-          "item": "Printer Paper",
-          "price": "$0.10",
-          "description": "Comes in packs of 10 per purchase.",
-          "image": "/assets/img/inventory/stationary/paper/printerpaper.jpg"
-        }
-      ]
+      "items": []
     },
     {
       "category": "General Stationary",
-      "items": [
-        {
-          "item": "Ruler",
-          "price": "$0.50",
-          "description": null,
-          "image": "/assets/img/inventory/stationary/general/ruler.jpg"
-        },
-        {
-          "item": "Notebook",
-          "price": "$4.50",
-          "description": "Comes in various colours and page count depending on availability.",
-          "image": "/assets/img/inventory/stationary/general/notebook.jpg"
-        },
-        {
-          "item": "Correction Tape",
-          "price": "$0.99",
-          "description": null,
-          "image": "/assets/img/inventory/stationary/general/correctiontape.webp"
-        },
-        {
-          "item": "Highlighters",
-          "price": "$0.50",
-          "description": "Comes in neon yellow colour!",
-          "image": "/assets/img/inventory/stationary/general/highlighters.webp"
-        },
-        {
-          "item": "Rubber Eraser",
-          "price": "$0.50",
-          "description": null,
-          "image": "/assets/img/inventory/stationary/general/eraser.webp"
-        }
-      ]
+      "items": []
     }
   ]
 }
