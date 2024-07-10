@@ -45,9 +45,18 @@ export const useEditorData = (source: string) => {
    * Returns whether an object is arraylike; that is, whether it is of the shape {0: ..., 1: ..., ...}
    */
   const couldBeArray = useCallback((array: object) => {
-    return Object.keys(array)
+    const isAllNumbers = Object.keys(array)
       .map((key) => parseInt(key))
       .every((key) => !isNaN(key));
+
+    if (!isAllNumbers) return false;
+
+    // anything arraylike should have keys that are increasing integers
+    const isIncreasing = Object.keys(array).reduce((prev, current, index) => {
+      return prev && parseInt(current) === index;
+    }, true);
+
+    return isIncreasing;
   }, []);
 
   const getSaveableDataRecursive = useCallback(

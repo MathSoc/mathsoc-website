@@ -9,7 +9,6 @@ import { ExamBankController } from "../controllers/exam-bank-controller";
 import { ImageController } from "../controllers/image-controller";
 import { DocumentController } from "../controllers/document-controller";
 import { AdminMiddleware } from "../../auth/google";
-import { CartoonsController } from "../controllers/cartoons-controller";
 import fs from "fs";
 import { EditorDirectoryStructureConstructor } from "../../routes/controllers/editor-directory-structure-constructor";
 
@@ -48,11 +47,6 @@ router.patch("/exams/:examName/show", (req: Request, res: Response) => {
   } catch (e) {
     res.status(404).end();
   }
-});
-
-router.post("/cartoons/rebuild", (_req: Request, res: Response) => {
-  CartoonsController.rewriteFile();
-  res.status(201).send();
 });
 
 router.get("/data/schema", (req: Request, res: Response) => {

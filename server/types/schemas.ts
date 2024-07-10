@@ -330,6 +330,31 @@ const CartoonsTeamDataSchema = z.object({
   }),
 });
 
+const CartoonsArchiveSchema = z
+  .object({
+    subjects: z.array(
+      z
+        .object({
+          name: z.string(),
+          courses: z.array(
+            z
+              .object({
+                courseCode: z.string(),
+                cartoons: z.array(
+                  z.object({
+                    name: z.string(),
+                    images: z.array(z.string()),
+                  })
+                ),
+              })
+              .strict()
+          ),
+        })
+        .strict()
+    ),
+  })
+  .strict();
+
 const CouncilDataSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
@@ -575,6 +600,7 @@ const InventorySchema = z
 export {
   CartoonsAboutUsDataSchema,
   CartoonsTeamDataSchema,
+  CartoonsArchiveSchema,
   FormsSchema,
   ClubsSchema,
   CommunitySchema,
