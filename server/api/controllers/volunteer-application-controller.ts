@@ -58,7 +58,7 @@ export class VolunteerApplicationController {
     return this.sendMessage(formBody);
   }
 
-  private static sendMessage(formBody: {
+  private static async sendMessage(formBody: {
     firstName: any;
     preferredName?: any;
     lastName: any;
@@ -138,6 +138,8 @@ export class VolunteerApplicationController {
     transporter.sendMail(email, function (error, info) {
       if (error) {
         VolunteerApplicationController.logger.error(error.message);
+        console.error("\x1b[31mEmail sending encountered an error:\x1b[0m"); // escape codes add colour
+        console.error(error.message);
         success = false;
       } else {
         VolunteerApplicationController.logger.info(
