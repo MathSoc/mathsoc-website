@@ -1,6 +1,6 @@
 mixin collapsible-sales(category)
     button(type="button" class="collapsible-button") #{category.category}
-    div(class="collapsible-content")
+    div(class="collapsible-content grid")
         each item in category.items
             a(href="/fewafewa")
                 div(class="item")
