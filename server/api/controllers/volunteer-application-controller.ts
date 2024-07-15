@@ -44,25 +44,45 @@ export class VolunteerApplicationController {
       interest: validator.escape(req.body.interest),
       qualifications: validator.escape(req.body.qualifications),
       moreInfo: validator.escape(req.body["more-info"]),
-      role: validator.escape(VolunteerApplicationController.getRoleFromQueryParams(queryParams)),
-      execAddress: validator.escape(VolunteerApplicationController.getExecFromQueryParams(queryParams)) + "@mathsoc.uwaterloo.ca",
+      role: validator.escape(
+        VolunteerApplicationController.getRoleFromQueryParams(queryParams)
+      ),
+      execAddress:
+        validator.escape(
+          VolunteerApplicationController.getExecFromQueryParams(queryParams)
+        ) + "@mathsoc.uwaterloo.ca",
     };
 
     return this.sendMessage(formBody);
   }
 
-  static async sendMessage(
-    formBody: { firstName: any; preferredName?: any; lastName: any; program: string; term: string; coop: string; address: any; interest: string; qualifications: string; moreInfo?: string; role: string; execAddress: string; }
-  ) {
+  static async sendMessage(formBody: {
+    firstName: any;
+    preferredName?: any;
+    lastName: any;
+    program: string;
+    term: string;
+    coop: string;
+    address: any;
+    interest: string;
+    qualifications: string;
+    moreInfo?: string;
+    role: string;
+    execAddress: string;
+  }) {
     if (!process.env.forms_gmail_sender_username) {
       this.logger.error(
-        `No email username set in .env; application by ${formBody.firstName}${formBody.preferredName ? ` "${formBody.preferredName}" ` : " "}${formBody.lastName} <${formBody.address}> could not be sent`
+        `No email username set in .env; application by ${formBody.firstName}${
+          formBody.preferredName ? ` "${formBody.preferredName}" ` : " "
+        }${formBody.lastName} <${formBody.address}> could not be sent`
       );
       return false;
     }
     if (!process.env.forms_gmail_sender_password) {
       this.logger.error(
-        `No email password set in .env; application by ${formBody.firstName}${formBody.preferredName ? ` "${formBody.preferredName}" ` : " "}${formBody.lastName} <${formBody.address}> could not be sent`
+        `No email password set in .env; application by ${formBody.firstName}${
+          formBody.preferredName ? ` "${formBody.preferredName}" ` : " "
+        }${formBody.lastName} <${formBody.address}> could not be sent`
       );
       return false;
     }
@@ -71,7 +91,11 @@ export class VolunteerApplicationController {
       formBody.execAddress.includes("@mathsoc.uwaterloo.ca")
     ) {
       this.logger.error(
-        `Application by ${formBody.firstName}${formBody.preferredName ? ` "${formBody.preferredName}" ` : " "}${formBody.lastName} <${formBody.address}> was not sent to MathSoc email address to avoid cluttering real inboxes with test inquiries.`
+        `Application by ${formBody.firstName}${
+          formBody.preferredName ? ` "${formBody.preferredName}" ` : " "
+        }${formBody.lastName} <${
+          formBody.address
+        }> was not sent to MathSoc email address to avoid cluttering real inboxes with test inquiries.`
       );
       return false;
     }
@@ -91,23 +115,29 @@ export class VolunteerApplicationController {
         "reply-to": formBody.address,
       },
       subject: "Volunteer Application - " + formBody.role,
-      text: `From: ${formBody.firstName}${formBody.preferredName ? ` "${formBody.preferredName}" ` : " "}${formBody.lastName} <${formBody.address}>\n
+      text: `From: ${formBody.firstName}${
+        formBody.preferredName ? ` "${formBody.preferredName}" ` : " "
+      }${formBody.lastName} <${formBody.address}>\n
       Role: ${formBody.role}\n
       Program: ${formBody.program}\n
       Term: ${formBody.term}\n 
-      For the term that you are looking to volunteer are you on co-op? ${formBody.coop}\n\n
+      For the term that you are looking to volunteer are you on co-op? ${
+        formBody.coop
+      }\n\n
       Please explain why you are interested in this volunteer role:\n\n
       ${formBody.interest}\n\n
       How are you qualified for this position? What ideas and skills can you bring with you?\n\n
       ${formBody.qualifications}\n\n
       Is there any other relevant information we should know while considering your application?\n\n
-      ${formBody.moreInfo}`
+      ${formBody.moreInfo}`,
     };
 
     let success = true;
     transporter.sendMail(email, function (error, info) {
       if (error) {
         VolunteerApplicationController.logger.error(error.message);
+        console.error("\x1b[31mEmail sending encountered an error:\x1b[0m"); // escape codes add colour
+        console.error(error.message);
         success = false;
       } else {
         VolunteerApplicationController.logger.info(
@@ -133,10 +163,10 @@ export class VolunteerApplicationController {
       return "";
     }
     const role = query
-      .split('&')[0]
-      .split('=')[1]
+      .split("&")[0]
+      .split("=")[1]
       .replace(/-/g, " ")
-      .replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+      .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase());
     return role;
   }
 
@@ -144,6 +174,6 @@ export class VolunteerApplicationController {
     if (!query) {
       return "";
     }
-    return (query.split('&')[1]).split('=')[1];
+    return query.split("&")[1].split("=")[1];
   }
 }

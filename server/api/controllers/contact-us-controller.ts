@@ -83,6 +83,8 @@ export class ContactUsController {
     transporter.sendMail(email, function (error, info) {
       if (error) {
         ContactUsController.logger.error(error.message);
+        console.error("\x1b[31mEmail sending encountered an error:\x1b[0m"); // escape codes add colour
+        console.error(error.message);
         success = false;
       } else {
         ContactUsController.logger.info(
