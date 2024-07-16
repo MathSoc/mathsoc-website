@@ -99,7 +99,7 @@ const UploadImageModal: React.FC<{
     closeModal();
   };
 
-  const filterImages = (query) => {
+  const filterImages = (query: string) => {
     if (query === "") {
       setFilteredImages(images);
     } else {
