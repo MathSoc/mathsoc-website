@@ -69,11 +69,11 @@
 
 .full-link {
   text-decoration: none;
-}
 
-.full-link:hover {
-  color: var(--mathsoc-pink-2);
-  text-decoration: underline;
+  &:hover {
+    color: var(--mathsoc-pink-2);
+    text-decoration: underline;
+  }
 }
 
 @media screen and (max-width: 980px) {
