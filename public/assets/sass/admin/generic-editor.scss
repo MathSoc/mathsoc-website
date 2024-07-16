@@ -120,6 +120,18 @@
       background-color: var(--background-colour);
       border: 2px solid var(--mathsoc-pink);
       padding: 16px;
+      max-height: 80%;
+      overflow-y: auto;
+
+      #modal-actions {
+        display: flex;
+        justify-content: space-between;
+        padding: 2px;
+
+        #modal-image-search-input {
+          height: 90%;
+        }
+      }
 
       #image-list {
         display: flex;
@@ -128,14 +140,20 @@
         flex-wrap: wrap;
 
         .image-button {
-          max-width: 250px;
-          max-height: 250px;
+          width: 250px;
+          height: 250px;
+          padding: 5px;
+          background-color: var(--background-colour-2);
           cursor: pointer;
 
           img {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 90%;
+            max-height: 80%;
           }
+        }
+
+        .image-button:hover {
+          background-color: var(--background-colour-3);
         }
       }
     }
