@@ -466,7 +466,7 @@ const CommunitySchema = z
   })
   .strict();
 
-const DocumentsBudgetsSchema = z
+const BudgetsSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
@@ -483,7 +483,7 @@ const DocumentsBudgetsSchema = z
   })
   .strict();
 
-const DocumentsMeetingsSchema = z
+const MeetingsSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
@@ -507,7 +507,7 @@ const DocumentsMeetingsSchema = z
   })
   .strict();
 
-const DocumentsPoliciesBylawsSchema = z
+const PoliciesBylawsSchema = z
   .object({
     policies: z
       .object({
@@ -607,9 +607,9 @@ export {
   ContactUsDataSchema,
   CouncilDataSchema,
   DiscordAccessSchema,
-  DocumentsBudgetsSchema,
-  DocumentsMeetingsSchema,
-  DocumentsPoliciesBylawsSchema,
+  BudgetsSchema,
+  MeetingsSchema,
+  PoliciesBylawsSchema,
   ElectionsDataSchema,
   HomeDataSchema,
   ImportantLinksSchema,
