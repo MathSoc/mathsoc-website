@@ -100,7 +100,6 @@ const UploadImageModal: React.FC<{
   };
 
   const filterImages = (query) => {
-    console.log(query);
     if (query === "") {
       setFilteredImages(images);
     } else {
