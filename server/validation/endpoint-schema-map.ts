@@ -12,29 +12,29 @@ import Zod from "zod";
 // 'get-involved/volunteer' refers to /data/get-involved/volunteer.json
 export const mapping: Partial<Record<DataPaths, Zod.ZodTypeAny>> = {
   [DataPaths.CARTOONS_ABOUT_US]: schemas.CartoonsAboutUsDataSchema,
-  [DataPaths.CARTOONS_TEAM]: schemas.CartoonsTeamDataSchema,
   [DataPaths.CARTOONS_ARCHIVE]: schemas.CartoonsArchiveSchema,
-  [DataPaths.CLUBS_DATA]: schemas.ClubsSchema,
-  [DataPaths.COMMUNITY_DATA]: schemas.CommunitySchema,
+  [DataPaths.CARTOONS_TEAM]: schemas.CartoonsTeamDataSchema,
   [DataPaths.CONTACT_US]: schemas.ContactUsDataSchema,
-  [DataPaths.COUNCIL_DATA]: schemas.CouncilDataSchema,
-  [DataPaths.DOCUMENTS_BUDGETS]: schemas.DocumentsBudgetsSchema,
-  [DataPaths.DOCUMENTS_MEETINGS]: schemas.DocumentsMeetingsSchema,
-  [DataPaths.DOCUMENTS_POLICIES_AND_BYLAWS]:
-    schemas.DocumentsPoliciesBylawsSchema,
   [DataPaths.ELECTIONS]: schemas.ElectionsDataSchema,
+  [DataPaths.GET_INVOLVED_CLUBS_DATA]: schemas.ClubsSchema,
+  [DataPaths.GET_INVOLVED_COMMUNITY_DATA]: schemas.CommunitySchema,
+  [DataPaths.GET_INVOLVED_COUNCIL_DATA]: schemas.CouncilDataSchema,
   [DataPaths.GET_INVOLVED_VOLUNTEER]: schemas.VolunteerDataSchema,
   [DataPaths.GET_INVOLVED_VOLUNTEER_APPLICATION]:
     schemas.VolunteerApplicationSchema,
   [DataPaths.HOME]: schemas.HomeDataSchema,
-  [DataPaths.RESOUCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
-  [DataPaths.RESOURCES_FORMS]: schemas.FormsSchema,
+  [DataPaths.INVENTORY]: schemas.InventorySchema,
+  [DataPaths.RESOURCES_BUDGETS]: schemas.BudgetsSchema,
   [DataPaths.RESOURCES_DISCORD_ACCESS]: schemas.DiscordAccessSchema,
+  [DataPaths.RESOURCES_FORMS]: schemas.FormsSchema,
   [DataPaths.RESOURCES_IMPORTANT_LINKS]: schemas.ImportantLinksSchema,
-  [DataPaths.SHARED_FOOTER]: schemas.SharedFooterSchema,
+  [DataPaths.RESOURCES_MEETINGS]: schemas.MeetingsSchema,
+  [DataPaths.RESOURCES_MENTAL_WELLNESS]: schemas.MentalWellnessDataSchema,
+  [DataPaths.RESOURCES_POLICIES_AND_BYLAWS]: schemas.PoliciesBylawsSchema,
   [DataPaths.SHARED_EXECS]: schemas.SharedExecsSchema,
-  [DataPaths.STUDENT_SERVICES]: schemas.StudentServicesSchema,
+  [DataPaths.SHARED_FOOTER]: schemas.SharedFooterSchema,
   [DataPaths.SERVICES_MATHSOC_OFFICE]: schemas.ServicesMathsocOffice,
+  [DataPaths.SERVICES_STUDENT_SERVICES]: schemas.StudentServicesSchema,
 };
 
 const buildShapeFromZodSchema = (schema: Zod.ZodTypeAny) => {

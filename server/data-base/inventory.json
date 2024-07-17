@@ -1,0 +1,47 @@
+{
+  "lastMigrationId": "2024-06-11T21:00:00.000Z",
+  "title": "Inventory",
+  "description": "Check out MathSoc's board game, novelty, and stationary invetory below!",
+  "novelties": [
+    {
+      "category": "Shirts and Sweaters",
+      "items": []
+    },
+    {
+      "category": "Stickers",
+      "items": []
+    },
+    {
+      "category": "Ties",
+      "items": []
+    },
+    {
+      "category": "Other Novelties",
+      "items": []
+    }
+  ],
+  "boardgames": [
+    {
+      "category": "Live Rental Sheet",
+      "items": []
+    }
+  ],
+  "stationary": [
+    {
+      "category": "Calculators",
+      "items": []
+    },
+    {
+      "category": "Pens and Pencils",
+      "items": []
+    },
+    {
+      "category": "Paper",
+      "items": []
+    },
+    {
+      "category": "General Stationary",
+      "items": []
+    }
+  ]
+}

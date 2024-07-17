@@ -1,0 +1,9 @@
+mixin collapsible-sales(category)
+    button(type="button" class="collapsible-button") #{category.category}
+    div(class="collapsible-content grid")
+        each item in category.items
+            a(href="/fewafewa")
+                div(class="item")
+                    img(class="item-img" src=item.image alt=item.item)
+                    p(class="item-name") #{item.item}
+                    p(class="item-price") #{item.price}
