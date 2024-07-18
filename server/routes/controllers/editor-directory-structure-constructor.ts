@@ -40,13 +40,13 @@ export class EditorDirectoryStructureConstructor {
   }
 
   /**
-   * @returns A data structure representing the structure of the `/data-base` directory
+   * @returns A data structure representing the structure of the `/data-examples` directory
    *
-   * We use `/data-base` instead of `/data` so that in the event a data file is removed from the clean copy of `/data-base`, it no
+   * We use `/data-examples` instead of `/data` so that in the event a data file is removed from the clean copy of `/data-examples`, it no
    * longer appears as an editable file.
    */
   static getDataDirectoryStructure(): DirectoryEntry[] {
-    return this.getDirectoryStructure("server/data-base");
+    return this.getDirectoryStructure("server/data-examples");
   }
 
   /**
