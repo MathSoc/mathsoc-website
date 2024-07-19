@@ -11,6 +11,7 @@ block body
   - const execs = sources.execs.execs
   - const businessManager = data.staff.businessManager;
   - const locations = data.locations;
+  - const topics = data.topics;
 
   div(class="content")
     +section(null, "white")
@@ -38,13 +39,14 @@ block body
         input(id="name" class="text-input" name="name" placeholder="John Goose" required maxlength="100")
         label(for="email") Your email
         input(id="email" type="email" pattern=".+@.+\..+" class="text-input" name="email" placeholder="j2goose@uwaterloo.ca" required maxlength="100")
+        label(for="topic") Topic
+        select(name="topics" id="topics")
+            each topic of topics
+              option(value!=topic.name)!=topic.name
         label(for="subject") Subject of your message
         input(id="subject" class="text-input" name="subject" placeholder="How do I sign out a locker?" required maxlength="150")
         label(for="message") Your message
         textarea(id="message" class="text-input" name="message" required maxlength="6000")
         div(id="submit-container")
           input(type="submit" id="submit-button" class="pink-button" value="Submit message" method="post") 
-    
-    +section("white")
-      h2 Website Request Form
-      p!=data.websiteRequestFormMarkdown
+  

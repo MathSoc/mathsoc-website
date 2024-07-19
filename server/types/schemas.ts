@@ -398,6 +398,9 @@ const ContactUsDataSchema = z.object({
       .strict()
   ),
   websiteRequestFormMarkdown: z.string(),
+  topics: z.object({
+    name: z.string(),
+  }),
 });
 
 const SharedFooterSchema = z
