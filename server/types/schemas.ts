@@ -44,6 +44,8 @@ const VolunteerApplicationSchema = z
     lastMigrationId: z.string().datetime(),
     programs: z.array(z.string()),
     terms: z.array(z.string()),
+    roles: z.array(z.string()),
+    execs: z.array(z.string()),
   })
   .strict();
 
