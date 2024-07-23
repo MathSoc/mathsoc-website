@@ -76,7 +76,7 @@ export const EditorV2: React.FC<{ source: string }> = ({ source }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(getSaveableData()),
-    }).then((response) => {
+    }).then(async (response) => {
       const responseCodeClass = Math.floor(response.status / 100) * 100;
 
       if (responseCodeClass === 200) {
@@ -90,6 +90,10 @@ export const EditorV2: React.FC<{ source: string }> = ({ source }) => {
         )}.`;
 
         showToast(fullErrorMessage, "fail");
+
+        const parsedResponse = await response.json();
+        console.error("Errors in attempted save:", parsedResponse.error);
+
         throw new Error(fullErrorMessage);
       }
     });

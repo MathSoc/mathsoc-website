@@ -27,15 +27,17 @@ export class ContactUsController {
 
     const name = validator.escape(req.body.name),
       address = validator.escape(req.body.email),
+      topic = req.body.topics,
       subject = validator.escape(req.body.subject),
       message = validator.escape(req.body.message);
 
-    return this.sendMessage(name, address, subject, message);
+    return this.sendMessage(name, address, topic, subject, message);
   }
 
   static async sendMessage(
     name: string,
     address: string,
+    topic: string,
     subject: string,
     message: string
   ) {
@@ -76,13 +78,15 @@ export class ContactUsController {
         "reply-to": address,
       },
       subject: "Website - " + subject,
-      text: `From: ${name} <${address}>\nSubject: ${subject}\n\n${message}`,
+      text: `From: ${name} <${address}>\nTopic: ${topic}\nSubject: ${subject}\n\n${message}`,
     };
 
     let success = true;
     transporter.sendMail(email, function (error, info) {
       if (error) {
         ContactUsController.logger.error(error.message);
+        console.error("\x1b[31mEmail sending encountered an error:\x1b[0m"); // escape codes add colour
+        console.error(error.message);
         success = false;
       } else {
         ContactUsController.logger.info(
