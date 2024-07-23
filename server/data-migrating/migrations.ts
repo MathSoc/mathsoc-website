@@ -69,6 +69,22 @@ export class DataMigrator {
         return { ...old, path: "get-involved/volunteer-application" };
       },
     },
+    {
+      // Update contact-us schema to use full word "image"
+      type: "UPDATE",
+      dateAdded: new Date(2024, 6, 25, 6, 39),
+      path: "/contact-us.json",
+      migrator: (old) => {
+        return {
+          ...old,
+          locations: old.locations.map((location) => ({
+            name: location.name,
+            room: location.room,
+            image: location.img,
+          })),
+        };
+      },
+    },
   ];
 
   static async migrate() {

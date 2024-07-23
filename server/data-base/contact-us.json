@@ -11,22 +11,22 @@
     {
       "name": "Mathematics Society Office",
       "room": "MC 3038",
-      "img": "/assets/img/banners/mathsoc-wall.jpeg"
+      "image": "/assets/img/banners/mathsoc-wall.jpeg"
     },
     {
       "name": "Mathematics Society Executive Office",
       "room": "MC 3035",
-      "img": "/assets/img/banners/exec-office.jpeg"
+      "image": "/assets/img/banners/exec-office.jpeg"
     },
     {
       "name": "Math Coffee and Donut",
       "room": "MC 3002",
-      "img": "/assets/img/portrait-images/cnd.jpg"
+      "image": "/assets/img/portrait-images/cnd.jpg"
     },
     {
       "name": "MC Comfy",
       "room": "MC 3001",
-      "img": "/assets/img/icons/tie-icon.svg"
+      "image": "/assets/img/icons/tie-icon.svg"
     }
   ],
   "websiteRequestFormMarkdown": "<p>Please fill out the form below if you have any suggestions for changes we can make to improve the MathSoc website.</p><a href=\"https://docs.google.com/forms/d/e/1FAIpQLSeAGPSLFAV5HhxcUKZERCzefGdID-XXXDJkOqrj6MNDloiqvA/formrestricted\">Website Request Form</a>",

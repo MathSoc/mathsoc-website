@@ -379,28 +379,31 @@ const CouncilDataSchema = z
   })
   .strict();
 
-const ContactUsDataSchema = z.object({
-  lastMigrationId: z.string().datetime(),
-  staff: z.object({
-    businessManager: z
-      .object({
-        name: z.string(),
-        role: z.string(),
-        email: z.string(),
-      })
-      .strict(),
-  }),
-  locations: z.array(
-    z
-      .object({
-        name: z.string(),
-        room: z.string(),
-        img: z.string(),
-      })
-      .strict()
-  ),
-  websiteRequestFormMarkdown: z.string(),
-});
+const ContactUsDataSchema = z
+  .object({
+    lastMigrationId: z.string().datetime(),
+    staff: z.object({
+      businessManager: z
+        .object({
+          name: z.string(),
+          role: z.string(),
+          email: z.string(),
+        })
+        .strict(),
+    }),
+    locations: z.array(
+      z
+        .object({
+          name: z.string(),
+          room: z.string(),
+          image: z.string(),
+        })
+        .strict()
+    ),
+    inquiriesReceiver: z.string(),
+    websiteRequestFormMarkdown: z.string(),
+  })
+  .strict();
 
 const SharedFooterSchema = z
   .object({
