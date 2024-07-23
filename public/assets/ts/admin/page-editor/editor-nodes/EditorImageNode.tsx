@@ -83,12 +83,14 @@ const UploadImageModal: React.FC<{
   closeModal: () => void;
 }> = ({ selectImage, closeModal }) => {
   const [images, setImages] = useState<Image[]>([]);
+  const [filteredImages, setFilteredImages] = useState<Image[]>([]);
 
   useEffect(() => {
     fetch("/api/images")
       .then((res) => res.json())
       .then((imageList: Image[]) => {
         setImages(imageList);
+        setFilteredImages(imageList);
       });
   }, []);
 
@@ -97,21 +99,47 @@ const UploadImageModal: React.FC<{
     closeModal();
   };
 
+  const filterImages = (query: string) => {
+    if (query === "") {
+      setFilteredImages(images);
+    } else {
+      setFilteredImages(
+        images.filter((image) => {
+          return image.fileName.toLowerCase().includes(query.toLowerCase());
+        })
+      );
+    }
+  };
+
+  const searchImages = (event) => {
+    filterImages(event.target.value.trim());
+  };
+
   return (
     <div id="editor-image-upload-modal-bg" onClick={closeModal}>
       <div
         id="editor-image-upload-modal-container"
         onClick={(e) => e.stopPropagation()} // don't close every time the modal is clicked
       >
-        <h2>Select an image</h2>
+        <div id="modal-actions">
+          <h2>Select New Image</h2>
+          <input
+            type="search"
+            id="modal-image-search-input"
+            name="modal-image-search-input"
+            placeholder="Search for images..."
+            onInput={searchImages}
+          ></input>
+        </div>
         <div id="image-list">
-          {images.map((image) => (
+          {filteredImages.map((image) => (
             <button
               className="image-button"
               key={image.publicLink}
               onClick={() => onSelect(image.publicLink)}
             >
               <img src={image.publicLink} />
+              <h5>{image.fileName}</h5>
             </button>
           ))}
         </div>

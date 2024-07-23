@@ -44,6 +44,8 @@ const VolunteerApplicationSchema = z
     lastMigrationId: z.string().datetime(),
     programs: z.array(z.string()),
     terms: z.array(z.string()),
+    roles: z.array(z.string()),
+    execs: z.array(z.string()),
   })
   .strict();
 
@@ -469,7 +471,7 @@ const CommunitySchema = z
   })
   .strict();
 
-const DocumentsBudgetsSchema = z
+const BudgetsSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
@@ -486,7 +488,7 @@ const DocumentsBudgetsSchema = z
   })
   .strict();
 
-const DocumentsMeetingsSchema = z
+const MeetingsSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     descriptionMarkdown: z.string(),
@@ -510,7 +512,7 @@ const DocumentsMeetingsSchema = z
   })
   .strict();
 
-const DocumentsPoliciesBylawsSchema = z
+const PoliciesBylawsSchema = z
   .object({
     policies: z
       .object({
@@ -535,6 +537,7 @@ const DocumentsPoliciesBylawsSchema = z
 
 const ImportantLinksSchema = z
   .object({
+    lastMigrationId: z.string().datetime(),
     title: z.string(),
     links: z.array(
       z
@@ -549,6 +552,56 @@ const ImportantLinksSchema = z
   })
   .strict();
 
+const InventorySchema = z
+  .object({
+    lastMigrationId: z.string().datetime(),
+    title: z.string(),
+    description: z.string(),
+    novelties: z.array(
+      z
+        .object({
+          category: z.string(),
+          items: z.array(
+            z
+              .object({
+                item: z.string(),
+                price: z.string(),
+                description: z.string(),
+                image: z.string(),
+              })
+              .strict()
+          ),
+        })
+        .strict()
+    ),
+    boardgames: z.array(
+      z
+        .object({
+          category: z.string(),
+          items: z.string(),
+        })
+        .strict()
+    ),
+    stationary: z.array(
+      z
+        .object({
+          category: z.string(),
+          items: z.array(
+            z
+              .object({
+                item: z.string(),
+                price: z.string(),
+                description: z.string(),
+                image: z.string(),
+              })
+              .strict()
+          ),
+        })
+        .strict()
+    ),
+  })
+  .strict();
+
 export {
   CartoonsAboutUsDataSchema,
   CartoonsTeamDataSchema,
@@ -559,12 +612,13 @@ export {
   ContactUsDataSchema,
   CouncilDataSchema,
   DiscordAccessSchema,
-  DocumentsBudgetsSchema,
-  DocumentsMeetingsSchema,
-  DocumentsPoliciesBylawsSchema,
+  BudgetsSchema,
+  MeetingsSchema,
+  PoliciesBylawsSchema,
   ElectionsDataSchema,
   HomeDataSchema,
   ImportantLinksSchema,
+  InventorySchema,
   MentalWellnessDataSchema,
   StudentServicesSchema,
   ServicesMathsocOffice,

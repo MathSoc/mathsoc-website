@@ -1,0 +1,84 @@
+@import "../../mixins/section";
+@import "../../util/variables";
+
+.column-container {
+  display: grid;
+  grid-template-columns: 0.25fr repeat(3, 1fr) 0.25fr;
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  min-height: 80vh;
+  width: 100%;
+}
+
+.column {
+  width: 100%;
+}
+
+.column-header {
+  font-size: 26px;
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--mathsoc-grey);
+  transition: all 0.5s ease;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  width: 64px;
+  border-color: rgba(255, 255, 255, 0);
+  border: 2px solid var(--background-colour);
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+
+.icon {
+  font-size: 32px;
+  color: var(--mathsoc-pink);
+  transition: all 0.5s ease;
+}
+
+.column-link {
+  text-decoration: none;
+}
+
+.column-link:hover {
+  .column-header {
+    color: var(--mathsoc-pink-2);
+  }
+
+  .icon-border {
+    border: 2px solid var(--mathsoc-pink-2);
+  }
+
+  .icon {
+    color: var(--mathsoc-pink-2);
+  }
+}
+
+.full-link {
+  text-decoration: none;
+
+  &:hover {
+    color: var(--mathsoc-pink-2);
+    text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .column-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

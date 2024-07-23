@@ -42,6 +42,8 @@ router.post("/volunteer-application", (req: Request, res: Response) => {
   const success = VolunteerApplicationController.handleRequest(req, res);
   if (success) {
     res.redirect("/form-success");
+  } else {
+    res.redirect("/error")
   }
 });
 
