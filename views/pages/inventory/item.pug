@@ -1,8 +1,13 @@
 extends /views/templates/frontend-base.pug
 
 append styles
-    link(href="/assets/css/pages/inventory/inventory.css" rel="stylesheet")
+    link(href="/assets/css/pages/inventory/item.css" rel="stylesheet")
 
 block body
     section 
-        h1 #{data.item}
+        div
+            h1 #{data.item}
+            h2 #{data.price}
+            p #{data.description}
+        div 
+            img(src=data.image, alt="item image")

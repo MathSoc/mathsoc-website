@@ -1,0 +1,10 @@
+@import "../../util/variables";
+@import "../../mixins/collapsible";
+
+section {
+  max-width: var(--content-width);
+  margin: 30px auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}

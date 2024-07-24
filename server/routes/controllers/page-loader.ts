@@ -58,6 +58,8 @@ export class PageLoader {
           navItems: PageLoader.navItems,
           footer: PageLoader.footer,
           data: item,
+          title: item.item,
+          ref: `/inventory/${item.item}`,
         };
         console.log(data);
         res.render("pages/inventory/item.pug", data);
