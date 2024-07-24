@@ -5,22 +5,50 @@
   "novelties": [
     {
       "category": "Shirts and Sweaters",
-      "items": []
+      "items": [
+        {
+          "item": "Cheat Sheet Tee",
+          "price": "$20.00",
+          "description": "Available in S/M/L/XL",
+          "image": "/assets/img/inventory/novelties/shirts/cheatsheet.jpg"
+        }
+      ]
     },
     {
       "category": "Stickers",
-      "items": []
+      "items": [
+        {
+          "item": "Laptop Fire Cat Sticker",
+          "price": "$0.25",
+          "description": null,
+          "image": "/assets/img/inventory/novelties/stickers/laptopfirecat.jpg"
+        }
+      ]
     },
     {
       "category": "Ties",
-      "items": []
+      "items": [
+        {
+          "item": "2022 Pink Tie",
+          "price": "$2.00",
+          "description": null,
+          "image": "/assets/img/inventory/novelties/ties/2022pinktie.jpg"
+        }
+      ]
     },
     {
       "category": "Other Novelties",
-      "items": []
+      "items": [
+        {
+          "item": "Pink Tie Pin",
+          "price": "$0.99",
+          "description": "Comes in both salmon pink and dark pink!",
+          "image": "/assets/img/inventory/novelties/other/pinktiepins.jpg"
+        }
+      ]
     }
   ],
-  "boardgames": [
+  "boardGames": [
     {
       "category": "Live Rental Sheet",
       "items": []
@@ -29,19 +57,47 @@
   "stationary": [
     {
       "category": "Calculators",
-      "items": []
+      "items": [
+        {
+          "item": "Texas Instrument TI30XIIS",
+          "price": "$17.00",
+          "description": "This faculty-approved calculator features a two-line display. Shows entries on the top line and results on the bottom line. Features one- and two-variable statistics, recognizes p as a symbol in radian mode and provides menus that allow you to select settings appropriate for your calculation needs. Adds, subtracts, multiplies and divides fractions entered in traditional numerator/denominator format. Faculty-approved.",
+          "image": "/assets/img/inventory/stationary/calculators/TI-calc.jpg"
+        }
+      ]
     },
     {
       "category": "Pens and Pencils",
-      "items": []
+      "items": [
+        {
+          "item": "MUJI Pens",
+          "price": "$2.00",
+          "description": "Comes in a variety of types and colours! Subject to availability.",
+          "image": "/assets/img/inventory/stationary/pens/mujipen.jpg"
+        }
+      ]
     },
     {
       "category": "Paper",
-      "items": []
+      "items": [
+        {
+          "item": "Cue Cards",
+          "price": "$0.29",
+          "description": "Comes in packs of 10 per purchase.",
+          "image": "/assets/img/inventory/stationary/paper/cuecards.webp"
+        }
+      ]
     },
     {
       "category": "General Stationary",
-      "items": []
+      "items": [
+        {
+          "item": "Ruler",
+          "price": "$0.50",
+          "description": null,
+          "image": "/assets/img/inventory/stationary/general/ruler.jpg"
+        }
+      ]
     }
   ]
 }
