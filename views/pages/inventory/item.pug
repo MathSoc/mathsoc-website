@@ -5,9 +5,9 @@ append styles
 
 block body
     section 
-        div
-            h1 #{data.item}
-            h2 #{data.price}
-            p #{data.description}
-        div 
-            img(src=data.image, alt="item image")
+        div(class="col-text")
+            h1(class="item-name") #{data.item}
+            h2(class="item-price") #{data.price}
+            p(class="item-description") #{data.description}
+        div(class="col-image")
+            img(class="item-image" src=data.image, alt=data.item)

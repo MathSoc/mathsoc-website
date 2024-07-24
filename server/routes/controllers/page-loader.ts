@@ -50,11 +50,11 @@ export class PageLoader {
     }
   }
 
-  static buildItemRoutes(items, router) {
+  static buildItemRoutes(items, router: Router) {
     for (const item of items) {
       router.get(
         `/inventory/${item.item.replace(/\s+/g, "-").toLowerCase()}`,
-        async (req, res) => {
+        async (req: Request, res: Response) => {
           const data = {
             navItems: PageLoader.navItems,
             footer: PageLoader.footer,
@@ -62,7 +62,6 @@ export class PageLoader {
             title: item.item,
             ref: `/inventory/${item.item.replace(/\s+/g, "-").toLowerCase()}`,
           };
-          // console.log(data);
           res.render("pages/inventory/item.pug", data);
         }
       );
