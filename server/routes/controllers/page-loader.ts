@@ -2,6 +2,7 @@ import { Request, RequestHandler, Response, Router } from "express";
 import fs from "fs";
 import { ReadWriteController } from "../../api/controllers/read-write-controller";
 import { PageInflow, PageOutflow } from "../../types/routing.js";
+import router from "../public-routes";
 
 /**
  * Contains functions related to the construction of new page routes and the population of
@@ -27,6 +28,7 @@ export class PageLoader {
     for (const page of pageArray) {
       const routeHandler = async (req: Request, res: Response) => {
         const data = await this.getAllPageData(page, dataTransformer);
+        console.log(data);
         res.render(`pages/${page.view}.pug`, data);
       };
 
@@ -46,6 +48,20 @@ export class PageLoader {
           middleware
         );
       }
+    }
+  }
+
+  static buildItemRoutes(items, router) {
+    for (const item of items) {
+      router.get(`/inventory/${item.item}`, async (req, res) => {
+        const data = {
+          navItems: PageLoader.navItems,
+          footer: PageLoader.footer,
+          data: item,
+        };
+        console.log(data);
+        res.render("pages/inventory/item.pug", data);
+      });
     }
   }
 
