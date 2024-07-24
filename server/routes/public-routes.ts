@@ -10,5 +10,8 @@ PageLoader.buildRoutes(pages, router, (page) => page);
 inventory.novelties.forEach((category) =>
   PageLoader.buildItemRoutes(category.items, router)
 );
+inventory.stationary.forEach((category) =>
+  PageLoader.buildItemRoutes(category.items, router)
+);
 
 export default router;

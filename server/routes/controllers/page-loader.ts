@@ -28,7 +28,6 @@ export class PageLoader {
     for (const page of pageArray) {
       const routeHandler = async (req: Request, res: Response) => {
         const data = await this.getAllPageData(page, dataTransformer);
-        console.log(data);
         res.render(`pages/${page.view}.pug`, data);
       };
 
@@ -53,17 +52,20 @@ export class PageLoader {
 
   static buildItemRoutes(items, router) {
     for (const item of items) {
-      router.get(`/inventory/${item.item}`, async (req, res) => {
-        const data = {
-          navItems: PageLoader.navItems,
-          footer: PageLoader.footer,
-          data: item,
-          title: item.item,
-          ref: `/inventory/${item.item}`,
-        };
-        console.log(data);
-        res.render("pages/inventory/item.pug", data);
-      });
+      router.get(
+        `/inventory/${item.item.replace(/\s+/g, "-").toLowerCase()}`,
+        async (req, res) => {
+          const data = {
+            navItems: PageLoader.navItems,
+            footer: PageLoader.footer,
+            data: item,
+            title: item.item,
+            ref: `/inventory/${item.item.replace(/\s+/g, "-").toLowerCase()}`,
+          };
+          // console.log(data);
+          res.render("pages/inventory/item.pug", data);
+        }
+      );
     }
   }
 
