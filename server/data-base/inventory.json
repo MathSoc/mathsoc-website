@@ -20,7 +20,7 @@
         {
           "item": "Laptop Fire Cat Sticker",
           "price": "$0.25",
-          "description": null,
+          "description": "",
           "image": "/assets/img/inventory/novelties/stickers/laptopfirecat.jpg"
         }
       ]
@@ -31,7 +31,7 @@
         {
           "item": "2022 Pink Tie",
           "price": "$2.00",
-          "description": null,
+          "description": "",
           "image": "/assets/img/inventory/novelties/ties/2022pinktie.jpg"
         }
       ]
@@ -94,7 +94,7 @@
         {
           "item": "Ruler",
           "price": "$0.50",
-          "description": null,
+          "description": "",
           "image": "/assets/img/inventory/stationary/general/ruler.jpg"
         }
       ]
