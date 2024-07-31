@@ -50,7 +50,7 @@ export class PageLoader {
     }
   }
 
-  static buildItemRoutes(items, router: Router) {
+  static buildInventoryItemRoutes(items, router: Router) {
     for (const item of items) {
       router.get(
         `/inventory/${item.item.replace(/\s+/g, "-").toLowerCase()}`,

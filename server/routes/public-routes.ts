@@ -8,10 +8,10 @@ const router = express.Router();
 PageLoader.buildRoutes(pages, router, (page) => page);
 
 inventory.novelties.forEach((category) =>
-  PageLoader.buildItemRoutes(category.items, router)
+  PageLoader.buildInventoryItemRoutes(category.items, router)
 );
 inventory.stationary.forEach((category) =>
-  PageLoader.buildItemRoutes(category.items, router)
+  PageLoader.buildInventoryItemRoutes(category.items, router)
 );
 
 export default router;
