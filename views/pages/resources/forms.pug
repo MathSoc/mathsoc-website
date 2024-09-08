@@ -14,7 +14,7 @@ block body
                 a(href=form.link target="_blank" class="form-link")
                     h2 #{form.title}
             h1 #{data.process.header}
-            p !{data.process.description}
+            p !{data.process.descriptionMarkdown}
             h2 #{data.process.requirementsSubheader}
             ul
                 each req in data.process.requirements
@@ -23,7 +23,7 @@ block body
             h2 #{data.additionalDocumentationItems.header}
             each item in data.additionalDocumentationItems.items
                 h3 #{item.title}
-                p!=item.description
+                p!=item.descriptionMarkdown
             h1 #{data.frequentlyAskedQuestions.header}
             each question in data.frequentlyAskedQuestions.questions
                 button(type="button" class="collapsible-button" value="" + title + "")= question.question
@@ -35,4 +35,4 @@ block body
                     h2 #{form.title}
             p!=data.otherForms.footnote 
             h2 #{data.mathSocFees.header}
-            p!=data.mathSocFees.description            
+            p!=data.mathSocFees.descriptionMarkdown

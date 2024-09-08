@@ -10,12 +10,8 @@ block body
         section(class="service")
             div(class="service-item")
                 h2(class="service-title") #{section.title}
-                p #{section.description}
+                p!=section.descriptionMarkdown
                 p #{section.subdescription}
-                each item in section.items 
-                    li #{item.item}
-                each contact in section.contacts  
-                    p #{contact.contact}
             img(src=section.img)
     
     

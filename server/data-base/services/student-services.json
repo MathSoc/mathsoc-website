@@ -3,84 +3,22 @@
   "sections": [
     {
       "title": "Locker Sign Out",
-      "description": "If a student in the math faculty is on a study term and has paid their MathSoc fee, they are eligible to book a locker for the period of the term. No perishable foods are allowed to be stored to avoid attracting pests. MathSoc offers lockers on a term-by-term basis. Locker sign ups are closed for the term.",
-      "subdescription": "",
-      "items": [],
-      "contacts": [],
+      "descriptionMarkdown": "<p>If a student in the math faculty is on a study term and has paid their MathSoc fee, they are eligible to book a locker for the period of the term. No perishable foods are allowed to be stored to avoid attracting pests. MathSoc offers lockers on a term-by-term basis. Locker sign ups are closed for the term.</p>",
       "img": "/assets/img/services/lockers.jpg"
     },
     {
       "title": "Board Game Nights",
-      "description": "MathSoc holds weekly Board Game Nights for students to unwind and play board games with their friends. Stop by the office to pick your game of choice from MathSoc’s extensive collection!",
-      "subdescription": "Some titles we have in store:",
-      "items": [
-        {
-          "item": "Settlers of Catan"
-        },
-        {
-          "item": "Jenga"
-        },
-        {
-          "item": "Dominion"
-        },
-        {
-          "item": "Shadows Over Camelot"
-        },
-        {
-          "item": "Deception"
-        },
-        {
-          "item": "...and many more!"
-        }
-      ],
-      "contacts": [],
+      "descriptionMarkdown": "<p>MathSoc holds weekly Board Game Nights for students to unwind and play board games with their friends. Stop by the office to pick your game of choice from MathSoc’s extensive collection!</p><ul><li>Settlers of Catan</li><li>Jenga</li><li>Dominion</li><li>Shadows Over Camelot</li><li>Deception</li></ul><p>...and many more!</p>",
       "img": "/assets/img/services/board-game-night.jpg"
     },
     {
       "title": "Math CnD",
-      "description": "Math CnD is owned and operated by the Math Society and located on the 3rd floor in MC Building. CnD has a great selection of food choices at student friendly prices such as coffee & donuts, hot soup and entrees, cold sandwiches, Wasabi Sushi, fresh patties and samosas, and so much more. It’s worth the trip to MC!!",
-      "subdescription": "Don’t forget our daily specials, which are always in a limited supply:",
-      "items": [
-        {
-          "item": "Monday - Mac 'n Cheese"
-        },
-        {
-          "item": "Tuesday - Soup (Creamy Potato With Bacon always available)"
-        },
-        {
-          "item": "Wednesday - Chicken Stew"
-        },
-        {
-          "item": "Thursday - Soup (Boston Clam Chowder always available)"
-        },
-        {
-          "item": "Friday - Chili and Garlic Bread Stix (sold separately)"
-        }
-      ],
-      "contacts": [
-        {
-          "contact": "The Store Manager Rose Penner can be reached at: 519-888-4567 ext. 36373 or at r2penner@uwaterloo.ca."
-        },
-        {
-          "contact": "Math Society - CnD"
-        },
-        {
-          "contact": "3rd Floor, MC Building"
-        },
-        {
-          "contact": "200 University Ave. W."
-        },
-        {
-          "contact": "Waterloo, ON N2L 3G1"
-        }
-      ],
+      "descriptionMarkdown": "<p>Math CnD is owned and operated by the Math Society and located on the 3rd floor in MC Building. CnD has a great selection of food choices at student friendly prices such as coffee &amp; donuts, hot soup and entrees, cold sandwiches, Wasabi Sushi, fresh patties and samosas, and so much more. It’s worth the trip to MC!!</p><p>Don’t forget our daily specials, which are always in a limited supply:</p><ul><li>Monday - Mac 'n Cheese</li><li>Tuesday - Soup (Creamy Potato With Bacon always available)</li><li>Wednesday - Chicken Stew</li><li>Thursday - Soup (Boston Clam Chowder always available)</li><li>Friday - Chili and Garlic Bread Stix (sold separately)</li></ul><p>The Store Manager Rose Penner can be reached at: 519-888-4567 ext. 36373 or at r2penner@uwaterloo.ca.</p><p>Math Society - CnD</p><p>3rd Floor, MC Building</p><p>200 University Ave. W.</p><p>Waterloo, ON N2L 3G1</p>",
       "img": "/assets/img/services/mathcnd.jpg"
     },
     {
       "title": "MC Comfy",
-      "description": "MathSoc’s lounge for students! Stop by to relax and study. Socialize and make new friends. If you are looking for a place for solo study then this is a place for you. There will also be various events held in here by different clubs and councils, so look out for those!",
-      "items": [],
-      "contacts": [],
+      "descriptionMarkdown": "<p>MathSoc’s lounge for students! Stop by to relax and study. Socialize and make new friends. If you are looking for a place for solo study then this is a place for you. There will also be various events held in here by different clubs and councils, so look out for those!</p>",
       "img": "/assets/img/services/mc-comfy.jpg"
     }
   ]

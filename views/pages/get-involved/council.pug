@@ -11,7 +11,7 @@ block body
     div(class="content")
         section(class="white")
             h1 #{data.councilHeader}
-            div=data.councilResponse
+            div!=data.councilResponseMarkdown
             h1 #{data.compositionOfCouncilHeader}
             div!=data.compositionOfCouncilMarkdown
             h1 #{data.execsHeader}
