@@ -14,13 +14,13 @@ const VolunteerDataSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     title: z.string(),
-    subtext: z.string(),
+    subtextMarkdown: z.string(),
     path: z.string(),
     teams: z.array(
       z
         .object({
           name: z.string(),
-          subheader: z.string().optional(),
+          subheaderMarkdown: z.string().optional(),
           roles: z.array(
             z
               .object({
@@ -141,7 +141,7 @@ const FormsSchema = z
     process: z
       .object({
         header: z.string(),
-        description: z.string(),
+        descriptionMarkdown: z.string(),
         requirementsSubheader: z.string(),
         requirements: z.array(
           z
@@ -158,7 +158,7 @@ const FormsSchema = z
         items: z.array(
           z.object({
             title: z.string(),
-            description: z.string(),
+            descriptionMarkdown: z.string(),
           })
         ),
       })
@@ -193,7 +193,7 @@ const FormsSchema = z
     mathSocFees: z
       .object({
         header: z.string(),
-        description: z.string(),
+        descriptionMarkdown: z.string(),
       })
       .strict(),
   })
@@ -222,18 +222,7 @@ const StudentServicesSchema = z
     sections: z.array(
       z.object({
         title: z.string(),
-        description: z.string(),
-        subdescription: z.string(),
-        items: z.array(
-          z.object({
-            item: z.string(),
-          })
-        ),
-        contacts: z.array(
-          z.object({
-            contact: z.string(),
-          })
-        ),
+        descriptionMarkdown: z.string(),
         img: z.string(),
       })
     ),
@@ -361,7 +350,7 @@ const CouncilDataSchema = z
   .object({
     lastMigrationId: z.string().datetime(),
     councilHeader: z.string(),
-    councilResponse: z.string(),
+    councilResponseMarkdown: z.string(),
     compositionOfCouncilHeader: z.string(),
     compositionOfCouncilMarkdown: z.string(),
     execsHeader: z.string(),
@@ -479,9 +468,9 @@ const BudgetsSchema = z
       z
         .object({
           year: z.number(),
-          fall: z.string(),
-          winter: z.string(),
-          spring: z.string(),
+          fallLink: z.string(),
+          winterLink: z.string(),
+          springLink: z.string(),
         })
         .strict()
     ),

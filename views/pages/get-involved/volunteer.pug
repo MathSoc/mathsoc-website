@@ -10,11 +10,11 @@ block body
     div(class="content")
         section(class="white")
             h1 #{data.title}
-            p #{data.subtext}
+            p!=data.subtextMarkdown
             each team in data.teams
                 h3 #{team.name}
-                if team.subheader != ""
-                    p #{team.subheader}
+                if team.subheaderMarkdown != ""
+                    p!=team.subheaderMarkdown
                 each role in team.roles
                     if role.active
                         +collapsible(role.title, role.descriptionMarkdown, data.path + role.link)

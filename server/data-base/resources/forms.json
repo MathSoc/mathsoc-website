@@ -13,7 +13,7 @@
   ],
   "process": {
     "header": "The Process",
-    "description": "For accounting and auditing purposes the form must be properly filled out and any additional documentation required must be provided.",
+    "descriptionMarkdown": "For accounting and auditing purposes the form must be properly filled out and any additional documentation required must be provided.",
     "requirementsSubheader": "All Cheque Requests Require",
     "requirements": [
       {
@@ -32,19 +32,19 @@
     "items": [
       {
         "title": "Donations",
-        "description": "The amount of the donation should be net proceeds. Donations should only be made to Canadian registered charities. Attach a link to the executive, board or council minutes that clearly state the approval of the donation."
+        "descriptionMarkdown": "The amount of the donation should be net proceeds. Donations should only be made to Canadian registered charities. Attach a link to the executive, board or council minutes that clearly state the approval of the donation."
       },
       {
         "title": "Gift Cards",
-        "description": "Receipts for gift cards, gift baskets or any other items given as a good gesture must be accompanied by recipients’ name, address, phone # and email address."
+        "descriptionMarkdown": "Receipts for gift cards, gift baskets or any other items given as a good gesture must be accompanied by recipients’ name, address, phone # and email address."
       },
       {
         "title": "Kijiji / Facebook Purchases",
-        "description": "Must be approved in advance. Actual advertisement and conversation finalizing the payment must also be included."
+        "descriptionMarkdown": "Must be approved in advance. Actual advertisement and conversation finalizing the payment must also be included."
       },
       {
         "title": "Online Purchases",
-        "description": "Online vendors send a “confirmation of order” email once an order has been place and they also send a receipt once the payment has been made. Both are required. In some cases, for online orders the itemized receipt will say something like “paid by visa **********1234”. This is also acceptable."
+        "descriptionMarkdown": "Online vendors send a “confirmation of order” email once an order has been place and they also send a receipt once the payment has been made. Both are required. In some cases, for online orders the itemized receipt will say something like “paid by visa **********1234”. This is also acceptable."
       }
     ]
   },
@@ -113,6 +113,6 @@
   },
   "mathSocFees": {
     "header": "MathSoc Fees Opt-In",
-    "description": "If you are not a Math student and would like to pay your MathSoc fees, please visit the MathSoc Office at MC 3038 during our office hours to pay them. You will receive a card indicating that you have paid your fees for the term."
+    "descriptionMarkdown": "If you are not a Math student and would like to pay your MathSoc fees, please visit the MathSoc Office at MC 3038 during our office hours to pay them. You will receive a card indicating that you have paid your fees for the term."
   }
 }
