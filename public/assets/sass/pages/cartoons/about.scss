@@ -1,5 +1,5 @@
-@import "../mixins/banner-image";
-@import "../mixins/pink-button";
+@import "../../mixins/banner-image";
+@import "../../mixins/pink-button";
 
 .title {
   color: var(--accent-colour-1);
@@ -74,18 +74,13 @@ section {
   }
 
   .button-row {
-    justify-content: space-between;
-    .col {
-      width: 20%;
-
-      @media (max-width: 1600px) {
-        width: 100%;
-      }
-    }
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
 
     .pink-button {
-      max-width: initial;
-      min-width: 100%;
+      margin: 0;
     }
   }
 

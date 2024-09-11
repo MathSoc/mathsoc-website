@@ -1,7 +1,6 @@
 //- Types: pink, small
 mixin pink-button(text, id, href) 
   if(href) 
-    a(href=href class="pink-button-link")
-      button(class="pink-button", id=id)!=text
+    a(href=href class="pink-button" id=id)!=text
   else 
     button(class="pink-button", id=id)=text

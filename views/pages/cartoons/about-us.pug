@@ -4,7 +4,7 @@ block title
     title #{data.pageTitle} &#8211; MathSoc
 
 append styles
-    link(href="/assets/css/pages/about-cartoons.css" rel="stylesheet")
+    link(href="/assets/css/pages/cartoons/about.css" rel="stylesheet")
 
 append scripts
     script(src="/assets/js/carousel.js" defer)
@@ -34,13 +34,9 @@ block body
                     +carousel(data.carouselImages)
             div(class="title get-in-touch")
                 h1 #{data.getInTouch}
-            div(class="row button-row")
-                div(class="col")
-                    +pink-button(data.socialButtons.emailMarkdown, "email", data.socialLinks.email)
-                div(class="col")
-                    +pink-button(data.socialButtons.feedbackMarkdown, "feedback", data.socialLinks.feedback)
-                div(class="col")
-                    +pink-button(data.socialButtons.instagramMarkdown, "instagram", data.socialLinks.instagram)
-                div(class="col")
-                    +pink-button(data.socialButtons.facebookMarkdown, "facebook", data.socialLinks.facebook)
+            div(class="button-row")
+                +pink-button(data.socialButtons.emailMarkdown, "email", data.socialLinks.email)
+                +pink-button(data.socialButtons.feedbackMarkdown, "feedback", data.socialLinks.feedback)
+                +pink-button(data.socialButtons.instagramMarkdown, "instagram", data.socialLinks.instagram)
+                +pink-button(data.socialButtons.facebookMarkdown, "facebook", data.socialLinks.facebook)
 
