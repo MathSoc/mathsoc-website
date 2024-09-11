@@ -1,16 +1,17 @@
-div(id="footer")
-    div(class="section")
-        b="©" + new Date().getFullYear() + " Mathsoc"
-    hr
-    div(class="section")
-        div(class="link-section")
-            a(href="/") Home
-            a(href="/contact-us") Contact
-        div(class="social-section")
-            div(class="socials")
-                a(href="" + footer.socialLinks.discord target="_blank")
-                    img(src="/assets/img/social/discord.svg" alt="Discord Icon")
-                a(href="" + footer.socialLinks.instagram target="_blank")
-                    img(src="/assets/img/social/instagram.svg" alt="Instagram Icon")
-                a(href="" + footer.socialLinks.mail + "" target="_blank" class="mail-icon")
-                    img(src="/assets/img/social/mail.svg" alt="Mail Icon")
+if !examBankOnly
+    div(id="footer")
+        div(class="section")
+            b="©" + new Date().getFullYear() + " Mathsoc"
+        hr
+        div(class="section")
+            div(class="link-section")
+                a(href="/") Home
+                a(href="/contact-us") Contact
+            div(class="social-section")
+                div(class="socials")
+                    a(href="" + footer.socialLinks.discord target="_blank")
+                        img(src="/assets/img/social/discord.svg" alt="Discord Icon")
+                    a(href="" + footer.socialLinks.instagram target="_blank")
+                        img(src="/assets/img/social/instagram.svg" alt="Instagram Icon")
+                    a(href="" + footer.socialLinks.mail + "" target="_blank" class="mail-icon")
+                        img(src="/assets/img/social/mail.svg" alt="Mail Icon")
