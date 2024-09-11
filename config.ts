@@ -11,6 +11,7 @@ const requiredTokens = {
 const requiredForProdTokens = {
   WATERLOO_OPEN_API_BASE_URL: process.env.WATERLOO_OPEN_API_BASE_URL,
   WATERLOO_OPEN_API_KEY: process.env.WATERLOO_OPEN_API_KEY,
+  EXAM_BANK_ONLY: process.env.EXAM_BANK_ONLY == "true",
 };
 
 // Will only prevent server initialization on prod/staging

@@ -22,6 +22,7 @@ export interface PageOutflow {
   ref?: string;
   sources?: Record<string, object | any[] | null>;
   dataEndpoints?: string[];
+  examBankOnly: boolean;
 }
 
 export interface AdminPageOutflow extends PageOutflow {

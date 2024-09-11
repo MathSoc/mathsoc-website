@@ -2,13 +2,16 @@ import { Request, RequestHandler, Response, Router } from "express";
 import fs from "fs";
 import { ReadWriteController } from "../../api/controllers/read-write-controller";
 import { PageInflow, PageOutflow } from "../../types/routing.js";
+import tokens from "../../../config";
 
 /**
  * Contains functions related to the construction of new page routes and the population of
  * the pug views those routes redirect to
  */
 export class PageLoader {
-  static navItems = require("../../config/navbar.json");
+  static navItems = tokens.EXAM_BANK_ONLY
+    ? []
+    : require("../../config/navbar.json");
   static footer = require("../../data/shared/footer.json");
 
   /**
@@ -62,6 +65,7 @@ export class PageLoader {
       data: page.ref ? await PageLoader.getPageDataSource(page.ref) : null,
       title: page.title,
       ref: page.ref,
+      examBankOnly: tokens.EXAM_BANK_ONLY,
     };
 
     // Load any additional sources of data for the page, such as shared data files
