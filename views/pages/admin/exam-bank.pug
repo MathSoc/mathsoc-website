@@ -2,14 +2,19 @@ extends /views/templates/admin-base.pug
 
 append styles
   link(href="/assets/css/pages/resources/exam-bank.css" rel="stylesheet")
+  link(href="/assets/css/admin/exam-bank.css" rel="stylesheet")
 
 append scripts
   script(src="/assets/js/exam-bank.js" defer)
+  script(src="/assets/js/admin/exam-bank/exam-bank-editor.tsx.js" defer)
 
 block body
   div(id="body")
     h1 Exam Bank
-    p This is where the VPA will be able to manage the exam bank.
+    p Use this page to manage the exam bank.
+
+    h3 Add exams
+    div(id="add-exams-container")
 
     form(action="/api/exams/rebuild" method="post")
       h3 Reload exams JSON file
