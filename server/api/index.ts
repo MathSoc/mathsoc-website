@@ -43,7 +43,7 @@ router.post("/volunteer-application", (req: Request, res: Response) => {
   if (success) {
     res.redirect("/form-success");
   } else {
-    res.redirect("/error")
+    res.redirect("/error");
   }
 });
 

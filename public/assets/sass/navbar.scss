@@ -47,13 +47,12 @@
         padding: $vertical-padding 6px;
       }
 
-      >a {
+      > a {
         text-decoration: none;
         color: var(--text-color);
       }
 
       .dropdown-content {
-
         &:hover,
         &:focus,
         // :focus triggered by keyboard navigation of navbar

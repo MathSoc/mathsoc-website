@@ -22,7 +22,7 @@ router.get(
     const sendFile = () =>
       res.sendFile(
         path.join(__dirname, `../../public/exams/${req.params.fileName}`)
-      )
+      );
 
     if (req.params.fileName.includes("hidden")) {
       AdminMiddleware(req, res, sendFile);

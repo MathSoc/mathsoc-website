@@ -1,38 +1,38 @@
 .error-main {
-    text-align: center;
-  }
-  
-  .error-404 {
-    font-size: 170px;
-    color: #f0f0f0;
-    font-weight: 700;
-    line-height: 1;
-    margin: 0 0 0.5em 0;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  .error-links ul{
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      list-style-type: none;
-  }
-  
-  .error-links i{
-      margin: 0.5em 1em;
-      padding: 0.5em .75em;
-      background-color: var(--mathsoc-pink);
-      border-radius: 1em;
-      color: white;
-  }
-  
-  .error-links a{
-      margin: .5em 1em;
-  }
-  
-  .error-links a {
-      text-decoration: none;
-  }
+  text-align: center;
+}
+
+.error-404 {
+  font-size: 170px;
+  color: #f0f0f0;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0 0.5em 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+.error-links ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+
+.error-links i {
+  margin: 0.5em 1em;
+  padding: 0.5em 0.75em;
+  background-color: var(--mathsoc-pink);
+  border-radius: 1em;
+  color: white;
+}
+
+.error-links a {
+  margin: 0.5em 1em;
+}
+
+.error-links a {
+  text-decoration: none;
+}

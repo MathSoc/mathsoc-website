@@ -15,5 +15,3 @@ here we've used React for two reasons:
 
 1. No SEO: React's use of client-side rendering can often interfere with SEO, but since the admin side of the website is strictly admin-facing, it's not something we need to worry about having readable by googlebot.
 2. Complexity: Relative to much of the rest of the website, this admin editor is especially complex, requiring reactive updates to data changes and tree-composition logic that React lends itself well to.
-
-
