@@ -104,6 +104,8 @@ export class ExamBankController {
 
       // do not include hidden exams in the list
       if (isHidden) {
+        // todo fix this. we can't unhide the exams if they're not in the list
+        console.info(`Not adding ${file.name} to file as it is hidden.`);
         continue;
       }
 
@@ -115,6 +117,8 @@ export class ExamBankController {
           unfilteredExams[dictionaryKey].type = type;
           unfilteredExams[dictionaryKey].examFile = file.name;
         }
+
+        console.info(`Adding ${file.name} to an existing exam.`);
       } else {
         // If this exam has no files read yet, add it to the dictionary with the file we have.
         unfilteredExams[dictionaryKey] = {
@@ -126,6 +130,8 @@ export class ExamBankController {
           solutionFile: isSolution ? file.name : undefined,
           termName: TermNameController.getTermNameFromTermCode(term),
         };
+
+        console.info(`Adding ${file.name} as a new exam.`);
       }
     }
 
