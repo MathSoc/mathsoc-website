@@ -31,7 +31,7 @@ const missingTokens: string[] = [];
 
 const catchEmptyVariables = (tokenMap: Record<string, any>) => {
   for (const [key, value] of Object.entries(tokenMap)) {
-    if (!value) {
+    if (value === undefined) {
       missingTokens.push(key);
     }
   }
