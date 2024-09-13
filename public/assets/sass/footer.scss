@@ -1,6 +1,6 @@
 #footer {
-    background-color: #ff63aa;
-    color: #212934;
+    background-color: var(--mathsoc-pink);
+    color: white;
     position: relative;
     min-height: 175px;
     padding: 0px 150px;
@@ -60,7 +60,7 @@
     }
 
     .link-section a {
-        color: #212934;
+        color: white;
         text-decoration: none;
     }
 
@@ -90,5 +90,10 @@
                 padding: 0;
             }
         }
+    }
+
+    #admin-footer-content {
+        display: flex;
+        padding: 16px;
     }
 }
