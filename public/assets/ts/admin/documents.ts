@@ -112,7 +112,7 @@ class DocumentUploader {
     copyLinkButton.innerText = "Copy Link";
     newDiv.appendChild(newButton);
     newDiv.appendChild(deleteButton);
-    newDiv.appendChild(copyLinkButton)
+    newDiv.appendChild(copyLinkButton);
 
     return newDiv;
   }

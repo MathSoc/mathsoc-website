@@ -59,12 +59,5 @@
     "First Year Affairs",
     "Mental Health Director"
   ],
-  "execs": [
-    "president",
-    "vpa",
-    "vpi",
-    "vpf",
-    "vpo",
-    "vpc"
-  ]
+  "execs": ["president", "vpa", "vpi", "vpf", "vpo", "vpc"]
 }

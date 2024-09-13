@@ -1,4 +1,4 @@
-@import '../mixins/banner-image';
+@import "../mixins/banner-image";
 
 .title {
   color: var(--accent-colour-1);
@@ -38,7 +38,8 @@ h4 {
 }
 
 .elections-decision {
-  h2, h3 {
+  h2,
+  h3 {
     margin-bottom: 0.25em;
   }
   .decision-body {

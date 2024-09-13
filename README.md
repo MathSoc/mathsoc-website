@@ -3,6 +3,7 @@
 The MathSoc web development team is rebuilding the MathSoc website to transition away from the current WordPress implementation. We seek to rebuild the frontend while also building our own custom content management system (CMS), to allow for greater site quality, developer and admin maintainability, and site customizability going forward.
 
 Our stack is
+
 - `pug` as a templating engine to generate pages
 - `Express` as our web server
 - `JSON` files to hold data. We prefer this to an SQL server in the interest of long-term maintainability.

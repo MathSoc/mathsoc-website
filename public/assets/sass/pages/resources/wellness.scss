@@ -1,27 +1,25 @@
-@import '../../util/_sass-mixins';
-@import '../../util/variables';
-@import '../../mixins/banner-image';
+@import "../../util/_sass-mixins";
+@import "../../util/variables";
+@import "../../mixins/banner-image";
 
 section {
-    max-width: var(--content-width);
-    margin: 30px auto;
+  max-width: var(--content-width);
+  margin: 30px auto;
 
-    .subheader {
-        font-family: var(--primary-font);
-        font-size: 1.4em;
-    }  
+  .subheader {
+    font-family: var(--primary-font);
+    font-size: 1.4em;
+  }
 
-    h1 {
-        color: var(--accent-colour-1);
-    }
+  h1 {
+    color: var(--accent-colour-1);
+  }
 
-    h2 {
-        font-size: 1.4em;
-    }
+  h2 {
+    font-size: 1.4em;
+  }
 
-    li {
-        margin-bottom: 5px;
-    }
+  li {
+    margin-bottom: 5px;
+  }
 }
-
-
