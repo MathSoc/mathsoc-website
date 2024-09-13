@@ -14,7 +14,8 @@
   "include": [
     "public/assets/ts/**/*.ts",
     "public/assets/ts/**/*.tsx",
-    "public/assets/ts/admin/generic-editor.tsx"
+    "public/assets/ts/admin/generic-editor.tsx",
+    "public/assets/ts/admin/exam-bank-editor.tsx"
   ],
   "ts-node": {
     "swc": true
