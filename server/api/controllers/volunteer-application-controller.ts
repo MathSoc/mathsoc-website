@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import validator from "validator";
 import { Request, Response } from "express";
-import volunteerAppData from "../../data-base/get-involved/volunteer-application.json";
+import volunteerAppData from "../../data/get-involved/volunteer-application.json";
 import { Logger } from "../../util/logger";
 
 export const emailDomain = "@mathsoc.uwaterloo.ca";

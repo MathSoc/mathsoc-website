@@ -8,7 +8,7 @@ type VersionedData = {
 
 /**
  * When creating an UPDATE migration, ensure you:
- * - update the base file in /server/data-base
+ * - update the base file in /server/data-examples
  * - update the schema in /server/types/schemas.ts
  */
 interface UpdateMigration {
@@ -25,7 +25,7 @@ interface UpdateMigration {
 
 /**
  * When creating a DELETE migration, ensure you
- * - delete the base file in /server/data-base
+ * - delete the base file in /server/data-examples
  */
 interface DeleteMigration {
   type: "DELETE";

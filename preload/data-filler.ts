@@ -3,7 +3,7 @@ import path from "path";
 
 export class DataFiller {
   /**
-   * For any file in /data-base that doesn't exist in /data,
+   * For any file in /data-examples that doesn't exist in /data,
    * creates a version of that file in /data
    */
   static async fillDataFolder() {
@@ -12,7 +12,7 @@ export class DataFiller {
 
   static async fillDataFolderRecurse(relativePath: string[]) {
     const baseDir: string[] = await fs.promises.readdir(
-      path.join("server", "data-base", ...relativePath)
+      path.join("server", "data-examples", ...relativePath)
     );
     const realDir: string[] = await fs.promises.readdir(
       path.join("server", "data", ...relativePath)
@@ -22,7 +22,7 @@ export class DataFiller {
     for (const fileName of baseDir) {
       const pathToBaseFile = path.join(
         "server",
-        "data-base",
+        "data-examples",
         ...relativePath,
         fileName
       );
