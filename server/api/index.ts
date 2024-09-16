@@ -9,7 +9,7 @@ import { VolunteerApplicationController } from "./controllers/volunteer-applicat
 
 const router = express.Router();
 
-ExamBankController.rewriteFile();
+ExamBankController.refreshExamsList();
 
 router.get("/data", (req: Request, res: Response) => {
   if (typeof req.query.path === "string") {

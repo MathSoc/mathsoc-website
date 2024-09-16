@@ -4,6 +4,8 @@ import { Logger } from "../../util/logger";
 import { ReadWriteController } from "./read-write-controller";
 import fs from "fs";
 import { TermNameController } from "./term-name-controller";
+import { FileArray } from "express-fileupload";
+import path from "path";
 
 /**
  * Current invariants (could be changed later with added work)
@@ -45,7 +47,7 @@ export class ExamBankController {
    * Re-creates the exam list JSON file based on the current
    * contents of the exams directory
    */
-  static async rewriteFile(): Promise<void> {
+  static async refreshExamsList(): Promise<void> {
     const url = "_hidden/exams-list";
 
     ReadWriteController.overwriteJSONDataPath(
@@ -73,14 +75,52 @@ export class ExamBankController {
             break;
         }
       },
-      await this.generateJSON()
+      await this.generateExamsList()
     );
+  }
+
+  static async uploadExams(exams: FileArray): Promise<void> {
+    // single-exam uploads don't come as arrays
+    if (!Array.isArray(exams.files)) {
+      exams.files = [exams.files];
+    }
+
+    for (const exam of exams.files) {
+      // validate naming
+      const [department, courseCode, termNumber, type, ...options] =
+        exam.name.split("-");
+
+      if (!department || !courseCode || !termNumber || !type) {
+        throw new Error("Ill-formed exam given");
+      }
+
+      // if the entire termNumber is not one integer
+      if (parseInt(termNumber) + "" !== termNumber) {
+        throw new Error("Bad term number given");
+      }
+
+      const ACCEPTED_OPTIONS = ["hidden", "sol"];
+      for (const option of options) {
+        if (!ACCEPTED_OPTIONS.includes(option)) {
+          throw new Error("Unaccepted option given");
+        }
+      }
+    }
+
+    for (const exam of exams.files) {
+      await exam.mv(
+        path.join(__dirname, `../../../public/exams/${exam.name}.pdf`)
+      );
+      console.info(`Exam file ${exam.name} uploaded`);
+    }
+
+    ExamBankController.refreshExamsList();
   }
 
   /**
    * Gets an array of every exam currently in the exam list folder
    */
-  private static async generateJSON(): Promise<Exam[]> {
+  private static async generateExamsList(): Promise<Exam[]> {
     await this.validateTerms();
 
     const examFiles: Dirent[] = readdirSync("public/exams", {
@@ -99,15 +139,7 @@ export class ExamBankController {
         type = parts.slice(3).join(" ").split(".")[0].replace(" sol", ""); // strip file extension and solutions marker
 
       const isSolution = file.name.includes("-sol");
-      const isHidden = file.name.includes("-sol");
       const dictionaryKey = [department, course, term].join("-");
-
-      // do not include hidden exams in the list
-      if (isHidden) {
-        // todo fix this. we can't unhide the exams if they're not in the list
-        console.info(`Not adding ${file.name} to file as it is hidden.`);
-        continue;
-      }
 
       if (unfilteredExams[dictionaryKey]) {
         // If this exam is already in the dictionary, add this file (e.g. the exam) to it.

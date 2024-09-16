@@ -5,7 +5,7 @@ export interface ExamConfig {
   department: string;
   courseCode: string;
   termNumber: string;
-  fileType: string;
+  examType: string;
   isSolution: boolean;
 }
 
@@ -23,7 +23,7 @@ export const AddExamsEditor: React.FC = () => {
       file.department = newConfig.department || file.department;
       file.courseCode = newConfig.courseCode || file.courseCode;
       file.termNumber = newConfig.termNumber || file.termNumber;
-      file.fileType = newConfig.fileType || file.fileType;
+      file.examType = newConfig.examType || file.examType;
       file.isSolution = newConfig.isSolution ?? file.isSolution;
     },
     [examFiles]
@@ -37,22 +37,21 @@ export const AddExamsEditor: React.FC = () => {
           department: "",
           courseCode: "",
           termNumber: "",
-          fileType: "",
+          examType: "",
           isSolution: false,
         }))
       );
     }
   };
 
-  const uploadExams = () => {
-    console.log(examFiles);
-
+  const uploadExams = async () => {
+    // validate
     for (const exam of examFiles) {
       if (
         exam.department === "" ||
         exam.courseCode === "" ||
         exam.termNumber === "" ||
-        exam.fileType === ""
+        exam.examType === ""
       ) {
         alert(`Please fill out all fields for ${exam.file.name}`);
         return;
@@ -64,6 +63,26 @@ export const AddExamsEditor: React.FC = () => {
         );
         return;
       }
+    }
+
+    const formData: FormData = new FormData();
+    for (const exam of examFiles) {
+      const renamedName = `${exam.department}-${exam.courseCode}-${
+        exam.termNumber
+      }-${exam.examType}${exam.isSolution ? "-sol" : ""}`;
+
+      formData.append("files", exam.file, renamedName);
+    }
+
+    const options = {
+      method: "POST",
+      body: formData,
+    };
+
+    const response = await fetch("/api/exams/upload", options);
+    const parsedResponse = await response.json();
+    if (parsedResponse.errors.length) {
+      alert(parsedResponse.errors.join(", "));
     }
   };
 
