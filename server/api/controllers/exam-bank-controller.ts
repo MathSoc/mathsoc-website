@@ -139,7 +139,7 @@ export class ExamBankController {
       const department = parts[0],
         course = parts[1],
         term = parts[2],
-        type = parts.slice(3).join(" ").split(".")[0].replace(" sol", ""); // strip file extension and solutions marker
+        type = parts.slice(3).join(" ").split(".")[0].replace(/ sol/i, ""); // strip file extension and solutions marker
 
       const isSolution = file.name.toLowerCase().includes("-sol");
       const dictionaryKey = [department, course, term].join("-");
