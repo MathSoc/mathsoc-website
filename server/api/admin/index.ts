@@ -38,7 +38,7 @@ router.post("/exams/upload", (req: Request, res: Response) => {
     }
 
     ExamBankController.uploadExams(req.files);
-    res.status(200).end();
+    res.status(200).json({});
   } catch (e) {
     res.status(404).end();
   }

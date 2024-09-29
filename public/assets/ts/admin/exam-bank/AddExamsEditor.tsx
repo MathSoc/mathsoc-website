@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 import { PendingExamItem } from "./PendingExamItem";
+import { showToast } from "../toast";
 
 export interface ExamConfig {
   department: string;
@@ -81,8 +82,10 @@ export const AddExamsEditor: React.FC = () => {
 
     const response = await fetch("/api/exams/upload", options);
     const parsedResponse = await response.json();
-    if (parsedResponse.errors.length) {
+    if (parsedResponse.errors?.length) {
       alert(parsedResponse.errors.join(", "));
+    } else {
+      showToast("Upload successful. Refresh page to see new exams.", "success");
     }
   };
 
