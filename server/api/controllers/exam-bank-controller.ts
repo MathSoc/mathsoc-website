@@ -101,7 +101,7 @@ export class ExamBankController {
 
       const ACCEPTED_OPTIONS = ["hidden", "sol"];
       for (const option of options) {
-        if (!ACCEPTED_OPTIONS.includes(option)) {
+        if (!ACCEPTED_OPTIONS.includes(option.toLowerCase())) {
           throw new Error("Unaccepted option given");
         }
       }
