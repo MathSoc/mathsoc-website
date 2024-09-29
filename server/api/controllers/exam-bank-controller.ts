@@ -141,7 +141,7 @@ export class ExamBankController {
         term = parts[2],
         type = parts.slice(3).join(" ").split(".")[0].replace(" sol", ""); // strip file extension and solutions marker
 
-      const isSolution = file.name.includes("-sol");
+      const isSolution = file.name.toLowerCase().includes("-sol");
       const dictionaryKey = [department, course, term].join("-");
 
       if (unfilteredExams[dictionaryKey]) {
