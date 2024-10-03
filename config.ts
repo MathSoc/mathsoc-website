@@ -52,7 +52,7 @@ const logEmptyVariablesAndMaybeExit = () => {
 
 if (!fs.existsSync(".env")) {
   console.error(
-    ".env file not found. Create a .env file in the root directory."
+    '.env file not found. Create a file called ".env" in the root directory, then see the instructions in .env.example.'
   );
 
   process.exit(1);
