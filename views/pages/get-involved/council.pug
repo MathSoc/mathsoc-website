@@ -5,9 +5,17 @@ append styles
 
 append scripts
     script(src="/assets/js/collapsible.js" defer)
+    script(src="/assets/js/form-error.js" defer)
 
 block body
     +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
+    div(class="mailing-list-form")
+        section(class="white")
+            form(action="/api/mailing-list" method="post")
+                label(for="email") Sign up for the council mailing list here
+                input(required type="email" id="email" name="email" placeholder="Email Address")
+                div(id="email-error" class="error-message")
+                button(id="email-btn" type="submit") Join mailing list
     div(class="content")
         section(class="white")
             h1 #{data.councilHeader}
