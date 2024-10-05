@@ -46,6 +46,10 @@
       .dropdown-button {
         padding: $vertical-padding 6px;
       }
+      .dropdown:hover {
+        color: var(--accent-colour-1);
+        background-color: white;
+      }
 
       > a {
         text-decoration: none;
@@ -69,6 +73,7 @@
       &:active {
         .dropdown-button {
           color: var(--accent-colour-1);
+          background-color: white;
         }
 
         .dropdown-content {
