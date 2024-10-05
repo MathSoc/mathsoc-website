@@ -25,8 +25,7 @@ section {
       z-index: 1;
       flex: 0 0 var(--size);
       height: var(--size);
-      border-radius: 50%;
-      background-color: var(--mathsoc-pink-3);
+      background-color: var(--mathsoc-pink);
     }
     .stepper_item:not(:last-child):after {
       content: "";
@@ -47,7 +46,7 @@ section {
       margin: 0.3rem 0 0 0;
       white-space: nowrap;
       display: block;
-      color: var(--mathsoc-pink-2);
+      color: var(--mathsoc-pink);
     }
   }
 

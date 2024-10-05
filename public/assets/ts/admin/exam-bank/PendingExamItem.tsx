@@ -50,10 +50,10 @@ export const PendingExamItem: React.FC<{
         ></input>
       </div>
       <div className="exam-data">
-        <label>File type</label>
+        <label>Exam type</label>
         <input
           placeholder="Midterm"
-          onChange={(e) => updateStringConfig(e.target, "fileType", file.name)}
+          onChange={(e) => updateStringConfig(e.target, "examType", file.name)}
         ></input>
       </div>
       <div className="exam-data">

@@ -1,9 +1,8 @@
 #exams-table {
   width: 100%;
-
   margin-bottom: 40px;
-
   text-align: left;
+  border-collapse: collapse;
 
   @mixin match-filters($filter-classes) {
     tbody {
@@ -32,14 +31,10 @@
     width: 12.5%;
   }
   .exam-offering {
-    width: 10%;
+    width: 20%;
   }
   .exam-type {
     width: 20%;
-  }
-
-  .exam-link {
-    width: calc(47.5% / 2);
   }
 
   .exam-actions {
@@ -69,18 +64,34 @@
   }
 
   tbody {
-    tr:nth-child(2n + 1) {
-      background-color: #eee;
-    }
-
     td {
       padding: 0.5em 1em;
+    }
+
+    tr {
+      &:nth-child(2n + 1) {
+        background-color: var(--background-hover);
+
+        a {
+          background-color: white;
+
+          &:hover,
+          &:focus-visible {
+            background-color: var(--background-hover);
+          }
+        }
+      }
+
+      &:first-child {
+        border-top: none;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
 
   a {
-    background-color: var(--background-colour);
-    border: 1px solid var(--mathsoc-pink);
     color: var(--mathsoc-pink);
     border-radius: 4px;
     padding: 4px 8px;
@@ -94,7 +105,8 @@
       display: block;
     }
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background-color: var(--background-hover);
     }
   }

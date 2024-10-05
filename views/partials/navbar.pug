@@ -2,25 +2,33 @@ a.skip-to-main-content(href='#body') Skip to main content
 
 nav(id="navbar")
   div(id="inner-navbar")
-    if !examBankOnly
+    if examBankOnly
+      div(href="/" class="nav-logo-container") 
+        img(src="/assets/img/icons/horizontal-logo.svg" class="nav-logo" id="pink-logo" alt="MathSoc Logo.  Click to return to homepage")
+        img(src="/assets/img/icons/horizontal-logo-white.svg" class="nav-logo" id="white-logo" alt="MathSoc Logo.  Click to return to homepage")
+    else 
       a(href="/" class="nav-logo-container") 
         img(src="/assets/img/icons/horizontal-logo.svg" class="nav-logo" id="pink-logo" alt="MathSoc Logo.  Click to return to homepage")
         img(src="/assets/img/icons/horizontal-logo-white.svg" class="nav-logo" id="white-logo" alt="MathSoc Logo.  Click to return to homepage")
-    ul(class="items")
-      each category in navItems
-        li(class="dropdown")
-          if !category.ref
-            button(class="dropdown-button") #{category.title}
-          else 
-            a(href=category.ref)
-              div(class="dropdown-button") #{category.title}
-          - var length = category.children ? category.children.length : 0;
-          if length
-            div(class="dropdown-content")
-              each item in category.children
-                a(href=""+ item.ref +"") #{item.title}
-    button(id="mobile-menu-button")
-      img(src="/assets/img/icons/single-downvote.svg")
+
+    if !examBankOnly
+      ul(class="items")
+        each category in navItems
+          li(class="dropdown")
+            if !category.ref
+              button(class="dropdown-button") #{category.title}
+            else 
+              a(href=category.ref)
+                div(class="dropdown-button") #{category.title}
+            - var length = category.children ? category.children.length : 0;
+            if length
+              div(class="dropdown-content")
+                each item in category.children
+                  a(href=""+ item.ref +"") #{item.title}
+
+    if !examBankOnly
+      button(id="mobile-menu-button")
+        img(src="/assets/img/icons/single-downvote.svg")
 
 nav(id="mobile-nav")
   ul(class="items")

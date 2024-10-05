@@ -1,3 +1,14 @@
+h2 {
+  margin-top: 1em;
+  font-size: 2em;
+}
+
+hr {
+  margin: 40px 0px;
+  box-shadow: none;
+  border: 2px solid var(--mathsoc-grey);
+}
+
 #add-exams-editor {
   #hidden-exam-upload {
     display: none;

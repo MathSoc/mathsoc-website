@@ -31,6 +31,19 @@ router.get("/editor/structure", (_req: Request, res: Response) => {
     .end();
 });
 
+router.post("/exams/upload", (req: Request, res: Response) => {
+  try {
+    if (!req.files) {
+      throw new Error("Files not found");
+    }
+
+    ExamBankController.uploadExams(req.files);
+    res.status(200).json({});
+  } catch (e) {
+    res.status(404).end();
+  }
+});
+
 router.patch("/exams/:examName/hide", (req: Request, res: Response) => {
   try {
     ExamBankController.hideExamFile(req.params.examName);
@@ -73,7 +86,7 @@ router.post("/data", validateRequest, (req: Request, res: Response) => {
 });
 
 router.post("/exams/rebuild", (_req: Request, res: Response) => {
-  ExamBankController.rewriteFile();
+  ExamBankController.refreshExamsList();
   res.status(201).send();
 });
 
