@@ -87,7 +87,7 @@ export class ExamBankController {
 
     for (const exam of exams.files) {
       // validate naming
-      const [department, courseCode, termNumber, type, ...options] =
+      const [department, courseCode, termNumber, ...type] =
         exam.name.split("-");
 
       if (!department || !courseCode || !termNumber || !type) {
@@ -98,21 +98,11 @@ export class ExamBankController {
       if (parseInt(termNumber) + "" !== termNumber) {
         throw new Error("Bad term number given");
       }
-
-      const ACCEPTED_OPTIONS = ["hidden", "sol"];
-      for (const option of options) {
-        if (!ACCEPTED_OPTIONS.includes(option.toLowerCase())) {
-          throw new Error("Unaccepted option given");
-        }
-      }
     }
 
     for (const exam of exams.files) {
       await exam.mv(
-        path.join(
-          __dirname,
-          `../../../public/exams/${exam.name.toUpperCase()}.pdf`
-        )
+        path.join(__dirname, `../../../public/exams/${exam.name}.pdf`)
       );
       console.info(`Exam file ${exam.name} uploaded`);
     }
