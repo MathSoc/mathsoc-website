@@ -71,13 +71,20 @@ hr {
       font-size: 0.8em;
     }
 
-    .delete-btn {
-      width: max-content;
+    .remove-upload-btn {
+      label {
+        display: none;
+      }
 
-      background-color: none;
-      transition: background-color 0.5s ease-in-out;
-      &:hover {
-        background-color: var(--mathsoc-pink-4);
+      button {
+        width: max-content;
+        cursor: pointer;
+
+        background-color: transparent;
+        transition: background-color 0.1s ease-in-out;
+        &:hover {
+          background-color: var(--mathsoc-pink-4);
+        }
       }
     }
   }

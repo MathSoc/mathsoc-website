@@ -4,7 +4,8 @@ import { ExamConfig } from "./AddExamsEditor";
 export const PendingExamItem: React.FC<{
   file: File;
   updateExamConfig: (newConfig: Partial<ExamConfig>, filename: string) => void;
-}> = ({ file, updateExamConfig }) => {
+  removeExam: () => void;
+}> = ({ file, updateExamConfig, removeExam }) => {
   const [fileDepartment, fileCode, fileTerm, ...fileExamNameParts] =
     file.name.split(/[.-]/);
   const fileExamName = fileExamNameParts
@@ -109,10 +110,20 @@ export const PendingExamItem: React.FC<{
           }}
         ></input>
       </div>
-      <div className="exam-data">
-        <label>Remove from Upload?</label>
-        <button className="delete-btn" onClick={() => console.log("Delete ME")}>
-          X
+      <div className="remove-upload-btn">
+        <label>Remove Upload?</label>
+        <button
+          onClick={() => {
+            if (
+              window.confirm(
+                "Are you sure you want to remove this upload from staging?"
+              )
+            ) {
+              removeExam();
+            }
+          }}
+        >
+          x
         </button>
       </div>
     </li>

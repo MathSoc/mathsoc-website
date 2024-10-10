@@ -89,6 +89,10 @@ export const AddExamsEditor: React.FC = () => {
     }
   };
 
+  const deleteFile = (fileName: string) => {
+    setExamFiles(examFiles.filter((file) => file.file.name !== fileName));
+  };
+
   return (
     <div id="add-exams-editor">
       <ul id="pending-exams-list">
@@ -98,6 +102,7 @@ export const AddExamsEditor: React.FC = () => {
               key={file.file.name}
               file={file.file}
               updateExamConfig={updateExamConfig}
+              removeExam={() => deleteFile(file.file.name)}
             />
           );
         })}
