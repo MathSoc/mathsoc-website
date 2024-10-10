@@ -109,6 +109,12 @@ export const PendingExamItem: React.FC<{
           }}
         ></input>
       </div>
+      <div className="exam-data">
+        <label>Remove from Upload?</label>
+        <button className="delete-btn" onClick={() => console.log("Delete ME")}>
+          X
+        </button>
+      </div>
     </li>
   );
 };

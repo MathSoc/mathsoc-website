@@ -70,5 +70,15 @@ hr {
     label {
       font-size: 0.8em;
     }
+
+    .delete-btn {
+      width: max-content;
+
+      background-color: none;
+      transition: background-color 0.5s ease-in-out;
+      &:hover {
+        background-color: var(--mathsoc-pink-4);
+      }
+    }
   }
 }
