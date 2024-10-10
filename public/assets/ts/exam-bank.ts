@@ -1,6 +1,10 @@
 import { Exam } from "../../../server/types/exam-bank.js";
 
 class ExamBankFrontend {
+  static readonly isInAdmin = window.location.href
+    .split("?")[0]
+    .includes("/admin/");
+
   static getExamList(): HTMLTableElement {
     return document.getElementById("exams-table") as HTMLTableElement;
   }
@@ -122,14 +126,21 @@ class ExamBankFrontend {
       newRow.setAttribute("data-course-dept", exam.department);
       newRow.setAttribute("data-course-code", exam.courseCode);
 
-      if (exam.examFile) {
+      const examHidden = exam.examFile?.toLowerCase().includes("-hidden");
+      const solutionHidden = exam.solutionFile
+        ?.toLowerCase()
+        .includes("-hidden");
+
+      if (exam.examFile && (this.isInAdmin || !examHidden)) {
         newRow.querySelector(".exam-download").classList.add("active");
       }
-      if (exam.solutionFile) {
+      if (exam.solutionFile && (this.isInAdmin || !solutionHidden)) {
         newRow.querySelector(".solution-download").classList.add("active");
       }
 
-      tableBody.appendChild(newRow);
+      if (!examHidden || !solutionHidden) {
+        tableBody.appendChild(newRow);
+      }
     }
   }
 }
