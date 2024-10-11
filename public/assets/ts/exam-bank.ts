@@ -117,7 +117,7 @@ class ExamBankFrontend {
         .replace("$COURSE-DEPT$", exam.department)
         .replace("$COURSE-CODE$", exam.courseCode)
         .replace("$OFFERING$", exam.termName)
-        .replace("$TYPE$", exam.type)
+        .replace("$TYPE$", exam.type.replace("hidden", ""))
         .replace("$EXAM-FILE$", `/exams/${exam.examFile}`)
         .replace("$SOLUTION-FILE$", `/exams/${exam.solutionFile}`)
         .replace("$EXAM_HIDDEN$", "False")
@@ -138,7 +138,11 @@ class ExamBankFrontend {
         newRow.querySelector(".solution-download").classList.add("active");
       }
 
-      if (!examHidden || !solutionHidden) {
+      if (
+        this.isInAdmin ||
+        (exam.examFile && !examHidden) ||
+        (exam.solutionFile && !solutionHidden)
+      ) {
         tableBody.appendChild(newRow);
       }
     }
