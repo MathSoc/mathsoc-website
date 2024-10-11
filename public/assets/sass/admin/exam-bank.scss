@@ -70,5 +70,22 @@ hr {
     label {
       font-size: 0.8em;
     }
+
+    .remove-upload-btn {
+      label {
+        display: none;
+      }
+
+      button {
+        width: max-content;
+        cursor: pointer;
+
+        background-color: transparent;
+        transition: background-color 0.1s ease-in-out;
+        &:hover {
+          background-color: var(--mathsoc-pink-4);
+        }
+      }
+    }
   }
 }
