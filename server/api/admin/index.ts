@@ -44,7 +44,7 @@ router.post("/exams/upload", (req: Request, res: Response) => {
   }
 });
 
-router.patch("/exams/:examName/hide", (req: Request, res: Response) => {
+router.post("/exams/:examName/hide", (req: Request, res: Response) => {
   try {
     ExamBankController.hideExamFile(req.params.examName);
     res.status(200).end();
@@ -53,7 +53,7 @@ router.patch("/exams/:examName/hide", (req: Request, res: Response) => {
   }
 });
 
-router.patch("/exams/:examName/show", (req: Request, res: Response) => {
+router.post("/exams/:examName/show", (req: Request, res: Response) => {
   try {
     ExamBankController.showExamFile(req.params.examName);
     res.status(200).end();
