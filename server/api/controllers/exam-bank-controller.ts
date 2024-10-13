@@ -27,6 +27,7 @@ export class ExamBankController {
     const currentUrl = `public/exams/${examName}.pdf`;
     const newUrl = `public/exams/${examName}-hidden.pdf`;
 
+    console.info(`Attempting to hide exam: ${examName}`);
     if (!fs.existsSync(currentUrl)) {
       throw new Error("Exam not found");
     }
@@ -41,6 +42,7 @@ export class ExamBankController {
     const currentUrl = `public/exams/${examName}-hidden.pdf`;
     const newUrl = currentUrl.replace("-hidden", "");
 
+    console.info(`Attempting to unhide exam: ${examName}`);
     if (!fs.existsSync(currentUrl)) {
       throw new Error("Exam not found");
     }
