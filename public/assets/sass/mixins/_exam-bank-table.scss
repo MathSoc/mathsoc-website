@@ -37,19 +37,21 @@
     width: 20%;
   }
 
-  .exam-actions {
-    > :hover {
-      color: var(--mathsoc-pink);
-      transition: 0.3s;
-      cursor: pointer;
-    }
-  }
-
+  .exam-actions,
   .solution-actions {
     > :hover {
       color: var(--mathsoc-pink);
       transition: 0.3s;
       cursor: pointer;
+    }
+
+    .active {
+      color: var(--mathsoc-pink);
+      border-bottom: 2px solid var(--mathsoc-pink);
+    }
+
+    &.hidden {
+      opacity: 0;
     }
   }
 

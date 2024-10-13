@@ -22,25 +22,33 @@ export class ExamBankController {
   static logger = new Logger("Exam Bank Controller");
 
   static async hideExamFile(examName: string): Promise<void> {
+    examName = examName.replace("-hidden", "").replace(".pdf", "");
+
     const currentUrl = `public/exams/${examName}.pdf`;
     const newUrl = `public/exams/${examName}-hidden.pdf`;
 
+    console.info(`Attempting to hide exam: ${examName}`);
     if (!fs.existsSync(currentUrl)) {
       throw new Error("Exam not found");
     }
 
     fs.renameSync(currentUrl, newUrl);
+    ExamBankController.refreshExamsList();
   }
 
   static async showExamFile(examName: string): Promise<void> {
-    const currentUrl = `public/exams/${examName}.pdf`;
+    examName = examName.replace(".pdf", "").replace("-hidden", "");
+
+    const currentUrl = `public/exams/${examName}-hidden.pdf`;
     const newUrl = currentUrl.replace("-hidden", "");
 
+    console.info(`Attempting to unhide exam: ${examName}`);
     if (!fs.existsSync(currentUrl)) {
       throw new Error("Exam not found");
     }
 
     fs.renameSync(currentUrl, newUrl);
+    ExamBankController.refreshExamsList();
   }
 
   /**
