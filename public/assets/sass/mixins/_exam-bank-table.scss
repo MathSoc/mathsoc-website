@@ -55,6 +55,12 @@
     }
   }
 
+  td,
+  th {
+    text-transform: uppercase;
+    font-size: 0.9em;
+  }
+
   thead tr {
     background-color: var(--mathsoc-pink);
     color: white;
@@ -62,6 +68,7 @@
 
     th {
       padding: 1em;
+      font-weight: 400;
     }
   }
 

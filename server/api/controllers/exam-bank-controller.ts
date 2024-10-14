@@ -29,7 +29,7 @@ export class ExamBankController {
 
     console.info(`Attempting to hide exam: ${examName}`);
     if (!fs.existsSync(currentUrl)) {
-      throw new Error("Exam not found");
+      throw new Error(`Exam not found: ${currentUrl}`);
     }
 
     fs.renameSync(currentUrl, newUrl);
@@ -44,10 +44,23 @@ export class ExamBankController {
 
     console.info(`Attempting to unhide exam: ${examName}`);
     if (!fs.existsSync(currentUrl)) {
-      throw new Error("Exam not found");
+      throw new Error(`Exam not found: ${currentUrl}`);
     }
 
     fs.renameSync(currentUrl, newUrl);
+    ExamBankController.refreshExamsList();
+  }
+
+  static async deleteExamFile(examName: string): Promise<void> {
+    examName = examName.replace(".pdf", ""); // normalize
+
+    const url = `public/exams/${examName}.pdf`;
+
+    if (!fs.existsSync(url)) {
+      throw new Error(`Exam not found: ${url}`);
+    }
+
+    fs.rmSync(url);
     ExamBankController.refreshExamsList();
   }
 
@@ -140,7 +153,7 @@ export class ExamBankController {
         type = parts.slice(3).join(" ").split(".")[0].replace(/ sol/i, ""); // strip file extension and solutions marker
 
       const isSolution = file.name.toLowerCase().includes("-sol");
-      const dictionaryKey = [department, course, term].join("-");
+      const dictionaryKey = [department, course, term, type].join("-");
 
       if (unfilteredExams[dictionaryKey]) {
         // If this exam is already in the dictionary, add this file (e.g. the exam) to it.
