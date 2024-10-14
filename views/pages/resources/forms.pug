@@ -10,9 +10,9 @@ block body
     div(class="content")
         section
             h1 #{data.title}
-            each form in data.formLinks
-                a(href=form.link target="_blank" class="form-link")
-                    h2 #{form.title}
+            div(class="pink-button-grid")
+                each form in data.formLinks
+                    +pink-button(form.title, '', form.link)
             h1 #{data.process.header}
             p !{data.process.descriptionMarkdown}
             h2 #{data.process.requirementsSubheader}
@@ -30,9 +30,9 @@ block body
                 div(class="collapsible-content")
                     p!=question.questionMarkdown
             h1 #{data.otherForms.header}
-            each form in data.otherForms.forms
-                a(href=form.link target="_blank" class="form-link")
-                    h2 #{form.title}
+            div(class="pink-button-grid")
+                each form in data.otherForms.forms
+                    +pink-button(form.title, '', form.link)
             p!=data.otherForms.footnote 
             h2 #{data.mathSocFees.header}
             p!=data.mathSocFees.descriptionMarkdown

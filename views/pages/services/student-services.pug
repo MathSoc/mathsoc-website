@@ -6,12 +6,13 @@ append styles
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css")
 
 block body 
-    each section in data.sections
-        section(class="service")
-            div(class="service-item")
-                h2(class="service-title") #{section.title}
-                p!=section.descriptionMarkdown
-                p #{section.subdescription}
-            img(src=section.img)
+    div(id="content")
+        each section in data.sections
+            section(class="service")
+                div(class="service-item")
+                    h2(class="service-title") #{section.title}
+                    p!=section.descriptionMarkdown
+                    p #{section.subdescription}
+                img(src=section.img)
     
     
