@@ -30,8 +30,11 @@ block body
                         br
                         +pink-button(data.buttons.archive.text, '', data.buttons.archive.link)
                 div(class="col")
-                    - var images = data.carouselImages;
-                    +carousel(data.carouselImages)
+                    //- todo: fix this structure such that it can be updated by the EditorImageNode
+                    //- todo: make it named something other than "carousel", now that there is no more carousel
+                    div(id="cartoons-welcome-comic")
+                        each imageSrc in data.carouselImages 
+                            img(class="cartoons-image" src=imageSrc)
             div(class="title get-in-touch")
                 h1 #{data.getInTouch}
             div(class="button-row")
