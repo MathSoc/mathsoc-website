@@ -35,12 +35,19 @@ section {
       background-size: 2rem;
       background-repeat: no-repeat;
       background-position: bottom 12px right 12px;
-      border: 4px solid #0c2b6e;
+      border: 4px solid #222;
     }
 
-    .stepper_item:hover::before {
-      background-color: var(--mathsoc-pink-2);
-      transition: all 0.25s ease-in;
+    .stepper_item:hover {
+      &::before {
+        background-color: var(--mathsoc-pink-2);
+        transition: all 0.25s ease-in;
+      }
+
+      .stepper_title {
+        color: var(--mathsoc-pink-2);
+        transition: all 0.25s ease-in;
+      }
     }
 
     .stepper_item:not(:last-child):after {
@@ -63,11 +70,6 @@ section {
       color: var(--mathsoc-grey);
       pointer-events: all;
       transition: all 0.25s ease-out;
-    }
-
-    .stepper_title:hover {
-      color: var(--mathsoc-pink-2);
-      transition: all 0.25s ease-in;
     }
   }
 

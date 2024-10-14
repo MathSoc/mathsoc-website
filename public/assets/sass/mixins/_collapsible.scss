@@ -8,8 +8,11 @@
   width: 100%;
   border: none;
   text-align: left;
-  font-size: 20px;
   border-top: 2px solid;
+
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 300;
 
   ::after {
     content: "\02795"; /* Unicode character for "plus" sign (+) */
@@ -17,6 +20,7 @@
     color: white;
     float: right;
     margin-left: 5px;
+    line-height: 1.2em;
   }
 
   .active:after {

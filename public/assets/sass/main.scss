@@ -11,23 +11,25 @@ h1,
 h2,
 h3 {
   font-family: var(--title-font);
+  font-weight: 300;
+  text-transform: uppercase;
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2em;
   margin-bottom: 0.2em;
 }
 
 h2 {
-  font-size: 2em;
-}
-
-h3 {
   font-size: 1.8em;
 }
 
+h3 {
+  font-size: 1.6em;
+}
+
 h4 {
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
 p {
