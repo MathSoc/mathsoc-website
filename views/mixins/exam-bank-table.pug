@@ -11,8 +11,6 @@ mixin exam-bank-table(cms)
             if cms
               th(class="exam-actions") Exam Actions
               th(class="solution-actions") Solution Actions
-              th(class="exam-hidden") Exam Hidden (?)
-              th(class="solutions-hidden") Solution Hidden (?)
         tbody
           tr(id="hidden-row" data-course-dept="$COURSE-DEPT$" data-course-code="$COURSE-CODE$")
             td(class="exam-course") $COURSE-NAME$
@@ -24,14 +22,12 @@ mixin exam-bank-table(cms)
               a(class="solution-download" href="$SOLUTION-FILE$") View solutions
             if cms
                 td(class="exam-actions")
-                  button(class="exam-delete-icon")
-                      i(class="fa fa-trash" aria-hideen="true")
                   button(class="exam-hide-icon")
                       i(class="fa fa-eye-slash" aria-hidden="true")
+                  button(class="exam-delete-icon")
+                      i(class="fa fa-trash" aria-hidden="true")
                 td(class="solution-actions")
-                  button(class="solution-delete-icon")
-                      i(class="fa fa-trash" aria-hideen="true")
                   button(class="solution-hide-icon")
                       i(class="fa fa-eye-slash" aria-hidden="true")
-                td(class="exam-hidden") $EXAM_HIDDEN$
-                td(class="solution-hidden") $SOLUTION_HIDDEN$
+                  button(class="solution-delete-icon")
+                      i(class="fa fa-trash" aria-hidden="true")
