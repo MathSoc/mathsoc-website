@@ -40,11 +40,11 @@ router.post("/exams/upload", (req: Request, res: Response) => {
     ExamBankController.uploadExams(req.files);
     res.status(200).json({});
   } catch (e) {
-    res.status(404).end();
+    res.status(400).end();
   }
 });
 
-router.patch("/exams/:examName/hide", (req: Request, res: Response) => {
+router.post("/exams/:examName/hide", (req: Request, res: Response) => {
   try {
     ExamBankController.hideExamFile(req.params.examName);
     res.status(200).end();
@@ -53,9 +53,18 @@ router.patch("/exams/:examName/hide", (req: Request, res: Response) => {
   }
 });
 
-router.patch("/exams/:examName/show", (req: Request, res: Response) => {
+router.post("/exams/:examName/show", (req: Request, res: Response) => {
   try {
     ExamBankController.showExamFile(req.params.examName);
+    res.status(200).end();
+  } catch (e) {
+    res.status(404).end();
+  }
+});
+
+router.delete("/exams/:examName/delete", (req: Request, res: Response) => {
+  try {
+    ExamBankController.deleteExamFile(req.params.examName);
     res.status(200).end();
   } catch (e) {
     res.status(404).end();

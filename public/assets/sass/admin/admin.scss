@@ -76,6 +76,8 @@ body {
       display: block;
       padding: 1em;
       transition: background-color 0.15s;
+      text-transform: uppercase;
+      font-weight: 300;
       margin: 0 0.5em;
       font-size: 0.9em;
       border-bottom: 1px solid var(--mathsoc-grey-2);
