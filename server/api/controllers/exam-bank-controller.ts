@@ -102,7 +102,10 @@ export class ExamBankController {
 
     for (const exam of exams.files) {
       await exam.mv(
-        path.join(__dirname, `../../../public/exams/${exam.name}.pdf`)
+        path.join(
+          __dirname,
+          `../../../public/exams/${exam.name.toLowerCase()}.pdf`
+        )
       );
       console.info(`Exam file ${exam.name} uploaded`);
     }
