@@ -17,7 +17,7 @@
 }
 
 section {
-  max-width: 50%;
+  max-width: var(--content-width);
   margin: 30px auto;
 
   .cover-pic {
@@ -99,6 +99,21 @@ section {
 
 .mobile-screen {
   display: none;
+}
+
+#cartoons-welcome-comic {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+
+  .cartoons-image {
+    max-width: 40%;
+
+    @include tablet-down {
+      max-width: 90%;
+    }
+  }
 }
 
 @media (max-width: 1312px) {

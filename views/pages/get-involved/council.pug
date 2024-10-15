@@ -8,7 +8,7 @@ append scripts
     script(src="/assets/js/form-error.js" defer)
 
 block body
-    +banner-image("/assets/img/banners/mathsoc-wall.jpeg")
+    +banner-image("/assets/img/banners/mathsoc-wall.jpeg", ["grey"], "Council")
     div(class="mailing-list-form")
         section(class="white")
             form(action="/api/mailing-list" method="post")
