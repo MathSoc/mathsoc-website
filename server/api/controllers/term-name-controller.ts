@@ -53,6 +53,7 @@ export class TermNameController {
       this.logger.info("Terms file rewritten");
     } catch (err) {
       this.logger.error("Could not rewrite terms file.");
+      this.logger.error(err);
     }
   }
 }
