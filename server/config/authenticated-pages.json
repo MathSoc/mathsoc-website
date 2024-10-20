@@ -2,7 +2,8 @@
   {
     "title": "Exam Bank",
     "ref": "/resources/exam-bank",
-    "view": "/resources/exam-bank"
+    "view": "/resources/exam-bank",
+    "renderInExamBankMode": true
   },
   {
     "title": "Elections",

@@ -3,6 +3,7 @@ import fs from "fs";
 import { ReadWriteController } from "../../api/controllers/read-write-controller";
 import { PageInflow, PageOutflow } from "../../types/routing.js";
 import tokens from "../../../config";
+import config from "../../../config";
 
 /**
  * Contains functions related to the construction of new page routes and the population of
@@ -28,6 +29,10 @@ export class PageLoader {
     middleware?: RequestHandler
   ): void {
     for (const page of pageArray) {
+      if (config.EXAM_BANK_ONLY && !page.renderInExamBankMode) {
+        continue;
+      }
+
       const routeHandler = async (req: Request, res: Response) => {
         const data = await this.getAllPageData(page, dataTransformer);
         res.render(`pages/${page.view}.pug`, data);
