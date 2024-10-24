@@ -3,21 +3,25 @@
     "title": "Page Editors",
     "ref": "/admin/editor",
     "view": "/admin/generic-editor",
-    "noRouting": true
+    "noRouting": true,
+    "renderInExamBankMode": true
   },
   {
     "title": "Exam Bank",
     "ref": "/admin/exam-bank",
-    "view": "/admin/exam-bank"
+    "view": "/admin/exam-bank",
+    "renderInExamBankMode": true
   },
   {
     "title": "Image Store",
     "ref": "/admin/image-store",
-    "view": "/admin/image-store"
+    "view": "/admin/image-store",
+    "renderInExamBankMode": true
   },
   {
     "title": "Documents",
     "ref": "/admin/documents",
-    "view": "/admin/documents"
+    "view": "/admin/documents",
+    "renderInExamBankMode": true
   }
 ]

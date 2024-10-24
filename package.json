@@ -29,7 +29,7 @@
     "type": "git",
     "url": "git+https://github.com/MathSoc/mathsoc-website.git"
   },
-  "author": "",
+  "author": "MathSoc",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MathSoc/mathsoc-website/issues"
