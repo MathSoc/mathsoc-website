@@ -108,7 +108,7 @@ router.get(
  * needed by passport to confirm authentication in the request body.  On success, we send them to /auth-redirect
  */
 router.post(
-  "/auth-redirect",
+  "/oauth2/callback",
   passport.authenticate("azuread-openidconnect", {
     failureRedirect: tokens.POST_LOGOUT_REDIRECT_URI ?? "",
     prompt: "login",
