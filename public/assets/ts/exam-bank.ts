@@ -110,22 +110,33 @@ class ExamBankFrontend {
     const hiddenRow = tableBody.querySelector("#hidden-row");
 
     for (const exam of exams) {
-      const newRow = hiddenRow.cloneNode(true) as HTMLElement;
-      newRow.id = "";
-      newRow.innerHTML = newRow.innerHTML
-        .replace(
-          "$COURSE-NAME$",
-          `${exam.department.toUpperCase()} ${exam.courseCode}`
-        )
-        .replace("$COURSE-DEPT$", exam.department)
-        .replace("$COURSE-CODE$", exam.courseCode)
-        .replace("$OFFERING$", exam.termName)
-        .replace("$TYPE$", exam.type.toLowerCase().replace("hidden", ""))
-        .replace("$EXAM-FILE$", `/exams/${exam.examFile}`)
-        .replace("$SOLUTION-FILE$", `/exams/${exam.solutionFile}`);
+      const key = `${exam.department}-${exam.courseCode}-${exam.term}-${exam.type}`
+                  .replace("hidden", "").trimEnd();
+      let row = tableBody.querySelector(`#${key}`) as HTMLElement;
 
-      newRow.setAttribute("data-course-dept", exam.department);
-      newRow.setAttribute("data-course-code", exam.courseCode);
+      // If the row for this exam wasn't already created, then create a new row for this exam
+      // Otherwise, just update the row data with the other file for this same exam
+      if (!row) {
+        const newRow = hiddenRow.cloneNode(true) as HTMLElement;
+        newRow.id = key;
+        newRow.innerHTML = newRow.innerHTML
+          .replace(
+            "$COURSE-NAME$",
+            `${exam.department.toUpperCase()} ${exam.courseCode}`
+          )
+          .replace("$COURSE-DEPT$", exam.department)
+          .replace("$COURSE-CODE$", exam.courseCode)
+          .replace("$OFFERING$", exam.termName)
+          .replace("$TYPE$", exam.type.toLowerCase().replace("hidden", ""))
+          .replace("$EXAM-FILE$", `/exams/${exam.examFile}`)
+          .replace("$SOLUTION-FILE$", `/exams/${exam.solutionFile}`);
+
+        newRow.setAttribute("data-course-dept", exam.department);
+        newRow.setAttribute("data-course-code", exam.courseCode);
+
+        tableBody.appendChild(newRow);
+        row = newRow;
+      }
 
       const examHidden = exam.examFile?.toLowerCase().includes("-hidden");
       const solutionHidden = exam.solutionFile
@@ -133,41 +144,38 @@ class ExamBankFrontend {
         .includes("-hidden");
 
       if (exam.examFile && (this.isInAdmin || !examHidden)) {
-        newRow.querySelector(".exam-download").classList.add("active");
+        row.querySelector(".exam-download").classList.add("active");
       }
       if (exam.solutionFile && (this.isInAdmin || !solutionHidden)) {
-        newRow.querySelector(".solution-download").classList.add("active");
+        row.querySelector(".solution-download").classList.add("active");
       }
 
       // exam actions: hide and delete
       if (this.isInAdmin) {
         if (examHidden) {
-          newRow.querySelector(".exam-hide-icon").classList.add("active");
+          row.querySelector(".exam-hide-icon").classList.add("active");
         }
         if (solutionHidden) {
-          newRow.querySelector(".solution-hide-icon").classList.add("active");
+          row.querySelector(".solution-hide-icon").classList.add("active");
         }
 
-        ExamBankFrontend.populateExamActions(
-          newRow,
-          "exam",
-          exam.examFile,
-          exam
-        );
-        ExamBankFrontend.populateExamActions(
-          newRow,
-          "solution",
-          exam.solutionFile,
-          exam
-        );
-      }
+        if (exam.examFile) {
+          ExamBankFrontend.populateExamActions(
+            row,
+            "exam",
+            exam.examFile,
+            exam
+          );
+        }
 
-      if (
-        this.isInAdmin ||
-        (exam.examFile && !examHidden) ||
-        (exam.solutionFile && !solutionHidden)
-      ) {
-        tableBody.appendChild(newRow);
+        if (exam.solutionFile) {
+          ExamBankFrontend.populateExamActions(
+            row,
+            "solution",
+            exam.solutionFile,
+            exam
+          );
+        }
       }
     }
   }
@@ -178,10 +186,6 @@ class ExamBankFrontend {
     file: string,
     exam: Exam
   ) {
-    if (!file) {
-      row.querySelector(`.${type}-actions`).classList.add("hidden");
-    }
-
     row.querySelector(`.${type}-hide-icon`).addEventListener("click", () => {
       if (
         row.querySelector(`.${type}-hide-icon`).classList.contains("active")
