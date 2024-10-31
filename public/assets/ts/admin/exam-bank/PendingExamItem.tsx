@@ -3,9 +3,10 @@ import { ExamConfig } from "./AddExamsEditor";
 
 export const PendingExamItem: React.FC<{
   file: File;
-  updateExamConfig: (newConfig: Partial<ExamConfig>, filename: string) => void;
+  keyStr: string;
+  updateExamConfig: (newConfig: Partial<ExamConfig>, fileKey: string) => void;
   removeExam: () => void;
-}> = ({ file, updateExamConfig, removeExam }) => {
+}> = ({ file, keyStr, updateExamConfig, removeExam }) => {
   const [fileDepartment, fileCode, fileTerm, ...fileExamNameParts] =
     file.name.split(/[.-]/);
   const fileExamName = fileExamNameParts
@@ -27,7 +28,7 @@ export const PendingExamItem: React.FC<{
   const updateStringConfig = (
     target: HTMLInputElement,
     field: keyof ExamConfig,
-    filename: string
+    keyStr: string
   ) => {
     if (target.value === "") {
       target.classList.add("invalid");
@@ -35,7 +36,7 @@ export const PendingExamItem: React.FC<{
       target.classList.remove("invalid");
     }
 
-    updateExamConfig({ [field]: target.value }, filename);
+    updateExamConfig({ [field]: target.value }, keyStr);
   };
 
   // set all fields to defaults
@@ -48,7 +49,7 @@ export const PendingExamItem: React.FC<{
         examType: examType.replace(" ", "-"),
         isSolution: isSolution,
       },
-      file.name
+      keyStr
     );
   });
 
@@ -62,7 +63,7 @@ export const PendingExamItem: React.FC<{
           placeholder="MATH"
           onChange={(e) => {
             setDepartment(e.target.value);
-            updateStringConfig(e.target, "department", file.name);
+            updateStringConfig(e.target, "department", keyStr);
           }}
         ></input>
       </div>
@@ -73,7 +74,7 @@ export const PendingExamItem: React.FC<{
           placeholder="135"
           onChange={(e) => {
             setCourseCode(e.target.value);
-            updateStringConfig(e.target, "courseCode", file.name);
+            updateStringConfig(e.target, "courseCode", keyStr);
           }}
         ></input>
       </div>
@@ -84,7 +85,7 @@ export const PendingExamItem: React.FC<{
           placeholder="1235"
           onChange={(e) => {
             setTermNumber(e.target.value);
-            updateStringConfig(e.target, "termNumber", file.name);
+            updateStringConfig(e.target, "termNumber", keyStr);
           }}
         ></input>
       </div>
@@ -95,7 +96,7 @@ export const PendingExamItem: React.FC<{
           placeholder="Midterm"
           onChange={(e) => {
             setExamType(e.target.value);
-            updateStringConfig(e.target, "examType", file.name);
+            updateStringConfig(e.target, "examType", keyStr);
           }}
         ></input>
       </div>
@@ -106,7 +107,7 @@ export const PendingExamItem: React.FC<{
           type="checkbox"
           onChange={(e) => {
             setIsSolution(e.target.checked);
-            updateExamConfig({ isSolution: e.target.checked }, file.name);
+            updateExamConfig({ isSolution: e.target.checked }, keyStr);
           }}
         ></input>
       </div>
