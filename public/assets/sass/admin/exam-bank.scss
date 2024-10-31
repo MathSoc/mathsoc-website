@@ -33,6 +33,11 @@ hr {
       &:hover {
         background-color: var(--mathsoc-pink-2);
       }
+
+      &.disabled {
+        pointer-events: none;
+        background-color: var(--background-colour-2);
+      }
     }
   }
 

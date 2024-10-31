@@ -47,7 +47,7 @@ export const AddExamsEditor: React.FC = () => {
 
   const uploadExams = async () => {
     if (examFiles.length == 0) {
-      alert('No files were uploaded.')
+      alert("No files were uploaded.");
       return;
     }
 
@@ -72,8 +72,9 @@ export const AddExamsEditor: React.FC = () => {
 
     const formData: FormData = new FormData();
     for (const exam of examFiles) {
-      const renamedName = `${exam.department}-${exam.courseCode}-${exam.termNumber
-        }-${exam.examType}${exam.isSolution ? "-sol" : ""}`;
+      const renamedName = `${exam.department}-${exam.courseCode}-${
+        exam.termNumber
+      }-${exam.examType}${exam.isSolution ? "-sol" : ""}`;
 
       formData.append("files", exam.file, renamedName);
     }
@@ -112,7 +113,11 @@ export const AddExamsEditor: React.FC = () => {
         >
           Add exams for upload
         </button>
-        <button id="upload-exams-button" onClick={uploadExams}>
+        <button
+          id="upload-exams-button"
+          className={examFiles.length == 0 ? "disabled" : ""}
+          onClick={uploadExams}
+        >
           Upload exams
         </button>
       </div>
