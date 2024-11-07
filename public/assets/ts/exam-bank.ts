@@ -109,10 +109,35 @@ class ExamBankFrontend {
     const tableBody = this.getExamList().querySelector("tbody");
     const hiddenRow = tableBody.querySelector("#hidden-row");
 
+    // Construct a row for each exam
     for (const exam of exams) {
       const key = `${exam.department}-${exam.courseCode}-${exam.term}-${exam.type}`
                   .replace("hidden", "").trimEnd();
       let row = tableBody.querySelector(`#${key}`) as HTMLElement;
+
+      // Status (i.e. shown/hidden) of exam file and solution file
+      const examHidden = exam.examFile?.toLowerCase().includes("-hidden");
+      const solutionHidden = exam.solutionFile?.toLowerCase().includes("-hidden");
+
+      // Hide exam row
+      if (!this.isInAdmin) {
+        // examFile does not exist and solutionFile is hidden
+        if (examHidden === undefined && solutionHidden) {
+          continue;
+        }
+        // solutionFile does not exist and examFile is hidden
+        if (solutionHidden === undefined && examHidden) {
+          continue;
+        }
+        // both files do not exist
+        if (examHidden === undefined && solutionHidden === undefined) {
+          continue;
+        }
+        // both files are hidden
+        if (examHidden && solutionHidden) {
+          continue;
+        }
+      }
 
       // If the row for this exam wasn't already created, then create a new row for this exam
       // Otherwise, just update the row data with the other file for this same exam
@@ -138,11 +163,7 @@ class ExamBankFrontend {
         row = newRow;
       }
 
-      const examHidden = exam.examFile?.toLowerCase().includes("-hidden");
-      const solutionHidden = exam.solutionFile
-        ?.toLowerCase()
-        .includes("-hidden");
-
+      // Manage status of download button
       if (exam.examFile && (this.isInAdmin || !examHidden)) {
         row.querySelector(".exam-download").classList.add("active");
       }
