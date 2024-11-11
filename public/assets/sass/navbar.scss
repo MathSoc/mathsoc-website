@@ -24,6 +24,7 @@
 
   .items {
     position: absolute;
+    color: var(--mathsoc-pink);
     top: 0;
     right: 0;
     margin: 0;
@@ -39,6 +40,7 @@
       text-align: center;
       text-decoration: none;
       display: inline-block;
+      color: var(--mathsoc-pink);
       margin: 0 4px;
       height: 100%;
 
@@ -48,6 +50,10 @@
         padding: $vertical-padding 6px;
         text-transform: uppercase;
         font-weight: 300;
+      }
+      .dropdown:hover {
+        color: var(--accent-colour-1);
+        background-color: black;
       }
 
       > a {
@@ -71,7 +77,8 @@
       &:focus-within,
       &:active {
         .dropdown-button {
-          color: var(--accent-colour-1);
+          color: var(--mathsoc-pink);
+          background-color: white;
         }
 
         .dropdown-content {
@@ -111,6 +118,7 @@
 
         a:hover,
         a:focus {
+          color: var(--mathsoc-pink);
           background-color: #f1f1f1;
         }
       }
