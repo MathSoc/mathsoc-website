@@ -69,8 +69,10 @@ form {
   $input-padding: 8px;
 
   input.text-input,
+  select,
   textarea {
     display: block;
+    box-sizing: content-box;
     padding: $input-padding;
     width: calc(100% - 2 * $input-padding);
   }
