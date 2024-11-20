@@ -1,0 +1,25 @@
+@import "../../util/variables";
+@import "../../mixins/collapsible";
+
+section {
+  max-width: var(--content-width);
+  margin: 30px auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  .item-price {
+    color: var(--mathsoc-pink);
+  }
+
+  .col-image {
+    padding: 3em;
+
+    .item-image {
+      width: 100%;
+      height: 100%;
+      max-height: 400px;
+      object-fit: contain;
+    }
+  }
+}

@@ -58,6 +58,29 @@ export class PageLoader {
   }
 
   /**
+   * Builds pages associated with items from the `inventory` page.
+   * @param items A list of JSON items representing each inventory item, sourced from the data file.
+   * @param router An express.Router from the page that called it.  This will be exported to be consumed by the app
+   */
+  static buildInventoryItemRoutes(items, router: Router) {
+    for (const item of items) {
+      router.get(
+        `/inventory/${item.item.replace(/\s+/g, "-").toLowerCase()}`,
+        async (req: Request, res: Response) => {
+          const data = {
+            navItems: PageLoader.navItems,
+            footer: PageLoader.footer,
+            data: item,
+            title: item.item,
+            ref: `/inventory/${item.item.replace(/\s+/g, "-").toLowerCase()}`,
+          };
+          res.render("pages/inventory/item.pug", data);
+        }
+      );
+    }
+  }
+
+  /**
    * @returns The data that gets passed into the pug template for a given page.
    */
   static async getAllPageData<PageOutflowExtension extends PageOutflow>(
