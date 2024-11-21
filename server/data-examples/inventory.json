@@ -2,100 +2,114 @@
   "lastMigrationId": "2024-06-11T21:00:00.000Z",
   "title": "Inventory",
   "description": "Check out MathSoc's board game, novelty, and stationary invetory below!",
-  "novelties": [
+  "sections": [
     {
-      "category": "Shirts and Sweaters",
-      "items": [
+      "section": "Novelties",
+      "subsections": [
         {
-          "item": "Cheat Sheet Tee",
-          "price": "$20.00",
-          "description": "Available in S/M/L/XL",
-          "image": "/assets/img/inventory/novelties/shirts/cheatsheet.jpg"
+          "category": "Shirts and Sweaters",
+          "items": [
+            {
+              "item": "Cheat Sheet Tee",
+              "price": "$20.00",
+              "description": "Available in S/M/L/XL",
+              "image": "/assets/img/inventory/novelties/shirts/cheatsheet.jpg"
+            },
+            {
+              "item": "THE MathSoc Hoodie!",
+              "price": "$420",
+              "description": "Wanna represent Mathsoc while looking gangsta? Look no further.",
+              "image": "TBD"
+            }
+          ]
+        },
+        {
+          "category": "Stickers",
+          "items": [
+            {
+              "item": "Laptop Fire Cat Sticker",
+              "price": "$0.25",
+              "description": "",
+              "image": "/assets/img/inventory/novelties/stickers/laptopfirecat.jpg"
+            }
+          ]
+        },
+        {
+          "category": "Ties",
+          "items": [
+            {
+              "item": "2022 Pink Tie",
+              "price": "$2.00",
+              "description": "",
+              "image": "/assets/img/inventory/novelties/ties/2022pinktie.jpg"
+            }
+          ]
+        },
+        {
+          "category": "Other Novelties",
+          "items": [
+            {
+              "item": "Pink Tie Pin",
+              "price": "$0.99",
+              "description": "Comes in both salmon pink and dark pink!",
+              "image": "/assets/img/inventory/novelties/other/pinktiepins.jpg"
+            }
+          ]
         }
       ]
     },
     {
-      "category": "Stickers",
-      "items": [
-        {
-          "item": "Laptop Fire Cat Sticker",
-          "price": "$0.25",
-          "description": "",
-          "image": "/assets/img/inventory/novelties/stickers/laptopfirecat.jpg"
-        }
-      ]
+      "section": "Board Games",
+      "isBoardGames": true,
+      "description": "MathSoc offers all Math students who paid their MathSoc fees access to their library of board games, the largest on campus! Math students are free to check out up to 3 games for 2 weeks at a time. Refer to the below to see what's available!",
+      "rentalSheetLink": "https://docs.google.com/spreadsheets/d/11RY5ssPtxE0M6dK6wNXYFS3z9vbyFVunYQ2uqNSEkjA/edit?gid=1806568818#gid=1806568818"
     },
     {
-      "category": "Ties",
-      "items": [
+      "section": "Stationary",
+      "subsections": [
         {
-          "item": "2022 Pink Tie",
-          "price": "$2.00",
-          "description": "",
-          "image": "/assets/img/inventory/novelties/ties/2022pinktie.jpg"
-        }
-      ]
-    },
-    {
-      "category": "Other Novelties",
-      "items": [
+          "category": "Calculators",
+          "items": [
+            {
+              "item": "Texas Instrument TI30XIIS",
+              "price": "$17.00",
+              "description": "This faculty-approved calculator features a two-line display. Shows entries on the top line and results on the bottom line. Features one- and two-variable statistics, recognizes p as a symbol in radian mode and provides menus that allow you to select settings appropriate for your calculation needs. Adds, subtracts, multiplies and divides fractions entered in traditional numerator/denominator format. Faculty-approved.",
+              "image": "/assets/img/inventory/stationary/calculators/TI-calc.jpg"
+            }
+          ]
+        },
         {
-          "item": "Pink Tie Pin",
-          "price": "$0.99",
-          "description": "Comes in both salmon pink and dark pink!",
-          "image": "/assets/img/inventory/novelties/other/pinktiepins.jpg"
-        }
-      ]
-    }
-  ],
-  "boardGames": [
-    {
-      "category": "Live Rental Sheet",
-      "items": []
-    }
-  ],
-  "stationary": [
-    {
-      "category": "Calculators",
-      "items": [
+          "category": "Pens and Pencils",
+          "items": [
+            {
+              "item": "MUJI Pens",
+              "price": "$2.00",
+              "description": "Comes in a variety of types and colours! Subject to availability.",
+              "image": "/assets/img/inventory/stationary/pens/mujipen.jpg"
+            }
+          ]
+        },
         {
-          "item": "Texas Instrument TI30XIIS",
-          "price": "$17.00",
-          "description": "This faculty-approved calculator features a two-line display. Shows entries on the top line and results on the bottom line. Features one- and two-variable statistics, recognizes p as a symbol in radian mode and provides menus that allow you to select settings appropriate for your calculation needs. Adds, subtracts, multiplies and divides fractions entered in traditional numerator/denominator format. Faculty-approved.",
-          "image": "/assets/img/inventory/stationary/calculators/TI-calc.jpg"
-        }
-      ]
-    },
-    {
-      "category": "Pens and Pencils",
-      "items": [
+          "category": "Paper",
+          "items": [
+            {
+              "item": "Cue Cards",
+              "price": "$0.29",
+              "description": "Comes in packs of 10 per purchase.",
+              "image": "/assets/img/inventory/stationary/paper/cuecards.webp"
+            }
+          ]
+        },
         {
-          "item": "MUJI Pens",
-          "price": "$2.00",
-          "description": "Comes in a variety of types and colours! Subject to availability.",
-          "image": "/assets/img/inventory/stationary/pens/mujipen.jpg"
-        }
-      ]
-    },
-    {
-      "category": "Paper",
-      "items": [
-        {
-          "item": "Cue Cards",
-          "price": "$0.29",
-          "description": "Comes in packs of 10 per purchase.",
-          "image": "/assets/img/inventory/stationary/paper/cuecards.webp"
-        }
-      ]
-    },
-    {
-      "category": "General Stationary",
-      "items": [
-        {
-          "item": "Ruler",
-          "price": "$0.50",
-          "description": "",
-          "image": "/assets/img/inventory/stationary/general/ruler.jpg"
+          "category": "General Stationary",
+          "items": [
+            {
+              "item": "Ruler",
+              "price": "$0.50",
+              "description": "",
+              "image": "/assets/img/inventory/stationary/general/ruler.jpg"
+            }
+          ]
         }
       ]
     }
