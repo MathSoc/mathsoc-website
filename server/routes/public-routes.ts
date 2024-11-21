@@ -7,11 +7,9 @@ const router = express.Router();
 
 PageLoader.buildRoutes(pages, router, (page) => page);
 
-inventory.novelties.forEach((category) =>
-  PageLoader.buildInventoryItemRoutes(category.items, router)
-);
-inventory.stationary.forEach((category) =>
-  PageLoader.buildInventoryItemRoutes(category.items, router)
-);
+inventory.sections
+  .filter((section) => !section.isBoardGames)
+  .flatMap((section) => section.subsections)
+  .forEach((category) => PageLoader.buildInventoryItemRoutes(category, router));
 
 export default router;

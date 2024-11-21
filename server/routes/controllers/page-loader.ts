@@ -59,11 +59,11 @@ export class PageLoader {
 
   /**
    * Builds pages associated with items from the `inventory` page.
-   * @param items A list of JSON items representing each inventory item, sourced from the data file.
+   * @param category JSON representation of the category. Contains `name` and `items`
    * @param router An express.Router from the page that called it.  This will be exported to be consumed by the app
    */
-  static buildInventoryItemRoutes(items, router: Router) {
-    for (const item of items) {
+  static buildInventoryItemRoutes(category, router: Router) {
+    category.items.forEach((item, ind) => {
       router.get(
         `/inventory/${item.item.replace(/\s+/g, "-").toLowerCase()}`,
         async (req: Request, res: Response) => {
@@ -71,13 +71,14 @@ export class PageLoader {
             navItems: PageLoader.navItems,
             footer: PageLoader.footer,
             data: item,
+            category,
             title: item.item,
             ref: `/inventory/${item.item.replace(/\s+/g, "-").toLowerCase()}`,
           };
           res.render("pages/inventory/item.pug", data);
         }
       );
-    }
+    });
   }
 
   /**

@@ -22,4 +22,7 @@ section {
       object-fit: contain;
     }
   }
+  .more-items {
+    grid-row: first / end;
+  }
 }
