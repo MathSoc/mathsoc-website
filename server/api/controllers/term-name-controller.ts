@@ -6,6 +6,7 @@ import tokens from "../../../config";
 
 export class TermNameController {
   static logger = new Logger("Term Name Controller");
+  static termCache = new Map<string, string>(); // cache of termCodes
 
   static async getTermNames(): Promise<Term[]> {
     const url = `${tokens.WATERLOO_OPEN_API_BASE_URL}/Terms`;
@@ -38,6 +39,9 @@ export class TermNameController {
   }
 
   static convertTermCodeToTermName(termCode: string) {
+    if (this.termCache.has(termCode)) {
+      return this.termCache.get(termCode); // Return from cache
+    }
     // termCodes are either in the format of abcd or bcd.
     // assuming that a term code that starts with "2" i.e: 2bcd is a year in 2100
     // bc refers to the year XXbc
@@ -56,8 +60,12 @@ export class TermNameController {
     }
     term /= 10; // get rid of the ones digit
     term = Math.trunc(term);
-    termYear += term;
-    return season + " " + termYear;
+    const termName = season + " " + termYear;
+
+    // Cache the result
+    this.termCache.set(termCode, termName);
+
+    return termName;
   }
 
   static getTermNameFromTermCode(termCode: string) {
