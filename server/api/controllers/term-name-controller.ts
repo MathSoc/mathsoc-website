@@ -60,6 +60,7 @@ export class TermNameController {
     }
     term /= 10; // get rid of the ones digit
     term = Math.trunc(term);
+    termYear += term;
     const termName = season + " " + termYear;
 
     // Cache the result
