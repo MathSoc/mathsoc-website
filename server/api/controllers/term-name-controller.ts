@@ -38,7 +38,7 @@ export class TermNameController {
     }
   }
 
-  static convertTermCodeToTermName(termCode: string) {
+  static getTermNameFromTermCode(termCode: string) {
     if (this.termCache.has(termCode)) {
       return this.termCache.get(termCode); // Return from cache
     }
@@ -67,12 +67,6 @@ export class TermNameController {
     this.termCache.set(termCode, termName);
 
     return termName;
-  }
-
-  static getTermNameFromTermCode(termCode: string) {
-    const terms = this.getTermsFile();
-    const target = terms.find((item) => item.termCode === termCode);
-    return target?.name ?? this.convertTermCodeToTermName(termCode);
   }
 
   static async overwriteTermsFile() {
