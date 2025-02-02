@@ -1,4 +1,10 @@
 import { Exam } from "../../../server/types/exam-bank.js";
+import { showToast } from "./admin/toast.js";
+
+interface ExamTypeRenameResponse {
+  success: boolean;
+  error?: string;
+}
 
 class ExamBankFrontend {
   static readonly isInAdmin = window.location.href
@@ -172,6 +178,47 @@ class ExamBankFrontend {
     }
   }
 
+  /**
+   * Handles the renaming of an exam type
+   * @param exam - The exam to rename
+   * @param currentType - The current type of the exam
+   * @returns Promise resolving to the rename operation result
+   */
+  private static async handleExamTypeRename(
+    exam: Exam, 
+    currentType: string
+  ): Promise<ExamTypeRenameResponse> {
+    const newType = prompt(`Enter new type for ${exam.department.toUpperCase()} ${exam.courseCode} (current: ${currentType})`);
+    
+    if (!newType || newType.trim() === currentType) {
+      return { success: false };
+    }
+
+    try {
+      const response = await fetch(`/api/admin/exams/${exam.examFile.replace(".pdf", "")}/rename-type`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ newType: newType.trim() }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to rename exam type: ${response.statusText}`);
+      }
+
+      await this.populateTable();
+      
+      return { success: true };
+    } catch (error) {
+      console.error("Error renaming exam type:", error);
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : "Unknown error occurred" 
+      };
+    }
+  }
+
   static async populateExamActions(
     row: HTMLElement,
     type: "exam" | "solution",
@@ -180,6 +227,24 @@ class ExamBankFrontend {
   ) {
     if (!file) {
       row.querySelector(`.${type}-actions`).classList.add("hidden");
+      return;
+    }
+
+    // Add type renaming for admin users (only for exam, not solution)
+    if (this.isInAdmin && type === "exam") {
+      const typeCell = row.querySelector(".exam-type") as HTMLTableCellElement;
+      if (typeCell) {
+        typeCell.style.cursor = "pointer";
+        typeCell.title = "Click to rename exam type";
+        typeCell.addEventListener("click", async () => {
+          const result = await this.handleExamTypeRename(exam, exam.type);
+          if (result.success) {
+            showToast("Exam type updated successfully", "success");
+          } else if (result.error) {
+            showToast(result.error, "fail");
+          }
+        });
+      }
     }
 
     row.querySelector(`.${type}-hide-icon`).addEventListener("click", () => {

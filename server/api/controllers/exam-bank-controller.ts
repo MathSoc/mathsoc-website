@@ -6,6 +6,7 @@ import fs from "fs";
 import { TermNameController } from "./term-name-controller";
 import { FileArray } from "express-fileupload";
 import path from "path";
+import { existsSync, renameSync } from "fs";
 
 /**
  * Current invariants (could be changed later with added work)
@@ -234,6 +235,43 @@ export class ExamBankController {
 
     if (!valid) {
       await TermNameController.overwriteTermsFile();
+    }
+  }
+
+  /**
+   * Renames the type of an exam by renaming both the exam file and its solution file (if it exists)
+   */
+  static renameExamType(examName: string, newType: string): void {
+    examName = examName.replace(".pdf", ""); // normalize like other methods
+
+    const currentUrl = `public/exams/${examName}.pdf`;
+    if (!fs.existsSync(currentUrl)) {
+      throw new Error(`Exam not found: ${currentUrl}`);
+    }
+
+    const parts = examName.split("-");
+    // Check if the last part is exactly "sol" per the invariant
+    const isSolution = parts[parts.length - 1] === "sol";
+    
+    const newName = [
+      parts[0],                    // department
+      parts[1],                    // course
+      parts[2],                    // term
+      ...newType.split(" "),       // new type (split by spaces)
+      ...(isSolution ? ["sol"] : []) // add solution marker if it was there
+    ].join("-");
+
+    const newUrl = `public/exams/${newName}.pdf`;
+    
+    try {
+      console.info(`Attempting to rename exam: ${examName} to ${newName}`);
+      fs.renameSync(currentUrl, newUrl);
+      ExamBankController.refreshExamsList();
+    } catch (error) {
+      if (error.code === 'ENOENT') {
+        throw new Error(`Exam not found: ${currentUrl}`);
+      }
+      throw new Error(`Failed to rename exam: ${error.message}`);
     }
   }
 }

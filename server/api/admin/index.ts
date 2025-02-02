@@ -141,4 +141,24 @@ router.get("/documents", (req: Request, res: Response) => {
   ReadWriteAPIController.getJSONDataPath(DOCUMENT_URL, res);
 });
 
+router.post("/exams/:examName/rename-type", (req: Request, res: Response) => {
+  try {
+    const { newType } = req.body;
+    if (!newType || typeof newType !== "string") {
+      res.status(400).end();
+      return;
+    }
+
+    ExamBankController.renameExamType(req.params.examName, newType);
+    res.status(200).end();
+  } catch (e) {
+    if (e instanceof Error && e.message.includes("not found")) {
+      res.status(404).end();
+    } else {
+      console.error("Error renaming exam:", e);
+      res.status(500).end();
+    }
+  }
+});
+
 export default router;
