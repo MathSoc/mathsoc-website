@@ -18,8 +18,15 @@ section {
       display: flex;
       gap: 1rem;
       padding-bottom: 2rem;
-      pointer-events: none;
     }
+
+    .club_link {
+      text-decoration: none;
+      display: flex;
+      gap: 1rem;
+      pointer-events: all;
+    }
+
     .stepper_item::before {
       content: "";
       position: relative;
@@ -28,18 +35,20 @@ section {
       height: var(--size);
       border-radius: 50%;
       background-color: var(--mathsoc-grey-2);
-      pointer-events: all;
       transition: all 0.25s ease-out;
       background-image: var(--icon);
       background-size: 2rem;
       background-repeat: no-repeat;
       background-position: bottom 12px right 12px;
     }
-    .stepper_item:hover::before {
-      pointer-events: all;
+
+    .club_link:hover .stepper_item::before,
+    .club_link:hover .stepper_title {
       background-color: var(--mathsoc-pink-2);
+      color: var(--mathsoc-pink-2);
       transition: all 0.25s ease-in;
     }
+
     .stepper_item:not(:last-child):after {
       content: "";
       position: absolute;
@@ -58,17 +67,7 @@ section {
       margin: 0.5rem 0 0 0;
       display: block;
       color: var(--mathsoc-grey-2);
-      pointer-events: all;
       transition: all 0.25s ease-out;
     }
-
-    .stepper_title:hover {
-      color: var(--mathsoc-pink-2);
-      transition: all 0.25s ease-in;
-    }
-  }
-
-  .club_link {
-    text-decoration: none;
   }
 }
