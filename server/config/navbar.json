@@ -28,10 +28,6 @@
         "ref": "/services/mathsoc-office"
       },
       {
-        "title": "Term social events",
-        "ref": "/"
-      },
-      {
         "title": "Student services",
         "ref": "/services/student-services"
       }

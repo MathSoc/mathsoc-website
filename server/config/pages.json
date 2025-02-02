@@ -46,10 +46,6 @@
         "view": "/services/mathsoc-office"
       },
       {
-        "title": "Term Social Events",
-        "ref": "/"
-      },
-      {
         "title": "Student Services",
         "ref": "/services/student-services",
         "view": "/services/student-services"
