@@ -11,7 +11,7 @@ block body
         ol(class="stepper")
             each club in data.clubs
                 li(class="stepper_item" style=`--icon: url('${club.icon}')`)
-                    div(class="stepper_content")
-                        a(href=club.link target="_blank" class="club_link")
+                    a(href=club.link target="_blank" class="club_link")
+                        div(class="stepper_content")
                             h3(class="stepper_title") #{club.title}
-                        p!=club.descriptionMarkdown
+                    p!=club.descriptionMarkdown
