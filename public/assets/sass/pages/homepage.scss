@@ -110,7 +110,8 @@
       color: var(--inverted-text-color);
 
       &:hover,
-      &:focus-visible {
+      &:focus-visible,
+      .dropdown:focus-within & {
         color: var(--mathsoc-pink);
       }
     }
