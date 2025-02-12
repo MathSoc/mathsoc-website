@@ -8,19 +8,19 @@ export class TermNameController {
   static logger = new Logger("Term Name Controller");
   static termCache = new Map<string, string>(); // cache of termCodes
 
-  static async getTermNames(): Promise<Term[]> {
-    const url = `${tokens.WATERLOO_OPEN_API_BASE_URL}/Terms`;
-    const response = await fetch(new URL(url), {
-      method: "GET",
-      headers: {
-        "X-API-KEY": tokens.WATERLOO_OPEN_API_KEY as string,
-        "Content-Type": "application/json",
-      },
-    });
+  // static async getTermNames(): Promise<Term[]> {
+  //   const url = `${tokens.WATERLOO_OPEN_API_BASE_URL}/Terms`;
+  //   const response = await fetch(new URL(url), {
+  //     method: "GET",
+  //     headers: {
+  //       "X-API-KEY": tokens.WATERLOO_OPEN_API_KEY as string,
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
 
-    const terms: Term[] = await response.json();
-    return terms;
-  }
+  //   const terms: Term[] = await response.json();
+  //   return terms;
+  // }
 
   static validateTerm(term: string): boolean {
     const terms = this.getTermsFile();
@@ -69,17 +69,17 @@ export class TermNameController {
     return termName;
   }
 
-  static async overwriteTermsFile() {
-    try {
-      const terms = await this.getTermNames();
-      const url = "_hidden/term-list";
-      const fullPath = `server/data/${url}.json`;
+  // static async overwriteTermsFile() {
+  //   try {
+  //     const terms = await this.getTermNames();
+  //     const url = "_hidden/term-list";
+  //     const fullPath = `server/data/${url}.json`;
 
-      fs.writeFileSync(fullPath, JSON.stringify(terms));
-      this.logger.info("Terms file rewritten");
-    } catch (err) {
-      this.logger.error("Could not rewrite terms file.");
-      this.logger.error(err);
-    }
-  }
+  //     fs.writeFileSync(fullPath, JSON.stringify(terms));
+  //     this.logger.info("Terms file rewritten");
+  //   } catch (err) {
+  //     this.logger.error("Could not rewrite terms file.");
+  //     this.logger.error(err);
+  //   }
+  // }
 }

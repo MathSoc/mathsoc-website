@@ -138,7 +138,8 @@ export class ExamBankController {
    * Gets an array of every exam currently in the exam list folder
    */
   private static async generateExamsList(): Promise<Exam[]> {
-    await this.validateTerms();
+    // currently this doesn't work
+    // await this.validateTerms();
 
     const examFiles: Dirent[] = readdirSync("public/exams", {
       withFileTypes: true,
@@ -231,9 +232,9 @@ export class ExamBankController {
         break;
       }
     }
-
-    if (!valid) {
-      await TermNameController.overwriteTermsFile();
-    }
+    // doesn't work currently
+    // if (!valid) {
+    //   await TermNameController.overwriteTermsFile();
+    // }
   }
 }
