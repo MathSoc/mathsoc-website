@@ -138,9 +138,6 @@ export class ExamBankController {
    * Gets an array of every exam currently in the exam list folder
    */
   private static async generateExamsList(): Promise<Exam[]> {
-    // currently this doesn't work
-    // await this.validateTerms();
-
     const examFiles: Dirent[] = readdirSync("public/exams", {
       withFileTypes: true,
     });
@@ -214,27 +211,5 @@ export class ExamBankController {
         throw new Error("Unreachable code reached");
       }
     }
-  }
-
-  private static async validateTerms() {
-    const examFiles: Dirent[] = readdirSync("public/exams", {
-      withFileTypes: true,
-    });
-
-    let valid = true;
-    for (const exam of examFiles) {
-      const parts = exam.name.split("-");
-      const term = parts[2].padStart(4, "0");
-
-      const isValidTerm = TermNameController.validateTerm(term);
-      if (!isValidTerm) {
-        valid = false;
-        break;
-      }
-    }
-    // doesn't work currently
-    // if (!valid) {
-    //   await TermNameController.overwriteTermsFile();
-    // }
   }
 }
