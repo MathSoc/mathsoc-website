@@ -2,14 +2,9 @@ a.skip-to-main-content(href='#body') Skip to main content
 
 nav(id="navbar")
   div(id="inner-navbar")
-    if examBankOnly
-      div(href="/" class="nav-logo-container") 
-        img(src="/assets/img/icons/horizontal-logo.svg" class="nav-logo" id="pink-logo" alt="MathSoc Logo.  Click to return to homepage")
-        img(src="/assets/img/icons/horizontal-logo-white.svg" class="nav-logo" id="white-logo" alt="MathSoc Logo.  Click to return to homepage")
-    else 
-      a(href="/" class="nav-logo-container") 
-        img(src="/assets/img/icons/horizontal-logo.svg" class="nav-logo" id="pink-logo" alt="MathSoc Logo.  Click to return to homepage")
-        img(src="/assets/img/icons/horizontal-logo-white.svg" class="nav-logo" id="white-logo" alt="MathSoc Logo.  Click to return to homepage")
+    a(href="/" class="nav-logo-container") 
+      img(src="/assets/img/icons/horizontal-logo.svg" class="nav-logo" id="pink-logo" alt="MathSoc Logo.  Click to return to homepage")
+      img(src="/assets/img/icons/horizontal-logo-white.svg" class="nav-logo" id="white-logo" alt="MathSoc Logo.  Click to return to homepage")
 
     if !examBankOnly
       ul(class="items")
@@ -46,3 +41,11 @@ nav(id="mobile-nav")
               li(class="sub-button")
                 a(href=item.ref) #{item.title}
 
+script.
+  document.addEventListener("DOMContentLoaded", function () {
+    var url = window.location.hostname.includes("localhost") ? "/" : "https://mathsoc.uwaterloo.ca/";
+    var logoLinks = document.querySelectorAll(".nav-logo-container");
+    logoLinks.forEach(function (link) {
+      link.setAttribute("href", url);
+    });
+  }); 
