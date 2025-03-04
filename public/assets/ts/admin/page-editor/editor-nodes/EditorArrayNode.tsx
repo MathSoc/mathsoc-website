@@ -27,6 +27,18 @@ export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
     }
   }, [data]);
 
+  const moveItem = (fromIndex: number, toIndex: number) => {
+    if (toIndex < 0 || toIndex >= transformedData.length) {
+      return;
+    }
+
+    const newData = [...transformedData];
+    [newData[fromIndex], newData[toIndex]] = [newData[toIndex], newData[fromIndex]]; 
+  
+    setDataValue(path, newData);
+    setVersion(version + 1);
+  };
+  
   const removeItem = (index: number) => {
     setDataValue(path.concat(index.toString()), null);
     setVersion(version + 1);
@@ -65,14 +77,22 @@ export const EditorArrayNode: React.FC<EditorNodeProps> = (props) => {
         const nextPath = path.concat(index.toString());
         return (
           <EditorNode
+            key={`${index}-${version}`} 
             name={`${props.name} item ${index + 1}`}
             headerButtons={[
+              {
+                name: "Move Up",
+                onClick: () => moveItem(index, index - 1),
+              },
+              {
+                name: "Move Down",
+                onClick: () => moveItem(index, index + 1),
+              },
               { name: "Remove", onClick: () => removeItem(index) },
             ]}
             /**
              * The data index is persistent across re-renders
              */
-            key={index}
             path={nextPath}
             value={entry}
             theme={"grey"}
