@@ -28,6 +28,7 @@
     margin: 0;
     padding-left: 0;
     height: 100%;
+    color: var(--mathsoc-pink);
 
     @include tablet-down {
       display: none;
@@ -252,4 +253,11 @@
   &:focus {
     top: 0;
   }
+}
+
+#navbar .items .dropdown:hover .dropdown-button,
+#navbar .items .dropdown:focus .dropdown-button,
+#navbar .items .dropdown:focus-within .dropdown-button,
+#navbar .items .dropdown:active .dropdown-button {
+  color: var(--mathsoc-pink) !important;
 }
