@@ -8,19 +8,21 @@
   width: 100%;
   border: none;
   text-align: left;
-  font-size: 20px;
   border-top: 2px solid;
 
-  ::after {
-    content: "\02795"; /* Unicode character for "plus" sign (+) */
-    font-size: 13px;
-    color: white;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 300;
+
+  &:after {
+    content: "+"; /* Unicode character for "plus" sign (+) */
     float: right;
     margin-left: 5px;
+    line-height: 1.2em;
   }
 
-  .active:after {
-    content: "\2796"; /* Unicode character for "minus" sign (-) */
+  &.active:after {
+    content: "-"; /* Unicode character for "minus" sign (-) */
   }
 }
 
@@ -30,16 +32,4 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
-}
-
-.collapsible-button:after {
-  content: "\02795"; /* Unicode character for "plus" sign (+) */
-  font-size: 13px;
-  color: white;
-  float: right;
-  margin-left: 5px;
-}
-
-.active:after {
-  content: "\2796"; /* Unicode character for "minus" sign (-) */
 }

@@ -5,6 +5,7 @@
   overflow: visible;
   font-size: 14px;
   position: relative;
+  font-weight: 300;
 
   #inner-navbar {
     max-width: calc(var(--content-width) + 120px);
@@ -23,6 +24,7 @@
 
   .items {
     position: absolute;
+    color: var(--mathsoc-pink);
     top: 0;
     right: 0;
     margin: 0;
@@ -39,6 +41,7 @@
       text-align: center;
       text-decoration: none;
       display: inline-block;
+      color: var(--mathsoc-pink);
       margin: 0 4px;
       height: 100%;
 
@@ -46,6 +49,12 @@
 
       .dropdown-button {
         padding: $vertical-padding 6px;
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+      .dropdown:hover {
+        color: var(--accent-colour-1);
+        background-color: black;
       }
 
       > a {
@@ -69,7 +78,7 @@
       &:focus-within,
       &:active {
         .dropdown-button {
-          color: var(--accent-colour-1);
+          color: var(--mathsoc-pink);
           background-color: white;
         }
 
@@ -87,6 +96,8 @@
         display: none;
         visibility: hidden;
         position: absolute;
+        text-transform: uppercase;
+        font-size: 0.9em;
         color: black;
         text-align: center;
         min-width: 160px;
@@ -108,6 +119,7 @@
 
         a:hover,
         a:focus {
+          color: var(--mathsoc-pink);
           background-color: #f1f1f1;
         }
       }
@@ -149,6 +161,9 @@
   #mobile-nav {
     display: block;
 
+    font-weight: 300;
+    text-transform: uppercase;
+
     .items {
       background-color: var(--background-colour);
       visibility: hidden;
@@ -183,6 +198,9 @@
           padding: 1em;
           transition: 0.15s;
           cursor: pointer;
+
+          font-weight: 300;
+          text-transform: uppercase;
 
           width: 100%;
           text-align: left;

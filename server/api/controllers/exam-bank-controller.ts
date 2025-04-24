@@ -22,25 +22,46 @@ export class ExamBankController {
   static logger = new Logger("Exam Bank Controller");
 
   static async hideExamFile(examName: string): Promise<void> {
+    examName = examName.replace("-hidden", "").replace(".pdf", "");
+
     const currentUrl = `public/exams/${examName}.pdf`;
     const newUrl = `public/exams/${examName}-hidden.pdf`;
 
+    console.info(`Attempting to hide exam: ${examName}`);
     if (!fs.existsSync(currentUrl)) {
-      throw new Error("Exam not found");
+      throw new Error(`Exam not found: ${currentUrl}`);
     }
 
     fs.renameSync(currentUrl, newUrl);
+    ExamBankController.refreshExamsList();
   }
 
   static async showExamFile(examName: string): Promise<void> {
-    const currentUrl = `public/exams/${examName}.pdf`;
+    examName = examName.replace(".pdf", "").replace("-hidden", "");
+
+    const currentUrl = `public/exams/${examName}-hidden.pdf`;
     const newUrl = currentUrl.replace("-hidden", "");
 
+    console.info(`Attempting to unhide exam: ${examName}`);
     if (!fs.existsSync(currentUrl)) {
-      throw new Error("Exam not found");
+      throw new Error(`Exam not found: ${currentUrl}`);
     }
 
     fs.renameSync(currentUrl, newUrl);
+    ExamBankController.refreshExamsList();
+  }
+
+  static async deleteExamFile(examName: string): Promise<void> {
+    examName = examName.replace(".pdf", ""); // normalize
+
+    const url = `public/exams/${examName}.pdf`;
+
+    if (!fs.existsSync(url)) {
+      throw new Error(`Exam not found: ${url}`);
+    }
+
+    fs.rmSync(url);
+    ExamBankController.refreshExamsList();
   }
 
   /**
@@ -87,7 +108,7 @@ export class ExamBankController {
 
     for (const exam of exams.files) {
       // validate naming
-      const [department, courseCode, termNumber, type, ...options] =
+      const [department, courseCode, termNumber, ...type] =
         exam.name.split("-");
 
       if (!department || !courseCode || !termNumber || !type) {
@@ -98,20 +119,13 @@ export class ExamBankController {
       if (parseInt(termNumber) + "" !== termNumber) {
         throw new Error("Bad term number given");
       }
-
-      const ACCEPTED_OPTIONS = ["hidden", "sol"];
-      for (const option of options) {
-        if (!ACCEPTED_OPTIONS.includes(option.toLowerCase())) {
-          throw new Error("Unaccepted option given");
-        }
-      }
     }
 
     for (const exam of exams.files) {
       await exam.mv(
         path.join(
           __dirname,
-          `../../../public/exams/${exam.name.toUpperCase()}.pdf`
+          `../../../public/exams/${exam.name.toLowerCase()}.pdf`
         )
       );
       console.info(`Exam file ${exam.name} uploaded`);
@@ -124,8 +138,6 @@ export class ExamBankController {
    * Gets an array of every exam currently in the exam list folder
    */
   private static async generateExamsList(): Promise<Exam[]> {
-    await this.validateTerms();
-
     const examFiles: Dirent[] = readdirSync("public/exams", {
       withFileTypes: true,
     });
@@ -142,7 +154,7 @@ export class ExamBankController {
         type = parts.slice(3).join(" ").split(".")[0].replace(/ sol/i, ""); // strip file extension and solutions marker
 
       const isSolution = file.name.toLowerCase().includes("-sol");
-      const dictionaryKey = [department, course, term].join("-");
+      const dictionaryKey = [department, course, term, type].join("-");
 
       if (unfilteredExams[dictionaryKey]) {
         // If this exam is already in the dictionary, add this file (e.g. the exam) to it.
@@ -198,28 +210,6 @@ export class ExamBankController {
       } else {
         throw new Error("Unreachable code reached");
       }
-    }
-  }
-
-  private static async validateTerms() {
-    const examFiles: Dirent[] = readdirSync("public/exams", {
-      withFileTypes: true,
-    });
-
-    let valid = true;
-    for (const exam of examFiles) {
-      const parts = exam.name.split("-");
-      const term = parts[2].padStart(4, "0");
-
-      const isValidTerm = TermNameController.validateTerm(term);
-      if (!isValidTerm) {
-        valid = false;
-        break;
-      }
-    }
-
-    if (!valid) {
-      await TermNameController.overwriteTermsFile();
     }
   }
 }

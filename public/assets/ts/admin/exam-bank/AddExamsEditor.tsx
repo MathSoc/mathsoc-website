@@ -12,15 +12,18 @@ export interface ExamConfig {
 
 type PendingExam = ExamConfig & {
   file: File;
+  keyStr: string;
 };
 
 export const AddExamsEditor: React.FC = () => {
   const [examFiles, setExamFiles] = useState<PendingExam[]>([]);
   const inputElement = useRef<HTMLInputElement>(null);
 
+  const [keyGen, setKeyGen] = useState<number>(0);
+
   const updateExamConfig = useCallback(
-    (newConfig: Partial<ExamConfig>, filename: string) => {
-      const file = examFiles.find((f) => f.file.name === filename);
+    (newConfig: Partial<ExamConfig>, fileKey: string) => {
+      const file = examFiles.find((f) => f.keyStr === fileKey);
       file.department = newConfig.department || file.department;
       file.courseCode = newConfig.courseCode || file.courseCode;
       file.termNumber = newConfig.termNumber || file.termNumber;
@@ -33,20 +36,27 @@ export const AddExamsEditor: React.FC = () => {
   const updateFiles = () => {
     if (inputElement.current?.files) {
       setExamFiles(
-        Array.from(inputElement.current.files).map((file) => ({
-          file,
-          department: "",
-          courseCode: "",
-          termNumber: "",
-          examType: "",
-          isSolution: false,
-        }))
+        examFiles.concat(
+          Array.from(inputElement.current.files).map((file) => ({
+            file,
+            keyStr: `${file.name}${(setKeyGen(keyGen + 1), keyGen)}`,
+            department: "",
+            courseCode: "",
+            termNumber: "",
+            examType: "",
+            isSolution: false,
+          }))
+        )
       );
     }
   };
 
   const uploadExams = async () => {
-    // validate
+    if (examFiles.length == 0) {
+      alert("No files were uploaded.");
+      return;
+    }
+
     for (const exam of examFiles) {
       if (
         exam.department === "" ||
@@ -89,15 +99,21 @@ export const AddExamsEditor: React.FC = () => {
     }
   };
 
+  const deleteFile = (fileKey: string) => {
+    setExamFiles(examFiles.filter((file) => file.keyStr !== fileKey));
+  };
+
   return (
     <div id="add-exams-editor">
       <ul id="pending-exams-list">
         {examFiles.map((file) => {
           return (
             <PendingExamItem
-              key={file.file.name}
+              key={file.keyStr}
+              keyStr={file.keyStr}
               file={file.file}
               updateExamConfig={updateExamConfig}
+              removeExam={() => deleteFile(file.keyStr)}
             />
           );
         })}
@@ -107,9 +123,13 @@ export const AddExamsEditor: React.FC = () => {
           id="add-exams-button"
           onClick={() => inputElement.current?.click()}
         >
-          Add exams
+          Add exams for upload
         </button>
-        <button id="upload-exams-button" onClick={uploadExams}>
+        <button
+          id="upload-exams-button"
+          className={examFiles.length == 0 ? "disabled" : ""}
+          onClick={uploadExams}
+        >
           Upload exams
         </button>
       </div>
@@ -119,6 +139,7 @@ export const AddExamsEditor: React.FC = () => {
         accept="application/pdf"
         multiple
         onChange={updateFiles}
+        onClick={() => (inputElement.current.value = "")}
         ref={inputElement}
       />
     </div>

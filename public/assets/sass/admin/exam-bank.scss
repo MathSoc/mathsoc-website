@@ -4,7 +4,7 @@ h2 {
 }
 
 hr {
-  margin: 40px 0px;
+  margin: 25px 0px;
   box-shadow: none;
   border: 2px solid var(--mathsoc-grey);
 }
@@ -32,6 +32,11 @@ hr {
 
       &:hover {
         background-color: var(--mathsoc-pink-2);
+      }
+
+      &.disabled {
+        pointer-events: none;
+        background-color: var(--mathsoc-grey-2);
       }
     }
   }
@@ -69,6 +74,23 @@ hr {
 
     label {
       font-size: 0.8em;
+    }
+
+    .remove-upload-btn {
+      label {
+        display: none;
+      }
+
+      button {
+        width: max-content;
+        cursor: pointer;
+
+        background-color: transparent;
+        transition: background-color 0.1s ease-in-out;
+        &:hover {
+          background-color: var(--mathsoc-pink-4);
+        }
+      }
     }
   }
 }

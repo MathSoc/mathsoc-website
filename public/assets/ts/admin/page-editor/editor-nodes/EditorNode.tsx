@@ -6,6 +6,7 @@ import { EditorArrayNode } from "./EditorArrayNode";
 import { EditorNodeProps } from "./EditorNodeTemplate";
 import { EditorContext } from "../EditorV2";
 import { EditorImageNode } from "./EditorImageNode";
+import { EditorNumberNode } from "./EditorNumberNode";
 
 export const EditorNode: React.FC<EditorNodeProps & { value: any }> = (
   props
@@ -27,6 +28,8 @@ export const EditorNode: React.FC<EditorNodeProps & { value: any }> = (
   } else if (props.name === "lastMigrationId") {
     // @todo make a non-editable EditorNode child to display the time of last migration. That or display it by some other means.
     return null;
+  } else if (typeof value === "number") {
+    return <EditorNumberNode {...props} />;
   } else {
     return <EditorLabelNode {...props} />;
   }

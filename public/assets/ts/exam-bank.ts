@@ -1,6 +1,10 @@
 import { Exam } from "../../../server/types/exam-bank.js";
 
 class ExamBankFrontend {
+  static readonly isInAdmin = window.location.href
+    .split("?")[0]
+    .includes("/admin/");
+
   static getExamList(): HTMLTableElement {
     return document.getElementById("exams-table") as HTMLTableElement;
   }
@@ -109,28 +113,106 @@ class ExamBankFrontend {
       const newRow = hiddenRow.cloneNode(true) as HTMLElement;
       newRow.id = "";
       newRow.innerHTML = newRow.innerHTML
-        .replace("$COURSE-NAME$", `${exam.department} ${exam.courseCode}`)
+        .replace(
+          "$COURSE-NAME$",
+          `${exam.department.toUpperCase()} ${exam.courseCode}`
+        )
         .replace("$COURSE-DEPT$", exam.department)
         .replace("$COURSE-CODE$", exam.courseCode)
         .replace("$OFFERING$", exam.termName)
-        .replace("$TYPE$", exam.type)
+        .replace("$TYPE$", exam.type.toLowerCase().replace("hidden", ""))
         .replace("$EXAM-FILE$", `/exams/${exam.examFile}`)
-        .replace("$SOLUTION-FILE$", `/exams/${exam.solutionFile}`)
-        .replace("$EXAM_HIDDEN$", "False")
-        .replace("$SOLUTION_HIDDEN$", "False");
+        .replace("$SOLUTION-FILE$", `/exams/${exam.solutionFile}`);
 
       newRow.setAttribute("data-course-dept", exam.department);
       newRow.setAttribute("data-course-code", exam.courseCode);
 
-      if (exam.examFile) {
+      const examHidden = exam.examFile?.toLowerCase().includes("-hidden");
+      const solutionHidden = exam.solutionFile
+        ?.toLowerCase()
+        .includes("-hidden");
+
+      if (exam.examFile && (this.isInAdmin || !examHidden)) {
         newRow.querySelector(".exam-download").classList.add("active");
       }
-      if (exam.solutionFile) {
+      if (exam.solutionFile && (this.isInAdmin || !solutionHidden)) {
         newRow.querySelector(".solution-download").classList.add("active");
       }
 
-      tableBody.appendChild(newRow);
+      // exam actions: hide and delete
+      if (this.isInAdmin) {
+        if (examHidden) {
+          newRow.querySelector(".exam-hide-icon").classList.add("active");
+        }
+        if (solutionHidden) {
+          newRow.querySelector(".solution-hide-icon").classList.add("active");
+        }
+
+        ExamBankFrontend.populateExamActions(
+          newRow,
+          "exam",
+          exam.examFile,
+          exam
+        );
+        ExamBankFrontend.populateExamActions(
+          newRow,
+          "solution",
+          exam.solutionFile,
+          exam
+        );
+      }
+
+      if (
+        this.isInAdmin ||
+        (exam.examFile && !examHidden) ||
+        (exam.solutionFile && !solutionHidden)
+      ) {
+        tableBody.appendChild(newRow);
+      }
     }
+  }
+
+  static async populateExamActions(
+    row: HTMLElement,
+    type: "exam" | "solution",
+    file: string,
+    exam: Exam
+  ) {
+    if (!file) {
+      row.querySelector(`.${type}-actions`).classList.add("hidden");
+    }
+
+    row.querySelector(`.${type}-hide-icon`).addEventListener("click", () => {
+      if (
+        row.querySelector(`.${type}-hide-icon`).classList.contains("active")
+      ) {
+        fetch(`/api/exams/${file.replace(".pdf", "")}/show`, {
+          method: "POST",
+        });
+        row.querySelector(`.${type}-hide-icon`).classList.remove("active");
+      } else {
+        fetch(`/api/exams/${file.replace(".pdf", "")}/hide`, {
+          method: "POST",
+        });
+        row.querySelector(`.${type}-hide-icon`).classList.add("active");
+      }
+    });
+
+    row.querySelector(`.${type}-delete-icon`).addEventListener("click", () => {
+      const confirmed = confirm(
+        `Are you sure you want to delete ${exam.department.toUpperCase()} ${
+          exam.courseCode
+        } - ${exam.type.toUpperCase()}?`
+      );
+
+      if (confirmed) {
+        fetch(`/api/exams/${file.replace(".pdf", "")}/delete`, {
+          method: "DELETE",
+        }).then(() => {
+          row.style.display = "none";
+        });
+      }
+    });
   }
 }
 

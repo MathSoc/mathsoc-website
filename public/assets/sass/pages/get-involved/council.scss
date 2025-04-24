@@ -1,6 +1,7 @@
 @import "../../mixins/banner-image";
 @import "../../mixins/collapsible";
 @import "../../mixins/person-card";
+@import "../../mixins/_pink-button";
 
 section {
   max-width: var(--content-width);
@@ -26,5 +27,57 @@ section {
     margin: auto;
     margin-bottom: 0;
     padding: 8px;
+  }
+}
+
+.mailing-list-form {
+  display: none;
+  max-width: var(--content-width);
+  margin: 40px auto;
+  padding: 0;
+  background-color: var(--background-colour-3);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+
+  section {
+    text-align: center;
+    padding-bottom: 0;
+
+    h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+
+      label {
+        font-size: 16px;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      input[type="email"] {
+        width: 100%;
+        max-width: 400px;
+        padding: 12px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 15px;
+      }
+
+      .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 0;
+        margin-bottom: 0;
+        display: none;
+      }
+    }
   }
 }

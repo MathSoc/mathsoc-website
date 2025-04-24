@@ -12,6 +12,7 @@ export interface PageInflow {
     [key: string]: string | undefined;
   };
   children?: PageInflow[];
+  renderInExamBankMode?: boolean;
 }
 
 export interface PageOutflow {
