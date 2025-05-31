@@ -124,3 +124,13 @@
     display: none;
   }
 }
+
+@media only screen and (max-width: 980px) {
+  #exams-table {
+    display: block;
+    margin-bottom: 40px;
+    text-align: left;
+    border-collapse: collapse;
+    overflow-x: auto;
+  }
+}
