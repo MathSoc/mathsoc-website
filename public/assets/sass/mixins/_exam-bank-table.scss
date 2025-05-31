@@ -4,6 +4,12 @@
   text-align: left;
   border-collapse: collapse;
 
+  @media only screen and (max-width: 980px) {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   @mixin match-filters($filter-classes) {
     tbody {
       tr:not(#{$filter-classes}) {
@@ -122,15 +128,5 @@
 
   #hidden-row {
     display: none;
-  }
-}
-
-@media only screen and (max-width: 980px) {
-  #exams-table {
-    display: block;
-    margin-bottom: 40px;
-    text-align: left;
-    border-collapse: collapse;
-    overflow-x: auto;
   }
 }
