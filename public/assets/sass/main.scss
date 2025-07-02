@@ -78,3 +78,10 @@ section:last-child {
   position: relative;
   min-height: 70vh;
 }
+
+.highlight {
+  background: yellow;
+  color: inherit;
+  padding: 0 2px;
+  border-radius: 2px;
+}
